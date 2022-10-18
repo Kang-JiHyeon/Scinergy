@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Rotate : MonoBehaviour
 {
+    bool isRotate = false;
     public float rotSpeed = 205;
     // Start is called before the first frame update
     void Start()
@@ -14,6 +15,10 @@ public class Rotate : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Rotate(Vector3.up * Time.deltaTime * rotSpeed);
+        if(isRotate) transform.Rotate(Vector3.up * Time.deltaTime * rotSpeed);
+    }
+    public void OnRotateBtn()
+    {
+        isRotate = !isRotate;
     }
 }
