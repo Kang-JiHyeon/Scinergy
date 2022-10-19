@@ -6,7 +6,8 @@ UserSettings/
 obj/
 *.csproj
 *.sin
-*.psd
 .vsconfig
 
 
+Assets/Inguz Media Studio/The Amazing Solar System/Sprites/Galaxy01.psd
+Assets/Inguz Media Studio/The Amazing Solar System/Sprites/Nebula01/Nebula01.psd
