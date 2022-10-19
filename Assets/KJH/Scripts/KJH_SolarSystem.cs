@@ -28,7 +28,7 @@ public class KJH_SolarSystem : MonoBehaviour
     {
         for(int i = 0; i<planets.Count; i++)
         {
-            planets[i].RotateAround(transform.position, -transform.up, periods[i] * 0.001f);
+            planets[i].RotateAround(transform.position, -transform.up, periods[i] * 0.01f);
             planets[i].forward = -transform.right;
             //planets[i].Rotate(-transform.up, periods[i] * 0.01f);
         }
