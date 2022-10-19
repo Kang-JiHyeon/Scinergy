@@ -6,6 +6,7 @@ UserSettings/
 obj/
 *.csproj
 *.sin
+*.psd
 .vsconfig
 
 
