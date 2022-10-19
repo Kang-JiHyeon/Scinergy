@@ -93,10 +93,7 @@ public class StarGenerator : MonoBehaviour
     }
     public void OnGenerateStarBtn()
     {
-        GameObject star = Instantiate(starType);
-        GameObject starBrightness = Instantiate(brightness);
-        star.transform.parent = CelestialSpehere.transform;
-        starBrightness.transform.parent = star.transform;
+        GameObject star = Instantiate(starType);        
         Star starInfo = star.GetComponent<Star>();
         starInfo.InfoSet(starName, ra, dec,starType, brightness);
         player.GetComponent<PlayerRot>().StarSet(star.transform.position);
