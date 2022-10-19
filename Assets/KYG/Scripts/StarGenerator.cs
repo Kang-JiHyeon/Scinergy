@@ -22,10 +22,10 @@ public class StarGenerator : MonoBehaviour
     public float celestialSphereRadius;
     //별 이름
     public string starName;
-    //적위
-    public float dec;
     //적경
     public float ra;
+    //적위
+    public float dec;
     //별 종류
     public GameObject starType;
     //별 밝기
@@ -97,16 +97,8 @@ public class StarGenerator : MonoBehaviour
         GameObject starBrightness = Instantiate(brightness);
         star.transform.parent = CelestialSpehere.transform;
         starBrightness.transform.parent = star.transform;
-        dec = dec * (Mathf.PI / 180);
-        dec = (Mathf.PI / 2) - dec;
-        ra = ra * -15f * Mathf.PI / 180;
-        var rr = celestialSphereRadius * Mathf.Sin(dec);
-        float x = rr * Mathf.Sin(ra);
-        float y = celestialSphereRadius * Mathf.Cos(dec);
-        float z = rr * Mathf.Cos(ra);
-
-        star.name = starName;
-        star.transform.localPosition = new Vector3(x, y, z);
+        Star starInfo = star.GetComponent<Star>();
+        starInfo.InfoSet(starName, ra, dec,starType, brightness);
         player.GetComponent<PlayerRot>().StarSet(star.transform.position);
     }
 }

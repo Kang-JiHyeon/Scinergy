@@ -3033,7 +3033,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 1000
+  far clip plane: 1500
   field of view: 60
   orthographic: 0
   orthographic size: 5
@@ -4707,8 +4707,8 @@ MonoBehaviour:
   CelestialSpehere: {fileID: 968449916}
   celestialSphereRadius: 1000
   starName: 
-  dec: 0
   ra: 0
+  dec: 0
   starType: {fileID: 0}
   brightness: {fileID: 0}
   player: {fileID: 996913022}

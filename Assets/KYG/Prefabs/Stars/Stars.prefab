@@ -106,6 +106,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2932297151604650164}
+  - component: {fileID: 6927864550069903325}
   m_Layer: 0
   m_Name: Stars
   m_TagString: Untagged
@@ -129,3 +130,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6927864550069903325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7177477379725082803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e460939a0ae1e3042a39955dad836e18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  starName: 
+  ra: 0
+  dec: 0
+  starType: {fileID: 0}
+  brightness: {fileID: 0}
