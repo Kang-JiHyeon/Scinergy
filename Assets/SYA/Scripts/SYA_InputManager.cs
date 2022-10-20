@@ -7,13 +7,13 @@ public class SYA_InputManager : MonoBehaviour
 {
     
     static Vector3 firstPosition;
-    static bool bDown = false; 
+    static bool bDown = false;
     //안드로이드라면
 #if Androids
     static bool bJoystick = true;
     //PC라면
 #elif PC
-        bool bJoystick = false;
+    static bool bJoystick = false;
 #endif
 
     public static float GetAxis(string axis)
