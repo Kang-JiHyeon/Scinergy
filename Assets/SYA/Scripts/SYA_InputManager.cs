@@ -1,21 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SYA_InputManager : MonoBehaviour
 {
-    static bool bDown = false;
+    
     static Vector3 firstPosition;
+    static bool bDown = false;
+    //안드로이드라면
+#if Androids
+    static bool bJoystick = true;
+    //PC라면
+#elif PC
+    static bool bJoystick = false;
+#endif
 
     public static float GetAxis(string axis)
     {
-        //안드로이드라면
-#if Androids
-        bool bJoystick = true;
-        //PC라면
-#elif PC
-        bool bJoystick = false;
-#endif
         if (bJoystick == false)
         {
             return Input.GetAxis(axis);
@@ -31,6 +33,25 @@ public class SYA_InputManager : MonoBehaviour
         }
 
         return 0;
+    }
+
+    public static bool GetButtonDown(string Button)
+    {
+        if (bJoystick == false)
+        {
+            return Input.GetButtonDown(Button);
+        }
+        //안드로이드라면
+        /*if (Button == "Jump")
+        {
+            if(jump==1)
+            {
+                return true;
+            }
+            return false;
+        }*/
+
+        return false;
     }
 
     // 방향구하기
@@ -58,5 +79,9 @@ public class SYA_InputManager : MonoBehaviour
         }
 
         return dir;//.normalized;
+    }
+    public static bool GetJump()
+    {
+        return true;
     }
 }

@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class SYA_PlayerMove : MonoBehaviour
 {
+    public Button jumpButton;
+
     public float speed = 10;
     public float jumpPower = 3;
     public float jumpCount = 0;
@@ -31,14 +33,21 @@ public class SYA_PlayerMove : MonoBehaviour
             yVelocity = 0;
             jumpCount = 0;
         }
-        if (Input.GetButtonDown("Jump") && jumpCount == 0)
+        if (SYA_InputManager.GetButtonDown("Jump"))
         {
-            jumpCount++;
-            yVelocity = jumpPower;
+            GetJump();
         }
+        jumpButton.onClick.AddListener(GetJump);
         yVelocity += gravity * Time.deltaTime;
         dir.y = yVelocity;
         cc.Move(dir * speed * Time.deltaTime);
+    }
+
+    public void GetJump()
+    {
+        if(jumpCount == 0)
+        jumpCount++;
+        yVelocity = jumpPower;
     }
 }
 
