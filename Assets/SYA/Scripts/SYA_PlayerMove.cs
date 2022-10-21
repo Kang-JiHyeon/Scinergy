@@ -1,9 +1,11 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class SYA_PlayerMove : MonoBehaviour
+public class SYA_PlayerMove : MonoBehaviourPun
 {
     public Button jumpButton;
 
@@ -14,15 +16,27 @@ public class SYA_PlayerMove : MonoBehaviour
     public float gravity = -9.81f;
     public CharacterController cc;
     public Text nickName;
+
     // Start is called before the first frame update
     void Start()
     {
         cc = GetComponent<CharacterController>();
+        nickName.text = PhotonNetwork.NickName ;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(SceneManager.GetActiveScene().name== "LoginScene")
+        {
+            GetComponentInChildren<Camera>().enabled = false;
+            GetComponentInChildren<AudioListener>().enabled = false;
+        }
+        else
+        {
+            GetComponentInChildren<Camera>().enabled = true;
+            GetComponentInChildren<AudioListener>().enabled = true;
+        }
         float h = SYA_InputManager.GetAxis("Horizontal");
         float v = SYA_InputManager.GetAxis("Vertical");
         Vector3 dir = Vector3.forward * v + Vector3.right * h;
@@ -37,7 +51,7 @@ public class SYA_PlayerMove : MonoBehaviour
         {
             GetJump();
         }
-        jumpButton.onClick.AddListener(GetJump);
+        //jumpButton.onClick.AddListener(GetJump);
         yVelocity += gravity * Time.deltaTime;
         dir.y = yVelocity;
         cc.Move(dir * speed * Time.deltaTime);
