@@ -194,7 +194,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Entretain Earth
+  m_Text: Entertain Earth
 --- !u!222 &345468912
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -289,7 +289,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1279070540}
         m_TargetAssemblyTypeName: SYA_SceneChange, Assembly-CSharp
-        m_MethodName: TitleScene
+        m_MethodName: LoadScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -677,6 +677,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 329643fce8a786e47afc2c497f2f3828, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadeTime: 2
 --- !u!1 &1465937489
 GameObject:
   m_ObjectHideFlags: 0
