@@ -15,6 +15,5 @@ public class axisRotate : MonoBehaviour
     void Update()
     {
         transform.rotation = Quaternion.Euler(target.transform.rotation.eulerAngles.x, target.transform.rotation.eulerAngles.y, target.transform.rotation.eulerAngles.z);
-        //transform.rotation = Quaternion.Euler(target.transform.rotation.x, target.transform.rotation.y, target.transform.rotation.z);
     }
 }
