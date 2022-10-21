@@ -49,4 +49,9 @@ public class SYA_SceneChange : MonoBehaviour
     {
         SceneManager.LoadScene("SymposiumScene");
     }
+
+    public void NameSettingScene()
+    {
+        SceneManager.LoadScene("NameSettingScene");
+    }
 }
