@@ -276,7 +276,7 @@ MonoBehaviour:
   direction: {x: 0, y: 0, z: 0}
   smoothVelocity: {x: 0, y: 0, z: 0}
   smoothTime: 3
-  smoothStopTime: 1
+  smoothStopTime: 0.05
 --- !u!1001 &215967631
 PrefabInstance:
   m_ObjectHideFlags: 0
