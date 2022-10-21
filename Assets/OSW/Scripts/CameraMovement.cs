@@ -1,43 +1,59 @@
 using UnityEngine;
 using System.Collections;
 using UnityEditor.SceneManagement;
+using static UnityEngine.GraphicsBuffer;
 
 public class CameraMovement : MonoBehaviour
 {
-    public Transform target; // 줌 할 타겟
-    public float zoomFigure = 10.0f; // 줌 수치
-    public float rotateSpeed = 500.0f; 
+    public Camera cam;
+    public Transform target;
+    public Vector3 previousPosition; 
+    public float distanceFromSphere = 50f; 
+    public Vector3 direction;
+    public Vector3 smoothVelocity = Vector3.zero;
+    public float smoothTime = 3f;
+    public float smoothStopTime = 1f;
+    Vector3 nextDirection;
 
-    private float xRotateMove, yRotateMove;
-    private Transform tr;
-    private Rigidbody rb;
 
-    private void Start()
+    void Start()
     {
-        tr = GetComponent<Transform>();
-        rb = GetComponent<Rigidbody>();
+        cam = GetComponent<Camera>();
     }
-    
 
-    private void Update()
+    void Update()
     {
-        // 줌 인/아웃
-        Vector3 targetDis = tr.position - target.position;
-        targetDis = Vector3.Normalize(targetDis);
-        tr.position -= (targetDis * Input.GetAxis("Mouse ScrollWheel") * zoomFigure);
+        if (!target) return;
 
-        // 타겟을 기준으로 카메라 Rotate
+
+        if (Input.GetMouseButtonDown(0))
+            previousPosition = cam.ScreenToViewportPoint(Input.mousePosition);
+
+        Vector3 currentSmoothVelocity = new Vector3();
         if (Input.GetMouseButton(0))
         {
-            xRotateMove = Input.GetAxis("Mouse X") * Time.deltaTime * rotateSpeed;
-            yRotateMove = Input.GetAxis("Mouse Y") * Time.deltaTime * rotateSpeed;
-
-            Vector3 trPosition = target.transform.position;
-
-            transform.RotateAround(trPosition, Vector3.right, -yRotateMove); // 상하
-            transform.RotateAround(trPosition, Vector3.up, xRotateMove); // 좌우
-            // 마우스 포인터 포지션을 계속 저장해서 손을 뗏을 때 현재 마우스 포인터 포지션과 저장한 포지션을 빼
-            // 똈을 때 1초동안 그 방향으로 계속 유지되게
+            nextDirection = previousPosition - cam.ScreenToViewportPoint(Input.mousePosition);
+            currentSmoothVelocity = smoothVelocity;
         }
-    }    
+        if (Input.GetMouseButtonUp(0))
+        {
+            StartCoroutine(SmoothStop());
+            currentSmoothVelocity = smoothVelocity / 2;
+        }
+
+        direction = Vector3.SmoothDamp(direction, nextDirection, ref currentSmoothVelocity, smoothTime, 100, 10f * Time.deltaTime);
+        cam.transform.position = target.position;
+        cam.transform.Rotate(new Vector3(1, 0, 0), direction.y * 180);
+        cam.transform.Rotate(new Vector3(0, 1, 0), -direction.x * 180, Space.World);
+        cam.transform.Translate(new Vector3(0, 0, -distanceFromSphere));
+
+        previousPosition = cam.ScreenToViewportPoint(Input.mousePosition);
+
+    }
+
+    IEnumerator SmoothStop()
+    {
+        yield return new WaitForSeconds(smoothStopTime);
+        nextDirection = Vector3.zero;
+    }
 }
