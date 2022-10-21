@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class axisRotate : MonoBehaviour
+public class TimeRotate : MonoBehaviour
 {
-    public Transform target;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,6 +13,6 @@ public class axisRotate : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.rotation = Quaternion.Euler(target.transform.rotation.eulerAngles.x, target.transform.rotation.eulerAngles.y, target.transform.rotation.eulerAngles.z);
+        
     }
 }
