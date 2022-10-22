@@ -14,7 +14,7 @@ public class Compas : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Quaternion northDirecton = Quaternion.LookRotation(new Vector3(StarGenerator.instance.CelestialSpehere.transform.up.x, 0, StarGenerator.instance.CelestialSpehere.transform.up.z));
+        Quaternion northDirecton = Quaternion.LookRotation(new Vector3(GameManager.instance.CelestialSpehere.transform.up.x, 0, GameManager.instance.CelestialSpehere.transform.up.z));
         transform.rotation = northDirecton * Quaternion.Euler(90,0,0);
     }
 }

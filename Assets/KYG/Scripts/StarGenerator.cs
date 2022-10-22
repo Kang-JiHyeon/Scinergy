@@ -16,10 +16,7 @@ public class StarGenerator : MonoBehaviour
     public List<GameObject> starBrightnessList = new List<GameObject>();
     #endregion
 
-    //천구
-    public GameObject CelestialSpehere;
-    //천구 반지름
-    public float celestialSphereRadius;
+ 
     //별 이름
     public string starName;
     //적경
