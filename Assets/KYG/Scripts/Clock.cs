@@ -7,13 +7,13 @@ public class Clock : MonoBehaviour
 {
     public bool timeFlow = false;
     public float REAL_SECONDS_PER_INGAME_DAY = 10f;
-    private Transform hourHandTransform;
-    private Transform minHandTransform;
+    public Transform hourHandTransform;
+    public Transform minHandTransform;
     public float day;
     private void Awake()
     {
-        hourHandTransform = transform.Find("HourHand");
-        minHandTransform = transform.Find("MinuteHand");
+        //hourHandTransform = transform.Find("HourHand");
+        //minHandTransform = transform.Find("MinuteHand");
     }
     // Start is called before the first frame update
     void Start()

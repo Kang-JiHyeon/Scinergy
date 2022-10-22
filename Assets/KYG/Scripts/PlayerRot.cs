@@ -45,7 +45,7 @@ public class PlayerRot : MonoBehaviour
                 CamStarLook();
                 return;
             case CamState.normal:
-                CanNormal();
+                CamNormal();
                 return;
             case CamState.onUI:
                 CamOnUI();
@@ -56,15 +56,17 @@ public class PlayerRot : MonoBehaviour
 
     private void CamOnUI()
     {
-        rotX = rotY = 0;
+        
         if (!GetComponent<PlayerControl>().playerUI.activeSelf)
         {
             state = CamState.normal;
         }
     }
 
-    private void CanNormal()
+    private void CamNormal()
     {
+        float originX = transform.rotation.y;
+        float originY = camPos.rotation.x;
         if (GetComponent<PlayerControl>().playerUI.activeSelf)
         {
             state = CamState.onUI;
@@ -74,8 +76,8 @@ public class PlayerRot : MonoBehaviour
         rotX += mx * rotSpeed * Time.deltaTime;
         rotY += -my * rotSpeed * Time.deltaTime;
         //rotY = Mathf.Clamp(rotY, -60f, 60f);
-        transform.localEulerAngles = new Vector3(0, rotX, 0);
-        camPos.localEulerAngles = new Vector3(rotY, 0, 0);
+        transform.localEulerAngles = new Vector3(0, rotX + originX, 0);
+        camPos.localEulerAngles = new Vector3(rotY + originY, 0, 0);
     }
 
     private void CamStarLook()
