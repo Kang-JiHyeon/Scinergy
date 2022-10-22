@@ -28,7 +28,7 @@ public class KJH_Revolution : MonoBehaviour
         radius = Vector3.Distance(orbitAxis.position, planet.position);
         sunLight.LookAt(transform.position);
 
-        DrawOrbit();
+        //DrawOrbit();
     }
 
     // Update is called once per frame
