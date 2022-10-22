@@ -12,7 +12,8 @@ public class KJH_Revolution : MonoBehaviour
 {
     LineRenderer lr;
     public Transform orbitAxis; // 기준점
-    public Transform planet;   // 행성
+    public Transform planet;    // 행성
+    public Transform sunLight;  // 태양빛
     public int segment;         // 라인 꼭짓점 개수
     public float radius;        // 기준점과의 거리(반지름)
     public float period;        // 공전주기
@@ -22,15 +23,19 @@ public class KJH_Revolution : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        lr = GetComponent<LineRenderer>();
+        //lr = transform.GetComponent<LineRenderer>();
+        lr = transform.GetChild(0).GetComponent<LineRenderer>();
         radius = Vector3.Distance(orbitAxis.position, planet.position);
+        sunLight.LookAt(transform.position);
+
         DrawOrbit();
     }
 
     // Update is called once per frame
     void Update()
     {
-        planet.RotateAround(orbitAxis.position, -planet.up, period * rotSpeed);
+        //transform.RotateAround(orbitAxis.position, -planet.up, period * rotSpeed);
+
     }
 
 

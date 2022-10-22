@@ -1,0 +1,20 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Compas : MonoBehaviour
+{
+    public GameObject player;
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        Quaternion northDirecton = Quaternion.LookRotation(new Vector3(StarGenerator.instance.CelestialSpehere.transform.up.x, 0, StarGenerator.instance.CelestialSpehere.transform.up.z));
+        transform.rotation = northDirecton * Quaternion.Euler(90,0,0);
+    }
+}
