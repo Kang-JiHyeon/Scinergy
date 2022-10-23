@@ -112,7 +112,7 @@ public class KJH_SolarSystem : MonoBehaviour
     int day = 30;
     int hour = 23;
     float standard = 0.5f / 65f;
-    float unitTimeNum = 0f;
+    public float unitTimeNum = 0f;
     float sign = 0;
     string unitTimeTxt = "";
 
