@@ -121,7 +121,6 @@ public class KJH_SolarSystem : MonoBehaviour
     {
         sign = unitTimeScrolbar.value > 0.5f ? 1 : -1;
 
-
         float value = Mathf.Abs(0.5f - unitTimeScrolbar.value) / standard;
 
         if (value < 1f)
