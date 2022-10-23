@@ -91,8 +91,7 @@ public class StarGenerator : MonoBehaviour
     public void OnGenerateStarBtn()
     {
         GameObject star = Instantiate(starType);        
-        Star starInfo = star.GetComponent<Star>();
-        starInfo.InfoSet(starName, ra, dec,starType, brightness);
+        star.GetComponent<Star>().InfoSet(starName, ra, dec,starType, brightness);
         player.GetComponent<PlayerRot>().StarSet(star.transform.position);
     }
 }

@@ -9,9 +9,8 @@ public class PlayerRot : MonoBehaviour
     public Transform camPos;
     float mx;
     float my;
-    public float rotX;
-    public float rotY;
-    public bool starLook = false;
+    float rotX;
+    float rotY;
     private Vector3 starLookDirection;
     public enum CamState 
     {
@@ -67,10 +66,6 @@ public class PlayerRot : MonoBehaviour
     {
         float originX = transform.rotation.y;
         float originY = camPos.rotation.x;
-        if (GetComponent<PlayerControl>().playerUI.activeSelf)
-        {
-            state = CamState.onUI;
-        }
         float mx = Input.GetAxis("Mouse X");
         float my = Input.GetAxis("Mouse Y");
         rotX += mx * rotSpeed * Time.deltaTime;
@@ -78,6 +73,10 @@ public class PlayerRot : MonoBehaviour
         //rotY = Mathf.Clamp(rotY, -60f, 60f);
         transform.localEulerAngles = new Vector3(0, rotX + originX, 0);
         camPos.localEulerAngles = new Vector3(rotY + originY, 0, 0);
+        if (GetComponent<PlayerControl>().playerUI.activeSelf)
+        {
+            state = CamState.onUI;
+        }
     }
 
     private void CamStarLook()
