@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
 using Photon.Realtime;
+using SYA_UserInfoManagerSaveLoad;
 
 public class SYA_LobbyManager : MonoBehaviourPunCallbacks
 {
@@ -91,7 +92,8 @@ public class SYA_LobbyManager : MonoBehaviourPunCallbacks
     {
         base.OnJoinedRoom();
         print("OnJoinedRoom");
-        PhotonNetwork.Instantiate("Player", new Vector3(-0.1f, 6.5f, 0), Quaternion.LookRotation(Camera.main.transform.position));
+        PhotonNetwork.Instantiate(SYA_UserInfoManager.Instance.Avatar, new Vector3(-0.1f, 6.5f, 0), Quaternion.LookRotation(Camera.main.transform.position));
+        SYA_UserInfoSave.Instance.Save();
 
         //PhotonNetwork.LoadLevel("SYA_MatchingScene");
     }
@@ -102,4 +104,10 @@ public class SYA_LobbyManager : MonoBehaviourPunCallbacks
         base.OnJoinRoomFailed(returnCode, message);
         print("OnJoinRoomFailed, " + returnCode + ", " + message);
     }
+
+    /*//플레이씬으로 이동하기
+    public void PlaySceneChange()
+    {
+        SYA_SceneChange.Instance.PlayScene();
+    }*/
 }

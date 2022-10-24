@@ -17,6 +17,8 @@ public class SYA_PlayerMove : MonoBehaviourPun
     public CharacterController cc;
     public Text nickName;
 
+    Vector3 dir;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,7 +29,7 @@ public class SYA_PlayerMove : MonoBehaviourPun
     // Update is called once per frame
     void Update()
     {
-        if(SceneManager.GetActiveScene().name== "LoginScene")
+        if (SceneManager.GetActiveScene().name == "LoginScene")
         {
             GetComponentInChildren<Camera>().enabled = false;
             GetComponentInChildren<AudioListener>().enabled = false;
@@ -36,21 +38,25 @@ public class SYA_PlayerMove : MonoBehaviourPun
         {
             GetComponentInChildren<Camera>().enabled = true;
             GetComponentInChildren<AudioListener>().enabled = true;
+
+            float h = SYA_InputManager.GetAxis("Horizontal");
+            float v = SYA_InputManager.GetAxis("Vertical");
+
+            dir = Vector3.forward * v + Vector3.right * h;
+
+            if (cc.isGrounded)
+            {
+                yVelocity = 0;
+                jumpCount = 0;
+            }
+            if (SYA_InputManager.GetButtonDown("Jump"))
+            {
+                GetJump();
+            }
         }
-        float h = SYA_InputManager.GetAxis("Horizontal");
-        float v = SYA_InputManager.GetAxis("Vertical");
-        Vector3 dir = Vector3.forward * v + Vector3.right * h;
         dir = Camera.main.transform.TransformDirection(dir);
         dir.Normalize();
-        if (cc.isGrounded)
-        {
-            yVelocity = 0;
-            jumpCount = 0;
-        }
-        if (SYA_InputManager.GetButtonDown("Jump"))
-        {
-            GetJump();
-        }
+
         //jumpButton.onClick.AddListener(GetJump);
         yVelocity += gravity * Time.deltaTime;
         dir.y = yVelocity;
