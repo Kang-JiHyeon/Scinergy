@@ -4,7 +4,7 @@ using UnityEngine;
 using Firebase.Auth;
 using System;
 
-public class FirebaseAuthManager : MonoBehaviour
+public class FirebaseAuthManager
 {
     private static FirebaseAuthManager instance = null;
 
