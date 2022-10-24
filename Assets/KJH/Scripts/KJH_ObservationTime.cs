@@ -6,20 +6,21 @@ using System;
 using System.Globalization;
 
 
-// (V) 관측 시간을 Text로 나타내고 싶다. 
+// (v) 관측 시간을 Text로 나타내고 싶다. 
 // - 년, 월, 일, 시간, 분, 오전/오후
 
 
-// 정지 버튼
+// (v) 정지 버튼
 // 스크롤바의 값을 0.5로 지정하고 싶다.
 
-// 재생 버튼
+// (v) 재생 버튼
 // - 정지 직전의 단위 시간으로 지정하고 싶다.
 
-
 // 현재 시각 버튼
-// - 관측 시각을 현재 시각으로 지정하고 싶다.
+// - (v) 관측 시각을 현재 시각으로 지정하고 싶다.
 // - 행성들의 위치도 현재 시각 기준으로 되돌리고 싶다.
+// -- 현재 위치를 계속 저장해 둘 List가 필요하다.
+// 현재 위치를 저장해두는 기준 시간-> 분..단위..?
 
 
 public class KJH_ObservationTime : MonoBehaviour
@@ -96,5 +97,30 @@ public class KJH_ObservationTime : MonoBehaviour
         DateText.text = obsDate.ToString("MM") + "월 " + obsDate.ToString("dd") + "일";
         // 01시 15분 오전
         TimeText.text = obsDate.ToString("HH") + " : " + obsDate.ToString("mm") + " " + obsDate.ToString("tt");
+    }
+
+    float originScrollValue = 0.75f;
+    public void StopObservation()
+    {
+        if(solarSystem.unitTimeScrolbar.value != 0.5f)
+        {
+            originScrollValue = solarSystem.unitTimeScrolbar.value;
+            solarSystem.unitTimeScrolbar.value = 0.5f;
+        }
+    }
+
+    public void PlayObservation()
+    {
+        if(solarSystem.unitTimeScrolbar.value == 0.5f)
+        {
+            solarSystem.unitTimeScrolbar.value = originScrollValue;
+            print(solarSystem.unitTimeScrolbar.value);
+        }
+    }
+    // 위치 이동 시켜야 함
+    public void ToCurTime()
+    {
+        obsDate = DateTime.Now;
+        SetObsDateText();
     }
 }

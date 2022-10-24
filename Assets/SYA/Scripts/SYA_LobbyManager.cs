@@ -27,6 +27,7 @@ public class SYA_LobbyManager : MonoBehaviourPunCallbacks
         //나의 캐릭터 가운데에 등장
 
         //PhotonNetwork.Instantiate("DB에 저장된 아바타 유형", Vector3.zero, Quaternion.identity);
+        if (!photonView.IsMine) return;
         nicknameW.text = "Signed in as " + PhotonNetwork.NickName;
         OnClickJoinRoom();
     }
@@ -64,7 +65,7 @@ public class SYA_LobbyManager : MonoBehaviourPunCallbacks
         roomList.Add(roomName);
         // 방 생성 요청 (해당 옵션을 이용해서)
         //PhotonNetwork.CreateRoom(roomName, roomOptions);
-        PhotonNetwork.JoinRandomOrCreateRoom(null, 2, MatchmakingMode.FillRoom, null, null, roomName, roomOptions, null);
+        PhotonNetwork.JoinRandomOrCreateRoom(null, 1, MatchmakingMode.FillRoom, null, null, roomName, roomOptions, null);
     }
 
     //방이 생성되면 호출 되는 함수

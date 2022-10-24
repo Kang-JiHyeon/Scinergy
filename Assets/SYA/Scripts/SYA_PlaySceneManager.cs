@@ -9,6 +9,7 @@ public class SYA_PlaySceneManager : MonoBehaviourPun
     // Start is called before the first frame update
     void Start()
     {
+        if (!photonView.IsMine) return;
         PhotonNetwork.Instantiate(SYA_UserInfoManager.Instance.Avatar, new Vector3(0, 5.5f, 1), Quaternion.identity);
     }
 

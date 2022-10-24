@@ -29,7 +29,7 @@ public class SYA_PlayerMove : MonoBehaviourPun
     // Update is called once per frame
     void Update()
     {
-        if (SceneManager.GetActiveScene().name == "LoginScene")
+        if (!photonView.IsMine||SceneManager.GetActiveScene().name == "LoginScene")
         {
             GetComponentInChildren<Camera>().enabled = false;
             GetComponentInChildren<AudioListener>().enabled = false;
