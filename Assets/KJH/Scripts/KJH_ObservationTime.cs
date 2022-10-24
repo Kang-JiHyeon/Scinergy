@@ -6,30 +6,29 @@ using System;
 using System.Globalization;
 
 
-
-// (V) ���� �ð��� Text�� ��Ÿ���� �ʹ�.
-// - ��, ��, ��, �ð�, ��, ����/����
-
-
-// ���� ��ư
-// ��ũ�ѹ��� ���� 0.5�� �����ϰ� �ʹ�.
-
-// ���� ��ư
-// - ���� ������ ���� �ð����� �����ϰ� �ʹ�.
+// (V) 관측 시간을 Text로 나타내고 싶다. 
+// - 년, 월, 일, 시간, 분, 오전/오후
 
 
-// ���� �ð� ��ư
-// - ���� �ð��� ���� �ð����� �����ϰ� �ʹ�.
-// - �༺���� ��ġ�� ���� �ð� �������� �ǵ����� �ʹ�.
+// 정지 버튼
+// 스크롤바의 값을 0.5로 지정하고 싶다.
+
+// 재생 버튼
+// - 정지 직전의 단위 시간으로 지정하고 싶다.
+
+
+// 현재 시각 버튼
+// - 관측 시각을 현재 시각으로 지정하고 싶다.
+// - 행성들의 위치도 현재 시각 기준으로 되돌리고 싶다.
 
 
 public class KJH_ObservationTime : MonoBehaviour
 {
     public KJH_SolarSystem solarSystem;
 
-    // ���� �ð� : ���� Update
+    // 현재 시간 : 계속 Update
     DateTime curDate;
-    // ���� �ð� : ��ũ�ѹ� ���� ���� ������
+    // 관측 시간 : 스크롤바 값에 따라 변경됨
     DateTime obsDate;
 
     public Text yearText;
@@ -50,10 +49,10 @@ public class KJH_ObservationTime : MonoBehaviour
 
     private void FixedUpdate()
     {
-        // ���� �ð� Update
+        // 현재 시각 Update
         curDate = DateTime.Now;
 
-        // 1�ʸ��� ���� �ð� ����
+        // 1초마다 관측 시간 갱신
         curTime += Time.fixedDeltaTime;
         if(curTime > updateTime)
         {
@@ -68,7 +67,7 @@ public class KJH_ObservationTime : MonoBehaviour
         }
     }
 
-    // ���� �ð� ���� �Լ�
+    // 관측 시간 설정 함수
     void SetObsDate()
     {
         switch (solarSystem.unitTime)
@@ -93,9 +92,9 @@ public class KJH_ObservationTime : MonoBehaviour
     {
         // 2022
         yearText.text = obsDate.ToString("yyyy");
-        // 10�� 23��
-        DateText.text = obsDate.ToString("MM") + "�� " + obsDate.ToString("dd") + "��";
-        // 01�� 15�� ����
+        // 10월 23일
+        DateText.text = obsDate.ToString("MM") + "월 " + obsDate.ToString("dd") + "일";
+        // 01시 15분 오전
         TimeText.text = obsDate.ToString("HH") + " : " + obsDate.ToString("mm") + " " + obsDate.ToString("tt");
     }
 }
