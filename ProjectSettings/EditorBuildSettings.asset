@@ -18,11 +18,14 @@ EditorBuildSettings:
     path: Assets/SYA/Scenes/NameSettingScene.unity
     guid: d6bad5e64fbf0184bacfa4f37087a617
   - enabled: 1
+    path: Assets/SYA/Scenes/AvartaScene.unity
+    guid: af6f714fdf401f54da56d6fe1c6123ab
+  - enabled: 1
     path: Assets/SYA/Scenes/LoginScene.unity
     guid: 0140d882dbeca074e8165c55e9684a61
   - enabled: 1
     path: Assets/SYA/Scenes/PlayScene.unity
-    guid: df6c9f77a73d62c42937a51a9f3e0302
+    guid: 0f32d7aeda46d9943afd6199c8ce4f41
   - enabled: 1
     path: Assets/SYA/Scenes/SymposiumScene.unity
     guid: f1fe1d2bf6b14cb43a38306f5da0151b

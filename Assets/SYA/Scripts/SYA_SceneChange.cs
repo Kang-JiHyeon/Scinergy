@@ -33,20 +33,40 @@ public class SYA_SceneChange : MonoBehaviour
     {
         SceneManager.LoadScene("LoadingScene");
     }
+
     public void StartScene()
     {
         SceneManager.LoadScene("StartScene");
     }
+
     public void LoginScene()
     {
         SceneManager.LoadScene("LoginScene");
     }
+
+    public void NameSettingScene()
+    {
+        SceneManager.LoadScene("NameSettingScene");
+    }
+
+    public void AvartaScene()
+    {
+        SceneManager.LoadScene("AvartaScene");
+    }
+
     public void PlayScene()
     {
         SceneManager.LoadScene("PlayScene");
     }
+
     public void SymposiumScene()
     {
         SceneManager.LoadScene("SymposiumScene");
+    }
+
+    public void Quit()
+    {
+        Application.Quit();
+        print("Á¾·á");
     }
 }

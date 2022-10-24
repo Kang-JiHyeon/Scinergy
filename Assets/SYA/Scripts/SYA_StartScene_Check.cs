@@ -11,14 +11,14 @@ public class SYA_StartScene_Check : MonoBehaviour
     public Toggle toggle1;
     public Toggle toggle2;
     public Toggle toggle3;
-    public Toggle toggle4;
+
+    public InputField pwInputField;
 
     public void AllToggleCheckButton()
     {
         toggle1.isOn = true;
         toggle2.isOn = true;
         toggle3.isOn = true;
-        toggle4.isOn = true;
     }
 
     public void NextButton()
@@ -39,5 +39,25 @@ public class SYA_StartScene_Check : MonoBehaviour
     {
         Login.SetActive(false);
         startButton.SetActive(true);
+    }
+
+    InputField.ContentType type; 
+    public void PWShow()
+    {
+        type = pwInputField.contentType;
+        if (type == InputField.ContentType.Password)
+        {
+            type = InputField.ContentType.Standard;
+        }
+        else
+        {
+            type = InputField.ContentType.Password;
+        }
+        pwInputField.contentType = type;
+    }
+
+    private void Update()
+    {
+
     }
 }

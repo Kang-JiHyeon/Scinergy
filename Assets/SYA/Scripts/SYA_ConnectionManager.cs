@@ -1,13 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Photon.Pun;
 using Photon.Realtime;
+using SYA_UserInfoManagerSaveLoad;
 
 public class SYA_ConnectionManager : MonoBehaviourPunCallbacks
 {
+    public InputField nameField;
+    public Text nameCount;
+
+    private void Update()
+    {
+        string count = nameField.text.Length.ToString();
+        nameCount.text = $"{count} / 10";
+    }
+
     //서버접속
-    public void OnClickConnect()//현재 스타트씬의 스타트버튼과 연결됨
+    public void OnClickConnect()//현재 네임세팅씬 완료버튼과 연결됨
     {
         PhotonNetwork.AutomaticallySyncScene = true; 
         //서버 접속 요청
@@ -27,9 +38,9 @@ public class SYA_ConnectionManager : MonoBehaviourPunCallbacks
     {
         base.OnConnectedToMaster();
         print(System.Reflection.MethodBase.GetCurrentMethod().Name);
-
         //내 닉네임 설정
-        PhotonNetwork.NickName = "Player" + Random.Range(0, 10000);//이메일 회원가입 시에 설정해둔 닉네임 정보 불러와서 적용
+        PhotonNetwork.NickName = nameField.text;
+        SYA_UserInfoSave.Instance.NicNameSave(nameField.text);
         //로비 진입 요청
         TypedLobby typed = new TypedLobby("C1", LobbyType.Default);
         PhotonNetwork.JoinLobby(typed);
@@ -40,8 +51,8 @@ public class SYA_ConnectionManager : MonoBehaviourPunCallbacks
     {
         base.OnJoinedLobby();
         print(System.Reflection.MethodBase.GetCurrentMethod().Name);
-
         //LobbyScene으로 이동
-        PhotonNetwork.LoadLevel("LoginScene");
+        PhotonNetwork.LoadLevel("AvartaScene");
     }
+
 }

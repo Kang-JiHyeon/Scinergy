@@ -112,6 +112,7 @@ public class FirebaseAuthManager : MonoBehaviour
             Debug.LogError("로그인 완료");
             Debug.LogFormat("User signed in successfully: {0} ({1})",
                  newUser.DisplayName, newUser.UserId);
+            SYA_SceneChange.Instance.LoginScene();
         });
     }
 
