@@ -6,18 +6,28 @@ using UnityEngine.UI;
 
 // 행성 공전
 
-
 public class KJH_SolarSystem : MonoBehaviour
 {
-    List<Transform> planets = new List<Transform>();
-    public Transform go_planets;
-    public List<float> yearPeriods;
-    public List<float> AUs;
-    public List<float> scales;
-    public List<float> axisTilts;
-    float rotAngle = 0f;
+    public static KJH_SolarSystem instance;
 
-    // 행성 궤도 그리기 위한 변수
+    // 행성 
+    public List<Transform> planets = new List<Transform>();
+    // 행성 부모
+    public Transform go_planets;
+
+    // 공전 연주기
+    public List<float> yearPeriods;
+    // 태양과의 거리
+    public List<float> AUs;
+    // 행성 크기
+    public List<float> scales;
+    // 자전축
+    public List<float> axisTilts;
+
+
+
+
+    // 행성 공전 궤도 그리기 위한 변수
     LineRenderer lr;
     float radius;        // 기준점과의 거리(반지름)
     public int segment;         // 라인 꼭짓점 개수
@@ -37,10 +47,17 @@ public class KJH_SolarSystem : MonoBehaviour
 
     public UnitTime unitTime = UnitTime.year;
 
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-
         // 행성 리스트에 추가
         for (int i = 0; i < go_planets.childCount; i++)
         {
@@ -67,11 +84,27 @@ public class KJH_SolarSystem : MonoBehaviour
     // 0.02초 마다 update => 1초에 50번 호출
     private void FixedUpdate()
     {
+        // 단위 시간에 따른 공전
+        Revolution();
+
+        // 단위 시간에 따른 자전
+        PlanetRotation();
+
+    }
+
+    private void PlanetRotation()
+    {
+        //float rotAngle = (360 / dayRotPeriods[i] / (float)unitTime) * unitTimeNum;
+        //transform.Rotate(0, -rotAngle, 0);
+    }
+
+    private void Revolution()
+    {
         for (int i = 0; i < planets.Count; i++)
         {
             // 단위 시간 당 공전 주기에 따른 rot angle 설정
             //rotAngle = 360f / yearPeriods[i] / (float)unitTime;
-            rotAngle = (360f / yearPeriods[i] / (float)unitTime) * unitTimeNum;
+            float rotAngle = (360f / yearPeriods[i] / (float)unitTime) * unitTimeNum;
 
             // 각도만큼 회전
             planets[i].RotateAround(transform.position, -transform.up, rotAngle * Time.fixedDeltaTime);
@@ -79,12 +112,11 @@ public class KJH_SolarSystem : MonoBehaviour
             // 라이트 방향 설정
             planets[i].Find("OrbitAxis").GetChild(0).forward = planets[i].position - transform.position;
         }
-
     }
 
 
     // 행성 공전 궤도 그리는 함수
-    void DrawOrbit()
+    private void DrawOrbit()
     {
         Vector3[] points = new Vector3[segment + 1];
         //float angle = 360f / segment;
@@ -100,7 +132,7 @@ public class KJH_SolarSystem : MonoBehaviour
         lr.SetPositions(points);
     }
 
-    Vector3 CalculatePosition(float t)
+    private Vector3 CalculatePosition(float t)
     {
         float angle = Mathf.Deg2Rad * 360f * t;
         float x = Mathf.Sin(angle) * radius;
@@ -113,6 +145,7 @@ public class KJH_SolarSystem : MonoBehaviour
     int hour = 23;
     float standard = 0.5f / 65f;
     public float unitTimeNum = 0f;
+    //public float originScrollValue = 0.5f;
     float sign = 0;
     string unitTimeTxt = "";
 
@@ -120,13 +153,13 @@ public class KJH_SolarSystem : MonoBehaviour
     public void SetUnitTime()
     {
         sign = unitTimeScrolbar.value > 0.5f ? 1 : -1;
-
+        //originScrollValue = unitTimeScrolbar.value;
         float value = Mathf.Abs(0.5f - unitTimeScrolbar.value) / standard;
 
         if (value < 1f)
         {
             unitTimeNum = 0;
-            unitTimeText.text = "멈춤";
+            unitTimeText.text = "멈추기";
         }
         else
         {
@@ -164,5 +197,4 @@ public class KJH_SolarSystem : MonoBehaviour
             unitTimeText.text = unitTimeNum.ToString("+#;-#;0")+ unitTimeTxt;
         }
     }
-
 }
