@@ -7,30 +7,30 @@ using System.Globalization;
 
 
 
-// (V) °üÃø ½Ã°£À» Text·Î ³ªÅ¸³»°í ½Í´Ù. 
-// - ³â, ¿ù, ÀÏ, ½Ã°£, ºÐ, ¿ÀÀü/¿ÀÈÄ
+// (V) ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ï¿½ï¿½ Textï¿½ï¿½ ï¿½ï¿½Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½Í´ï¿½.
+// - ï¿½ï¿½, ï¿½ï¿½, ï¿½ï¿½, ï¿½Ã°ï¿½, ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½/ï¿½ï¿½ï¿½ï¿½
 
 
-// Á¤Áö ¹öÆ°
-// ½ºÅ©·Ñ¹ÙÀÇ °ªÀ» 0.5·Î ÁöÁ¤ÇÏ°í ½Í´Ù.
+// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ°
+// ï¿½ï¿½Å©ï¿½Ñ¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 0.5ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½Í´ï¿½.
 
-// Àç»ý ¹öÆ°
-// - Á¤Áö Á÷ÀüÀÇ ´ÜÀ§ ½Ã°£À¸·Î ÁöÁ¤ÇÏ°í ½Í´Ù.
+// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ°
+// - ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½Í´ï¿½.
 
 
-// ÇöÀç ½Ã°¢ ¹öÆ°
-// - °üÃø ½Ã°¢À» ÇöÀç ½Ã°¢À¸·Î ÁöÁ¤ÇÏ°í ½Í´Ù.
-// - Çà¼ºµéÀÇ À§Ä¡µµ ÇöÀç ½Ã°¢ ±âÁØÀ¸·Î µÇµ¹¸®°í ½Í´Ù.
+// ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ ï¿½ï¿½Æ°
+// - ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½Í´ï¿½.
+// - ï¿½à¼ºï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Çµï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Í´ï¿½.
 
 
 public class KJH_ObservationTime : MonoBehaviour
 {
     public KJH_SolarSystem solarSystem;
 
-    // ÇöÀç ½Ã°£ : °è¼Ó Update
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ : ï¿½ï¿½ï¿½ï¿½ Update
     DateTime curDate;
-    // °üÃø ½Ã°£ : ½ºÅ©·Ñ¹Ù °ª¿¡ µû¶ó º¯°æµÊ
-    DateTime obsDate; 
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ : ï¿½ï¿½Å©ï¿½Ñ¹ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    DateTime obsDate;
 
     public Text yearText;
     public Text DateText;
@@ -50,10 +50,10 @@ public class KJH_ObservationTime : MonoBehaviour
 
     private void FixedUpdate()
     {
-        // ÇöÀç ½Ã°¢ Update
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ Update
         curDate = DateTime.Now;
 
-        // 1ÃÊ¸¶´Ù °üÃø ½Ã°£ °»½Å
+        // 1ï¿½Ê¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ ï¿½ï¿½ï¿½ï¿½
         curTime += Time.fixedDeltaTime;
         if(curTime > updateTime)
         {
@@ -68,7 +68,7 @@ public class KJH_ObservationTime : MonoBehaviour
         }
     }
 
-    // °üÃø ½Ã°£ ¼³Á¤ ÇÔ¼ö
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½
     void SetObsDate()
     {
         switch (solarSystem.unitTime)
@@ -93,9 +93,9 @@ public class KJH_ObservationTime : MonoBehaviour
     {
         // 2022
         yearText.text = obsDate.ToString("yyyy");
-        // 10¿ù 23ÀÏ
-        DateText.text = obsDate.ToString("MM") + "¿ù " + obsDate.ToString("dd") + "ÀÏ";
-        // 01½Ã 15ºÐ ¿ÀÀü
+        // 10ï¿½ï¿½ 23ï¿½ï¿½
+        DateText.text = obsDate.ToString("MM") + "ï¿½ï¿½ " + obsDate.ToString("dd") + "ï¿½ï¿½";
+        // 01ï¿½ï¿½ 15ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         TimeText.text = obsDate.ToString("HH") + " : " + obsDate.ToString("mm") + " " + obsDate.ToString("tt");
     }
 }
