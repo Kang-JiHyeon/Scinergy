@@ -270,7 +270,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 0}
-  target: {fileID: 1057126181}
+  target: {fileID: 0}
   previousPosition: {x: 0, y: 0, z: 0}
   distanceFromSphere: 50
   direction: {x: 0, y: 0, z: 0}
@@ -945,7 +945,7 @@ GameObject:
   - component: {fileID: 2100240207}
   - component: {fileID: 2100240206}
   m_Layer: 0
-  m_Name: ' SolarSystem'
+  m_Name: SolarSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

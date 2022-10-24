@@ -1,7 +1,8 @@
 using UnityEngine;
 using System.Collections;
 using UnityEditor.SceneManagement;
-using static UnityEngine.GraphicsBuffer;
+using Unity.VisualScripting;
+
 
 public class OrbitCamera : MonoBehaviour
 {
@@ -25,7 +26,6 @@ public class OrbitCamera : MonoBehaviour
         // 마우스 클릭 시점의 현재 포지션과 마우스 클릭 을 땠을 때의 포지션의 차이
         // 카메라가 돌아가다가 서서히 멈춤 -> SmoothDamp
         if (!target) return;
-
 
         if (Input.GetMouseButtonDown(0))
             previousPosition = cam.ScreenToViewportPoint(Input.mousePosition);

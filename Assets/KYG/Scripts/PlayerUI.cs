@@ -53,6 +53,17 @@ public class PlayerUI : MonoBehaviour
             Clock.SetActive(true);
         }
     }
+    public void OnMapBtn()
+    {
+        if (Map.activeSelf)
+        {
+            Map.SetActive(false);
+        }
+        else
+        {
+            Map.SetActive(true);
+        }
+    }
 
     public void OnTimeFlowBtn()
     {
