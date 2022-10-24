@@ -30,7 +30,7 @@ public class LogInSystem : MonoBehaviour
         string e = emailInputField.text;
         string p = passwordInputField.text;
 
-        FirebaseAuthManager.Instance.SignUp(e, p);
+        //FirebaseAuthManager.Instance.SignUp(e, p);
         SYA_UserInfoSave.Instance.IdPasswardSave(e, p);
     }
 
