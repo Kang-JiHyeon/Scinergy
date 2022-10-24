@@ -11,7 +11,6 @@ public class SYA_StartScene_Check : MonoBehaviour
     public Toggle toggle1;
     public Toggle toggle2;
     public Toggle toggle3;
-    public Toggle toggle4;
 
     public InputField pwInputField;
 
@@ -20,7 +19,6 @@ public class SYA_StartScene_Check : MonoBehaviour
         toggle1.isOn = true;
         toggle2.isOn = true;
         toggle3.isOn = true;
-        toggle4.isOn = true;
     }
 
     public void NextButton()

@@ -1093,9 +1093,7 @@ GameObject:
   - component: {fileID: 1137107270}
   - component: {fileID: 1137107269}
   - component: {fileID: 1137107268}
-  - component: {fileID: 1137107272}
   - component: {fileID: 1137107273}
-  - component: {fileID: 1137107274}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1185,26 +1183,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &1137107272
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1137107267}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86016f70a6f327745b82cd5a643b7d30, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TermsOfService: {fileID: 980353733}
-  Login: {fileID: 0}
-  startButton: {fileID: 0}
-  toggle1: {fileID: 0}
-  toggle2: {fileID: 0}
-  toggle3: {fileID: 0}
-  toggle4: {fileID: 0}
-  pwInputField: {fileID: 0}
 --- !u!114 &1137107273
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1218,21 +1196,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fadeTime: 2
---- !u!114 &1137107274
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1137107267}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fef98ee3435b9594cadb657ab46c487c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  emailInputField: {fileID: 0}
-  passwordInputField: {fileID: 0}
-  outputText: {fileID: 0}
 --- !u!1 &1226528116
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using SYA_UserInfoManagerSaveLoad;
 
 public class LogInSystem : MonoBehaviour
 {
@@ -30,6 +31,7 @@ public class LogInSystem : MonoBehaviour
         string p = passwordInputField.text;
 
         FirebaseAuthManager.Instance.SignUp(e, p);
+        SYA_UserInfoSave.Instance.IdPasswardSave(e, p);
     }
 
     public void LogIn()
