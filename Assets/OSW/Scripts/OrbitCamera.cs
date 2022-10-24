@@ -1,9 +1,6 @@
 using UnityEngine;
 using System.Collections;
-using UnityEditor.SceneManagement;
-using static UnityEngine.GraphicsBuffer;
-using Unity.VisualScripting;
-using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
+using System.Collections.Generic;
 
 public class OrbitCamera : MonoBehaviour
 {

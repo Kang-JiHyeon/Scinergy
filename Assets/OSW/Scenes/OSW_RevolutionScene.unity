@@ -270,7 +270,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 0}
-  target: {fileID: 0}
+  target: {fileID: 1057126181}
   previousPosition: {x: 0, y: 0, z: 0}
   distanceFromSphere: 50
   direction: {x: 0, y: 0, z: 0}
