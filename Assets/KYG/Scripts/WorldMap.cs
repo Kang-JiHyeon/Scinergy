@@ -12,6 +12,8 @@ public class WorldMap  : MonoBehaviour
     float height;
     float longitude;
     float latitude;
+    public float longitudeAdjust;
+    public float latitudeAdjust;
 
     private void Awake()
     {
@@ -46,6 +48,7 @@ public class WorldMap  : MonoBehaviour
             print(Input.mousePosition);
             longitude = (Input.mousePosition - results[0].gameObject.transform.position).x/width*2 * 180;
             latitude = (Input.mousePosition - results[0].gameObject.transform.position).y/height*2 * 90;
+            
             print(longitude);
             print(latitude);
             //print(Input.mousePosition - results[0].gameObject.transform.position);

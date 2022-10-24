@@ -1,11 +1,8 @@
 using UnityEngine;
 using System.Collections;
-<<<<<<< Updated upstream
 using System.Collections.Generic;
-=======
 using Unity.VisualScripting;
 
->>>>>>> Stashed changes
 
 public class OrbitCamera : MonoBehaviour
 {
