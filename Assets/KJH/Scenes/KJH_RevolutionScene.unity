@@ -1102,7 +1102,43 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 574770785}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 991426230}
+        m_TargetAssemblyTypeName: KJH_ObservationTime, Assembly-CSharp
+        m_MethodName: StopObservation
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 991426230}
+        m_TargetAssemblyTypeName: KJH_ObservationTime, Assembly-CSharp
+        m_MethodName: ToCurTime
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 991426231}
+        m_TargetAssemblyTypeName: KJH_CurPlanetsPostion, Assembly-CSharp
+        m_MethodName: SetCurPosition
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &574770785
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1314,6 +1350,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f01b2959a81baa48ab511c77b24ca1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  planets: []
   go_planets: {fileID: 171951360}
   yearPeriods:
   - 0.2409
@@ -1815,6 +1852,7 @@ GameObject:
   - component: {fileID: 991426227}
   - component: {fileID: 991426226}
   - component: {fileID: 991426230}
+  - component: {fileID: 991426231}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1923,6 +1961,20 @@ MonoBehaviour:
   yearText: {fileID: 1539383151}
   DateText: {fileID: 924633775}
   TimeText: {fileID: 305740763}
+--- !u!114 &991426231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 991426225}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2022563cce7e2e49a6b7febf35c2256, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  curPlanetsPositions: []
+  go_planets: {fileID: 0}
 --- !u!1 &1008356911 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7438916884981845205, guid: eb1203b46cca6fd429bdb6b965a6b4bc, type: 3}
@@ -3495,7 +3547,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1858266378}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 991426230}
+        m_TargetAssemblyTypeName: KJH_ObservationTime, Assembly-CSharp
+        m_MethodName: StopObservation
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1858266378
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3617,7 +3681,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1861102368}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 991426230}
+        m_TargetAssemblyTypeName: KJH_ObservationTime, Assembly-CSharp
+        m_MethodName: PlayObservation
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1861102368
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4030,6 +4106,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f01b2959a81baa48ab511c77b24ca1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  planets: []
   go_planets: {fileID: 0}
   yearPeriods: []
   AUs:
