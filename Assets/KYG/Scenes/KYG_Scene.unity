@@ -1456,6 +1456,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb09d9a185b7e0244b58a8292935f945, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mapControl: 0
   rotSpeed: 10
   Clock: {fileID: 412150227}
   worldMap: {fileID: 1480212558}
@@ -1468,7 +1469,7 @@ BoxCollider:
   m_GameObject: {fileID: 398836238}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -1479,7 +1480,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 398836238}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -3653,13 +3654,13 @@ MonoBehaviour:
   m_Options:
     m_Options:
     - m_Text: "\uC0DD\uC131\uD558\uC2E4 \uBCC4\uC758 \uC885\uB958\uB97C \uC120\uD0DD\uD558\uC138\uC694"
-      m_Image: {fileID: 21300000, guid: 8ee1abc1c51b89047a3d258ac3e4a0b8, type: 3}
+      m_Image: {fileID: 21300000, guid: a2d2aad85e8f2aa4b94bfc3e5d3633d9, type: 3}
     - m_Text: Option A
-      m_Image: {fileID: 21300000, guid: 570ca6e1ad4066d43b1728198e8c522a, type: 3}
+      m_Image: {fileID: 21300000, guid: a2d2aad85e8f2aa4b94bfc3e5d3633d9, type: 3}
     - m_Text: Option B
-      m_Image: {fileID: 21300000, guid: 8ee1abc1c51b89047a3d258ac3e4a0b8, type: 3}
+      m_Image: {fileID: 21300000, guid: a2d2aad85e8f2aa4b94bfc3e5d3633d9, type: 3}
     - m_Text: Option C
-      m_Image: {fileID: 21300000, guid: 8ee1abc1c51b89047a3d258ac3e4a0b8, type: 3}
+      m_Image: {fileID: 21300000, guid: a2d2aad85e8f2aa4b94bfc3e5d3633d9, type: 3}
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -6282,7 +6283,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1372554148
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6636,8 +6637,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mapImage: {fileID: 2047724464}
+  CelestialControl: {fileID: 398836238}
   longitude: 0
   latitude: 0
+  longitudeAdjust: 0
+  latitudeAdjust: 0
 --- !u!1 &1484133709
 GameObject:
   m_ObjectHideFlags: 0
@@ -8007,8 +8011,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -371, y: 50}
-  m_SizeDelta: {x: 300, y: 200}
+  m_AnchoredPosition: {x: -400, y: 0}
+  m_SizeDelta: {x: 300, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1827070116
 MonoBehaviour:
@@ -8023,14 +8027,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.14150941, g: 0.14150941, b: 0.14150941, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8ee1abc1c51b89047a3d258ac3e4a0b8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a2d2aad85e8f2aa4b94bfc3e5d3633d9, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
