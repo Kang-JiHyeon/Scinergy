@@ -10,13 +10,11 @@ public class KJH_SolarSystem : MonoBehaviour
 {
     public static KJH_SolarSystem instance;
 
-    // 행성 
-    public List<Transform> planets = new List<Transform>();
+    // << 행성 >>
     // 행성 부모
     public Transform go_planets;
-
-    // 공전 연주기
-    public List<float> yearPeriods;
+    // 행성 
+    public List<Transform> planets = new List<Transform>();
     // 태양과의 거리
     public List<float> AUs;
     // 행성 크기
@@ -24,6 +22,13 @@ public class KJH_SolarSystem : MonoBehaviour
     // 자전축
     public List<float> axisTilts;
 
+    // << 공전 >>
+    // 공전 연주기
+    public List<float> yearPeriods;
+
+    // << 자전 >>
+    // 자전 일주기
+    public List<float> dayRotPeriods;
 
 
 
@@ -35,6 +40,7 @@ public class KJH_SolarSystem : MonoBehaviour
     // 슬라이더 바에 따른 초당 단위시간 변경
     public Scrollbar unitTimeScrolbar;
     public Text unitTimeText;
+    public Text pastFutureText;
 
     public enum UnitTime
     {
@@ -66,12 +72,13 @@ public class KJH_SolarSystem : MonoBehaviour
             planets[i].GetChild(1).localRotation = Quaternion.Euler(axisTilts[i], 0, 0);
 
             // 행성 크기 초기화
-            planets[i].localScale = Vector3.one * scales[i] * 0.1f;
+            planets[i].localScale = Vector3.one * scales[i];
 
             // 태양-행성 간의 거리 초기화
             planets[i].localPosition = new Vector3(1, 0, 1) * AUs[i] * 10;
 
-
+            // 라이트 각도 행성을 비추도록 초기화
+            planets[i].Find("OrbitAxis").GetChild(0).forward = planets[i].position - transform.position;
 
             // 행성 궤도 그리기
             lr = planets[i].GetChild(0).GetComponent<LineRenderer>();
@@ -92,12 +99,17 @@ public class KJH_SolarSystem : MonoBehaviour
 
     }
 
+    // 행성별 자전
     private void PlanetRotation()
     {
-        //float rotAngle = (360 / dayRotPeriods[i] / (float)unitTime) * unitTimeNum;
-        //transform.Rotate(0, -rotAngle, 0);
+        for(int i=0; i< planets.Count; i++)
+        {
+            float rotAngle = (360 / dayRotPeriods[i] * 365 / (float)unitTime) * unitTimeNum;
+            planets[i].GetChild(1).Rotate(0, -rotAngle * Time.fixedDeltaTime, 0);
+        }
     }
 
+    // 행성별 공전
     private void Revolution()
     {
         for (int i = 0; i < planets.Count; i++)
@@ -152,7 +164,17 @@ public class KJH_SolarSystem : MonoBehaviour
     // 스크롤바의 값에 따라 단위시간을 결정하고 싶다.
     public void SetUnitTime()
     {
-        sign = unitTimeScrolbar.value > 0.5f ? 1 : -1;
+        if(unitTimeScrolbar.value > 0.5f)
+        {
+            sign = 1;
+            pastFutureText.text = "미래로";
+        }
+        else
+        {
+            sign = -1;
+            pastFutureText.text = "과거로";
+        }
+
         //originScrollValue = unitTimeScrolbar.value;
         float value = Mathf.Abs(0.5f - unitTimeScrolbar.value) / standard;
 
@@ -160,6 +182,7 @@ public class KJH_SolarSystem : MonoBehaviour
         {
             unitTimeNum = 0;
             unitTimeText.text = "멈추기";
+            pastFutureText.text = "멈추기";
         }
         else
         {
@@ -194,7 +217,8 @@ public class KJH_SolarSystem : MonoBehaviour
 
             }
             unitTimeNum *= sign;
-            unitTimeText.text = unitTimeNum.ToString("+#;-#;0")+ unitTimeTxt;
+            unitTimeText.text = unitTimeNum.ToString("+#;-#;0") + " " + unitTimeTxt + " / 초";
+            
         }
     }
 }
