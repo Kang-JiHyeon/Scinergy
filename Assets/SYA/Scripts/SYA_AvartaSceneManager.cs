@@ -8,6 +8,8 @@ using SYA_UserInfoManagerSaveLoad;
 
 public class SYA_AvartaSceneManager : MonoBehaviourPun
 {
+    public Camera camera;
+
     public static SYA_AvartaSceneManager Instance;
 
     private void Awake()
@@ -49,6 +51,10 @@ public class SYA_AvartaSceneManager : MonoBehaviourPun
             AvatarPosSca(3);
             AvatarPosSca(4);
         }
+        //레이어 바꿔주고
+        //AvatarLayerChange(avatar[num].gameObject.transform.position.z, avatar[num].gameObject.transform);
+        //컬링마스크 사옹
+        camera.cullingMask = ~(1<< 18);
     }
     //업데이트 문에서 돌리는 함수 관할
     bool buttonOn;
@@ -69,6 +75,7 @@ public class SYA_AvartaSceneManager : MonoBehaviourPun
         {
             avatar[num].transform.position = pos[num].transform.position;
             avatar[num].transform.localScale = sca[num];
+            
             //가운데에 있는지 분별하는 코드
             if (1.5f - avatar[num].transform.localScale.x < 0.1f)
             {
@@ -83,6 +90,7 @@ public class SYA_AvartaSceneManager : MonoBehaviourPun
 
     List<GameObject> avatarList = new List<GameObject>();
     GameObject avatarP;
+
     //가운데 있는 아바타 생성해서 왼쪽에 생성
     public void CreatAvatar(GameObject avatar)
     {
@@ -160,6 +168,26 @@ public class SYA_AvartaSceneManager : MonoBehaviourPun
     {
         SYA_UserInfoSave.Instance.AvatarSave(avatarP.name.Substring(0,8));
         SYA_SceneChange.Instance.LoginScene();
+    }
+
+    public void AvatarLayerChange(float z, Transform avatar)
+    {
+        if(z>=-2)
+        {
+            avatar.gameObject.layer = 18;
+            foreach(Transform child in avatar.transform)
+            {
+                AvatarLayerChange(avatar.transform.position.z, child);
+            }
+        }
+        else
+        {
+            avatar.gameObject.layer = 17;
+            foreach (Transform child in avatar.transform)
+            {
+                AvatarLayerChange(avatar.transform.position.z, child);
+            }
+        }
     }
 }
 
