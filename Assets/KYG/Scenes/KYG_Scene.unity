@@ -1626,7 +1626,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mapControl: 0
   rotSpeed: 10
-  Clock: {fileID: 675359296}
+  Clock: {fileID: 412150227}
   worldMap: {fileID: 1480212558}
 --- !u!65 &398836242
 BoxCollider:
@@ -3356,8 +3356,7 @@ MonoBehaviour:
   HourHand: {fileID: 1182503454}
   MinuteHand: {fileID: 716855991}
   ClockCenter: {fileID: 410573414}
-  rotateAngle: 0
-  SelectedHand: {fileID: 0}
+  SelectedHour: {fileID: 0}
 --- !u!1 &682791441
 GameObject:
   m_ObjectHideFlags: 0
