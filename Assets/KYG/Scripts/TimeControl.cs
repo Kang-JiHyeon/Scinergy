@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class TimeRotate : MonoBehaviour
+public class TimeControl : MonoBehaviour
 {
     private GraphicRaycaster GraphicRaycaster;
     public RectTransform HourHand;
@@ -27,7 +27,7 @@ public class TimeRotate : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        TimeControl();
+        Control();
     }
     //int round = 0;
     //int originRound;
@@ -35,7 +35,7 @@ public class TimeRotate : MonoBehaviour
     public GameObject CelestialSphere;
     float min;
     float hour;
-    public void TimeControl()
+    public void Control()
     {
         PointerEventData ped = new PointerEventData(null);
         ped.position = Input.mousePosition;
@@ -58,10 +58,22 @@ public class TimeRotate : MonoBehaviour
             if(SelectedHand == HourHand)
             {
                 float offset = rotateAngle - hour;
+                if (Mathf.Abs(offset) > 300)
+                {
+                    if (rotateAngle > hour)
+                    {
+                        hour += 360;
+                    }
+                    else
+                    {
+                        hour -= 360;
+                    }
+                    offset = rotateAngle - hour;
+                }
                 hour += offset;
                 min += 12 * offset;
                 
-                sphereRotateAngle = offset;
+                sphereRotateAngle = offset/2;
             }
             if(SelectedHand == MinuteHand)
             {
@@ -81,7 +93,7 @@ public class TimeRotate : MonoBehaviour
                 }
                 min += offset;
                 hour += (1.0f / 12.0f) * offset;
-                sphereRotateAngle = offset;
+                sphereRotateAngle = offset / 24;
             }
             CelestialSphere.transform.Rotate(Vector3.up * sphereRotateAngle);
             #region ³»ÄÚµå
