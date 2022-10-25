@@ -3356,8 +3356,10 @@ MonoBehaviour:
   HourHand: {fileID: 1182503454}
   MinuteHand: {fileID: 716855991}
   ClockCenter: {fileID: 410573414}
+  sphereRotateAngle: 0
   rotateAngle: 0
   SelectedHand: {fileID: 0}
+  CelestialSphere: {fileID: 398836238}
 --- !u!1 &682791441
 GameObject:
   m_ObjectHideFlags: 0
