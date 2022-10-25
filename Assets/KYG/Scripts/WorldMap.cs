@@ -9,6 +9,7 @@ public class WorldMap  : MonoBehaviour
     private GraphicRaycaster GraphicRaycaster;
     public RectTransform mapImage;
     public GameObject CelestialControl;
+    public Transform location;
     float width;
     float height;
     public float longitude;
@@ -43,14 +44,13 @@ public class WorldMap  : MonoBehaviour
         {
             GraphicRaycaster.Raycast(ped, results);
             if (results.Count <= 0) return;
-            //results[0].gameObject.transform.position = ped.position;
 
             longitude = (Input.mousePosition - results[0].gameObject.transform.position).x/width*2 * 180;
             latitude = (Input.mousePosition - results[0].gameObject.transform.position).y/height*2 * 90;
             longitudeAdjust = longitude + 90;
             latitudeAdjust = latitude - 90;
+            location.position = Input.mousePosition;
             CelestialControl.GetComponent<Rotate>().mapControl = true;
-            //print(Input.mousePosition - results[0].gameObject.transform.position);
         }
         else
         {
