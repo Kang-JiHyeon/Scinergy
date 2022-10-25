@@ -72,7 +72,7 @@ public class KJH_SolarSystem : MonoBehaviour
             planets[i].GetChild(1).localRotation = Quaternion.Euler(axisTilts[i], 0, 0);
 
             // 행성 크기 초기화
-            planets[i].localScale = Vector3.one * scales[i];
+            //planets[i].localScale = Vector3.one * scales[i];
 
             // 태양-행성 간의 거리 초기화
             planets[i].localPosition = new Vector3(1, 0, 1) * AUs[i] * 10;
