@@ -10,6 +10,7 @@ public class TimeRotate : MonoBehaviour
     public RectTransform HourHand;
     public RectTransform MinuteHand;
     public RectTransform ClockCenter;
+    public float sphereRotateAngle;
     public float rotateAngle;
     [SerializeField]
     RectTransform SelectedHand;
@@ -28,10 +29,10 @@ public class TimeRotate : MonoBehaviour
     {
         TimeControl();
     }
-    int round = 0;
-    int originRound;
-    bool isRound = false;
-
+    //int round = 0;
+    //int originRound;
+    //bool isRound = false;
+    public GameObject CelestialSphere;
     float min;
     float hour;
     public void TimeControl()
@@ -46,19 +47,21 @@ public class TimeRotate : MonoBehaviour
             if (results.Count <= 0) return;
             if(results[0].gameObject == HourHand.gameObject || results[0].gameObject == MinuteHand.gameObject)
             {
-                print(1);
                 SelectedHand = results[0].gameObject.GetComponent<RectTransform>();
             }
         }
         
         if (Input.GetButton("Fire1"))
         {
-            round %= 12;
             rotateAngle = CalculateAngle(ClockCenter.transform.up, Input.mousePosition - ClockCenter.transform.position);
 
             if(SelectedHand == HourHand)
             {
+                float offset = rotateAngle - hour;
+                hour += offset;
+                min += 12 * offset;
                 
+                sphereRotateAngle = offset;
             }
             if(SelectedHand == MinuteHand)
             {
@@ -78,8 +81,10 @@ public class TimeRotate : MonoBehaviour
                 }
                 min += offset;
                 hour += (1.0f / 12.0f) * offset;
+                sphereRotateAngle = offset;
             }
-            
+            CelestialSphere.transform.Rotate(Vector3.up * sphereRotateAngle);
+            #region ³»ÄÚµå
             //if(rotateAngle <= 10f)
             //{
             //    if(isRound == false)
@@ -105,9 +110,10 @@ public class TimeRotate : MonoBehaviour
             //    print(rotateAngle);
             //    HourHand.transform.rotation = Quaternion.Euler(new Vector3(0, 0, rotateAngle * 30/360)) * Quaternion.Euler(new Vector3(0,0,-30 * round));
             //}
+            #endregion
         }
 
-        if(Input.GetKey(KeyCode.Alpha1))
+        if (Input.GetKey(KeyCode.Alpha1))
         {
             min -= 2;
             hour -= (1.0f / 12.0f) * 2;
