@@ -3082,7 +3082,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &675359297
 Transform:
   m_ObjectHideFlags: 0
@@ -3127,14 +3127,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 675359296}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 03e2a54fdbe3f874b812228f194dcce8, type: 3}
+  m_Script: {fileID: 11500000, guid: cca17946554f25942915954e655c4fd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   timeFlow: 0
-  timeReverse: 0
   REAL_SECONDS_PER_INGAME_DAY: 10
-  hourHandTransform: {fileID: 1182503454}
-  minHandTransform: {fileID: 716855991}
+  hourHandTransform: {fileID: 0}
+  minHandTransform: {fileID: 0}
   day: 0
 --- !u!1 &707161047
 GameObject:
