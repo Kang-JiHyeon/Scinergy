@@ -74,16 +74,16 @@ public class KJH_SelectPlanet : MonoBehaviour
         {
             if (UIs[1].activeSelf == false)
             {
-                UIs[0].SetActive(false);
-                UIs[1].SetActive(true);
+                KJH_UIManager.instance.MoveDefalutUI(-120f, -120f);
+                KJH_UIManager.instance.MoveCBInfoMenu(425f);
 
-                iTween.MoveTo(UIs[1], iTween.Hash("x", 425f, "time", 2f));
+                //UIs[0].SetActive(false);
+                //UIs[1].SetActive(true);
+
+                //iTween.MoveTo(UIs[1], iTween.Hash("x", 425f, "time", 2f));
 
             }
-
-
-
-
+            
 
             // 위치 이동
             if (Vector3.Distance(transform.position, clickTarget.position) > 5f)
