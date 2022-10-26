@@ -21,9 +21,13 @@ public class OSW_LineDrawer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // 마우스 왼쪽 버튼을 누르는 순간
         if (Input.GetMouseButtonDown(0))
         {
-            newLine = new GameObject();
+            // 라인을 생성한다.
+            newLine = new GameObject("Line");
+
+            // 그려지는 라인에 LineRenderer, Material, Color, Width를 설정해준다.
             drawLine = newLine.AddComponent<LineRenderer>();
             drawLine.material = new Material(Shader.Find("Sprites/Default"));
             drawLine.startColor = RandomColor();
@@ -31,6 +35,8 @@ public class OSW_LineDrawer : MonoBehaviour
             drawLine.startWidth = linewidth;
             drawLine.endWidth = linewidth;
         }
+
+        // 마우스 왼쪽 버튼을 누른 상태
         if (Input.GetMouseButton(0))
         {
             timer -= Time.deltaTime;
