@@ -1,2 +1,4 @@
-[uWC::Log][2022-10-25 21:19:48] Start
-[uWC::Log][2022-10-25 21:20:13] Stop
+[uWC::Log][2022-10-26 10:07:18] Start
+[uWC::Err][2022-10-26 10:07:48] WindowTexture::RecreateSharedTextureIfNeeded => Offsets are invalid.
+[uWC::Err][2022-10-26 10:07:49] WindowTexture::RecreateSharedTextureIfNeeded => Offsets are invalid.
+[uWC::Log][2022-10-26 10:07:51] Stop
