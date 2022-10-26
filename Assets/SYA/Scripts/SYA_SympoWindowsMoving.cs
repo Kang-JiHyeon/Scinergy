@@ -7,7 +7,6 @@ public class SYA_SympoWindowsMoving : MonoBehaviour
     //window 오브젝트를 마우스로 클릭하고 있는 동안
     public GameObject window;
     //마우스의 이동값을 반영하여 이동하기
-    Vector3 fPos;
     Vector3 currentPos;
     Vector3 dis;
 
@@ -24,17 +23,11 @@ public class SYA_SympoWindowsMoving : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //만약 마우스 왼쪽을 클릭하면
-       if (Input.GetMouseButtonDown(0))
-        {
-            //클릭한 스크린 위치를 월드 좌표로 받아온다
-                fPos = Camera.main.ScreenToWorldPoint(Input.mousePosition); 
-        }
-
-            //마우스가 입력받는동안
+            //마우스가 입력받는동안                                           
         if (Input.GetMouseButton(0))
         {
-            currentPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Camera.main.transform.GetComponentInParent<SYA_PlayerRot>().enabled = false;
+
             //그 월드 좌표에서 Z방향으로 레이를 쏜다
             ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             //레이 끝에 오브젝트가 닿으면
@@ -47,10 +40,13 @@ public class SYA_SympoWindowsMoving : MonoBehaviour
                     //카메라 회전을 막는다
 
                     //마우스의 월드 좌표가 변화하는 값만큼
-                    Vector3 pos = currentPos - fPos;
-                    print($"currentPos : {currentPos} / fPos : {fPos}");
+                    //Vector3 pos = currentPos - fPos;
+                    //Vector3 pos = new Vector3(currentPos.x, currentPos.y, 0) - new Vector3(fPos.x, fPos.y, 0);
+                    print($"currentPos : {currentPos}");
+                    //pos.Normalize();
                     //Windows오브젝트가 움직인다
-                    hit.collider.transform.parent.gameObject.transform.position += pos;
+                    Vector3 hitPos=(hit.point - hit.collider.gameObject.transform.position);
+                    hit.collider.gameObject.transform.position =new Vector3(hit.point.x + hitPos.x, hit.point.y + hitPos.y, window.transform.position.z);
                 }
             }
         }
@@ -62,6 +58,7 @@ public class SYA_SympoWindowsMoving : MonoBehaviour
             /*if(fPos != null)
                 fPos=Vector3.zero ;*/
             //다시 카메라 회전을 하도록 한다
+            Camera.main.transform.parent.GetComponentInParent<SYA_PlayerRot>().enabled = true;
         }
     }
 }

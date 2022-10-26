@@ -55,7 +55,7 @@ public class UwcDesktopLayouter : MonoBehaviour
         foreach (var kv in manager_.windows) {
             var windowTexture = kv.Value;
             CheckWindow(windowTexture);
-            MoveWindow(windowTexture, usePositionFilter);
+            //MoveWindow(windowTexture, usePositionFilter);
             ScaleWindow(windowTexture, useScaleFilter);
         }
     }
