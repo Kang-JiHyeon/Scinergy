@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using uWindowCapture;
 
 public class SYA_SympoUI : MonoBehaviour
 {
@@ -11,17 +12,7 @@ public class SYA_SympoUI : MonoBehaviour
     public Text moveOnOffstr;
     public GameObject moveOnOff;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public int WindowSize=3;
 
     public void UwcOnOff()
     {
@@ -36,4 +27,6 @@ public class SYA_SympoUI : MonoBehaviour
         moveOnOffstr.text = $"MOVE : {window.GetComponent<SYA_SympoWindowsMoving>().enabled}";
         Camera.main.transform.parent.GetComponentInParent<SYA_PlayerRot>().enabled = true;
     }
+
+    //버튼을 누르고, 자신의 창 크기를 변경한다
 }

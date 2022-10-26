@@ -35,6 +35,9 @@ public class UwcDesktopLayouter : MonoBehaviour
 
     void Awake()
     {
+            //영아
+            //scale = 
+                //
         manager_ = GetComponent<UwcWindowTextureManager>();
         manager_.onWindowTextureAdded.AddListener(InitWindow);
     }
@@ -46,7 +49,7 @@ public class UwcDesktopLayouter : MonoBehaviour
         if (useScaleFilter) {
             windowTexture.transform.localScale = Vector3.zero;
         } else {
-            ScaleWindow(windowTexture, false);
+            //ScaleWindow(windowTexture, false);
         }
     }
 
@@ -56,7 +59,7 @@ public class UwcDesktopLayouter : MonoBehaviour
             var windowTexture = kv.Value;
             CheckWindow(windowTexture);
             //MoveWindow(windowTexture, usePositionFilter);
-            ScaleWindow(windowTexture, useScaleFilter);
+            //ScaleWindow(windowTexture, useScaleFilter);
         }
     }
 
