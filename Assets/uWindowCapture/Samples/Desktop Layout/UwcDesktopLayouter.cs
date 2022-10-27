@@ -35,9 +35,6 @@ public class UwcDesktopLayouter : MonoBehaviour
 
     void Awake()
     {
-            //영아
-            //scale = 
-                //
         manager_ = GetComponent<UwcWindowTextureManager>();
         manager_.onWindowTextureAdded.AddListener(InitWindow);
     }
