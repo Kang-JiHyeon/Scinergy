@@ -8,7 +8,6 @@ using SYA_UserInfoManagerSaveLoad;
 
 public class SYA_AvartaSceneManager : MonoBehaviourPun
 {
-    public Camera camera;
 
     public static SYA_AvartaSceneManager Instance;
 
@@ -17,21 +16,21 @@ public class SYA_AvartaSceneManager : MonoBehaviourPun
         Instance = this;
     }
 
-    //¾Æ¹ÙÅ¸ ¼±ÅÃÃ¢ È­»ìÇ¥ Å¬¸¯½Ã Æ÷Áö¼Ç ¹× ½ºÄÉÀÏ º¯°æ
-    //È­»ìÇ¥,Æ÷Áö¼Ç ¹× ½ºÄÉÀÏµé,¾Æ¹ÙÅ¸À¯Çüµé
+    //ï¿½Æ¹ï¿½Å¸ ï¿½ï¿½ï¿½ï¿½Ã¢ È­ï¿½ï¿½Ç¥ Å¬ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+    //È­ï¿½ï¿½Ç¥,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ïµï¿½,ï¿½Æ¹ï¿½Å¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     public Button right_Arrow;
     public Button left_Arrow;
     public List<GameObject> pos = new List<GameObject>();
     public List<Vector3> sca = new List<Vector3>();
     public List<GameObject> avatar = new List<GameObject>();
 
-    //pos 1¿¡ À§Ä¡ÇÑ ¿ÀºêÁ§Æ® »ý¼ºÇØ¼­ ¿ÞÂÊ¿¡ 2.5·Î
+    //pos 1ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½Ø¼ï¿½ ï¿½ï¿½ï¿½Ê¿ï¿½ 2.5ï¿½ï¿½
     public Transform avatarPos;
     Vector3 avatarSca = new Vector3(2.5f, 2.5f, 2.5f);
 
-    //µ¿±×¶ó¹Ì UI ±â´É. ÀÚ±â°¡ ´ã´çÇÑ  ¾Æ¹ÙÅ¸°¡ °¡¿îµ¥¶ó¸é »¡°£ µ¿±×¶ó¹Ì·Î
-    //¾Æ¹ÙÅ¸n¹øÀÌ °¡¿îµ¥·Î ¿À¸é n¹ø UI¿¡°Ô »¡°£µ¿±×¶ó¹Ì ½ÌÈ£º¸³»°í
-    //¾Æ´Ï¶ó¸é ÇÏ¾áµ¿±×¶ó¹Ì ½ÅÈ£ º¸³»±â
+    //ï¿½ï¿½ï¿½×¶ï¿½ï¿½ UI ï¿½ï¿½ï¿½. ï¿½Ú±â°¡ ï¿½ï¿½ï¿½ï¿½ï¿½  ï¿½Æ¹ï¿½Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½îµ¥ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½×¶ï¿½Ì·ï¿½
+    //ï¿½Æ¹ï¿½Å¸nï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½îµ¥ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ nï¿½ï¿½ UIï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×¶ï¿½ï¿½ ï¿½ï¿½È£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    //ï¿½Æ´Ï¶ï¿½ï¿½ ï¿½Ï¾áµ¿ï¿½×¶ï¿½ï¿½ ï¿½ï¿½È£ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     public Action<int> WhiteClircle;
 
     // Start is called before the first frame update
@@ -51,16 +50,16 @@ public class SYA_AvartaSceneManager : MonoBehaviourPun
             AvatarPosSca(3);
             AvatarPosSca(4);
         }
-        //·¹ÀÌ¾î ¹Ù²ãÁÖ°í
+        //ï¿½ï¿½ï¿½Ì¾ï¿½ ï¿½Ù²ï¿½ï¿½Ö°ï¿½
         //AvatarLayerChange(avatar[num].gameObject.transform.position.z, avatar[num].gameObject.transform);
-        //ÄÃ¸µ¸¶½ºÅ© »ç¿Ë
-        camera.cullingMask = ~(1<< 18);
+        //ï¿½Ã¸ï¿½ï¿½ï¿½ï¿½ï¿½Å© ï¿½ï¿½ï¿½
+        GetComponent<Camera>().cullingMask = ~(1<< 18);
     }
-    //¾÷µ¥ÀÌÆ® ¹®¿¡¼­ µ¹¸®´Â ÇÔ¼ö °üÇÒ
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½ ï¿½ï¿½ï¿½ï¿½
     bool buttonOn;
-    //¹öÆ°À» ¹°·¯¼­ È¸ÀüÁßÀÎÁö¸¦ ³ªÅ¸³»´Â ºÒ°ª
+    //ï¿½ï¿½Æ°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½Ò°ï¿½
     bool rotateIng;
-    //LerpÀÌ¿ëÇØ¼­ ¾Æ¹ÙÅ¸ÀÇ À§Ä¡¿Í Å©±â º¯È­
+    //Lerpï¿½Ì¿ï¿½ï¿½Ø¼ï¿½ ï¿½Æ¹ï¿½Å¸ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ Å©ï¿½ï¿½ ï¿½ï¿½È­
     public void AvatarPosSca(int num)
     {
         //print(111);
@@ -76,7 +75,7 @@ public class SYA_AvartaSceneManager : MonoBehaviourPun
             avatar[num].transform.position = pos[num].transform.position;
             avatar[num].transform.localScale = sca[num];
             
-            //°¡¿îµ¥¿¡ ÀÖ´ÂÁö ºÐº°ÇÏ´Â ÄÚµå
+            //ï¿½ï¿½ï¿½îµ¥ï¿½ï¿½ ï¿½Ö´ï¿½ï¿½ï¿½ ï¿½Ðºï¿½ï¿½Ï´ï¿½ ï¿½Úµï¿½
             if (1.5f - avatar[num].transform.localScale.x < 0.1f)
             {
                 //print(2222222);
@@ -91,7 +90,7 @@ public class SYA_AvartaSceneManager : MonoBehaviourPun
     List<GameObject> avatarList = new List<GameObject>();
     GameObject avatarP;
 
-    //°¡¿îµ¥ ÀÖ´Â ¾Æ¹ÙÅ¸ »ý¼ºÇØ¼­ ¿ÞÂÊ¿¡ »ý¼º
+    //ï¿½ï¿½ï¿½îµ¥ ï¿½Ö´ï¿½ ï¿½Æ¹ï¿½Å¸ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¼ï¿½ ï¿½ï¿½ï¿½Ê¿ï¿½ ï¿½ï¿½ï¿½ï¿½
     public void CreatAvatar(GameObject avatar)
     {
         if(avatarList.Count>0)
@@ -105,13 +104,13 @@ public class SYA_AvartaSceneManager : MonoBehaviourPun
         avatarP.transform.position = avatarPos.position;
     }
 
-    //¾Æ¹ÙÅ¸ ¼¼ÆÃ ½ÇÇà
+    //ï¿½Æ¹ï¿½Å¸ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     public void AvatarSet()
     {
         buttonOn = true;
     }
 
-    //Ã³À½ Å©±â Á¶Àý
+    //Ã³ï¿½ï¿½ Å©ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     public void ScaSet()
     {
         for (int i = 0; i < avatar.Count; ++i)
@@ -128,7 +127,7 @@ public class SYA_AvartaSceneManager : MonoBehaviourPun
         AvatarSet();
     }
 
-    //¾Æ¹ÙÅ¸ ¼±ÅÃÃ¢ È­»ìÇ¥ Å¬¸¯½Ã Æ÷Áö¼Ç ¹× ½ºÄÉÀÏ º¯°æ
+    //ï¿½Æ¹ï¿½Å¸ ï¿½ï¿½ï¿½ï¿½Ã¢ È­ï¿½ï¿½Ç¥ Å¬ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     public void ArrowClickR()
     {
         if (rotateIng) return;
@@ -142,7 +141,7 @@ public class SYA_AvartaSceneManager : MonoBehaviourPun
         rotateIng = true;
     }
 
-    //¾Æ¹ÙÅ¸ ÀÌµ¿À» À§ÇÑ Æ÷Áö¼Ç ¹× ½ºÄÉÀÏ º¯°æ
+    //ï¿½Æ¹ï¿½Å¸ ï¿½Ìµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     public void AvatarRotate(bool left)
     {
         if (left)
@@ -162,8 +161,8 @@ public class SYA_AvartaSceneManager : MonoBehaviourPun
         AvatarSet();
     }
 
-    //¾Æ¹ÙÅ¸ ¼±ÅÃ ¹öÆ°À» ¹°·¶À» ¶§
-    //¿ÞÂÊ¿¡ ÀúÀåµÈ ¾Æ¹ÙÅ¸ À¯ÇüÀ» ÀÎÆ÷¿¡ ÀúÀå
+    //ï¿½Æ¹ï¿½Å¸ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
+    //ï¿½ï¿½ï¿½Ê¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Æ¹ï¿½Å¸ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     public void AvatarSellect()
     {
         SYA_UserInfoSave.Instance.AvatarSave(avatarP.name.Substring(0,8));

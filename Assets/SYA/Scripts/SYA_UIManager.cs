@@ -65,5 +65,12 @@ public class SYA_UIManager : MonoBehaviour
         quit.SetActive(!quit.activeSelf);
     }
     
+    //버튼을 눌렀을 때, 녹화중이 아니라면
+    //녹화를 시작한다
+    //녹화중이라면 
+    //녹화를 끝내고 저장한다
+    public void Recording()
+    {
 
+    }
 }
