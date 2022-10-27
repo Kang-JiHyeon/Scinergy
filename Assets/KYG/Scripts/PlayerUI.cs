@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class PlayerUI : MonoBehaviour
 {
-    public GameObject compas;
     public GameObject starGenerator;
+    public GameObject telescope;
+    public GameObject compas;
     public GameObject Clock;
     public GameObject Map;
     // Start is called before the first frame update
@@ -40,6 +41,21 @@ public class PlayerUI : MonoBehaviour
         else
         {
             starGenerator.SetActive(true);
+        }
+    }
+
+    public void OnTelescopeBtn()
+    {
+        if (telescope.activeSelf)
+        {
+            telescope.SetActive(false);
+        }
+        else
+        {
+            gameObject.SetActive(false);
+            //Camera.main.fieldOfView = 30;
+            Cursor.visible = false;
+            telescope.SetActive(true);
         }
     }
     public void OnClockBtn()

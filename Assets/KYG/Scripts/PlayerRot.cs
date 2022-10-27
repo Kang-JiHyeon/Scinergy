@@ -70,7 +70,7 @@ public class PlayerRot : MonoBehaviour
         float my = Input.GetAxis("Mouse Y");
         rotX += mx * rotSpeed * Time.deltaTime;
         rotY += -my * rotSpeed * Time.deltaTime;
-        //rotY = Mathf.Clamp(rotY, -60f, 60f);
+        rotY = Mathf.Clamp(rotY, -60f, 60f);
         transform.localEulerAngles = new Vector3(0, rotX + originX, 0);
         camPos.localEulerAngles = new Vector3(rotY + originY, 0, 0);
         if (GetComponent<PlayerControl>().playerUI.activeSelf)
@@ -86,7 +86,7 @@ public class PlayerRot : MonoBehaviour
         Quaternion LookRotationX = Quaternion.LookRotation(starDirection);
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotationY, Time.deltaTime);
         camPos.rotation = Quaternion.Slerp(camPos.rotation, LookRotationX, Time.deltaTime);
-        print(Vector3.Angle(camPos.eulerAngles, starDirection));
+        //print(Vector3.Angle(camPos.eulerAngles, starDirection));
         if (Vector3.Angle(camPos.forward, starDirection) < 1f)
         {
             rotX = transform.eulerAngles.y;

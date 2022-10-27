@@ -26,6 +26,7 @@ public class Star : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
     }
 
     internal void InfoSet(string starNameInfo, float raInfo, float decInfo, GameObject starTypeInfo, GameObject brightnessInfo)
