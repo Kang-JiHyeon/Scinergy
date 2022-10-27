@@ -16,10 +16,12 @@ using UnityEngine.UI;
 
 public class KJH_SelectPlanet : MonoBehaviour
 {
+    //KJH_CameraMove cam;
     public List<GameObject> UIs;
 
     Outline outlineScript;
     Transform mouseTarget;
+    public Transform clickTarget;
     KJH_Focus focusScript;
     OrbitCamera orbitCamera;
 
@@ -32,10 +34,18 @@ public class KJH_SelectPlanet : MonoBehaviour
 
     bool isMove = false;
 
+    // 천체이름
+    public Text CBName;
+    // 천체종류
+    public Text CBType;
+    public Text CBInfo;
+
     // Start is called before the first frame update
     void Start()
     {
-        orbitCamera = transform.GetComponent<OrbitCamera>();
+        //UpdateCBInfoAction += ChangeInfo;
+        //cam = GetComponent<KJH_CameraMove>();
+        orbitCamera = GetComponent<OrbitCamera>();
     }
 
     // Update is called once per frame
@@ -72,27 +82,33 @@ public class KJH_SelectPlanet : MonoBehaviour
 
         if (clickTarget && isMove)
         {
-            if (UIs[1].activeSelf == false)
-            {
-                KJH_UIManager.instance.MoveDefalutUI(-120f, -120f);
-                KJH_UIManager.instance.MoveCBInfoMenu(425f);
-
-                //UIs[0].SetActive(false);
-                //UIs[1].SetActive(true);
-
-                //iTween.MoveTo(UIs[1], iTween.Hash("x", 425f, "time", 2f));
-
-            }
-            
-
-            // 위치 이동
+            // 카메라 위치를 행성으로 이동
             if (Vector3.Distance(transform.position, clickTarget.position) > 5f)
             {
                 transform.position = Vector3.Lerp(transform.position, clickTarget.position, Time.deltaTime);
             }
+            // 카메라 위치 이동 끝나면
             else
             {
                 isMove = false;
+
+                // ui 변경
+                //if (UIs[1].activeSelf == false)
+                //{
+                    KJH_UIManager.instance.MoveDefalutUI(-1f);
+                    KJH_UIManager.instance.MoveCBInfoMenu(1f);
+
+                    //iTween.MoveTo(gameObject, iTween.Hash("x", 5f, "time", 2f));
+
+                    // 카메라 왼쪽으로 이동
+                    //cam.targetPos =  transform.right * -1.5f;
+                    ////cam.moveDir = -1f;
+                    //cam.isMove = true;
+                    //transform.LookAt(clickTarget);
+                    Vector3 target = transform.position + transform.right * -2f;
+                    target.y = transform.position.y;
+                    iTween.MoveTo(gameObject, iTween.Hash("position", target));
+                //}
             }
 
             // 각도 회전
@@ -108,13 +124,28 @@ public class KJH_SelectPlanet : MonoBehaviour
         }
     }
 
+    public KJH_CSVTest infoData;
+    public GameObject DBInfoFactory;
+    void ChangeInfo()
+    {
+        int index = infoData.cbNames.FindIndex(x => x == clickTarget.name);
+
+        if(infoData.infos.Count > index && index > 0)
+        {
+            CBName.text = infoData.infos[index][0];
+            CBType.text = infoData.infos[index][1];
+
+            // Scroll View의 Content 추가
+
+        }
+
+    }
 
     // 행성 클릭하면 target 지정
     // 빈곳 클릭하면 target = null -> focus 축소
     // 마우스 멀어지면 focus 크기 확대
     // 마우스 행성 위에 있으면 focus 축소
 
-    Transform clickTarget;
     private void ClickPlanet()
     {
         // 카메라가 보는 방향과, 시야를 가져온다.
@@ -131,6 +162,8 @@ public class KJH_SelectPlanet : MonoBehaviour
 
             clickTarget = hit.transform;
             orbitCamera.target = clickTarget;
+
+            ChangeInfo();
 
             focusScript = clickTarget.GetComponent<KJH_Focus>();
             if (focusScript)
@@ -166,7 +199,6 @@ public class KJH_SelectPlanet : MonoBehaviour
             {
                 focusScript.ChangeFocusScale(0);
                 isChangeFocus = false;
-                print("포커스 축소");
             }
 
         }

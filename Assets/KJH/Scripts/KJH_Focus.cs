@@ -42,7 +42,6 @@ public class KJH_Focus : MonoBehaviour
             StartCoroutine(IeChangeFocusScale(targetScale));
 
             originTargetScale = targetScale;
-            print("内风凭 角青");
         }
     }
     IEnumerator IeChangeFocusScale(float targetScale)
@@ -55,7 +54,5 @@ public class KJH_Focus : MonoBehaviour
             yield return null;
         }
         focus.localScale = scale;
-        //isCoroutine = false;
-        print("内风凭 辆丰");
     }
 }

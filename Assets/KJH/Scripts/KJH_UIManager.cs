@@ -25,6 +25,7 @@ using System.Globalization;
 
 public class KJH_UIManager : MonoBehaviour
 {
+    //KJH_CameraMove cam;
     public static KJH_UIManager instance; 
     // 현재 시간 : 계속 Update
     DateTime curDate;
@@ -57,21 +58,22 @@ public class KJH_UIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //cam = Camera.main.GetComponent<KJH_CameraMove>();
         curDate = DateTime.Now;
         obsDate = curDate;
         SetObsDateText();
 
-        for(int i=0; i<transform.childCount; i++)
+        for (int i = 0; i < transform.childCount; i++)
         {
             // <UI_name, UI_gameObject>
             dict_UI.Add(transform.GetChild(i).name, transform.GetChild(i).gameObject);
-            transform.GetChild(i).gameObject.SetActive(false);
+            //transform.GetChild(i).gameObject.SetActive(false);
         }
 
-        // 기본 UI 띄우기
-        dict_UI["UI_Defalut"].SetActive(true);
+        //// 기본 UI 띄우기
+        //dict_UI["UI_Defalut"].SetActive(true);
 
-        MoveDefalutUI(120f, 120f);
+        MoveDefalutUI(1f);
     }
 
     private void FixedUpdate()
@@ -130,7 +132,7 @@ public class KJH_UIManager : MonoBehaviour
 
     public void StopObservation()
     {
-        if (KJH_SolarSystem.instance.unitTimeScrolbar.value - 0.5f >= 0.01f)
+        if (Mathf.Abs(KJH_SolarSystem.instance.unitTimeScrolbar.value - 0.5f) >= 0.01f)
         {
             originScrollValue = KJH_SolarSystem.instance.unitTimeScrolbar.value;
             KJH_SolarSystem.instance.unitTimeScrolbar.value = 0.5f;
@@ -138,7 +140,7 @@ public class KJH_UIManager : MonoBehaviour
     }
     public void PlayObservation()
     {
-        if (KJH_SolarSystem.instance.unitTimeScrolbar.value - 0.5f < 0.01f)
+        if (Mathf.Abs(KJH_SolarSystem.instance.unitTimeScrolbar.value - 0.5f) < 0.01f)
         {
             KJH_SolarSystem.instance.unitTimeScrolbar.value = originScrollValue;
         }
@@ -151,44 +153,121 @@ public class KJH_UIManager : MonoBehaviour
         SetObsDateText();
     }
 
-    public void GoBack()
+
+    /* 버튼 관련 함수 */
+    // DefalutUI -> ControllTime
+    public void OnClick_ControllObsTime()
     {
-        controlTimeUI.SetActive(false);
-        defalutUI.SetActive(true);
+        MoveDefalutUI(-1f);
+        MoveControllTimeUI(1f);
     }
 
-    public void ChangeToScrollUI()
+    // ControllTime -> DefalutUI
+    public void OnClick_Back()
     {
-        controlTimeUI.SetActive(true);
-        //defalutUI.SetActive(false);
+        //controlTimeUI.SetActive(false);
+        //defalutUI.SetActive(true);
+        //ChangeToScrollUI();
+        MoveControllTimeUI(-1f);
+        MoveDefalutUI(1f);
+    }
+
+    // 천체 메뉴 닫기
+    public void OnClick_CloseInfoMenu()
+    {
+        GameObject go = dict_UI["UI_Info"];
+
+        MoveCBInfoMenu(-1f);
+
+
+        // 카메라 오른쪽으로 이동
+        //cam.targetPos = transform.right * 1.5f;
+        ////cam.moveDir = -1f;
+        //cam.isMove = true;
+        Vector3 target = Camera.main.transform.position + Camera.main.transform.right * 2f;
+        target.y = Camera.main.transform.position.y;
+        iTween.MoveTo(Camera.main.gameObject, iTween.Hash("position", target));
+
+        // 현재 UI를 끄고, 기본 UI를 띄우고 싶다.
+        MoveCBInfoMenu(-1f);
+        MoveDefalutUI(1f);
+        Invoke("ViewCBInfoMenu", 2f);
+
+        //StopCoroutine("IeGoSetActive");
+        //StartCoroutine(IeGoSetActive(go));
+
+    }
+
+    // 기본 UI 이동 함수
+    public void MoveDefalutUI(float sign)
+    {
+        Transform tr = dict_UI["UI_Defalut"].transform;
+        tr.gameObject.SetActive(true);
+        iTween.MoveTo(tr.GetChild(0).gameObject, iTween.Hash("x", tr.GetChild(0).position.x + 120f * sign, "Time", 2f));
+        iTween.MoveTo(tr.GetChild(1).gameObject, iTween.Hash("y", tr.GetChild(1).position.y + 120f * sign, "Time", 2f));
+    }
+    // 시간 제어 UI 이동 함수
+    public void MoveControllTimeUI(float sign)
+    {
+        iTween.MoveTo(controlTimeUI, iTween.Hash("y", controlTimeUI.transform.position.y + 300f * sign, "Time", 2f));
     }
 
     // 행성 정보 메뉴 이동
-
-    public void MoveCBInfoMenu(float moveX)
+    public void MoveCBInfoMenu(float sign)
     {
-        dict_UI["UI_Info"].SetActive(true);
-        iTween.MoveTo(dict_UI["UI_Info"], iTween.Hash("x", moveX, "time", 2f));
+        iTween.MoveTo(dict_UI["UI_Info"], iTween.Hash("x", 425f * sign, "time", 2f));
     }
 
+    //public void ChangeToScrollUI()
+    //{
+    //    //defalutUI.SetActive(false);
+    //    if(controlTimeUI.activeSelf == false)
+    //    {
+    //        MoveDefalutUI(-120, -120);
+    //        controlTimeUI.SetActive(true);
+    //        iTween.MoveTo(controlTimeUI, iTween.Hash("y", controlTimeUI.transform.position.y + 300f, "Time", 2f));
+    //    }
+    //    else
+    //    {
+    //        MoveDefalutUI(120, 120);
+    //        iTween.MoveTo(controlTimeUI, iTween.Hash("y", controlTimeUI.transform.position.y - 300f, "Time", 2f));
+    //        controlTimeUI.SetActive(false);
+    //    }
+    //}
+
+
+
+
+
+    //IEnumerator IeGoSetActive(GameObject Go_enable)
+    //{
+    //    yield return new WaitForSeconds(1f);
+    //    Go_enable.SetActive(false);
+    //    // 기본 메뉴 상태로 전환
+    //    ViewCBInfoMenu();
+    //    MoveDefalutUI(1f);
+    //}
+
+    // 정보 UI 관련 함수
     public void ViewCBInfoMenu()
     {
-        SetActiveObject("UI_InfoMenu");
+        SetActiveUI("UI_InfoMenu");
     }
 
     // 행성 정보 보기
     public void ViewCBInfo()
     {
-        SetActiveObject("UI_ViewCBInfo");
+        SetActiveUI("UI_ViewCBInfo");
     }
 
     // 천체 내부 구조 보기
     public void ViewCBStructure()
     {
-        SetActiveObject("UI_ViewCBStructure");
+        SetActiveUI("UI_ViewCBStructure");
     }
 
-    void SetActiveObject(string targetName)
+    // 천체 정보 UI 중에서 활성화 고르기
+    void SetActiveUI(string targetName)
     {
         Transform tr = dict_UI["UI_Info"].transform;
         for (int i = 1; i < tr.childCount - 3; i++)
@@ -198,36 +277,6 @@ public class KJH_UIManager : MonoBehaviour
             else
                 tr.GetChild(i).gameObject.SetActive(false);
         }
-    }
-
-
-    // 천체 메뉴 닫기
-    public void CloseCBInfoMenu()
-    {
-        GameObject go = dict_UI["UI_Info"];
-
-        MoveCBInfoMenu(-425f);
-        // 현재 UI를 끄고, 기본 UI를 띄우고 싶다.
-        StopCoroutine("IeGoSetActive");
-        StartCoroutine(IeGoSetActive(go));
-
-    }
-    IEnumerator IeGoSetActive(GameObject Go_enable)
-    {
-        yield return new WaitForSeconds(1f);
-        Go_enable.SetActive(false);
-        // 기본 메뉴 상태로 전환
-        ViewCBInfoMenu();
-        MoveDefalutUI(120f, 120f);
-    }
-
-    // 기본 UI 활성화
-    public void MoveDefalutUI(float moveX, float moveY)
-    {
-        Transform tr = dict_UI["UI_Defalut"].transform;
-        tr.gameObject.SetActive(true);
-        iTween.MoveTo(tr.GetChild(0).gameObject, iTween.Hash("x", tr.GetChild(0).position.x + moveX, "Time", 2f));
-        iTween.MoveTo(tr.GetChild(1).gameObject, iTween.Hash("y", tr.GetChild(1).position.y + moveY, "Time", 2f));
     }
 
 }
