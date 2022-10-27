@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.PackageManager.UI;
 using UnityEngine;
 
 public class OSW_LineDrawer : MonoBehaviour
@@ -11,16 +12,12 @@ public class OSW_LineDrawer : MonoBehaviour
     LineRenderer drawLine;
     public float linewidth;
 
-    //public LayerMask _layerMask;
-
-    // Start is called before the first frame update
     void Start()
     {
         linePoints = new List<Vector3>();
         timer = timeDelay;
     }
 
-    // Update is called once per frame
     void Update()
     {
         // 마우스 왼쪽 버튼을 누르는 순간
@@ -28,7 +25,7 @@ public class OSW_LineDrawer : MonoBehaviour
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hitInfo;
-            if (Physics.Raycast(ray, out hitInfo) && hitInfo.collider.name == "Quad")
+            if ((Physics.Raycast(ray, out hitInfo) && hitInfo.collider.name == "Board") || hitInfo.collider.name == "uWC Window Object(Clone)")
             {
                 //Debug.Log(hitInfo.collider.name);
 
@@ -54,13 +51,15 @@ public class OSW_LineDrawer : MonoBehaviour
             {
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 RaycastHit hitInfo;
-                if (Physics.Raycast(ray, out hitInfo) && hitInfo.collider.name == "Quad")
+                if ((Physics.Raycast(ray, out hitInfo) && hitInfo.collider.name == "Board") || hitInfo.collider.name == "uWC Window Object(Clone)")
                 {
                     //Debug.Log(hitInfo.collider.name);
                     linePoints.Add(GetMousePosition());
                     drawLine.positionCount = linePoints.Count;
                     drawLine.SetPositions(linePoints.ToArray());
 
+                    // 화면 공유된 오브젝트에 글씨를 쓰고 오브젝트를 움직이면 글씨가 그 오브젝트 자식으로 들어가서 같이 움직이게
+                    drawLine.transform.parent = hitInfo.transform;
                     timer = timeDelay;
                 }
             }
@@ -79,7 +78,7 @@ public class OSW_LineDrawer : MonoBehaviour
         // 스크린의 마우스 위치로부터 Ray를 만들어냄
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hitInfo;
-        if(Physics.Raycast(ray, out hitInfo) && hitInfo.collider.name == "Quad")
+        if ((Physics.Raycast(ray, out hitInfo) && hitInfo.collider.name == "Board") || hitInfo.collider.name == "uWC Window Object(Clone)")
         {
             //Debug.Log(hitInfo.collider.name);
         }
