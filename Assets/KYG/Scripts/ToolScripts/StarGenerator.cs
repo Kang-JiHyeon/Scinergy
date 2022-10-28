@@ -92,9 +92,9 @@ public class StarGenerator : MonoBehaviour
     {
         CreatedStarList createdStarList = GameObject.Find("CreatedStarList").GetComponent<CreatedStarList>();
         GameObject star = Instantiate(starType);
-        GameManager.instance.createdStarList[star.name] = star;
+        GameManager.instance.createdStarList[starName] = star;
         star.GetComponent<Star>().InfoSet(starName, ra, dec,starType, brightness);
         player.GetComponent<PlayerRot>().StarSet(star.transform.position);
-        createdStarList.Init(star.name,star);
+        createdStarList.Init(starName, star);
     }
 }

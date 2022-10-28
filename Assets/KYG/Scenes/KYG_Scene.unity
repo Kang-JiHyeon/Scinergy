@@ -3929,6 +3929,7 @@ MonoBehaviour:
   CreatedStarListContent: {fileID: 461013788}
   CreatedStarItemFactory: {fileID: 419366995324989049, guid: 8b15e5eb2fff17f42a27d82bfc321627, type: 3}
   SelectedStar: {fileID: 0}
+  SelectedStarItem: {fileID: 0}
 --- !u!1 &707161047
 GameObject:
   m_ObjectHideFlags: 0
@@ -9911,12 +9912,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1807182056}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -440.125, y: -270, z: 0}
+  m_LocalPosition: {x: 519.875, y: 225, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2114503804}
-  m_RootOrder: 1
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1807182058
 MonoBehaviour:
@@ -10891,9 +10892,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 705873284}
-  - {fileID: 1807182057}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
