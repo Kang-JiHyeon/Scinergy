@@ -34,7 +34,7 @@ public class CreatedStarList : MonoBehaviour
     public void OnStarDeleteBtn()
     {
         GameManager.instance.createdStarList.Remove(SelectedStar.GetComponent<Star>().starName);
-        Destroy(SelectedStar);
+        SelectedStar.GetComponent<Star>().StarState = Star.State.shootingStar;
         Destroy(SelectedStarItem);
     }
 }

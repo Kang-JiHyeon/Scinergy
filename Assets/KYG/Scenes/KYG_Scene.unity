@@ -1818,7 +1818,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &398836240
 MonoBehaviour:
@@ -5760,7 +5760,7 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &968449921
 MonoBehaviour:
@@ -6003,7 +6003,7 @@ Transform:
   - {fileID: 1078449943}
   - {fileID: 995909202}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!143 &996913025
 CharacterController:
@@ -9385,7 +9385,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1749517167
 GameObject:
@@ -9917,7 +9917,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1807182058
 MonoBehaviour:
@@ -10810,7 +10810,6 @@ GameObject:
   - component: {fileID: 2114503803}
   - component: {fileID: 2114503802}
   - component: {fileID: 2114503801}
-  - component: {fileID: 2114503805}
   m_Layer: 5
   m_Name: MainUI
   m_TagString: Untagged
@@ -10900,21 +10899,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &2114503805
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2114503800}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e0b106a080387a745a3430055f7df974, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  zoomSpeed: 2000
-  zoomRate: 30
-  maxZoom: 0
 --- !u!4 &945864745853950631
 Transform:
   m_ObjectHideFlags: 0
@@ -10946,7 +10930,7 @@ Transform:
   - {fileID: 1722424418}
   - {fileID: 1473475900}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!108 &3457374699061105123
 Light:
@@ -11028,6 +11012,9 @@ MonoBehaviour:
   starType: {fileID: 7177477379725082803, guid: 2dde6c732a0a7744aaf91737fe803f6b, type: 3}
   brightness: {fileID: 1607489160101874, guid: e508b99c1b9828548966ab50d78e7eb3, type: 3}
   starInfo: {fileID: 0}
+  fallSpeed: 5
+  removeTime: 3
+  StarState: 0
   SunShine: {fileID: 1722424417}
 --- !u!1 &6751440174169598217
 GameObject:

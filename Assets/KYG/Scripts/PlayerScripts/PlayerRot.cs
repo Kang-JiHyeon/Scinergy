@@ -57,7 +57,11 @@ public class PlayerRot : MonoBehaviour
     private void CamOnUI()
     {
         
-        if (!GetComponent<PlayerControl>().playerUI.activeSelf)
+        if (SceneManager.GetActiveScene().name == "KYG_Scene" && !GetComponent<PlayerControl>().playerUI.activeSelf)
+        {
+            state = CamState.normal;
+        }
+        else if(Input.GetKeyDown(KeyCode.B) && SceneManager.GetActiveScene().name != "KYG_Scene")
         {
             state = CamState.normal;
         }

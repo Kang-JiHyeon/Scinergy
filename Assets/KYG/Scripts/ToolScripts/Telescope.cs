@@ -22,9 +22,12 @@ public class Telescope : MonoBehaviour
             Cursor.visible = false;
             gameObject.SetActive(false);
         }
-        float scrollWheel = Input.GetAxis("Mouse ScrollWheel");
-        Camera.main.fieldOfView -= scrollWheel * Time.deltaTime * zoomSpeed;
-        Camera.main.fieldOfView = Mathf.Clamp(Camera.main.fieldOfView, 30, 60);
+        if (gameObject.activeSelf)
+        {
+            float scrollWheel = Input.GetAxis("Mouse ScrollWheel");
+            Camera.main.fieldOfView -= scrollWheel * Time.deltaTime * zoomSpeed;
+            Camera.main.fieldOfView = Mathf.Clamp(Camera.main.fieldOfView, 30, 60);
+        }
         if(Camera.main.fieldOfView == 30)
         {
             maxZoom = true;
