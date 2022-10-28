@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerUI : MonoBehaviour
 {
     public GameObject starGenerator;
+    public GameObject starList;
     public GameObject telescope;
     public GameObject compas;
     public GameObject Clock;
@@ -41,6 +42,17 @@ public class PlayerUI : MonoBehaviour
         else
         {
             starGenerator.SetActive(true);
+        }
+    }
+    public void OnStarListBtn()
+    {
+        if (starList.activeSelf)
+        {
+            starList.SetActive(false);
+        }
+        else
+        {
+            starList.SetActive(true);
         }
     }
 
