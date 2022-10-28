@@ -41,7 +41,6 @@ public class SYA_SympoWindowsMoving : MonoBehaviour
             //마우스가 입력받는동안                                           
         if (Input.GetMouseButton(0))
         {
-            Camera.main.transform.GetComponentInParent<SYA_PlayerRot>().enabled = false;
             Ray ray;
             //그 월드 좌표에서 Z방향으로 레이를 쏜다
             ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -52,7 +51,7 @@ public class SYA_SympoWindowsMoving : MonoBehaviour
                 //그 오브젝트가 Windows라면
                 if (hit.collider.name == "uWC Window Object(Clone)")
                 {
-                    print(hit.collider.name);
+                    //print(hit.collider.name);
                     //카메라 회전을 막는다
 
                     //마우스의 월드 좌표가 변화하는 값만큼
@@ -66,15 +65,6 @@ public class SYA_SympoWindowsMoving : MonoBehaviour
             }
         }
 
-        if (Input.GetMouseButtonUp(0))
-        {
-
-            //마우스 입력을 취소하면 
-            /*if(fPos != null)
-                fPos=Vector3.zero ;*/
-            //다시 카메라 회전을 하도록 한다
-            Camera.main.transform.parent.GetComponentInParent<SYA_PlayerRot>().enabled = true;
-        }
     }
 
 /*    Vector3 HitToPos(Transform hitPoint)

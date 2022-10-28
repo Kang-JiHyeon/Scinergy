@@ -39,7 +39,7 @@ public class SYA_UIManager : MonoBehaviour
     {
         micOn.SetActive(!micOn.activeSelf);
         micOff.SetActive(!micOff.activeSelf);
-        if(micOn.activeSelf==true)//트루일때->마이크 On일 때
+        if (micOn.activeSelf == true)//트루일때->마이크 On일 때
         {
             // 마이크 키기
             print("마이크 켜짐");
@@ -64,13 +64,5 @@ public class SYA_UIManager : MonoBehaviour
     {
         quit.SetActive(!quit.activeSelf);
     }
-    
-    //버튼을 눌렀을 때, 녹화중이 아니라면
-    //녹화를 시작한다
-    //녹화중이라면 
-    //녹화를 끝내고 저장한다
-    public void Recording()
-    {
 
-    }
 }

@@ -6,27 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/SYA/Scenes/TitleScene.unity
-    guid: d4eae655b5f58474a9743e2a0983edb1
-  - enabled: 1
-    path: Assets/SYA/Scenes/LoadingScene.unity
-    guid: 7d5ecd5ecc0c4e541918b46a1e70246c
-  - enabled: 1
-    path: Assets/SYA/Scenes/StartScene.unity
-    guid: 4a1f7d9499f36784b8316628969910ab
-  - enabled: 1
-    path: Assets/SYA/Scenes/NameSettingScene.unity
-    guid: d6bad5e64fbf0184bacfa4f37087a617
-  - enabled: 1
-    path: Assets/SYA/Scenes/AvartaScene.unity
-    guid: af6f714fdf401f54da56d6fe1c6123ab
-  - enabled: 1
-    path: Assets/SYA/Scenes/LoginScene.unity
-    guid: 0140d882dbeca074e8165c55e9684a61
-  - enabled: 1
-    path: Assets/SYA/Scenes/PlayScene.unity
-    guid: 0f32d7aeda46d9943afd6199c8ce4f41
-  - enabled: 1
     path: Assets/SYA/Scenes/SymposiumScene.unity
     guid: 168bc06e9c7c2d4428b16cba67bcbcb5
   - enabled: 1
