@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Star : MonoBehaviour
 {
@@ -16,6 +17,8 @@ public class Star : MonoBehaviour
     //º° ¹à±â
     public GameObject brightness;
 
+    public GameObject starInfo;
+
 
     // Start is called before the first frame update
     void Start()
@@ -26,7 +29,7 @@ public class Star : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        
     }
 
     internal void InfoSet(string starNameInfo, float raInfo, float decInfo, GameObject starTypeInfo, GameObject brightnessInfo)
