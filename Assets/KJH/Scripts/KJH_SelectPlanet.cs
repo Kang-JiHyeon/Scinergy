@@ -16,14 +16,14 @@ using UnityEngine.UI;
 
 public class KJH_SelectPlanet : MonoBehaviour
 {
-    //KJH_CameraMove cam;
     public List<GameObject> UIs;
 
     Outline outlineScript;
     Transform mouseTarget;
-    public Transform clickTarget;
+    public Transform camaraTarget;
+    public Transform focusTarget;
     KJH_Focus focusScript;
-    OrbitCamera orbitCamera;
+    KJH_CameraMove cam;
 
     public float camRotSpeed = 0.2f;
 
@@ -40,12 +40,18 @@ public class KJH_SelectPlanet : MonoBehaviour
     public Text CBType;
     public Text CBInfo;
 
+
+
+    public KJH_CameraTest testCamera;
+
+
     // Start is called before the first frame update
     void Start()
     {
         //UpdateCBInfoAction += ChangeInfo;
         //cam = GetComponent<KJH_CameraMove>();
-        orbitCamera = GetComponent<OrbitCamera>();
+        cam = GetComponent<KJH_CameraMove>();
+        
     }
 
     // Update is called once per frame
@@ -55,12 +61,12 @@ public class KJH_SelectPlanet : MonoBehaviour
         EnableOutLine();
 
         // 2. 행성을 더블 클릭했을 때 포커스 이미지 활성화
-
         if (m_IsOneClick && ((Time.time - m_Timer) > m_DoubleClickSecond))
         {
             m_IsOneClick = false;
         }
 
+        // 마우스 1번 클릭
         if (Input.GetMouseButtonDown(0))
         {
             //ClickPlanet();
@@ -69,74 +75,81 @@ public class KJH_SelectPlanet : MonoBehaviour
             {
                 m_Timer = Time.time;
                 m_IsOneClick = true;
+                ClickPlanet();
             }
-            // 더블클릭
+            // 마우스 2번 클릭
             else if (m_IsOneClick && ((Time.time - m_Timer) < m_DoubleClickSecond))
             {
-                ClickPlanet();
                 isMove = true;
                 m_IsOneClick = false;
+                ClickPlanet();
 
             }
         }
 
-        if (clickTarget && isMove)
+        if (camaraTarget && cam.isMovingToCB)
         {
-            // 카메라 위치를 행성으로 이동
-            if (Vector3.Distance(transform.position, clickTarget.position) > 5f)
-            {
-                transform.position = Vector3.Lerp(transform.position, clickTarget.position, Time.deltaTime);
-            }
-            // 카메라 위치 이동 끝나면
-            else
-            {
-                isMove = false;
+            #region 클릭한 천체로 이동 원본 (현재는 cameramove.cs에 있음)
+            //// 카메라 위치를 행성으로 이동
+            //if (Vector3.Distance(transform.position, clickTarget.position) > 5f)
+            //{
+            //    transform.position = Vector3.Lerp(transform.position, clickTarget.position, Time.deltaTime);
+            //}
+            //// 카메라 위치 이동 끝나면
+            //else
+            //{
+            //    isMove = false;
 
-                // ui 변경
-                //if (UIs[1].activeSelf == false)
-                //{
-                    KJH_UIManager.instance.MoveDefalutUI(-1f);
-                    KJH_UIManager.instance.MoveCBInfoMenu(1f);
+            //    // ui 변경
+            //    //if (UIs[1].activeSelf == false)
+            //    //{
+            //        KJH_UIManager.instance.MoveDefalutUI(-1f);
+            //        KJH_UIManager.instance.MoveCBInfoMenu(1f);
 
-                    //iTween.MoveTo(gameObject, iTween.Hash("x", 5f, "time", 2f));
+            //        //iTween.MoveTo(gameObject, iTween.Hash("x", 5f, "time", 2f));
 
-                    // 카메라 왼쪽으로 이동
-                    //cam.targetPos =  transform.right * -1.5f;
-                    ////cam.moveDir = -1f;
-                    //cam.isMove = true;
-                    //transform.LookAt(clickTarget);
-                    Vector3 target = transform.position + transform.right * -2f;
-                    target.y = transform.position.y;
-                    iTween.MoveTo(gameObject, iTween.Hash("position", target));
-                //}
-            }
+            //        // 카메라 왼쪽으로 이동
+            //        //cam.targetPos =  transform.right * -1.5f;
+            //        ////cam.moveDir = -1f;
+            //        //cam.isMove = true;
+            //        //transform.LookAt(clickTarget);
+            //        Vector3 target = transform.position + transform.right * -2f;
+            //        target.y = transform.position.y;
+            //        iTween.MoveTo(gameObject, iTween.Hash("position", target));
+            //    //}
+            //}
 
-            // 각도 회전
-            Vector3 dir = clickTarget.position - transform.position;
-            if (Quaternion.Angle(transform.rotation, Quaternion.LookRotation(dir)) <= 0f)
-            {
-                transform.forward = dir;
-            }
-            else
-            {
-                transform.forward = Vector3.Lerp(transform.forward, dir, camRotSpeed * Time.deltaTime);
-            }
+            //// 각도 회전
+            //Vector3 dir = clickTarget.position - transform.position;
+            //if (Quaternion.Angle(transform.rotation, Quaternion.LookRotation(dir)) <= 0f)
+            //{
+            //    transform.forward = dir;
+            //}
+            //else
+            //{
+            //    transform.forward = Vector3.Lerp(transform.forward, dir, camRotSpeed * Time.deltaTime);
+            //}
+            #endregion
+
+            cam.MoveToCB();
         }
+
+        print("focusTarget : " + focusTarget);
+        print("camaraTarget : " + camaraTarget);
     }
 
     public KJH_CSVTest infoData;
     public GameObject DBInfoFactory;
     void ChangeInfo()
     {
-        int index = infoData.cbNames.FindIndex(x => x == clickTarget.name);
+        int index = infoData.cbNames.FindIndex(x => x == focusTarget.name);
 
-        if(infoData.infos.Count > index && index > 0)
+        if(infoData.infos.Count > index && index >= 0)
         {
             CBName.text = infoData.infos[index][0];
             CBType.text = infoData.infos[index][1];
 
             // Scroll View의 Content 추가
-
         }
 
     }
@@ -158,24 +171,50 @@ public class KJH_SelectPlanet : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(transform.position, dir, out hit, mos.z))
         {
-            print("Mouse Click Object : " + hit.transform.gameObject.name);
+            //print("Mouse Click Object : " + hit.transform.gameObject.name);
 
-            clickTarget = hit.transform;
-            orbitCamera.target = clickTarget;
-
-            ChangeInfo();
-
-            focusScript = clickTarget.GetComponent<KJH_Focus>();
-            if (focusScript)
+            // 1번 클릭
+            if (m_IsOneClick)
             {
-                focusScript.ChangeFocusScale(0.3f);
+                // 포커스 타겟 설정
+                focusTarget = hit.transform;
+                // focus 타겟의 정보 내용으로 ui로 변경
+                ChangeInfo();
+
+                // focus ui 크기 변경
+                if(focusTarget != null)
+                {
+                    focusScript = focusTarget.GetComponent<KJH_Focus>();
+                    if (focusScript)
+                    {
+                        focusScript.ChangeFocusScale(0.3f);
+                    }
+                }
             }
+            // 2번 클릭
+            else
+            {
+                // 카메라 움직임
+                cam.isMovingToCB = true;
+                // 중심 target 설정
+                camaraTarget = hit.transform;
+                // 카메라 타겟 설정
+                cam.target = camaraTarget;
+            }
+
         }
-        else if (focusScript || (clickTarget && (clickTarget != mouseTarget)))
+        else
         {
-            focusScript.ChangeFocusScale(0f);
-            focusScript = null;
-            clickTarget = null;
+            if (m_IsOneClick)
+            {
+                if (focusScript)
+                {
+                    focusScript.ChangeFocusScale(0f);
+                    focusTarget = null;
+                }
+            }
+            else
+                camaraTarget = null;
         }
     }
 
@@ -195,7 +234,7 @@ public class KJH_SelectPlanet : MonoBehaviour
                 outlineScript.enabled = true;
 
             // 마우스가 행성 위에 있을 때, 포커스 를 작게한다.
-            if ((mouseTarget == clickTarget) && focusScript)
+            if ((mouseTarget == camaraTarget) && focusScript)
             {
                 focusScript.ChangeFocusScale(0);
                 isChangeFocus = false;

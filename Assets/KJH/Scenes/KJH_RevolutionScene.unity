@@ -297,6 +297,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 6.1
       objectReference: {fileID: 0}
+    - target: {fileID: 170042572554183920, guid: eb1203b46cca6fd429bdb6b965a6b4bc, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7438916884981845202, guid: eb1203b46cca6fd429bdb6b965a6b4bc, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -1051,12 +1055,14 @@ MonoBehaviour:
   UIs:
   - {fileID: 1569550337}
   - {fileID: 1638377213}
-  clickTarget: {fileID: 1192275359}
+  camaraTarget: {fileID: 0}
+  focusTarget: {fileID: 0}
   camRotSpeed: 0.5
   m_DoubleClickSecond: 0.25
   CBName: {fileID: 126565945}
   CBType: {fileID: 2056725131}
   CBInfo: {fileID: 1908298239}
+  testCamera: {fileID: 858305363}
   infoData: {fileID: 1101610686}
   DBInfoFactory: {fileID: 0}
   isChangeFocus: 0
@@ -1093,11 +1099,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1192275359}
-  distance: 10
-  SmoothTime: 0.2
+  distance: 0
+  zoomSmoothTime: 0.2
   wheelspeed: 15
   minDistance: 3
   maxDistance: 100
+  camRotSpeed: 0.2
+  previousPosition: {x: 0, y: 0, z: 0}
+  distanceFromSphere: 50
+  direction: {x: 0, y: 0, z: 0}
+  smoothVelocity: {x: 0, y: 0, z: 0}
+  rotSmoothTime: 1
+  smoothStopTime: 0.02
+  isRotating: 0
+  isMovingToCB: 0
 --- !u!1 &197358447
 GameObject:
   m_ObjectHideFlags: 0
@@ -3061,6 +3076,53 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &858305362
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 858305364}
+  - component: {fileID: 858305363}
+  m_Layer: 0
+  m_Name: CameraTest
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &858305363
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 858305362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49bf766d07acf1d49be5779f42298818, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  camera: {fileID: 192887108}
+  smoothTime: 0.3
+  zoomIn: -5
+--- !u!4 &858305364
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 858305362}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &887860115
 GameObject:

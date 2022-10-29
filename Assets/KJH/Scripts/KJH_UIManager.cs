@@ -177,13 +177,12 @@ public class KJH_UIManager : MonoBehaviour
     {
         GameObject go = dict_UI["UI_Info"];
 
-        MoveCBInfoMenu(-1f);
-
-
         // 카메라 오른쪽으로 이동
         //cam.targetPos = transform.right * 1.5f;
         ////cam.moveDir = -1f;
         //cam.isMove = true;
+
+
         Vector3 target = Camera.main.transform.position + Camera.main.transform.right * 2f;
         target.y = Camera.main.transform.position.y;
         iTween.MoveTo(Camera.main.gameObject, iTween.Hash("position", target));
