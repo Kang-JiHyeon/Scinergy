@@ -1,7 +1,8 @@
-using System;
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Star : MonoBehaviour
 {
@@ -16,16 +17,64 @@ public class Star : MonoBehaviour
     //º° ¹à±â
     public GameObject brightness;
 
+    public GameObject starInfo;
 
+    #region shootingStar
+    public float fallSpeed = 50f;
+    public float removeTime = 3f;
+    float currentTime = 0f;
+    Vector3 fallDir;
+    float randX, randY;
+    #endregion
+    public enum State
+    {
+        normalStar,
+        shootingStar,
+    }
+
+    public State StarState = State.normalStar;
     // Start is called before the first frame update
     void Start()
     {
-        
+        randX = Random.Range(-90f, 90f);
+        randY = Random.Range(-20f, -30f);
     }
 
     // Update is called once per frame
     void Update()
     {
+        StateMachine();
+    }
+
+    public void StateMachine()
+    {
+        switch (StarState)
+        {
+            case State.normalStar:
+                return;
+            case State.shootingStar:
+                shootingStar();
+                return;
+        }
+
+    }
+
+    private void shootingStar()
+    {
+        GetComponent<TrailRenderer>().enabled = true;
+        currentTime += Time.deltaTime;
+        if (currentTime > removeTime)
+        {
+            transform.localScale = Vector3.Lerp(transform.localScale, Vector3.one, Time.deltaTime);
+            if ((transform.localScale - Vector3.one).magnitude < 0.1f)
+            {
+                Destroy(gameObject);
+                currentTime = 0;
+            }
+        }
+            fallDir.x = randX;
+            fallDir.y = randY;
+            transform.position += fallDir.normalized * fallSpeed * Time.deltaTime;
     }
 
     internal void InfoSet(string starNameInfo, float raInfo, float decInfo, GameObject starTypeInfo, GameObject brightnessInfo)

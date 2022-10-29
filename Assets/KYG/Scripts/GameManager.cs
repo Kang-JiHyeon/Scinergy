@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
     public GameObject CelestialSpehere;
     //천구 반지름
     public float celestialSphereRadius;
+
+    public Dictionary<string, GameObject> createdStarList = new ();
     private void Awake()
     {
         if (!instance)
