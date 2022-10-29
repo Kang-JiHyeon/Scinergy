@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Rotate : MonoBehaviour
 {
-    bool isRotate = true;
+    public bool mapControl = false;
     public float rotSpeed = 205;
     public GameObject Clock;
     public GameObject worldMap;
@@ -17,11 +17,8 @@ public class Rotate : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.rotation = Quaternion.Euler(-worldMap.GetComponent<WorldMap>().latitudeAdjust, worldMap.GetComponent<WorldMap>().longitudeAdjust,0);
-        if(Clock.GetComponent<Clock>().timeFlow) transform.Rotate(Vector3.up * 360/Clock.GetComponent<Clock>().REAL_SECONDS_PER_INGAME_DAY * Time.deltaTime);
-    }
-    public void OnRotateBtn()
-    {
-        isRotate = !isRotate;
+        
+        //if (Clock.GetComponent<Clock>().timeFlow || Clock.GetComponent<Clock>().timeReverse) transform.Rotate(Vector3.up * 360/Clock.GetComponent<Clock>().REAL_SECONDS_PER_INGAME_DAY * Time.deltaTime);
+        if(mapControl)transform.rotation = Quaternion.identity * Quaternion.Euler(-worldMap.GetComponent<WorldMap>().latitudeAdjust, worldMap.GetComponent<WorldMap>().longitudeAdjust,0);
     }
 }
