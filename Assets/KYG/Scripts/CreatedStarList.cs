@@ -38,4 +38,21 @@ public class CreatedStarList : MonoBehaviour
         Destroy(SelectedStarItem);
         SelectedStarItem = null;
     }
+    
+    public void OnDeleteAllStar()
+    {
+        foreach (KeyValuePair<string, GameObject> star in GameManager.instance.createdStarList)
+        {
+            star.Value.GetComponent<Star>().StarState = Star.State.shootingStar;
+        }
+        Transform[] createdStarItemList = CreatedStarListContent.GetComponentsInChildren<Transform>();
+        if(createdStarItemList != null)
+        {
+            for(int i = 1; i < createdStarItemList.Length; i++)
+            {
+                if (createdStarItemList[i] != transform) Destroy(createdStarItemList[i].gameObject);
+            }
+        }
+        GameManager.instance.createdStarList.Clear();
+    }
 }

@@ -30,6 +30,7 @@ public class StarGenerator : MonoBehaviour
 
     public GameObject player;
 
+    public GameObject starList;
     private void Awake()
     {
         if (!instance)
@@ -90,11 +91,22 @@ public class StarGenerator : MonoBehaviour
     }
     public void OnGenerateStarBtn()
     {
-        CreatedStarList createdStarList = GameObject.Find("CreatedStarList").GetComponent<CreatedStarList>();
+        CreatedStarList createdStarList = starList.GetComponent<CreatedStarList>();
         GameObject star = Instantiate(starType);
         GameManager.instance.createdStarList[starName] = star;
         star.GetComponent<Star>().InfoSet(starName, ra, dec,starType, brightness);
         player.GetComponent<PlayerRot>().StarSet(star.transform.position);
         createdStarList.Init(starName, star);
+    }
+    public void OnStarListBtn()
+    {
+        if (starList.activeSelf)
+        {
+            starList.SetActive(false);
+        }
+        else
+        {
+            starList.SetActive(true);
+        }
     }
 }
