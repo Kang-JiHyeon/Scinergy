@@ -25,6 +25,8 @@ public class KJH_Revolution : MonoBehaviour
     {
         //lr = transform.GetComponent<LineRenderer>();
         lr = transform.GetChild(0).GetComponent<LineRenderer>();
+        lr.startWidth = 0.02f;
+        lr.endWidth = 0.02f;
         radius = Vector3.Distance(orbitAxis.position, planet.position);
         sunLight.LookAt(transform.position);
 
@@ -35,7 +37,6 @@ public class KJH_Revolution : MonoBehaviour
     void Update()
     {
         //transform.RotateAround(orbitAxis.position, -planet.up, period * rotSpeed);
-
     }
 
 

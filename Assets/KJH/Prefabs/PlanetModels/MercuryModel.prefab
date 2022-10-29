@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 3494320765578705166}
   - component: {fileID: 563382807701354155}
   - component: {fileID: 2320900702165598817}
-  - component: {fileID: 4032106250908713242}
+  - component: {fileID: 2193832601269649941}
+  - component: {fileID: 4415791019159999169}
   m_Layer: 0
   m_Name: MercuryModel
   m_TagString: Untagged
@@ -84,7 +85,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &4032106250908713242
+--- !u!135 &2193832601269649941
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4266459795800105908}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.0000002
+  m_Center: {x: -0.00000020861626, y: 0, z: 0.00000017881393}
+--- !u!114 &4415791019159999169
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -93,8 +107,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 4266459795800105908}
   m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92ee571c0157b9a438dedc39d4336bab, type: 3}
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationSpeed: 10
-  pivotObject: {fileID: 0}
+  outlineMode: 1
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
