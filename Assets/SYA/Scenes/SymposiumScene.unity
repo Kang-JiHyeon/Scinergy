@@ -8549,6 +8549,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeDelay: 0.01
   linewidth: 0.1
+  LineList: []
 --- !u!4 &1179353165
 Transform:
   m_ObjectHideFlags: 0

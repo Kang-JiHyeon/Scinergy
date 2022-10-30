@@ -11,6 +11,9 @@ public class OSW_LineDrawer : MonoBehaviour
     LineRenderer drawLine;
     public float linewidth;
 
+    //영아
+    public List<GameObject> LineList;
+
     void Start()
     {
         linePoints = new List<Vector3>();
@@ -29,7 +32,7 @@ public class OSW_LineDrawer : MonoBehaviour
                 //Debug.Log(hitInfo.collider.name);
 
                 // 라인을 생성한다.
-                newLine = new GameObject("Line");
+                newLine = new GameObject("Line"+ LineList.Count);//영아
 
                 // 그려지는 라인에 LineRenderer, Material, Color, Width를 설정해준다.
                 drawLine = newLine.AddComponent<LineRenderer>();
@@ -38,9 +41,17 @@ public class OSW_LineDrawer : MonoBehaviour
                 drawLine.endColor = RandomColor();
                 drawLine.startWidth = linewidth;
                 drawLine.endWidth = linewidth;
+                LineList.Add(newLine);//영아
             }
                 
         }
+        //영아
+        if(Input.GetKeyDown(KeyCode.Z))
+        {
+            Destroy(LineList[LineList.Count - 1]);
+            LineList.RemoveAt(LineList.Count - 1);
+        }
+        //
 
         // 마우스 왼쪽 버튼을 누른 상태
         if (Input.GetMouseButton(0))
