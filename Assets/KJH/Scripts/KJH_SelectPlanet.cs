@@ -23,7 +23,7 @@ public class KJH_SelectPlanet : MonoBehaviour
     public Transform camaraTarget;
     public Transform focusTarget;
     KJH_Focus focusScript;
-    KJH_CameraMove cam;
+    public KJH_CameraTest2 cam;
 
     public float camRotSpeed = 0.2f;
 
@@ -50,7 +50,7 @@ public class KJH_SelectPlanet : MonoBehaviour
     {
         //UpdateCBInfoAction += ChangeInfo;
         //cam = GetComponent<KJH_CameraMove>();
-        cam = GetComponent<KJH_CameraMove>();
+        //cam = GetComponent<KJH_CameraMove>();
         
     }
 
@@ -199,7 +199,7 @@ public class KJH_SelectPlanet : MonoBehaviour
                 // 중심 target 설정
                 camaraTarget = hit.transform;
                 // 카메라 타겟 설정
-                cam.target = camaraTarget;
+                cam.pivot.position = camaraTarget.position;
             }
 
         }
