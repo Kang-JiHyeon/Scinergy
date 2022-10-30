@@ -23,7 +23,7 @@ public class SYA_PlayerMove : MonoBehaviourPun
     void Start()
     {
         cc = GetComponent<CharacterController>();
-        nickName.text = PhotonNetwork.NickName ;
+        //nickName.text = PhotonNetwork.NickName ;
     }
 
     // Update is called once per frame
