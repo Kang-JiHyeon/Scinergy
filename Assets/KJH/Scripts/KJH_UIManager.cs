@@ -45,6 +45,8 @@ public class KJH_UIManager : MonoBehaviour
     public GameObject controlTimeUI;
     public GameObject defalutUI;
 
+    public bool isActiveInfo = false;
+
     Dictionary<string, GameObject> dict_UI = new Dictionary<string, GameObject>();
 
     private void Awake()
@@ -58,7 +60,6 @@ public class KJH_UIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //cam = Camera.main.GetComponent<KJH_CameraMove>();
         curDate = DateTime.Now;
         obsDate = curDate;
         SetObsDateText();
@@ -67,11 +68,8 @@ public class KJH_UIManager : MonoBehaviour
         {
             // <UI_name, UI_gameObject>
             dict_UI.Add(transform.GetChild(i).name, transform.GetChild(i).gameObject);
-            //transform.GetChild(i).gameObject.SetActive(false);
         }
 
-        //// 기본 UI 띄우기
-        //dict_UI["UI_Defalut"].SetActive(true);
 
         MoveDefalutUI(1f);
     }
@@ -165,9 +163,6 @@ public class KJH_UIManager : MonoBehaviour
     // ControllTime -> DefalutUI
     public void OnClick_Back()
     {
-        //controlTimeUI.SetActive(false);
-        //defalutUI.SetActive(true);
-        //ChangeToScrollUI();
         MoveControllTimeUI(-1f);
         MoveDefalutUI(1f);
     }
@@ -177,24 +172,20 @@ public class KJH_UIManager : MonoBehaviour
     {
         GameObject go = dict_UI["UI_Info"];
 
-        // 카메라 오른쪽으로 이동
-        //cam.targetPos = transform.right * 1.5f;
-        ////cam.moveDir = -1f;
-        //cam.isMove = true;
-
-
-        Vector3 target = Camera.main.transform.position + Camera.main.transform.right * 2f;
-        target.y = Camera.main.transform.position.y;
-        iTween.MoveTo(Camera.main.gameObject, iTween.Hash("position", target));
-
         // 현재 UI를 끄고, 기본 UI를 띄우고 싶다.
-        MoveCBInfoMenu(-1f);
         MoveDefalutUI(1f);
+        MoveCBInfoMenu(-1f);
         Invoke("ViewCBInfoMenu", 2f);
 
-        //StopCoroutine("IeGoSetActive");
-        //StartCoroutine(IeGoSetActive(go));
+        isActiveInfo = false;
+    }
 
+    public void OpenInfoMenu()
+    {
+        MoveDefalutUI(-1f);
+        MoveCBInfoMenu(1f);
+
+        isActiveInfo = true;
     }
 
     // 기본 UI 이동 함수
@@ -216,36 +207,6 @@ public class KJH_UIManager : MonoBehaviour
     {
         iTween.MoveTo(dict_UI["UI_Info"], iTween.Hash("x", 425f * sign, "time", 2f));
     }
-
-    //public void ChangeToScrollUI()
-    //{
-    //    //defalutUI.SetActive(false);
-    //    if(controlTimeUI.activeSelf == false)
-    //    {
-    //        MoveDefalutUI(-120, -120);
-    //        controlTimeUI.SetActive(true);
-    //        iTween.MoveTo(controlTimeUI, iTween.Hash("y", controlTimeUI.transform.position.y + 300f, "Time", 2f));
-    //    }
-    //    else
-    //    {
-    //        MoveDefalutUI(120, 120);
-    //        iTween.MoveTo(controlTimeUI, iTween.Hash("y", controlTimeUI.transform.position.y - 300f, "Time", 2f));
-    //        controlTimeUI.SetActive(false);
-    //    }
-    //}
-
-
-
-
-
-    //IEnumerator IeGoSetActive(GameObject Go_enable)
-    //{
-    //    yield return new WaitForSeconds(1f);
-    //    Go_enable.SetActive(false);
-    //    // 기본 메뉴 상태로 전환
-    //    ViewCBInfoMenu();
-    //    MoveDefalutUI(1f);
-    //}
 
     // 정보 UI 관련 함수
     public void ViewCBInfoMenu()
@@ -277,5 +238,4 @@ public class KJH_UIManager : MonoBehaviour
                 tr.GetChild(i).gameObject.SetActive(false);
         }
     }
-
 }
