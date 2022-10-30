@@ -29,15 +29,7 @@ public class SYA_PlayerMove : MonoBehaviourPun
     // Update is called once per frame
     void Update()
     {
-        if (!photonView.IsMine||SceneManager.GetActiveScene().name == "LoginScene")
-        {
-            GetComponentInChildren<Camera>().enabled = false;
-            GetComponentInChildren<AudioListener>().enabled = false;
-        }
-        else
-        {
-            GetComponentInChildren<Camera>().enabled = true;
-            GetComponentInChildren<AudioListener>().enabled = true;
+
 
             float h = SYA_InputManager.GetAxis("Horizontal");
             float v = SYA_InputManager.GetAxis("Vertical");
@@ -53,7 +45,7 @@ public class SYA_PlayerMove : MonoBehaviourPun
             {
                 GetJump();
             }
-        }
+        
         dir = Camera.main.transform.TransformDirection(dir);
         dir.Normalize();
 
