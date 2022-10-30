@@ -25,7 +25,7 @@ using System.Globalization;
 
 public class KJH_UIManager : MonoBehaviour
 {
-    //KJH_CameraMove cam;
+    public KJH_CameraTest2 cam;
     public static KJH_UIManager instance; 
     // 현재 시간 : 계속 Update
     DateTime curDate;
@@ -60,6 +60,8 @@ public class KJH_UIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
+
         curDate = DateTime.Now;
         obsDate = curDate;
         SetObsDateText();
@@ -69,7 +71,6 @@ public class KJH_UIManager : MonoBehaviour
             // <UI_name, UI_gameObject>
             dict_UI.Add(transform.GetChild(i).name, transform.GetChild(i).gameObject);
         }
-
 
         MoveDefalutUI(1f);
     }
@@ -178,6 +179,8 @@ public class KJH_UIManager : MonoBehaviour
         Invoke("ViewCBInfoMenu", 2f);
 
         isActiveInfo = false;
+        cam.movePos = Vector3.zero;
+        cam.isCameraMoveX = true;
     }
 
     public void OpenInfoMenu()

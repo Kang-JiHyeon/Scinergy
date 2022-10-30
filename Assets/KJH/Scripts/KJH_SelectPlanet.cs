@@ -40,8 +40,6 @@ public class KJH_SelectPlanet : MonoBehaviour
     public Text CBType;
     public Text CBInfo;
 
-
-
     public KJH_CameraTest testCamera;
 
 
@@ -194,12 +192,16 @@ public class KJH_SelectPlanet : MonoBehaviour
             // 2번 클릭
             else
             {
-                // 카메라 움직임
-                cam.isMovingToCB = true;
-                // 중심 target 설정
-                camaraTarget = hit.transform;
-                // 카메라 타겟 설정
-                cam.pivot.position = camaraTarget.position;
+                if(camaraTarget != hit.transform && hit.transform != null)
+                {
+                    // 카메라 움직임
+                    cam.isMovingToCB = true;
+                    // 중심 target 설정
+                    camaraTarget = hit.transform;
+                    // 카메라 타겟 설정
+                    //cam.pivot = camaraTarget;
+
+                }
             }
 
         }

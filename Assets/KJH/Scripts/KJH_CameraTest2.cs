@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class KJH_CameraTest2 : MonoBehaviour
 {
@@ -29,63 +30,69 @@ public class KJH_CameraTest2 : MonoBehaviour
     // 카메라 이동
     public Vector3 movePos;
     public KJH_UIManager uiManager;
+    public KJH_SelectPlanet selectPlanet;
+
+    // 카메라 움직임 제어
+    bool isStop = false;
 
     // Start is called before the first frame update
     void Start()
     {
         camera = Camera.main;
         movePos = new Vector3(-2f, 0, 0);
+        selectPlanet = camera.GetComponent<KJH_SelectPlanet>();
     }
 
 
     // Update is called once per frame
     void Update()
     {
-        //pivot.position = camera.GetComponent<KJH_SelectPlanet>().camaraTarget.transform.position;
+
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            isStop = !isStop;
+        }
+
+        if (isStop) return;
+
+        pivot.position = selectPlanet.camaraTarget.transform.position;
+
         cameraRotAxis.LookAt(pivot.position);
-        Rotate();
+
+        // 마우스 좌클릭 중이고 ui를 클릭하지 않을 때 카메라 회전 실행
+        if (Input.GetMouseButton(0)) { 
+            if (!EventSystem.current.IsPointerOverGameObject())
+                Rotate();
+        }
+
         ZoomInOut();
 
         if (isCameraMoveX)
         {
-
-            if (uiManager.isActiveInfo)
-            {
-                movePos = Vector3.left ;
-            }
-            else
-            {
-                movePos = Vector3.zero;
-            }
             MoveXAxis();
         }
-            camera.transform.forward = cameraRotAxis.forward;
 
     }
 
     // 마우스 왼쪽 버튼 입력에 따른 카메라 회전
     void Rotate()
     {
-        if (Input.GetMouseButton(0))
-        {
-            mouseX += Input.GetAxis("Mouse X");
-            mouseY += Input.GetAxis("Mouse Y");
+        mouseX += Input.GetAxis("Mouse X");
+        mouseY += Input.GetAxis("Mouse Y");
 
-            rotX = Mathf.Clamp(pivot.rotation.x + mouseY * rotSpeed, -89.5f, 89.5f);
+        rotX = Mathf.Clamp(pivot.rotation.x + mouseY * rotSpeed, -89.5f, 89.5f);
             
-            rotY = pivot.rotation.y + mouseX * rotSpeed;
+        rotY = pivot.rotation.y + mouseX * rotSpeed;
 
-            // 스무스 하게 멈추는건 다음에...!!
-            pivot.rotation = Quaternion.Euler(new Vector3(rotX, rotY, 0));
+        // 스무스 하게 멈추는건 다음에...!!
+        pivot.rotation = Quaternion.Euler(new Vector3(rotX, rotY, 0));
 
-            print("마우스 입력 회전 중");
-        }
+        print("마우스 입력 회전 중");
     }
 
     // 마우스 휠 입력에 따른 카메라 줌인/줌아웃
     void ZoomInOut()
     {
-
         // 마우스 휠 입력
         distance -= Input.GetAxis("Mouse ScrollWheel") * wheelspeed;
 
@@ -110,6 +117,7 @@ public class KJH_CameraTest2 : MonoBehaviour
             // 정보 ui 띄우기
             KJH_UIManager.instance.OpenInfoMenu();
             isMovingToCB = false;
+            movePos = Vector3.left;
             isCameraMoveX = true;
             
         }
@@ -120,17 +128,17 @@ public class KJH_CameraTest2 : MonoBehaviour
         }
     }
 
-    bool isCameraMoveX = false;
+    public bool isCameraMoveX = false;
     // 2. ui 나올 때
     public void MoveXAxis()
     {
         // 메인 카메라의 위치를 왼쪽으로 이동하고 싶다.
-        if (Vector3.Distance(camera.transform.localPosition, movePos) < 0.1f)
+        if (Vector3.Distance(camera.transform.localPosition, movePos) < 0.005f)
         {
             isCameraMoveX = false;
             camera.transform.localPosition = movePos;
         }
 
-        camera.transform.localPosition = Vector3.Lerp(camera.transform.localPosition, movePos, Time.deltaTime);
+        camera.transform.localPosition = Vector3.Lerp(camera.transform.localPosition, movePos, Time.deltaTime * 2f);
     }
 }
