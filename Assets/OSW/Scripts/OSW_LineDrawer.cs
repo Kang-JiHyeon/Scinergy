@@ -32,7 +32,7 @@ public class OSW_LineDrawer : MonoBehaviour
                 //Debug.Log(hitInfo.collider.name);
 
                 // 라인을 생성한다.
-                newLine = new GameObject("Line"+ LineList.Count);//영아
+                newLine = new GameObject("Line"+ LineList.Count);//영아 + LineList.Count
 
                 // 그려지는 라인에 LineRenderer, Material, Color, Width를 설정해준다.
                 drawLine = newLine.AddComponent<LineRenderer>();
