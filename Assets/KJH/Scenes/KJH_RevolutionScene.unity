@@ -4884,7 +4884,7 @@ MonoBehaviour:
   trContent: {fileID: 521758098}
   trScrollView: {fileID: 106941006}
   trGrid: {fileID: 877029118}
-  detailInfoFactory: {fileID: 1950110371542820762, guid: 6057d496b0fb6c44e9f5330dedcc269b, type: 3}
+  detailInfoFactory: {fileID: 1648309254846691851, guid: 818834aca52d027469b0bbddff0b3c6e, type: 3}
 --- !u!1 &1102784969
 GameObject:
   m_ObjectHideFlags: 0
