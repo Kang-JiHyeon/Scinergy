@@ -22,10 +22,14 @@ using System.Globalization;
 // -- 현재 위치를 계속 저장해 둘 List가 필요하다.
 // 현재 위치를 저장해두는 기준 시간-> 분..단위..?
 
+// 줌 스크롤 바
+// 바를 위로 올리면 줌인
+// 바를 아래로 내리면 줌아웃
+
 
 public class KJH_UIManager : MonoBehaviour
 {
-    //KJH_CameraMove cam;
+    public KJH_CameraTest2 cam;
     public static KJH_UIManager instance; 
     // 현재 시간 : 계속 Update
     DateTime curDate;
@@ -46,8 +50,15 @@ public class KJH_UIManager : MonoBehaviour
     public GameObject defalutUI;
 
     public bool isActiveInfo = false;
+    bool isActiveControl = false;
 
     Dictionary<string, GameObject> dict_UI = new Dictionary<string, GameObject>();
+
+    // 줌 스크롤 바
+    public Scrollbar zoomScrollbar;
+
+
+
 
     private void Awake()
     {
@@ -69,7 +80,6 @@ public class KJH_UIManager : MonoBehaviour
             // <UI_name, UI_gameObject>
             dict_UI.Add(transform.GetChild(i).name, transform.GetChild(i).gameObject);
         }
-
 
         MoveDefalutUI(1f);
     }
@@ -158,6 +168,7 @@ public class KJH_UIManager : MonoBehaviour
     {
         MoveDefalutUI(-1f);
         MoveControllTimeUI(1f);
+        isActiveControl = true;
     }
 
     // ControllTime -> DefalutUI
@@ -165,6 +176,7 @@ public class KJH_UIManager : MonoBehaviour
     {
         MoveControllTimeUI(-1f);
         MoveDefalutUI(1f);
+        isActiveControl = false;
     }
 
     // 천체 메뉴 닫기
@@ -173,38 +185,50 @@ public class KJH_UIManager : MonoBehaviour
         GameObject go = dict_UI["UI_Info"];
 
         // 현재 UI를 끄고, 기본 UI를 띄우고 싶다.
-        MoveDefalutUI(1f);
-        MoveCBInfoMenu(-1f);
+        if (isActiveInfo)
+        {
+            MoveDefalutUI(1f);
+            MoveCBInfoMenu(-1f);
+        }
         Invoke("ViewCBInfoMenu", 2f);
 
-        isActiveInfo = false;
+        cam.movePos = Vector3.zero;
+        cam.isCameraMoveX = true;
     }
 
     public void OpenInfoMenu()
     {
-        MoveDefalutUI(-1f);
-        MoveCBInfoMenu(1f);
-
-        isActiveInfo = true;
+        if (!isActiveInfo)
+        {
+            MoveDefalutUI(-1f);
+            MoveCBInfoMenu(1f);
+        }
+        
+        if (isActiveControl)
+        {
+            MoveControllTimeUI(-1f);
+        }
     }
 
     // 기본 UI 이동 함수
     public void MoveDefalutUI(float sign)
     {
         Transform tr = dict_UI["UI_Defalut"].transform;
-        tr.gameObject.SetActive(true);
-        iTween.MoveTo(tr.GetChild(0).gameObject, iTween.Hash("x", tr.GetChild(0).position.x + 120f * sign, "Time", 2f));
+        iTween.MoveTo(tr.GetChild(0).gameObject, iTween.Hash("x", tr.GetChild(0).position.x - 120f * sign, "Time", 2f));
         iTween.MoveTo(tr.GetChild(1).gameObject, iTween.Hash("y", tr.GetChild(1).position.y + 120f * sign, "Time", 2f));
     }
     // 시간 제어 UI 이동 함수
     public void MoveControllTimeUI(float sign)
     {
-        iTween.MoveTo(controlTimeUI, iTween.Hash("y", controlTimeUI.transform.position.y + 300f * sign, "Time", 2f));
+        //isActiveControl = sign > 0 ? true : false;
+        Transform tr = dict_UI["UI_ControlTime"].transform;
+        iTween.MoveTo(tr.gameObject, iTween.Hash("y", tr.position.y + 300f * sign, "Time", 2f));
     }
 
     // 행성 정보 메뉴 이동
     public void MoveCBInfoMenu(float sign)
     {
+        isActiveInfo = sign > 0 ? true : false;
         iTween.MoveTo(dict_UI["UI_Info"], iTween.Hash("x", 425f * sign, "time", 2f));
     }
 
@@ -237,5 +261,37 @@ public class KJH_UIManager : MonoBehaviour
             else
                 tr.GetChild(i).gameObject.SetActive(false);
         }
+    }
+    bool isDragZoomScroll = false;
+    public void ZoomScrollbar()
+    {
+        // 1. 스크롤 바를 마우스 왼쪽 버튼으로 누르고 있는 동안
+        if (Input.GetMouseButtonDown(0))
+        {
+            isDragZoomScroll = true;
+        }
+        // 5. 마우스 좌클릭을 때면 바 값 0.5로 설정됨
+        if (Input.GetMouseButtonUp(1))
+        {
+            isDragZoomScroll = false;
+            zoomScrollbar.value = 0.5f;
+        }
+        // 바를 누르고 있는 동안에
+        if (isDragZoomScroll)
+        {
+            // 2. 값이 0.5 보다 커지면 줌인
+            if(zoomScrollbar.value > 0.5f)
+            {
+                // 줌인
+            }
+            // 3. 값이 0.5보다 작아지면 줌아웃
+            else if(zoomScrollbar.value < 0.5f)
+            {
+                // 줌아웃
+            }
+
+        }
+        print("줌~~");
+
     }
 }

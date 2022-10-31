@@ -75,16 +75,16 @@ public class KJH_SolarSystem : MonoBehaviour
             //planets[i].localScale = Vector3.one * scales[i];
 
             // 태양-행성 간의 거리 초기화
-            planets[i].localPosition = new Vector3(1, 0, 1) * AUs[i] * 10;
+            //planets[i].localPosition = new Vector3(1, 0, 1) * AUs[i] * 15;
 
             // 라이트 각도 행성을 비추도록 초기화
             planets[i].Find("OrbitAxis").GetChild(0).forward = planets[i].position - transform.position;
 
             // 행성 궤도 그리기
             lr = planets[i].GetChild(0).GetComponent<LineRenderer>();
-            radius = Vector3.Distance(transform.position, planets[i].position);
+            radius = Vector3.Distance(planets[i].GetChild(0).position, planets[i].position);
 
-            DrawOrbit();
+            DrawOrbit(planets[i].GetChild(0));
         }
     }
 
@@ -119,7 +119,7 @@ public class KJH_SolarSystem : MonoBehaviour
             float rotAngle = (360f / yearPeriods[i] / (float)unitTime) * unitTimeNum;
 
             // 각도만큼 회전
-            planets[i].RotateAround(transform.position, -transform.up, rotAngle * Time.fixedDeltaTime);
+            planets[i].RotateAround(planets[i].GetChild(0).position, -transform.up, rotAngle * Time.fixedDeltaTime);
 
             // 라이트 방향 설정
             planets[i].Find("OrbitAxis").GetChild(0).forward = planets[i].position - transform.position;
@@ -128,15 +128,15 @@ public class KJH_SolarSystem : MonoBehaviour
 
 
     // 행성 공전 궤도 그리는 함수
-    private void DrawOrbit()
+    private void DrawOrbit(Transform orbitAxis)
     {
         Vector3[] points = new Vector3[segment + 1];
         //float angle = 360f / segment;
 
         for (int i = 0; i < points.Length; i++)
         {
-            //points[i] = orbitAxis.position + CalculatePosition((float)i / (float)segment);
-            points[i] = transform.position + CalculatePosition((float)i / (float)segment);
+            points[i] = orbitAxis.position + CalculatePosition((float)i / (float)segment);
+            //points[i] = transform.position + CalculatePosition((float)i / (float)segment);
         }
 
         points[segment] = points[0];
