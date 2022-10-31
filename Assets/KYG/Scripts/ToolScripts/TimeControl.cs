@@ -125,6 +125,11 @@ public class TimeControl : MonoBehaviour
             #endregion
         }
 
+        if (Input.GetButtonUp("Fire1"))
+        {
+            SelectedHand = null;
+        }
+
         if (Input.GetKey(KeyCode.Alpha1))
         {
             min -= 2;
