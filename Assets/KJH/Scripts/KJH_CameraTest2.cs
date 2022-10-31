@@ -55,9 +55,12 @@ public class KJH_CameraTest2 : MonoBehaviour
 
         if (isStop) return;
 
-        pivot.position = selectPlanet.camaraTarget.transform.position;
-
+        if(selectPlanet.camaraTarget != null)
+        {
+            pivot.position = selectPlanet.camaraTarget.transform.position;
+        }
         cameraRotAxis.LookAt(pivot.position);
+
 
         // 마우스 좌클릭 중이고 ui를 클릭하지 않을 때 카메라 회전 실행
         if (Input.GetMouseButton(0)) { 
@@ -95,6 +98,7 @@ public class KJH_CameraTest2 : MonoBehaviour
     {
         // 마우스 휠 입력
         distance -= Input.GetAxis("Mouse ScrollWheel") * wheelspeed;
+        print("Mouse ScrollWheel: " + Input.GetAxis("Mouse ScrollWheel"));
 
         if (distance < minDistance) distance = minDistance;
         if (distance > maxDistance) distance = maxDistance;

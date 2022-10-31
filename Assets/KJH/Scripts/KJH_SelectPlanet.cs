@@ -156,7 +156,6 @@ public class KJH_SelectPlanet : MonoBehaviour
     // 빈곳 클릭하면 target = null -> focus 축소
     // 마우스 멀어지면 focus 크기 확대
     // 마우스 행성 위에 있으면 focus 축소
-
     private void ClickPlanet()
     {
         // 카메라가 보는 방향과, 시야를 가져온다.
@@ -167,6 +166,7 @@ public class KJH_SelectPlanet : MonoBehaviour
         Vector3 dir = Camera.main.ScreenToWorldPoint(mos);
 
         RaycastHit hit;
+        //if (Physics.Raycast(transform.position, dir, out hit, mos.z))
         if (Physics.Raycast(transform.position, dir, out hit, mos.z))
         {
             //print("Mouse Click Object : " + hit.transform.gameObject.name);
@@ -192,16 +192,24 @@ public class KJH_SelectPlanet : MonoBehaviour
             // 2번 클릭
             else
             {
-                if(camaraTarget != hit.transform && hit.transform != null)
+                if(camaraTarget != hit.transform)
                 {
-                    // 카메라 움직임
-                    cam.isMovingToCB = true;
                     // 중심 target 설정
                     camaraTarget = hit.transform;
+                    // 카메라 움직임
+                    cam.isMovingToCB = true;
                     // 카메라 타겟 설정
                     //cam.pivot = camaraTarget;
-
                 }
+                else
+                {
+                    if(KJH_UIManager.instance.isActiveInfo == false)
+                    {
+                        // 정보 ui 띄우기
+                        KJH_UIManager.instance.OpenInfoMenu();
+                    }
+                }
+
             }
 
         }
