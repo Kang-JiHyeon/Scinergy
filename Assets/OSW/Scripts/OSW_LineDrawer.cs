@@ -17,8 +17,8 @@ public class OSW_LineDrawer : MonoBehaviour
     public bool isDrawing = false;
 
     // 지우개
-    public bool isEraser; // 지우개인지 아닌지 판단하는 변수
-    public Material boardMaterial; // 지우는거 어려워.. 그냥 board 색으로 덧씌우면 어떨까?
+    //public bool isEraser; // 지우개인지 아닌지 판단하는 변수
+    //public Material boardMaterial; // 지우는거 어려워.. 그냥 board 색으로 덧씌우면 어떨까?
 
     public float linewidth = 0.05f;
 
