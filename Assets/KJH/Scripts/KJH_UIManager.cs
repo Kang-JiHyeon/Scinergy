@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 using System.Globalization;
+using System.IO;
 
 
 // (v) 관측 시간을 Text로 나타내고 싶다. 
@@ -236,6 +237,7 @@ public class KJH_UIManager : MonoBehaviour
     public void ViewCBInfoMenu()
     {
         SetActiveUI("UI_InfoMenu");
+       
     }
 
     // 행성 정보 보기

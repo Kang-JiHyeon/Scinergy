@@ -62,13 +62,18 @@ public class KJH_CameraTest2 : MonoBehaviour
         cameraRotAxis.LookAt(pivot.position);
 
 
-        // 마우스 좌클릭 중이고 ui를 클릭하지 않을 때 카메라 회전 실행
-        if (Input.GetMouseButton(0)) { 
-            if (!EventSystem.current.IsPointerOverGameObject())
+
+        // ui를 클릭하지 않을 때 카메라 회전 실행
+        if (!EventSystem.current.IsPointerOverGameObject())
+        {
+            // 마우스 좌클릭 중이고 
+            if (Input.GetMouseButton(0))
+            {
                 Rotate();
+            }
+            ZoomInOut();
         }
 
-        ZoomInOut();
 
         if (isCameraMoveX)
         {

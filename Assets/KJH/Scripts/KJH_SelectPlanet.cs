@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 // 1. 행성 위에 마우스가 위치하면 테두리를 활성화하고 싶다. (v)
@@ -46,15 +47,15 @@ public class KJH_SelectPlanet : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //UpdateCBInfoAction += ChangeInfo;
-        //cam = GetComponent<KJH_CameraMove>();
-        //cam = GetComponent<KJH_CameraMove>();
         
     }
 
     // Update is called once per frame
     void Update()
     {
+        // ui를 클릭했을 때 실행되지 않도록 반환
+        if (EventSystem.current.IsPointerOverGameObject()) return;
+
         // 1. 행성 위에 마우스 위치할 경우 outline 활성화
         EnableOutLine();
 
@@ -136,8 +137,7 @@ public class KJH_SelectPlanet : MonoBehaviour
         print("camaraTarget : " + camaraTarget);
     }
 
-    public KJH_CSVTest infoData;
-    public GameObject DBInfoFactory;
+    public KJH_Data infoData;
     void ChangeInfo()
     {
         int index = infoData.cbNames.FindIndex(x => x == focusTarget.name);
@@ -148,6 +148,9 @@ public class KJH_SelectPlanet : MonoBehaviour
             CBType.text = infoData.infos[index][1];
 
             // Scroll View의 Content 추가
+
+
+
         }
 
     }
@@ -156,6 +159,9 @@ public class KJH_SelectPlanet : MonoBehaviour
     // 빈곳 클릭하면 target = null -> focus 축소
     // 마우스 멀어지면 focus 크기 확대
     // 마우스 행성 위에 있으면 focus 축소
+
+    public KJH_DataManager dataManager;
+
     private void ClickPlanet()
     {
         // 카메라가 보는 방향과, 시야를 가져온다.
@@ -177,7 +183,7 @@ public class KJH_SelectPlanet : MonoBehaviour
                 // 포커스 타겟 설정
                 focusTarget = hit.transform;
                 // focus 타겟의 정보 내용으로 ui로 변경
-                ChangeInfo();
+                dataManager.ChangeInfo();
 
                 // focus ui 크기 변경
                 if(focusTarget != null)
