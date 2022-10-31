@@ -13,12 +13,12 @@ public class OSW_LineDrawer : MonoBehaviour
     public GameObject newLine;
     LineRenderer drawLine;
 
-    // bool
+    // 라인 버튼이 눌렸는지 확인
     public bool isDrawing = false;
 
     // 지우개
-    //public bool isEraser; // 지우개인지 아닌지 판단하는 변수
-    //public Material boardMaterial; // 지우는거 어려워.. 그냥 board 색으로 덧씌우면 어떨까?
+    public bool isEraser; // 지우개인지 아닌지 판단하는 변수
+    public Material boardMaterial; // 지우는거 어려워.. 그냥 board 색으로 덧씌우면 어떨까?
 
     public float linewidth = 0.05f;
 
@@ -37,11 +37,12 @@ public class OSW_LineDrawer : MonoBehaviour
 
     void Update()
     {
+        // 라인 버튼이 눌렸다면 드로잉 시작!
         if(isDrawing == true)
         {
             Drawing();
-
         }
+
         //Eraser();
         //CtrlZ();
         //CtrlY();
@@ -61,10 +62,10 @@ public class OSW_LineDrawer : MonoBehaviour
             RaycastHit hitInfo;
             if ((Physics.Raycast(ray, out hitInfo) && hitInfo.collider.name == "Board") || hitInfo.collider.name == "uWC Window Object(Clone)")
             {
-                // 만약 지우개면
+                //// 만약 지우개면
                 //if (isEraser == true)
                 //{
-                // color = 지우개 색으로!
+                //    //color = 지우개 색으로!
                 //    drawLine.startColor = eraser;
                 //    drawLine.endColor = eraser;
                 //}
@@ -167,15 +168,15 @@ public class OSW_LineDrawer : MonoBehaviour
     //{
     //    if (Input.GetKeyDown(KeyCode.E))
     //    {
-    //        if(isEraser == false)
+    //        if (isEraser == false)
     //        {
     //            isEraser = true;
-                
+
     //            //drawObj_temp = drawObj;
     //            //drawObj = Resources.Load<GameObject>("YS/Eraser");
     //            //drawObjName = "YS/Eraser";
     //        }
-    //        else if(isEraser == true)
+    //        else if (isEraser == true)
     //        {
     //            isEraser = false;
 
