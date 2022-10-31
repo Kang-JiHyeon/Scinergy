@@ -25,9 +25,9 @@ public class OSW_ButtonUI : MonoBehaviour
     public void Drawing()
     {
         osw_lineDrawer.isDrawing = !osw_lineDrawer.isDrawing;
-        //lineDrawer.SetActive(!lineDrawer.activeSelf);
     }
 
+    // 실행취소 버튼 클릭 시 호출
     public void CtrlZ()
     {
         for(int i = osw_lineDrawer.lineList.Count - 1; i >= 0; i--)
@@ -40,6 +40,7 @@ public class OSW_ButtonUI : MonoBehaviour
         }
     }
 
+    // 되돌리기 버튼 클릭 시 호출
     public void CtrlY()
     {
         for(int i = 0; i < osw_lineDrawer.lineList.Count; i++)
@@ -52,6 +53,7 @@ public class OSW_ButtonUI : MonoBehaviour
         }
     }
 
+    // 전체 삭제 버튼 클릭 시 호출
     public void AllDelete()
     {
         for(int i = 0; i < osw_lineDrawer.lineList.Count; i++)
