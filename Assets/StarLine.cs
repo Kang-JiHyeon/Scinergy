@@ -17,8 +17,11 @@ public class StarLine : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-        
+    {        
+        if(star1.GetComponent<Star>().StarState == Star.State.shootingStar || star2.GetComponent<Star>().StarState == Star.State.shootingStar)
+        {
+            Destroy(gameObject);
+        }
         starLine.SetPosition(0, star1.transform.position);
         starLine.SetPosition(1, star2.transform.position);
     }

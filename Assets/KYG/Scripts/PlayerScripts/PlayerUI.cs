@@ -7,6 +7,7 @@ public class PlayerUI : MonoBehaviour
     public GameObject starGenerator;
     public GameObject starList;
     public GameObject telescope;
+    public GameObject constellation;
     public GameObject compas;
     public GameObject Clock;
     public GameObject Map;
@@ -68,6 +69,18 @@ public class PlayerUI : MonoBehaviour
             //Camera.main.fieldOfView = 30;
             Cursor.visible = false;
             telescope.SetActive(true);
+        }
+    }
+
+    public void OnConstellationBtn()
+    {
+        if (constellation.activeSelf)
+        {
+            constellation.SetActive(false);
+        }
+        else
+        {
+            constellation.SetActive(true);
         }
     }
     public void OnClockBtn()
