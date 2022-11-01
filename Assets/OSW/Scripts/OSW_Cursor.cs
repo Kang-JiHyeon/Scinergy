@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class OSW_Cursor : MonoBehaviour
@@ -7,6 +8,9 @@ public class OSW_Cursor : MonoBehaviour
     public Texture2D[] cursorArray = new Texture2D[1];
     public Texture2D cursorTexture;
     public OSW_LineDrawer lineDrawer;
+
+    // 커서인지 아닌지 확인
+    bool isCursor = false;
 
     //public int brushNum_temp;
     void Start()
@@ -20,23 +24,21 @@ public class OSW_Cursor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(lineDrawer == null)
+        if (lineDrawer == null)
         {
             lineDrawer = GetComponent<OSW_LineDrawer>();
         }
-
-        //if(lineDrawer.brushNum != brushNum_temp)
-        //{
-        //    //StartCoroutine("MouseCursor");
-        //    brushNum_temp = lineDrawer.brushNum;
-        //}
     }
 
+    public void CursorChange()
+    {
+        isCursor = !isCursor;
 
-    //IEnumerator MouseCursor()
-    //{
-    //    yield return new WaitForEndOfFrame();
-
-    //    Cursor.SetCursor(cursorTexture, Vector2.zero, CursorMode.Auto);
-    //}
-}   
+        if (isCursor)
+        {
+            Cursor.SetCursor(cursorTexture, Vector2.zero, CursorMode.Auto);
+        }
+        else
+            Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+    }
+}
