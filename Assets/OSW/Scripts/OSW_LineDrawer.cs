@@ -13,7 +13,7 @@ public class OSW_LineDrawer : MonoBehaviour
     public GameObject newLine;
     LineRenderer drawLine;
 
-    // bool
+    // 라인 버튼이 눌렸는지 확인
     public bool isDrawing = false;
 
     // 지우개
@@ -37,11 +37,12 @@ public class OSW_LineDrawer : MonoBehaviour
 
     void Update()
     {
+        // 라인 버튼이 눌렸다면 드로잉 시작!
         if(isDrawing == true)
         {
             Drawing();
-
         }
+
         //Eraser();
         //CtrlZ();
         //CtrlY();
@@ -50,7 +51,7 @@ public class OSW_LineDrawer : MonoBehaviour
 
     public void Drawing()
     {
-        
+
         // 지우개 색깔(board색)
         //Color eraser = boardMaterial.color;
 
@@ -59,62 +60,20 @@ public class OSW_LineDrawer : MonoBehaviour
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hitInfo;
-            if ((Physics.Raycast(ray, out hitInfo) && hitInfo.collider.name == "Board") || hitInfo.collider.name == "uWC Window Object(Clone)")
+            if (Physics.Raycast(ray, out hitInfo))
             {
-                // 만약 지우개면
+                //// 만약 지우개면
                 //if (isEraser == true)
                 //{
-                // color = 지우개 색으로!
+                //    //color = 지우개 색으로!
                 //    drawLine.startColor = eraser;
                 //    drawLine.endColor = eraser;
                 //}
 
-                // 라인을 생성한다.
-                newLine = new GameObject("Line" + lineList.Count);
-
-                // 만약 생성될 때, 리스트에 active가 false인 것들은 삭제
-                for (int i = 0; i < lineList.Count; i++)
+                if (hitInfo.collider.name == "Board" || hitInfo.collider.name == "uWC Window Object(Clone)")
                 {
-                    if (lineList[i].activeSelf == false)
-                    {
-                        Destroy(lineList[i].gameObject);
-                        lineList.RemoveAt(i); // RemoveAt을 해줘야 되돌리고 다시 선을 그었을때 뻑이 안남.
-                        i--;
-                    }
-                }
-
-                //그려지는 라인에 LineRenderer, Material, Color, Width를 설정해준다.
-                drawLine = newLine.AddComponent<LineRenderer>();
-                drawLine.material = new Material(Shader.Find("Universal Render Pipeline/Lit"));
-                drawLine.startColor = lineMaterial.color;
-                drawLine.endColor = lineMaterial.color;
-                //drawLine.startColor = lineColor.GetComponent<ColorPickerTest>().selectedColor;
-                //drawLine.endColor = lineColor.GetComponent<ColorPickerTest>().selectedColor;
-                drawLine.startWidth = linewidth;
-                drawLine.endWidth = linewidth;
-                lineList.Add(newLine);
-
-            }
-
-        }
-
-        // 마우스 왼쪽 버튼을 누른 상태
-        if (Input.GetMouseButton(0))
-        {
-            timer -= Time.deltaTime;
-            if (timer <= 0)
-            {
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                RaycastHit hitInfo;
-                if ((Physics.Raycast(ray, out hitInfo) && hitInfo.collider.name == "Board") || hitInfo.collider.name == "uWC Window Object(Clone)")
-                {
-                    ////만약 지우개면
-                    //if (isEraser == true)
-                    //{
-                    //    // color = 지우개 색으로!
-                    //    drawLine.startColor = eraser;
-                    //    drawLine.endColor = eraser;
-                    //}
+                    // 라인을 생성한다.
+                    newLine = new GameObject("Line" + lineList.Count);
 
                     // 만약 생성될 때, 리스트에 active가 false인 것들은 삭제
                     for (int i = 0; i < lineList.Count; i++)
@@ -127,17 +86,64 @@ public class OSW_LineDrawer : MonoBehaviour
                         }
                     }
 
-                    linePoints.Add(GetMousePosition());
-                    drawLine.positionCount = linePoints.Count;
-                    drawLine.SetPositions(linePoints.ToArray());
+                    //그려지는 라인에 LineRenderer, Material, Color, Width를 설정해준다.
+                    drawLine = newLine.AddComponent<LineRenderer>();
+                    drawLine.material = new Material(Shader.Find("Universal Render Pipeline/Lit"));
+                    drawLine.startColor = lineMaterial.color;
+                    drawLine.endColor = lineMaterial.color;
+                    //drawLine.startColor = lineColor.GetComponent<ColorPickerTest>().selectedColor;
+                    //drawLine.endColor = lineColor.GetComponent<ColorPickerTest>().selectedColor;
+                    drawLine.startWidth = linewidth;
+                    drawLine.endWidth = linewidth;
+                    lineList.Add(newLine);
 
-                    // 나중에 생긴 선은 위에 올라오게끔
-                    sortingOrder++;
-                    drawLine.GetComponent<LineRenderer>().sortingOrder = sortingOrder;
+                }
+            }
 
-                    // 화면 공유된 오브젝트에 글씨를 쓰고 오브젝트를 움직이면 글씨가 그 오브젝트 자식으로 들어가서 같이 움직이게
-                    drawLine.transform.parent = hitInfo.transform;
-                    timer = timeDelay;
+        }
+        // 마우스 왼쪽 버튼을 누른 상태
+        if (Input.GetMouseButton(0))
+        {
+            timer -= Time.deltaTime;
+            if (timer <= 0)
+            {
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                RaycastHit hitInfo;
+                if (Physics.Raycast(ray, out hitInfo))
+                {
+                    if (hitInfo.collider.name == "Board" || hitInfo.collider.name == "uWC Window Object(Clone)")
+                    {
+                        ////만약 지우개면
+                        //if (isEraser == true)
+                        //{
+                        //    // color = 지우개 색으로!
+                        //    drawLine.startColor = eraser;
+                        //    drawLine.endColor = eraser;
+                        //}
+
+                        // 만약 생성될 때, 리스트에 active가 false인 것들은 삭제
+                        for (int i = 0; i < lineList.Count; i++)
+                        {
+                            if (lineList[i].activeSelf == false)
+                            {
+                                Destroy(lineList[i].gameObject);
+                                lineList.RemoveAt(i); // RemoveAt을 해줘야 되돌리고 다시 선을 그었을때 뻑이 안남.
+                                i--;
+                            }
+                        }
+
+                        linePoints.Add(GetMousePosition());
+                        drawLine.positionCount = linePoints.Count;
+                        drawLine.SetPositions(linePoints.ToArray());
+
+                        // 나중에 생긴 선은 위에 올라오게끔
+                        sortingOrder++;
+                        drawLine.GetComponent<LineRenderer>().sortingOrder = sortingOrder;
+
+                        // 화면 공유된 오브젝트에 글씨를 쓰고 오브젝트를 움직이면 글씨가 그 오브젝트 자식으로 들어가서 같이 움직이게
+                        drawLine.transform.parent = hitInfo.transform;
+                        timer = timeDelay;
+                    }
                 }
             }
         }
@@ -155,11 +161,13 @@ public class OSW_LineDrawer : MonoBehaviour
         // 스크린의 마우스 위치로부터 Ray를 만들어냄
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hitInfo;
-        if ((Physics.Raycast(ray, out hitInfo) && hitInfo.collider.name == "Board") || hitInfo.collider.name == "uWC Window Object(Clone)")
+        if (Physics.Raycast(ray, out hitInfo))
         {
-            //Debug.Log(hitInfo.collider.name);
+            if (hitInfo.collider.name == "Board" || hitInfo.collider.name == "uWC Window Object(Clone)")
+            {
+                //Debug.Log(hitInfo.collider.name);
+            }
         }
-
         return hitInfo.point;
     }
 
@@ -167,15 +175,15 @@ public class OSW_LineDrawer : MonoBehaviour
     //{
     //    if (Input.GetKeyDown(KeyCode.E))
     //    {
-    //        if(isEraser == false)
+    //        if (isEraser == false)
     //        {
     //            isEraser = true;
-                
+
     //            //drawObj_temp = drawObj;
     //            //drawObj = Resources.Load<GameObject>("YS/Eraser");
     //            //drawObjName = "YS/Eraser";
     //        }
-    //        else if(isEraser == true)
+    //        else if (isEraser == true)
     //        {
     //            isEraser = false;
 

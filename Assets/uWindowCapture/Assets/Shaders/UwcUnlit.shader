@@ -24,7 +24,7 @@ SubShader
         Cull [_Cull]
 
         CGPROGRAM
-        #include "./UwcCommon.cginc"
+        #include "UwcCommon.cginc"
         #pragma vertex vert
         #pragma fragment frag
         #pragma multi_compile_fog
