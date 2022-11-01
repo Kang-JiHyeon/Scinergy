@@ -54,6 +54,14 @@ public class StarGenerator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (starNameInput.GetComponent<TMP_InputField>().isFocused)
+        {
+            player.GetComponent<PlayerMove>().enabled = false;
+        }
+        else
+        {
+            player.GetComponent<PlayerMove>().enabled = true;
+        }
         if(starNameInput.text !="") starName = starNameInput.text;
         if (decInput.text != "") dec = float.Parse(decInput.text);
         if (raInput.text != "") ra = float.Parse(raInput.text);

@@ -536,6 +536,7 @@ MonoBehaviour:
   StarDrawEndBtn: {fileID: 1491944437}
   Constellation: {fileID: 0}
   starLine: {fileID: 0}
+  player: {fileID: 996913022}
 --- !u!1 &142708390
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,6 +13,7 @@ public class StarPainter : MonoBehaviour
     public GameObject StarDrawEndBtn;
     public GameObject Constellation;
     public StarLine starLine;
+    public GameObject player;
     bool isDrawing = false;
     GameObject star1;
     GameObject star2;
@@ -28,6 +29,14 @@ public class StarPainter : MonoBehaviour
     {
 
         if(isDrawing) StarRay();
+        if (ConstellationName.GetComponent<TMP_InputField>().isFocused)
+        {
+            player.GetComponent<PlayerMove>().enabled = false;
+        }
+        else
+        {
+            player.GetComponent<PlayerMove>().enabled = true;
+        }
     }
     void StarRay()
     {
