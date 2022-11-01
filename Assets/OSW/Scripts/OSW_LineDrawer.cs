@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class OSW_LineDrawer : MonoBehaviour
 {
+    public Color color = Color.black;
+
     // brush 번호
     //public int brushNum = 1;
 
@@ -20,9 +22,10 @@ public class OSW_LineDrawer : MonoBehaviour
     //public bool isEraser; // 지우개인지 아닌지 판단하는 변수
     //public Material boardMaterial; // 지우는거 어려워.. 그냥 board 색으로 덧씌우면 어떨까?
 
-    public float linewidth = 0.05f;
+    // 색 설정
+    public GameObject selecColor;
 
-    public Material lineMaterial;
+    public float linewidth = 0.05f;
 
     // 생성된 라인을 리스트에 담을 변수
     public List<GameObject> lineList;
@@ -51,7 +54,6 @@ public class OSW_LineDrawer : MonoBehaviour
 
     public void Drawing()
     {
-
         // 지우개 색깔(board색)
         //Color eraser = boardMaterial.color;
 
@@ -88,15 +90,12 @@ public class OSW_LineDrawer : MonoBehaviour
 
                     //그려지는 라인에 LineRenderer, Material, Color, Width를 설정해준다.
                     drawLine = newLine.AddComponent<LineRenderer>();
-                    drawLine.material = new Material(Shader.Find("Universal Render Pipeline/Lit"));
-                    drawLine.startColor = lineMaterial.color;
-                    drawLine.endColor = lineMaterial.color;
-                    //drawLine.startColor = lineColor.GetComponent<ColorPickerTest>().selectedColor;
-                    //drawLine.endColor = lineColor.GetComponent<ColorPickerTest>().selectedColor;
+                    //drawLine.material = new Material(Shader.Find("Universal Render Pipeline/Lit"));
+                    drawLine.material = Resources.Load<Material>("Color");
+                    drawLine.material.color = color;
                     drawLine.startWidth = linewidth;
                     drawLine.endWidth = linewidth;
                     lineList.Add(newLine);
-
                 }
             }
 
