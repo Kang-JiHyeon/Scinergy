@@ -10,93 +10,108 @@ public class KJH_DataManager : MonoBehaviour
 {
     // 선택한 천체 관련 스크립트
     KJH_SelectPlanet selectPlanet;
-    [Header("CB Info")]
+
+    // 읽어온 정보 데이터
+    KJH_Data data;
+
+
+    [Header("Info")]
     // 천체이름
     public Text CB_Name;
     // 천체종류
     public Text CB_Type;
+    // Info ScrollView의 Content
+    public RectTransform trContent_info;
+    // Info ScrollView의 RectTransform
+    public RectTransform trScrollView_info;
 
-    /* 정보 내용 */
-    // 읽어온 정보 데이터
-    KJH_Data infoData;
-    
-    // 정보 제목
-    public GameObject infoTitleFactory;
-    // 정보 내용
-    public GameObject infoTextFactory;
-    // ScrollView의 Content
-    public RectTransform trContent;
-    // ScrollView의 RectTransform
-    public RectTransform trScrollView;
-    // 이전 Content의 높이 H
-    float prevTrContentHeight;
 
-    /* 정보 상세 내용 */
     [Header("Detail Info")]
-    // Grid Layout Group
     public RectTransform trGrid;
+
+    [Header("Structure")]
+    public RectTransform trContent_structure;
+    public RectTransform trScrollView_structure;
+
+    [Header("Text Prefabs")]
+    // 정보 제목
+    public GameObject titleFactory;
+    // 정보 내용
+    public GameObject textFactory;
+    // 상세정보 내용
     public GameObject detailInfoFactory;
 
-
+    // 이전 Content의 높이 H
+    float prevTrContentHeight;
 
     // Start is called before the first frame update
     void Start()
     {
-        infoData = GetComponent<KJH_Data>();
+        data = GetComponent<KJH_Data>();
         selectPlanet = Camera.main.GetComponent<KJH_SelectPlanet>();
     }
 
 
     public void ChangeInfo()
     {
-        ClearContent();
+        ClearContent(trContent_info, 2);
+        ClearContent(trGrid);
+        ClearContent(trContent_structure);
 
-        int index = infoData.cbNames.FindIndex(x => x == selectPlanet.focusTarget.name);
 
-        if (infoData.infos.Count > index && index >= 0)
+        int index = data.cbNames.FindIndex(x => x == selectPlanet.focusTarget.name);
+
+        if (data.infos.Count > index && index >= 0)
         {
-            CB_Name.text = infoData.infos[index][0];
-            CB_Type.text = infoData.infos[index][1];
+            CB_Name.text = data.infos[index][0];
+            CB_Type.text = data.infos[index][1];
 
-            // Grid Layout Group에 추가
-            for (int i = 0; i < infoData.detailInfos[index].Count; i++)
+            // wjdGrid Layout Group에 추가
+            for (int i = 0; i < data.detailInfos[index].Count; i++)
             {
-                AddInfo(infoData.detailInfos[index][i].Split(",")[0], detailInfoFactory);
-                AddInfo(infoData.detailInfos[index][i].Split(",")[1], detailInfoFactory);
+                AddInfo(data.detailInfos[index][i].Split(",")[0], detailInfoFactory, trGrid);
+                AddInfo(data.detailInfos[index][i].Split(",")[1], detailInfoFactory, trGrid);
             }
 
-
-            // Scroll View의 Content 추가
-            for (int i=2; i<infoData.infos[index].Count; i++)
+            // Info Scroll View의 Content 추가
+            for (int i = 2; i < data.infos[index].Count; i++)
             {
                 if(i > 2)
                 {
-                    AddInfo(infoData.infos[index][i].Split(",")[0], infoTitleFactory);
+                    AddInfo(data.infos[index][i].Split(",")[0], titleFactory, trContent_info);
                 } 
-                AddInfo(infoData.infos[index][i].Split(",")[1], infoTextFactory);
+                AddInfo(data.infos[index][i].Split(",")[1], textFactory, trContent_info);
             }
 
-
+            // Structure Scroll View의 Content 추가
+            for (int i = 0; i < data.strucInfos[index].Count; i++)
+            {
+                AddInfo(data.strucInfos[index][i].Split(",")[0], titleFactory, trContent_structure);
+                AddInfo(data.strucInfos[index][i].Split(",")[1], textFactory, trContent_structure);
+            }
         }
-
     }
 
-    void ClearContent()
+    void ClearContent(RectTransform tr, int startIndex = 0)
     {
-        for(int i=2; i< trContent.childCount; i++)
+        for(int i = startIndex; i< tr.childCount; i++)
         {
-            Destroy(trContent.GetChild(i).gameObject);
+            Destroy(tr.GetChild(i).gameObject);
         }
     }
 
-    // 행성 클릭 됬을 때 호출되는 함수...
-    // 해당 행성의 정보를 전달 받아 
-    void AddInfo(string infoText, GameObject addObject)
+    /// <summary>
+    /// 해당 행성의 정보를 스크롤 바에 추가하는 함수
+    /// </summary>
+    /// <param name="infoText"> 정보 내용</param>
+    /// <param name="addObject"> 텍스트 프리팹</param>
+    /// <param name="tr"> 오브젝트가 추가될 부모 content </param>
+    void AddInfo(string infoText, GameObject addObject, RectTransform tr)
     {
         // 0. 바뀌기 전의 Content H값을 넣자.
-        prevTrContentHeight = trContent.sizeDelta.y;
+        prevTrContentHeight = trContent_info.sizeDelta.y;
         // 1. ChatItem을 만든다. (부모를  Scrollview의 content)
-        GameObject item = Instantiate(addObject, trContent);
+        GameObject item = Instantiate(addObject, tr);
         // 2. 만든 ChatItem에서 ChatItem 컴포넌트를 가져온다.
         KJH_DataItem data = item.GetComponent<KJH_DataItem>();
         // 3. 가져온 컴포넌트를 s에 설정
@@ -110,13 +125,13 @@ public class KJH_DataManager : MonoBehaviour
         yield return null;
 
         // trScrollView의 H가 Contnet의 H보다 커지면(스크롤 가능한 상태)
-        if (trContent.sizeDelta.y > trScrollView.sizeDelta.y)
+        if (trContent_info.sizeDelta.y > trScrollView_info.sizeDelta.y)
         {
             // 4. 만약, Content가 바닥에 닿아있었다면
-            if (trContent.anchoredPosition.y >= prevTrContentHeight - trScrollView.sizeDelta.y)
+            if (trContent_info.anchoredPosition.y >= prevTrContentHeight - trScrollView_info.sizeDelta.y)
             {
                 // 5. Content의 y값을 다시 설정한다.
-                trContent.anchoredPosition = new Vector2(0, trContent.sizeDelta.y - trScrollView.sizeDelta.y);
+                trContent_info.anchoredPosition = new Vector2(0, trContent_info.sizeDelta.y - trScrollView_info.sizeDelta.y);
             }
         }
 

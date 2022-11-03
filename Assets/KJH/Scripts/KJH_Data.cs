@@ -66,28 +66,35 @@ public class KJH_Data : MonoBehaviour
     // {{"적도지름,값", "질량,값", ...}, {}}
     public List<List<string>> detailInfos;
 
+    // 내부구조
+    public List<List<string>> strucInfos;
+
 
     void Awake()
     {
         cbNames = new List<string>();
         infos = new List<List<string>>();
         detailInfos = new List<List<string>>();
+        strucInfos = new List<List<string>>();
 
-        List<Dictionary<string, object>> data = KJH_CSVReader.Read("Data");
+        List<Dictionary<string, object>> infoData = KJH_CSVReader.Read("InfoData");
+        List<Dictionary<string, object>> structureData = KJH_CSVReader.Read("StructureData");
 
-        for (int i = 0; i < data.Count; i++)
+
+        // infoData Read
+        for (int i = 0; i < infoData.Count; i++)
         {
-            string[] _infoList = ((string)data[i]["정보목록"]).Split(":");
-            string[] _detailInfoTitles = ((string)data[i]["정보보기상세목록"]).Split(":");
+            string[] _infoList = ((string)infoData[i]["정보목록"]).Split(":");
+            string[] _detailInfoTitles = ((string)infoData[i]["정보보기상세목록"]).Split(":");
             
             // 읽어온 data에서 value값만 가져오기
-            List<object> _values = new List<object>(data[i].Values);
+            List<object> _values = new List<object>(infoData[i].Values);
             List<string> _infos = new List<string>();
             List<string> _detailInfos = new List<string>();
 
-            cbNames.Add((string)data[i]["오브젝트이름"]);
-            _infos.Add((string)data[i]["천체이름"]);
-            _infos.Add((string)data[i]["천체종류"]);
+            cbNames.Add((string)infoData[i]["오브젝트이름"]);
+            _infos.Add((string)infoData[i]["천체이름"]);
+            _infos.Add((string)infoData[i]["천체종류"]);
 
             // 정보보기 내용
             for (int j = 0; j < _infoList.Length; j++)
@@ -105,6 +112,25 @@ public class KJH_Data : MonoBehaviour
 
             infos.Add(_infos);
             detailInfos.Add(_detailInfos);
+        }
+
+        // structureData read
+        for(int i=0; i<structureData.Count; i++)
+        {
+            string[] _strucList = ((string)structureData[i]["내부구조목록"]).Split(":");
+
+            List<object> _values = new List<object>(structureData[i].Values);
+
+            List<string> _strucInfos = new List<string>();
+
+            // 내부구조 내용
+            for (int j = 0; j < _strucList.Length; j++)
+            {
+                string s = _strucList[j] + "," + _values[j + 4];
+                _strucInfos.Add(s);
+            }
+
+            strucInfos.Add(_strucInfos);
         }
     }
 

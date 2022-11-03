@@ -131,28 +131,11 @@ public class KJH_SelectPlanet : MonoBehaviour
             #endregion
 
             cam.MoveToCB();
+            //cam.ChangeCenter(Screen.width * 0.7f);
         }
 
         print("focusTarget : " + focusTarget);
         print("camaraTarget : " + camaraTarget);
-    }
-
-    public KJH_Data infoData;
-    void ChangeInfo()
-    {
-        int index = infoData.cbNames.FindIndex(x => x == focusTarget.name);
-
-        if(infoData.infos.Count > index && index >= 0)
-        {
-            CBName.text = infoData.infos[index][0];
-            CBType.text = infoData.infos[index][1];
-
-            // Scroll View의 Content 추가
-
-
-
-        }
-
     }
 
     // 행성 클릭하면 target 지정

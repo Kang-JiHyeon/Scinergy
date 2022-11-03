@@ -5,21 +5,25 @@ using UnityEngine.EventSystems;
 
 public class KJH_CameraTest2 : MonoBehaviour
 {
-    // È¸Àü ±âÁØ -> cameraTargetÀÇ position
+    // íšŒì „ ê¸°ì¤€ -> cameraTargetì˜ position
     public Transform pivot;
-    // À§Ä¡ ÀÌµ¿ ´ã´ç -> rotation
+    // ìœ„ì¹˜ ì´ë™ ë‹´ë‹¹ -> rotation
     public Transform cameraRotAxis;
-    // ¸ŞÀÎ Ä«¸Ş¶ó -> moveX¸¸Å­ xÃà ÀÌµ¿
-    public Camera camera;
+    // ë©”ì¸ ì¹´ë©”ë¼ -> moveXë§Œí¼ xì¶• ì´ë™
+    public Transform cam;
 
-    // Ä«¸Ş¶ó È¸Àü
+    // ì¹´ë©”ë¼ íšŒì „
     public float rotSpeed;
-    float mouseX;
-    float mouseY;
+    float mx;
+    float my;
     float rotY;
     float rotX;
 
-    // Ä«¸Ş¶ó ÁÜÀÎ/ÁÜ¾Æ¿ô
+
+    // ì¹´ë©”ë¼ ì¤Œì¸/ì¤Œì•„ì›ƒ
+    Vector2 preMouse;
+    Vector3 preCameraPos;
+
     Vector3 velocity = Vector3.zero;
     public float distance = 10f;
     public float zoomSmoothTime = 0.2f;
@@ -27,127 +31,202 @@ public class KJH_CameraTest2 : MonoBehaviour
     public float minDistance = 3f;
     public float maxDistance = 100f;
 
-    // Ä«¸Ş¶ó ÀÌµ¿
+    // ì¹´ë©”ë¼ ì´ë™
     public Vector3 movePos;
     public KJH_UIManager uiManager;
     public KJH_SelectPlanet selectPlanet;
 
-    // Ä«¸Ş¶ó ¿òÁ÷ÀÓ Á¦¾î
+    Transform target;
+
+    // ì¹´ë©”ë¼ ì›€ì§ì„ ì œì–´
     bool isStop = false;
+    bool isRot = false;
+
+    public enum CameraState
+    {
+        Idle,
+        RightFocus
+    }
+
+    public CameraState cameraState = CameraState.Idle;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        camera = Camera.main;
+        cam = Camera.main.transform;
         movePos = new Vector3(-2f, 0, 0);
-        selectPlanet = camera.GetComponent<KJH_SelectPlanet>();
+        selectPlanet = cam.GetComponent<KJH_SelectPlanet>();
+        ChangeCenter(Screen.width * 0.7f);
+
+        preCamPos = cam.position;
     }
 
 
     // Update is called once per frame
     void Update()
     {
-
+        // Bí‚¤ ëˆ„ë¥´ë©´ ì¹´ë©”ë¼ íšŒì „ ë° ì¤Œì¸ ë¹„í™œì„±í™”
         if (Input.GetKeyDown(KeyCode.B))
-        {
             isStop = !isStop;
-        }
 
         if (isStop) return;
 
-        if(selectPlanet.camaraTarget != null)
+        // ì¹´ë©”ë¼ í¬ì»¤ìŠ¤ ëŒ€ìƒ
+        if (selectPlanet.camaraTarget != null)
         {
-            pivot.position = selectPlanet.camaraTarget.transform.position;
+            target = selectPlanet.camaraTarget;
+            pivot.position = target.position;
         }
-        cameraRotAxis.LookAt(pivot.position);
 
+        // ë§ˆìš°ìŠ¤ ë²„íŠ¼ ì…ë ¥ì— ë”°ë¥¸ ì¹´ë©”ë¼ íšŒì „ ì œì–´ ë³€ìˆ˜
+        if (Input.GetMouseButtonDown(0))
+            isRot = true;
 
+        if (Input.GetMouseButtonUp(0))
+            isRot = false;
 
-        // ui¸¦ Å¬¸¯ÇÏÁö ¾ÊÀ» ¶§ Ä«¸Ş¶ó È¸Àü ½ÇÇà
+        // uië¥¼ í´ë¦­í•˜ì§€ ì•Šì„ ë•Œ ì¹´ë©”ë¼ íšŒì „ ì‹¤í–‰
         if (!EventSystem.current.IsPointerOverGameObject())
         {
-            // ¸¶¿ì½º ÁÂÅ¬¸¯ ÁßÀÌ°í 
-            if (Input.GetMouseButton(0))
-            {
-                Rotate();
-            }
             ZoomInOut();
+
+            // ë§ˆìš°ìŠ¤ ì™¼ìª½ ë²„íŠ¼ì„ ëˆ„ë¥´ê³  ìˆì„ ë•Œ
+            if (isRot)
+            {
+                // ì´ì „ ë§ˆìš°ìŠ¤ ì…ë ¥ê°’
+                preMouse.x = mx;
+                preMouse.y = my;
+
+                // í˜„ì¬ ë§ˆìš°ìŠ¤ ì…ë ¥ê°’
+                mx = Input.GetAxis("Mouse X");
+                my = Input.GetAxis("Mouse Y");
+
+                Rotate(mx, my);
+            }
+            // ë§ˆìš°ìŠ¤ ì™¼ìª½ ë²„íŠ¼ì„ ëˆ„ë¥´ê³  ìˆì§€ ì•Šì„ ë•Œ
+            else
+            {
+                Rotate(preMouse.x, preMouse.y);
+                preMouse = Vector2.Lerp(preMouse, Vector2.zero, Time.deltaTime);
+            }
+
         }
 
-
-        if (isCameraMoveX)
+        if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            MoveXAxis();
+            //tempImage.SetActive(true);
+            float centerX = 600 + (Screen.width - 600) * 0.5f;
+            ChangeCenter(centerX);
         }
 
+
+
     }
 
-    // ¸¶¿ì½º ¿ŞÂÊ ¹öÆ° ÀÔ·Â¿¡ µû¸¥ Ä«¸Ş¶ó È¸Àü
-    void Rotate()
+
+    // ë§ˆìš°ìŠ¤ ì™¼ìª½ ë²„íŠ¼ ì…ë ¥ì— ë”°ë¥¸ ì¹´ë©”ë¼ íšŒì „
+    void Rotate(float x, float y)
     {
-        mouseX += Input.GetAxis("Mouse X");
-        mouseY += Input.GetAxis("Mouse Y");
+        rotX += x * rotSpeed * Time.deltaTime;
+        rotY += y * rotSpeed * Time.deltaTime;
 
-        rotX = Mathf.Clamp(pivot.rotation.x + mouseY * rotSpeed, -89.5f, 89.5f);
-            
-        rotY = pivot.rotation.y + mouseX * rotSpeed;
+        rotY = Mathf.Clamp(rotY, -90, 90);
 
-        // ½º¹«½º ÇÏ°Ô ¸ØÃß´Â°Ç ´ÙÀ½¿¡...!!
-        pivot.rotation = Quaternion.Euler(new Vector3(rotX, rotY, 0));
-
-        print("¸¶¿ì½º ÀÔ·Â È¸Àü Áß");
+        pivot.localEulerAngles = new Vector3(-rotY, rotX, 0);
     }
 
-    // ¸¶¿ì½º ÈÙ ÀÔ·Â¿¡ µû¸¥ Ä«¸Ş¶ó ÁÜÀÎ/ÁÜ¾Æ¿ô
+    Vector3 preCamPos;
+    // ë§ˆìš°ìŠ¤ íœ  ì…ë ¥ì— ë”°ë¥¸ ì¹´ë©”ë¼ ì¤Œì¸/ì¤Œì•„ì›ƒ
     void ZoomInOut()
     {
-        // ¸¶¿ì½º ÈÙ ÀÔ·Â
+        //if(Input.mouseScrollDelta.y != 0)
+        //{
+        //    Vector3 dir = pivot.position - cam.position;
+        //    dir.Normalize();
+        //    cam.position += dir * Input.mouseScrollDelta.y * 0.5f;
+        //    preCamPos = cam.position;
+
+        // ë§ˆìš°ìŠ¤ íœ  ì…ë ¥
         distance -= Input.GetAxis("Mouse ScrollWheel") * wheelspeed;
-        print("Mouse ScrollWheel: " + Input.GetAxis("Mouse ScrollWheel"));
 
         if (distance < minDistance) distance = minDistance;
         if (distance > maxDistance) distance = maxDistance;
-        Vector3 reverseDistance = new Vector3(0f, 0f, distance);
 
-        //movePos = KJH_UIManager.instance.isActiveInfo ? transform.right * -1.5f : Vector3.zero;
-        cameraRotAxis.position = Vector3.SmoothDamp(cameraRotAxis.position, pivot.transform.position - cameraRotAxis.rotation * reverseDistance, ref velocity, zoomSmoothTime);
-    
+
+        Vector3 reverseDistance = new Vector3(0f, 0f, distance);
+        ////cam.position = Vector3.Lerp(cam.position, preCamPos, Time.deltaTime); 
+
+        ////cam.position = Vector3.SmoothDamp(cam.position, dir * cam.localPosition.z, ref velocity, zoomSmoothTime);
+
+        cam.position = Vector3.SmoothDamp(cam.position, pivot.position - cam.rotation * reverseDistance, ref velocity, zoomSmoothTime);
+
+
+        //}
+        //else
+        //{
+        //    cam.position = Vector3.Lerp(cam.position, preCamPos, Time.deltaTime);
+        //}
+
+
+
+        ////movePos = KJH_UIManager.instance.isActiveInfo ? transform.right * -1.5f : Vector3.zero;
+        //Vector3 dir = pivot.position - cam.position;
+        //dir.Normalize();
+
+        //// ê¸°ë³¸
+        //Debug.DrawLine(cam.position, pivot.transform.position - (dir + reverseDistance), Color.red);
+
+        //// ui ë‚˜ì˜¨ ìƒíƒœ
+        //Debug.DrawLine(cam.position, (dir + reverseDistance), Color.green);
+
+        //print(cam.rotation);
     }
 
-    // Ä«¸Ş¶ó ÀÌµ¿
-    // 1. ÃµÃ¼·Î ÀÌµ¿
+    // ì¹´ë©”ë¼ ì´ë™
+    // 1. ì²œì²´ë¡œ ì´ë™
     public bool isMovingToCB = false;
     public void MoveToCB()
     {
         distance = minDistance;
 
-        if (Vector3.Distance(cameraRotAxis.position, pivot.position) < minDistance)
+        if (Vector3.Distance(pivot.position, target.position) < minDistance)
         {
-            // Á¤º¸ ui ¶ç¿ì±â
+            // ì •ë³´ ui ë„ìš°ê¸°
             KJH_UIManager.instance.OpenInfoMenu();
             isMovingToCB = false;
-            movePos = Vector3.left;
+            //movePos = Vector3.left;
             isCameraMoveX = true;
-            
+
         }
         else
         {
-            // Ä«¸Ş¶ó À§Ä¡¸¦ Çà¼ºÀ¸·Î ÀÌµ¿
-            cameraRotAxis.position = Vector3.Lerp(cameraRotAxis.position, pivot.position, Time.deltaTime);
+            // ì¹´ë©”ë¼ ìœ„ì¹˜ë¥¼ í–‰ì„±ìœ¼ë¡œ ì´ë™
+            pivot.position = Vector3.Lerp(pivot.position, target.position, Time.deltaTime);
         }
     }
 
     public bool isCameraMoveX = false;
-    // 2. ui ³ª¿Ã ¶§
+    // 2. ui ë‚˜ì˜¬ ë•Œ
     public void MoveXAxis()
     {
-        // ¸ŞÀÎ Ä«¸Ş¶óÀÇ À§Ä¡¸¦ ¿ŞÂÊÀ¸·Î ÀÌµ¿ÇÏ°í ½Í´Ù.
-        if (Vector3.Distance(camera.transform.localPosition, movePos) < 0.005f)
+        // ë©”ì¸ ì¹´ë©”ë¼ì˜ ìœ„ì¹˜ë¥¼ ì™¼ìª½ìœ¼ë¡œ ì´ë™í•˜ê³  ì‹¶ë‹¤.
+        if (Vector3.Distance(cam.transform.localPosition, movePos) < 0.005f)
         {
             isCameraMoveX = false;
-            camera.transform.localPosition = movePos;
+            cam.transform.localPosition = movePos;
         }
 
-        camera.transform.localPosition = Vector3.Lerp(camera.transform.localPosition, movePos, Time.deltaTime * 2f);
+        cam.transform.localPosition = Vector3.Lerp(cam.transform.localPosition, movePos, Time.deltaTime * 2f);
+    }
+
+
+    public void ChangeCenter(float x)
+    {
+        Vector3 viewCenter = new Vector3(x, Screen.height * 0.5f, -cam.localPosition.z);
+        Vector3 pos = Camera.main.ScreenToWorldPoint(viewCenter);
+        Vector3 gap = selectPlanet.camaraTarget.transform.position - pos;
+
+        cam.position += gap;
     }
 }

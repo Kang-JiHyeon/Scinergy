@@ -30,6 +30,7 @@ using System.IO;
 
 public class KJH_UIManager : MonoBehaviour
 {
+
     public KJH_CameraTest2 cam;
     public static KJH_UIManager instance; 
     // 현재 시간 : 계속 Update
@@ -58,8 +59,7 @@ public class KJH_UIManager : MonoBehaviour
     // 줌 스크롤 바
     public Scrollbar zoomScrollbar;
 
-
-
+    public KJH_SelectPlanet selectPlanet;
 
     private void Awake()
     {
@@ -83,6 +83,7 @@ public class KJH_UIManager : MonoBehaviour
         }
 
         MoveDefalutUI(1f);
+
     }
 
     private void FixedUpdate()
@@ -195,6 +196,8 @@ public class KJH_UIManager : MonoBehaviour
 
         cam.movePos = Vector3.zero;
         cam.isCameraMoveX = true;
+
+        SetActiveModel(true);
     }
 
     public void OpenInfoMenu()
@@ -249,7 +252,14 @@ public class KJH_UIManager : MonoBehaviour
     // 천체 내부 구조 보기
     public void ViewCBStructure()
     {
+        // ui 변경
         SetActiveUI("UI_ViewCBStructure");
+
+        // 모델 변경 : 현재 선택된 모델의 부모의 1번째 자식은 끄고, 2번째 자식은 킨다.
+        SetActiveModel(false);
+
+        // 카메라 : 행성 back 방향으로 이동
+
     }
 
     // 천체 정보 UI 중에서 활성화 고르기
@@ -264,6 +274,13 @@ public class KJH_UIManager : MonoBehaviour
                 tr.GetChild(i).gameObject.SetActive(false);
         }
     }
+
+    public void SetActiveModel(bool isActiveAppearance)
+    {
+        selectPlanet.camaraTarget.parent.GetChild(0).gameObject.SetActive(isActiveAppearance);
+        selectPlanet.camaraTarget.parent.GetChild(1).gameObject.SetActive(!isActiveAppearance);
+    }
+
     bool isDragZoomScroll = false;
     public void ZoomScrollbar()
     {
