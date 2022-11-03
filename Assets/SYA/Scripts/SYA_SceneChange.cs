@@ -64,6 +64,11 @@ public class SYA_SceneChange : MonoBehaviour
         SceneManager.LoadScene("SymposiumScene");
     }
 
+    public void SymposiumRoomMake()
+    {
+        SceneManager.LoadScene("SYA_SymposiumRoomMake");
+    }
+
     public void Quit()
     {
         Application.Quit();

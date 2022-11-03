@@ -37,6 +37,7 @@ public class SYA_AvartaSceneManager : MonoBehaviourPun
     void Start()
     {
         ScaSet();
+        Camera.main.cullingMask = ~(1<< 18);
     }
 
     // Update is called once per frame
@@ -51,10 +52,18 @@ public class SYA_AvartaSceneManager : MonoBehaviourPun
             AvatarPosSca(4);
         }
         //���̾� �ٲ��ְ�
-        //AvatarLayerChange(avatar[num].gameObject.transform.position.z, avatar[num].gameObject.transform);
+        if (LayerChange)
+        {
+            for (int i = 0; i < pos.Count; ++i)
+            {
+                AvatarLayerChange(avatar[i].transform.position.z, avatar[i].transform);
+            }
+            LayerChange = false;
+        }
         //�ø�����ũ ���
-        GetComponent<Camera>().cullingMask = ~(1<< 18);
     }
+
+    bool LayerChange;
     //������Ʈ ������ ������ �Լ� ����
     bool buttonOn;
     //��ư�� ������ ȸ���������� ��Ÿ���� �Ұ�
@@ -74,7 +83,7 @@ public class SYA_AvartaSceneManager : MonoBehaviourPun
         {
             avatar[num].transform.position = pos[num].transform.position;
             avatar[num].transform.localScale = sca[num];
-            
+            LayerChange = true;
             //����� �ִ��� �к��ϴ� �ڵ�
             if (1.5f - avatar[num].transform.localScale.x < 0.1f)
             {
