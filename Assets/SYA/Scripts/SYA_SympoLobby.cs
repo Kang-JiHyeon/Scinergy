@@ -27,11 +27,6 @@ public class SYA_SympoLobby : MonoBehaviourPunCallbacks
     //안내문구 
     public GameObject characterlimit;
 
-    //방의 정보들   
-    Dictionary<string, RoomInfo> roomCache = new Dictionary<string, RoomInfo>();
-    //룸 리스트 Content
-    public Transform trListContent;
-
     //Thumbnail
     public GameObject[] Thumbnails;
 
