@@ -30,26 +30,60 @@ public class OSW_ButtonUI : MonoBehaviour
     public void DrawOnOff()
     {
         drawingTool.SetActive(!drawingTool.activeSelf);
-        //lineDrawer.SetActive(!lineDrawer.activeSelf);
     }
 
     public void Drawing()
     {
-        // 드로잉 On/Off 기능
-        osw_lineDrawer.isDrawing = !osw_lineDrawer.isDrawing;
-
         // colorPicker On/Off
         colorPicker.SetActive(!colorPicker.activeSelf);
-
-        osw_cursor.CursorChange();
+        osw_lineDrawer.isEraser = false;
     }
 
     public void ColorPicker(Button button)
     {
-        osw_lineDrawer.color = button.colors.normalColor;
-        //selectedColor = button.colors.normalColor;
-        //print(selectedColor);
+        osw_lineDrawer.isDrawing = true;
+
+        if (osw_lineDrawer.isDrawing)
+        {
+            osw_lineDrawer.color = button.colors.normalColor;
+            colorPicker.SetActive(!colorPicker.activeSelf);
+            osw_cursor.CursorChange();
+        }
+        else
+        {
+            // 드로잉 On/Off 기능
+            osw_lineDrawer.isDrawing = !osw_lineDrawer.isDrawing;
+        }
+
     }
+    public void Eraser()
+    {
+        osw_lineDrawer.isDrawing = false;
+        osw_lineDrawer.isEraser = !osw_lineDrawer.isEraser;
+        osw_lineDrawer.color = Color.white;
+        osw_lineDrawer.linewidth = 0.5f;
+
+        osw_cursor.CursorChange();
+    }
+
+    // 얇은 선 두께
+    public void ThinWitdh()
+    {
+        osw_lineDrawer.linewidth = 0.1f;
+    }
+
+    // 중간 선 두께
+    public void MiddleWitdh()
+    {
+        osw_lineDrawer.linewidth = 0.2f;
+    }
+
+    // 두꺼운 선 두께
+    public void ThickWitdh()
+    {
+        osw_lineDrawer.linewidth = 0.3f;
+    }
+
 
     // 실행취소 버튼 클릭 시 호출
     public void CtrlZ()

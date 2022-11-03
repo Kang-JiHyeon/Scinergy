@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -12,16 +13,11 @@ public class OSW_Cursor : MonoBehaviour
     // 커서인지 아닌지 확인
     bool isCursor = false;
 
-    //public int brushNum_temp;
     void Start()
     {
-        cursorTexture = cursorArray[0];
-        //StartCoroutine("MouseCursor");
-
-        //brushNum_temp = lineDrawer.brushNum;
+        
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (lineDrawer == null)
@@ -32,13 +28,27 @@ public class OSW_Cursor : MonoBehaviour
 
     public void CursorChange()
     {
-        isCursor = !isCursor;
-
-        if (isCursor)
+        if (lineDrawer.isDrawing)
         {
+            cursorTexture = cursorArray[0];
+            Cursor.SetCursor(cursorTexture, Vector2.zero, CursorMode.Auto);
+            lineDrawer.isEraser = false;
+        }
+        else if (lineDrawer.isEraser)
+        {
+            //Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+            lineDrawer.isDrawing = false;
+            cursorTexture = cursorArray[1];
             Cursor.SetCursor(cursorTexture, Vector2.zero, CursorMode.Auto);
         }
-        else
-            Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
     }
+
+    public void CursorNull()
+    {
+        lineDrawer.isEraser = false;
+        lineDrawer.isDrawing = false;
+        Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+    }
+
+    
 }
