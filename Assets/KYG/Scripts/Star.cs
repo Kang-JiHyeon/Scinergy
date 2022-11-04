@@ -81,8 +81,8 @@ public class Star : MonoBehaviour
     {
         name = starNameInfo;
         starName = starNameInfo;
-        ra = raInfo;
-        dec = decInfo;
+        ra = raInfo % 24;
+        dec = decInfo % 90;
         starType = starTypeInfo;
         brightness = brightnessInfo;
         TransformSet();

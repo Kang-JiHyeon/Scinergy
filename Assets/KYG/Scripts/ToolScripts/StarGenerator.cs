@@ -10,6 +10,7 @@ public class StarGenerator : MonoBehaviour
     public TMP_InputField starNameInput;
     public TMP_InputField decInput;
     public TMP_InputField raInput;
+    public TMP_InputField starAmount;
     public TMP_Dropdown typeDropdown;
     public TMP_Dropdown brightnessDropdown;
     public List<GameObject> starTypeList = new List<GameObject>();
@@ -105,6 +106,22 @@ public class StarGenerator : MonoBehaviour
         star.GetComponent<Star>().InfoSet(starName, ra, dec,starType, brightness);
         player.GetComponent<PlayerRot>().StarSet(star.transform.position);
         createdStarList.Init(starName, star);
+    }
+
+    public void OnRandomGenerateBtn()
+    {
+        for(int i = 0; i<int.Parse(starAmount.text); i++)
+        {
+            CreatedStarList createdStarList = starList.GetComponent<CreatedStarList>();
+            GameObject star = Instantiate(starTypeList[0]);
+            starName = "Star" + i;
+            GameManager.instance.createdStarList[starName] = star;
+            ra = Random.Range(0f, 25f);
+            dec = Random.Range(-90f, 91f);
+            brightness = starBrightnessList[Random.Range(1, starBrightnessList.Count)];
+            star.GetComponent<Star>().InfoSet(starName, ra, dec, starTypeList[0], brightness);
+            createdStarList.Init(starName, star);
+        }
     }
     public void OnStarListBtn()
     {

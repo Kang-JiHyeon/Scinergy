@@ -26,6 +26,7 @@ public class CreatedStarList : MonoBehaviour
         GameObject createdStarItem = Instantiate(CreatedStarItemFactory, CreatedStarListContent);
         CreatedStarItem item = createdStarItem.GetComponent<CreatedStarItem>();
         item.star = starInfo;
+        item.starName.text = starname;
     }
     public void OnStarLookBtn()
     {
