@@ -74,7 +74,7 @@ public class TimeControl : MonoBehaviour
                 hour += offset;
                 min += 12 * offset;
                 
-                sphereRotateAngle = offset/2;
+                sphereRotateAngle = -offset/2;
             }
             if(SelectedHand == MinuteHand)
             {
@@ -94,7 +94,7 @@ public class TimeControl : MonoBehaviour
                 }
                 min += offset;
                 hour += (1.0f / 12.0f) * offset;
-                sphereRotateAngle = offset / 24;
+                sphereRotateAngle = -offset / 24;
             }
             CelestialSphere.transform.Rotate(Vector3.up * sphereRotateAngle);
             #region ³»ÄÚµå
