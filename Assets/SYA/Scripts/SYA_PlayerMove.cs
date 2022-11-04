@@ -22,6 +22,7 @@ public class SYA_PlayerMove : MonoBehaviourPun
     // Start is called before the first frame update
     void Start()
     {
+        if (!photonView.IsMine) return;
         cc = GetComponent<CharacterController>();
         //nickName.text = PhotonNetwork.NickName ;
     }
@@ -29,9 +30,9 @@ public class SYA_PlayerMove : MonoBehaviourPun
     // Update is called once per frame
     void Update()
     {
+        if (!photonView.IsMine) return;
 
-
-            float h = SYA_InputManager.GetAxis("Horizontal");
+        float h = SYA_InputManager.GetAxis("Horizontal");
             float v = SYA_InputManager.GetAxis("Vertical");
 
             dir = Vector3.forward * v + Vector3.right * h;

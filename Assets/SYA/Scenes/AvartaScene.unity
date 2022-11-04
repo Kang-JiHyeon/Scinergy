@@ -294,6 +294,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1610834670}
     m_Modifications:
+    - target: {fileID: -4147204811880226307, guid: 5bc0bb591df540242a60ed082b4872b0, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3110794576546053211, guid: 5bc0bb591df540242a60ed082b4872b0, type: 3}
       propertyPath: sceneViewId
       value: 1
@@ -502,6 +506,10 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5197719388647318629, guid: b373ec6ba2014f546a7625c945f0e0fb, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8446958889127778717, guid: b373ec6ba2014f546a7625c945f0e0fb, type: 3}
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
@@ -1049,6 +1057,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1610834670}
     m_Modifications:
+    - target: {fileID: 1979791550034352884, guid: 85704bfe982e6d14f9b4ea0546d583be, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3110794576546053211, guid: 85704bfe982e6d14f9b4ea0546d583be, type: 3}
       propertyPath: sceneViewId
       value: 3
@@ -1287,7 +1299,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bee5169a7c29d64a81a7c305e0689e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 1785509810}
   right_Arrow: {fileID: 1997293050}
   left_Arrow: {fileID: 546821557}
   pos:
@@ -1566,6 +1577,10 @@ PrefabInstance:
     - target: {fileID: 3110794576546053211, guid: 94ed6eeb20867394ea1d432648d2382a, type: 3}
       propertyPath: sceneViewId
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6840476278965522195, guid: 94ed6eeb20867394ea1d432648d2382a, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8950552224572150161, guid: 94ed6eeb20867394ea1d432648d2382a, type: 3}
       propertyPath: m_RootOrder
@@ -2348,6 +2363,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1610834670}
     m_Modifications:
+    - target: {fileID: -5669911886729014714, guid: d5bf159bedc421e44bda7005615e62b0, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3110794576546053211, guid: d5bf159bedc421e44bda7005615e62b0, type: 3}
       propertyPath: sceneViewId
       value: 1

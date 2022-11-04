@@ -3,8 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Photon.Pun;
 
-public class PlayerRot : MonoBehaviour
+public class PlayerRot : MonoBehaviourPun
 {
     public float rotSpeed = 205;
     public Transform camPos;
@@ -30,6 +31,7 @@ public class PlayerRot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!photonView.IsMine) return;
         StateMachine();
     }
     public void StarSet(Vector3 starDirection)

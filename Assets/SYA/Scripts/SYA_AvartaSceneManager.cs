@@ -175,7 +175,7 @@ public class SYA_AvartaSceneManager : MonoBehaviourPun
     public void AvatarSellect()
     {
         SYA_UserInfoSave.Instance.AvatarSave(avatarP.name.Substring(0,8));
-        SYA_SceneChange.Instance.LoginScene();
+        SYA_SceneChange.Instance.SymposiumRoomList();
     }
 
     public void AvatarLayerChange(float z, Transform avatar)

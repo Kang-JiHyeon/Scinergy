@@ -39,10 +39,10 @@ public class SYA_SceneChange : MonoBehaviour
         SceneManager.LoadScene("StartScene");
     }
 
-    public void LoginScene()
+    /*public void LoginScene()
     {
         SceneManager.LoadScene("LoginScene");
-    }
+    }*/
 
     public void NameSettingScene()
     {
@@ -54,10 +54,10 @@ public class SYA_SceneChange : MonoBehaviour
         SceneManager.LoadScene("AvartaScene");
     }
 
-    public void PlayScene()
+    /*public void PlayScene()
     {
         SceneManager.LoadScene("PlayScene");
-    }
+    }*/
 
     public void SymposiumScene()
     {
@@ -67,6 +67,11 @@ public class SYA_SceneChange : MonoBehaviour
     public void SymposiumRoomMake()
     {
         SceneManager.LoadScene("SYA_SymposiumRoomMake");
+    }
+
+    public void SymposiumRoomList()
+    {
+        SceneManager.LoadScene("SYA_SymposiumRoomList");
     }
 
     public void Quit()
