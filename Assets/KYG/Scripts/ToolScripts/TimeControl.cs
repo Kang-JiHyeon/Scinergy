@@ -35,6 +35,7 @@ public class TimeControl : MonoBehaviour
     public GameObject CelestialSphere;
     float min;
     float hour;
+    public float timeScale;
     public void Control()
     {
         PointerEventData ped = new PointerEventData(null);
@@ -132,13 +133,17 @@ public class TimeControl : MonoBehaviour
 
         if (Input.GetKey(KeyCode.Alpha1))
         {
-            min -= 2;
-            hour -= (1.0f / 12.0f) * 2;
+            min -= timeScale;
+            hour -= (1.0f / 12.0f) * timeScale;
+            sphereRotateAngle = timeScale/24;
+            CelestialSphere.transform.Rotate(Vector3.up * sphereRotateAngle);
         }
         if(Input.GetKey(KeyCode.Alpha2))
         {
-            hour -= 2;
-            min -= (12 * 2);
+            hour -= timeScale;
+            min -= (12 * timeScale);
+            sphereRotateAngle = timeScale / 2;
+            CelestialSphere.transform.Rotate(Vector3.up * sphereRotateAngle);
         }
         min %= 360;
         hour %= 360;
