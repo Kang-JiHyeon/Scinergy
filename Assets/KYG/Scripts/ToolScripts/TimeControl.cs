@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-
+using TMPro;
 public class TimeControl : MonoBehaviour
 {
     private GraphicRaycaster GraphicRaycaster;
@@ -14,6 +14,8 @@ public class TimeControl : MonoBehaviour
     public float rotateAngle;
     [SerializeField]
     RectTransform SelectedHand;
+    bool timeFlow = false;
+    public GameObject TimeFlowBtn;
     private void Awake()
     {
         GraphicRaycaster = GetComponentInChildren<GraphicRaycaster>();
@@ -28,6 +30,15 @@ public class TimeControl : MonoBehaviour
     void Update()
     {
         Control();
+        if (timeFlow)
+        {
+            TimeFlow();
+            TimeFlowBtn.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Stop";
+        }
+        else
+        {
+            TimeFlowBtn.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Flow";
+        }
     }
     //int round = 0;
     //int originRound;
@@ -35,6 +46,7 @@ public class TimeControl : MonoBehaviour
     public GameObject CelestialSphere;
     float min;
     float hour;
+    public Slider timeScaleSlider;
     public float timeScale;
     public void Control()
     {
@@ -54,7 +66,7 @@ public class TimeControl : MonoBehaviour
         
         if (Input.GetButton("Fire1"))
         {
-            rotateAngle = CalculateAngle(ClockCenter.transform.up, Input.mousePosition - ClockCenter.transform.position);
+            if(SelectedHand) rotateAngle = CalculateAngle(ClockCenter.transform.up, Input.mousePosition - ClockCenter.transform.position);
 
             if(SelectedHand == HourHand)
             {
@@ -96,7 +108,7 @@ public class TimeControl : MonoBehaviour
                 hour += (1.0f / 12.0f) * offset;
                 sphereRotateAngle = -offset / 24;
             }
-            CelestialSphere.transform.Rotate(Vector3.up * sphereRotateAngle);
+            if(SelectedHand) CelestialSphere.transform.Rotate(Vector3.up * sphereRotateAngle);
             #region ³»ÄÚµå
             //if(rotateAngle <= 10f)
             //{
@@ -131,20 +143,7 @@ public class TimeControl : MonoBehaviour
             SelectedHand = null;
         }
 
-        if (Input.GetKey(KeyCode.Alpha1))
-        {
-            min -= timeScale;
-            hour -= (1.0f / 12.0f) * timeScale;
-            sphereRotateAngle = timeScale/24;
-            CelestialSphere.transform.Rotate(Vector3.up * sphereRotateAngle);
-        }
-        if(Input.GetKey(KeyCode.Alpha2))
-        {
-            hour -= timeScale;
-            min -= (12 * timeScale);
-            sphereRotateAngle = timeScale / 2;
-            CelestialSphere.transform.Rotate(Vector3.up * sphereRotateAngle);
-        }
+       
         min %= 360;
         hour %= 360;
         MinuteHand.transform.eulerAngles = new Vector3(0, 0, min);
@@ -154,5 +153,33 @@ public class TimeControl : MonoBehaviour
     {
         float f = Quaternion.FromToRotation(Vector3.up, to - from).eulerAngles.z;
         return (f - 360) % 360;
+    }
+
+    public void OnTimeFlowBtn()
+    {
+        timeFlow = !timeFlow;
+    }
+
+    public void TimeFlow()
+    {
+        //if (Input.GetKey(KeyCode.Alpha1))
+        //{
+        //    min -= timeScale;
+        //    hour -= (1.0f / 12.0f) * timeScale;
+        //    sphereRotateAngle = timeScale / 24;
+        //    CelestialSphere.transform.Rotate(Vector3.up * sphereRotateAngle);
+        //}
+        //if (Input.GetKey(KeyCode.Alpha2))
+        //{
+        //    hour -= timeScale;
+        //    min -= (12 * timeScale);
+        //    sphereRotateAngle = timeScale / 2;
+        //    CelestialSphere.transform.Rotate(Vector3.up * sphereRotateAngle);
+        //}
+        timeScale = timeScaleSlider.value;
+        min -= timeScale;
+        hour -= (1.0f / 12.0f) * timeScale;
+        sphereRotateAngle = timeScale / 24;
+        CelestialSphere.transform.Rotate(Vector3.up * sphereRotateAngle);
     }
 }

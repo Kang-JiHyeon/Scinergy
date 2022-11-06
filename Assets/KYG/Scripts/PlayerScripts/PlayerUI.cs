@@ -105,20 +105,4 @@ public class PlayerUI : MonoBehaviour
             Map.SetActive(true);
         }
     }
-
-    //public void OnTimeFlowBtn()
-    //{
-    //    Clock.GetComponent<Clock>().timeFlow = true;
-    //    Clock.GetComponent<Clock>().timeReverse = false;
-    //}
-    //public void OnTimeReverseBtn()
-    //{
-    //    Clock.GetComponent<Clock>().timeFlow = false;
-    //    Clock.GetComponent<Clock>().timeReverse = true;
-    //}
-    //public void OnTimeStopBtn()
-    //{
-    //    Clock.GetComponent<Clock>().timeFlow = false;
-    //    Clock.GetComponent<Clock>().timeReverse = false;
-    //}
 }

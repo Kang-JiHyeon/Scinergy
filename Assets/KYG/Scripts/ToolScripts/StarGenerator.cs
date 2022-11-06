@@ -8,11 +8,13 @@ public class StarGenerator : MonoBehaviour
     public static StarGenerator instance;
     #region Input
     public TMP_InputField starNameInput;
+    public TMP_Dropdown generateTypeDropdown;
     public TMP_InputField decInput;
     public TMP_InputField raInput;
     public TMP_InputField starAmount;
     public TMP_Dropdown typeDropdown;
     public TMP_Dropdown brightnessDropdown;
+    public Button generateBtn;
     public List<GameObject> starTypeList = new List<GameObject>();
     public List<GameObject> starBrightnessList = new List<GameObject>();
     #endregion
@@ -32,6 +34,10 @@ public class StarGenerator : MonoBehaviour
     public GameObject player;
 
     public GameObject starList;
+
+    int generateTypeNumber = 0;
+
+    public bool drawStar;
     private void Awake()
     {
         if (!instance)
@@ -40,6 +46,7 @@ public class StarGenerator : MonoBehaviour
         }
         typeDropdown.onValueChanged.AddListener(OnTypeDropDownEvent);
         brightnessDropdown.onValueChanged.AddListener(OnBrightnessDropDownEvent);
+        generateTypeDropdown.onValueChanged.AddListener(OnGenerateTypeDropDownEvent);
         typeDropdown.ClearOptions();
         brightnessDropdown.ClearOptions();
     }
@@ -48,8 +55,6 @@ public class StarGenerator : MonoBehaviour
     {
         typeDropdownSet();
         brightnessDropDownSet();
-
-        
     }
 
     // Update is called once per frame
@@ -66,6 +71,33 @@ public class StarGenerator : MonoBehaviour
         if(starNameInput.text !="") starName = starNameInput.text;
         if (decInput.text != "") dec = float.Parse(decInput.text);
         if (raInput.text != "") ra = float.Parse(raInput.text);
+        if (drawStar) DrawStar();
+        if (starNameInput == null|| generateTypeDropdown.value == 0 || raInput == null || decInput == null || typeDropdown.value == 0 || brightnessDropdown.value ==0)
+        {
+            generateBtn.interactable = false;
+        }
+        else
+        {
+            generateBtn.interactable = true;
+        }
+    }
+    public void DrawStar()
+    {
+        Ray starDrawRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit starDrawInfo;
+
+        if (Input.GetButtonDown("Fire1"))
+        {
+            print("clicked");
+            if (Physics.Raycast(starDrawRay, out starDrawInfo))
+            {
+                print("Raycasted");
+                if(starDrawInfo.collider.name == "CelestialSphere")
+                {
+                    print(1);
+                }
+            }
+        }
     }
     public void typeDropdownSet()
     {
@@ -89,6 +121,25 @@ public class StarGenerator : MonoBehaviour
         }
         brightnessDropdown.AddOptions(brightnessOptionList);
         brightnessDropdown.value = 0;
+    }
+
+    public void OnGenerateTypeDropDownEvent(int index)
+    {
+        generateTypeNumber = index;
+        if (generateTypeNumber == 1)
+        {
+            decInput.transform.gameObject.SetActive(true);
+            raInput.transform.gameObject.SetActive(true);
+            generateBtn.interactable = true;
+            drawStar = false;
+        }
+        if (generateTypeNumber == 2)
+        {
+            decInput.transform.gameObject.SetActive(false);
+            raInput.transform.gameObject.SetActive(false);
+            generateBtn.interactable = false;
+            drawStar = true;
+        }
     }
     public void OnTypeDropDownEvent(int index)
     {
