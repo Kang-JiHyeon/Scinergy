@@ -41,8 +41,6 @@ public class KJH_SelectPlanet : MonoBehaviour
     public Text CBType;
     public Text CBInfo;
 
-    public KJH_CameraTest testCamera;
-
 
     // Start is called before the first frame update
     void Start()
@@ -54,7 +52,10 @@ public class KJH_SelectPlanet : MonoBehaviour
     void Update()
     {
         // ui를 클릭했을 때 실행되지 않도록 반환
-        if (EventSystem.current.IsPointerOverGameObject()) return;
+        if (EventSystem.current.IsPointerOverGameObject())
+        {
+            return;
+        }
 
         // 1. 행성 위에 마우스 위치할 경우 outline 활성화
         EnableOutLine();
