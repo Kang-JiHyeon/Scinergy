@@ -33,8 +33,8 @@ public class UwcWindowTextureManager : MonoBehaviour
             Debug.LogError("windowPrefab is null.");
             return null;
         }
-
-        var obj = Instantiate(windowPrefab, transform);
+        
+            var obj = Instantiate(windowPrefab, transform);
         var windowTexture = obj.GetComponent<UwcWindowTexture>();
         Assert.IsNotNull(windowTexture, "Prefab must have UwcWindowTexture component.");
         windowTexture.window = window;

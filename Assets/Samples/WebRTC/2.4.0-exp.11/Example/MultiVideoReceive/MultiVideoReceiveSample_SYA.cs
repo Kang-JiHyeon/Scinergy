@@ -8,18 +8,22 @@ using Random = UnityEngine.Random;
 
 namespace Unity.WebRTC.Samples
 {
-    public class MultiVideoReceiveSample : MonoBehaviour
+    public class MultiVideoReceiveSample_SYA : MonoBehaviour
     {
+        public static MultiVideoReceiveSample_SYA Instance;
 #pragma warning disable 0649
-        [SerializeField] private Button callButton;
+        /*[SerializeField]*/ public Button callButton;
         [SerializeField] private Button hangUpButton;
         [SerializeField] private Button addVideoObjectButton;
         [SerializeField] private Button addTracksButton;
         [SerializeField] private Transform cameraParent;
         [SerializeField] private Transform sourceImageParent;
         [SerializeField] private Transform receiveImageParent;
-        [SerializeField] private List<Camera> cameras;
+        //텍스쳐를 추출할 장소
+        [SerializeField] private List<GameObject> cameras;
+        //보낼 텍스쳐(로컬)
         [SerializeField] private List<RawImage> sourceImages;
+        //도착한 텍스쳐 적용 장소
         [SerializeField] private List<RawImage> receiveImages;
         [SerializeField] private Transform rotateObject;
 #pragma warning restore 0649
@@ -40,10 +44,23 @@ namespace Unity.WebRTC.Samples
 
         private void Awake()
         {
+            if (Instance == null)
+            {
+                //인스턴스에 나를 넣고
+                Instance = this;
+                //나를 씬이 전환이 되어도 파괴되지 않게 하겠다
+
+                DontDestroyOnLoad(gameObject);
+            }
+            //그렇지 않으면
+            else
+            {
+                Destroy(gameObject);
+            }
             WebRTC.Initialize(WebRTCSettings.LimitTextureSize);
             callButton.onClick.AddListener(Call);
-            hangUpButton.onClick.AddListener(HangUp);
-            addVideoObjectButton.onClick.AddListener(AddVideoObject);
+            //hangUpButton.onClick.AddListener(HangUp);
+            //addVideoObjectButton.onClick.AddListener(AddVideoObject);
             addTracksButton.onClick.AddListener(AddTracks);
         }
 
@@ -150,23 +167,24 @@ namespace Unity.WebRTC.Samples
             }
         }
 
-        private void AddVideoObject()
+        public void AddVideoObject(Camera cam)
         {
-            var newCam = new GameObject($"Camera{objectIndex}").AddComponent<Camera>();
+/*            var newCam = new GameObject($"Camera{objectIndex}").AddComponent<Camera>();
             newCam.backgroundColor = Random.ColorHSV();
             newCam.transform.SetParent(cameraParent);
             cameras.Add(newCam);
             var newSource = new GameObject($"SourceImage{objectIndex}").AddComponent<RawImage>();
             newSource.transform.SetParent(sourceImageParent);
-            sourceImages.Add(newSource);
+            sourceImages.Add(newSource);*/
             var newReceive = new GameObject($"ReceiveImage{objectIndex}").AddComponent<RawImage>();
             newReceive.transform.SetParent(receiveImageParent);
             receiveImages.Add(newReceive);
 
+
             try
             {
-                videoStreamTrackList.Add(newCam.CaptureStreamTrack(WebRTCSettings.StreamSize.x, WebRTCSettings.StreamSize.y));
-                newSource.texture = newCam.targetTexture;
+                videoStreamTrackList.Add(cam.CaptureStreamTrack(WebRTCSettings.StreamSize.x, WebRTCSettings.StreamSize.y));
+                //newSource.texture = newCam.targetTexture;
             }
             catch (Exception e)
             {
@@ -232,9 +250,9 @@ namespace Unity.WebRTC.Samples
             }
         }
 
-        private void HangUp()
+        public void HangUp()
         {
-            foreach (var image in receiveImages.Concat(sourceImages))
+            foreach (var image in receiveImages)
             {
                 image.texture = null;
                 DestroyImmediate(image.gameObject);
