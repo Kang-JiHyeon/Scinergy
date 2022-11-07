@@ -22,10 +22,17 @@ public class SYA_PlayerMove : MonoBehaviourPun
     // Start is called before the first frame update
     void Start()
     {
+        
+        SYA_SymposiumManager.Instance.PlayerNameAuthority(
+            photonView.Owner.NickName, 
+            photonView, 
+            photonView.Owner.UserId == PhotonNetwork.MasterClient.UserId);
+
         if (!photonView.IsMine) return;
         cc = GetComponent<CharacterController>();
         //nickName.text = PhotonNetwork.NickName ;
     }
+
 
     // Update is called once per frame
     void Update()

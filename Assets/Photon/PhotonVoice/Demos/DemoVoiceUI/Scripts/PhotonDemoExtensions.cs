@@ -7,7 +7,7 @@
     {
         // this demo uses a Custom Property (as explained in the Realtime API), to sync if a player muted her microphone. that value needs a string key.
         internal const string IS_MUTED_PROPERTY_KEY = "mute";
-        
+
         public static bool Mute(this Player player)
         {
             return player.SetCustomProperties(new Hashtable(1) { { IS_MUTED_PROPERTY_KEY, true } });

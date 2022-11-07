@@ -99,7 +99,7 @@ namespace uWindowCapture
             var manager = list.windowTextureManager;
             windowTexture = manager.AddWindowTexture(window);
             image_.color = selected;
-            MultiVideoReceiveSample_SYA.Instance.AddVideoObject(windowTexture.GetComponentInChildren<Camera>());//window.texture);
+            //MultiVideoReceiveSample_SYA.Instance.AddVideoObject(windowTexture.GetComponentInChildren<Camera>());//window.texture);
         }
 
         public void RemoveWindow()
@@ -108,7 +108,7 @@ namespace uWindowCapture
             manager.RemoveWindowTexture(window);
             windowTexture = null;
             image_.color = notSelected;
-            MultiVideoReceiveSample_SYA.Instance.HangUp();
+            //MultiVideoReceiveSample_SYA.Instance.HangUp();
         }
 
         //영아

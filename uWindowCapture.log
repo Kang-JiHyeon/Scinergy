@@ -1,18 +1,2 @@
-[uWC::Log][2022-11-06 12:26:23] Start
-[uWC::Err][2022-11-06 12:26:23] WindowsGraphicsCapture::CreateItem() threw an WinRT exception: 0x80070057 매개 변수가 틀립니다.
-[uWC::Err][2022-11-06 12:26:23] WindowsGraphicsCapture::CreateItem() threw an WinRT exception: 0x80070057 매개 변수가 틀립니다.
-[uWC::Err][2022-11-06 12:26:23] WindowsGraphicsCapture::CreateItem() threw an WinRT exception: 0x80070057 매개 변수가 틀립니다.
-[uWC::Err][2022-11-06 12:26:23] WindowsGraphicsCapture::CreateItem() threw an WinRT exception: 0x80070057 매개 변수가 틀립니다.
-[uWC::Err][2022-11-06 12:26:23] WindowsGraphicsCapture::CreateItem() threw an WinRT exception: 0x80070057 매개 변수가 틀립니다.
-[uWC::Err][2022-11-06 12:26:23] WindowsGraphicsCapture::CreateItem() threw an WinRT exception: 0x80070057 매개 변수가 틀립니다.
-[uWC::Err][2022-11-06 12:26:23] WindowsGraphicsCapture::CreateItem() threw an WinRT exception: 0x80070057 매개 변수가 틀립니다.
-[uWC::Err][2022-11-06 12:26:23] WindowsGraphicsCapture::CreateItem() threw an WinRT exception: 0x80070057 매개 변수가 틀립니다.
-[uWC::Err][2022-11-06 12:26:23] WindowsGraphicsCapture::CreateItem() threw an WinRT exception: 0x80070057 매개 변수가 틀립니다.
-[uWC::Err][2022-11-06 12:26:23] WindowsGraphicsCapture::CreateItem() threw an WinRT exception: 0x80070057 매개 변수가 틀립니다.
-[uWC::Err][2022-11-06 12:26:23] WindowsGraphicsCapture::CreateItem() threw an WinRT exception: 0x80070057 매개 변수가 틀립니다.
-[uWC::Err][2022-11-06 12:26:23] WindowsGraphicsCapture::CreateItem() threw an WinRT exception: 0x80070057 매개 변수가 틀립니다.
-[uWC::Err][2022-11-06 12:26:23] WindowsGraphicsCapture::CreateItem() threw an WinRT exception: 0x80070057 매개 변수가 틀립니다.
-[uWC::Err][2022-11-06 12:26:23] WindowsGraphicsCapture::CreateItem() threw an WinRT exception: 0x80070057 매개 변수가 틀립니다.
-[uWC::Err][2022-11-06 12:26:23] WindowsGraphicsCapture::CreateItem() threw an WinRT exception: 0x80070057 매개 변수가 틀립니다.
-[uWC::Err][2022-11-06 12:26:23] WindowsGraphicsCapture::CreateItem() threw an WinRT exception: 0x80070057 매개 변수가 틀립니다.
-[uWC::Log][2022-11-06 12:26:33] Stop
+[uWC::Log][2022-11-07 11:03:00] Start
+[uWC::Log][2022-11-07 11:09:23] Stop

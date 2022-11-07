@@ -6,8 +6,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.Windows.WebCam;
+using Photon.Pun;
 
-public class SYA_SympoUI : MonoBehaviour
+public class SYA_SympoUI : MonoBehaviourPun
 {
     public GameObject window;
     public GameObject windowList;
@@ -24,9 +25,21 @@ public class SYA_SympoUI : MonoBehaviour
     public GameObject solSympoButton;
     public GameObject conSympoButton;
 
+    //UserList
+    public Text roomName;
+    public Text roomOwner;
+    public Text roomPassward;
+
     private void Awake()
     {
-        transform.parent = GameObject.Find("Canvas_DontDestroy").transform.GetChild(0).transform;
+        //transform.parent = GameObject.Find("Canvas_DontDestroy").transform.GetChild(0).transform;
+    }
+
+    private void Update()
+    {
+        roomName.text=SYA_SymposiumManager.Instance.roomName;
+        roomOwner.text = SYA_SymposiumManager.Instance.roomOwner;
+        roomPassward.text = SYA_SymposiumManager.Instance.roomCode;
     }
 
     public void UwcOnOff()
@@ -42,9 +55,29 @@ public class SYA_SympoUI : MonoBehaviour
         moveOnOffstr.text = $"MOVE : {window.GetComponent<SYA_SympoWindowsMoving>().enabled}";
     }
 
+    //누르면 플레이어의 리스트를 업데이트
+    public Transform AudienceTran;
+    public Transform PresenterTran;
     public void OnUserList()
     {
         userData.SetActive(!userData.activeSelf);
+        foreach(KeyValuePair<string, string> userAuthority in SYA_SymposiumManager.Instance.playerAuthority)
+        {
+            if(userAuthority.Value == "Audience")//청중일 경우
+            {
+                GameObject go=PhotonNetwork.Instantiate("UserListItem", new Vector2(0, -15), Quaternion.identity);
+                go.transform.parent = AudienceTran;
+                go.transform.localPosition = new Vector2(180, -15); 
+                go.GetComponentInChildren<Text>().text = userAuthority.Key;
+            }
+            else
+            {
+                GameObject go = PhotonNetwork.Instantiate("UserListItem", new Vector2(0,-15) , Quaternion.identity);
+                go.transform.parent = PresenterTran;
+                go.transform.localPosition = new Vector2(180, -15); 
+                go.GetComponentInChildren<Text>().text = userAuthority.Key;
+            }
+        }
     }
 
     public void OnSpaceChange()
@@ -139,4 +172,5 @@ public class SYA_SympoUI : MonoBehaviour
         VideoPlayer.instance.NextVideo();*/
     }
 
+    //UserList
 }

@@ -14,6 +14,11 @@ public class SYA_SympoRoomList : MonoBehaviourPunCallbacks
 
     List<RoomInfo> roomListDe = new List<RoomInfo>();
 
+    private void Awake()
+    {
+
+    }
+
     //방에 대한 정보가 변경되면 호출 되는 함수(추가/삭제/수정)
     public override void OnRoomListUpdate(List<RoomInfo> roomList)
     {
