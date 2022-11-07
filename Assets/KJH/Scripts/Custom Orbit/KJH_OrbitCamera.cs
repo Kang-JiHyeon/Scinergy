@@ -24,7 +24,7 @@ public class KJH_OrbitCamera : MonoBehaviour
     Vector3 velocity = Vector3.zero;
     public float distance = 10f;
     public float zoomSmoothTime = 0.2f;
-    public float wheelspeed = 50.0f;
+    public float zoomSpeed = 50.0f;
     public float minDistance = 3f;
     public float maxDistance = 100f;
 
@@ -37,6 +37,7 @@ public class KJH_OrbitCamera : MonoBehaviour
     void Start()
     {
         cam = Camera.main.transform;
+        pivot.position = target.position;
     }
 
     // Update is called once per frame
@@ -44,7 +45,7 @@ public class KJH_OrbitCamera : MonoBehaviour
     {
         // 카메라 포커스 대상
 
-        pivot.position = Vector3.zero;
+        //pivot.position = Vector3.zero;
 
         // 마우스 버튼 입력에 따른 카메라 회전 제어 변수
         if (Input.GetMouseButtonDown(0))
@@ -56,7 +57,8 @@ public class KJH_OrbitCamera : MonoBehaviour
         // ui를 클릭하지 않을 때 카메라 회전 실행
         if (!EventSystem.current.IsPointerOverGameObject())
         {
-            ZoomInOut();
+            //ZoomInOut();
+            CameraZoom();
 
             // 마우스 왼쪽 버튼을 누르고 있을 때
             if (isRot)
@@ -97,7 +99,7 @@ public class KJH_OrbitCamera : MonoBehaviour
     {
 
         // 마우스 휠 입력
-        distance -= Input.GetAxis("Mouse ScrollWheel") * wheelspeed;
+        distance -= Input.GetAxis("Mouse ScrollWheel") * zoomSpeed;
 
         if (distance < minDistance) distance = minDistance;
         if (distance > maxDistance) distance = maxDistance;
@@ -108,5 +110,29 @@ public class KJH_OrbitCamera : MonoBehaviour
         cam.position = Vector3.SmoothDamp(cam.position, pivot.position - cam.rotation * reverseDistance, ref velocity, zoomSmoothTime);
 
 
+    }
+
+    void CameraZoom()
+    {
+        Vector3 dir = pivot.position - cam.position;
+        dir.Normalize();
+        float step = GetAxisRawScrollUniversal() * zoomSpeed;
+        distance = Mathf.Clamp(distance - step, minDistance, maxDistance);
+
+        Vector3 goalPos = pivot.position - (cam.rotation * Vector3.forward * distance);
+        cam.position = Vector3.Lerp(cam.position, goalPos, Time.deltaTime * 3);
+
+        if (Vector3.Distance(cam.position, goalPos) < 0.1f)
+        {
+            cam.position = goalPos;
+        }
+    }
+
+    float GetAxisRawScrollUniversal()
+    {
+        float scroll = Input.GetAxisRaw("Mouse ScrollWheel");
+        if (scroll < 0) return -1;
+        if (scroll > 0) return 1;
+        return 0;
     }
 }

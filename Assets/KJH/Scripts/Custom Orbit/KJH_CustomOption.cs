@@ -10,12 +10,13 @@ using UnityEngine.UI;
 // reset 버튼을 누르면 초기 위치로 이동한다.
 // - 초기 위치값, 
 
-public class KJH_SetMass : MonoBehaviour
+public class KJH_CustomOption : MonoBehaviour
 {
     public Transform celestials;
 
     public Transform tr_sun;
     public Transform tr_earth;
+    Transform pivot;
 
     Rigidbody rb_sun;
     Rigidbody rb_earth;
@@ -26,6 +27,7 @@ public class KJH_SetMass : MonoBehaviour
     float sunMassValue = 0f;
     float earthMassValue = 0f;
 
+    Vector3 pivotPos;
     Vector3 originSunPos;
     Vector3 originEarthPos;
 
@@ -34,7 +36,10 @@ public class KJH_SetMass : MonoBehaviour
 
     List<TrailRenderer> trails = new List<TrailRenderer>();
 
+    public Scrollbar scroll;
     public Text text_distance;
+
+    public KJH_OrbitCamera camara;
 
 
     // Start is called before the first frame update
@@ -43,7 +48,6 @@ public class KJH_SetMass : MonoBehaviour
         //// Rigidbody
         //rb_sun = tr_sun.GetComponent<Rigidbody>();
         //rb_earth = tr_earth.GetComponent<Rigidbody>();
-
 
         // 천체들의 초기 위치
         originSunPos = tr_sun.position;
@@ -74,6 +78,8 @@ public class KJH_SetMass : MonoBehaviour
         if (isOrbitMove)
         {
             orbit.Gravity();
+            //pivot.position = pivotPos;
+            camara.pivot.position = pivot.position;
         }
     }
 
@@ -98,6 +104,18 @@ public class KJH_SetMass : MonoBehaviour
         rb_sun.useGravity = false;
         rb_earth.useGravity = false;
 
+
+        if(sunMassValue > earthMassValue)
+        {
+            pivot = tr_sun;
+            pivotPos = tr_sun.position;
+        }
+        else
+        {
+            pivot = tr_earth;
+            pivotPos = tr_earth.position;
+        }
+        
         // 질량 변경
         rb_sun.mass = sunMassValue;
         rb_earth.mass = earthMassValue;
@@ -132,7 +150,6 @@ public class KJH_SetMass : MonoBehaviour
 
         // 궤도 그리기 비활성화
         ChangeTrailTime(0f);
-
     }
 
     void ChangeTrailTime(float time)
@@ -141,5 +158,13 @@ public class KJH_SetMass : MonoBehaviour
         {
             trails[i].time = time;
         }
+    }
+
+    public void ChangeDistance()
+    {
+        float x = Mathf.Abs(0.5f - scroll.value);
+        float distance = scroll.value < 0.5f ? -x : x;
+
+        tr_earth.position = new Vector3(distance * 100f, 0, 0);
     }
 }
