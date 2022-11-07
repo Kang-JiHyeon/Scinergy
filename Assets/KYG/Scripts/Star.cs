@@ -86,7 +86,7 @@ public class Star : MonoBehaviour
         starType = starTypeInfo;
         brightness = brightnessInfo;
         TransformSet();
-        brightnessSet();
+        BrightnessSet();
     }
 
 
@@ -104,7 +104,7 @@ public class Star : MonoBehaviour
         float z = rr * Mathf.Cos(RadRa);
         transform.localPosition = new Vector3(x, y, z);
     }
-    public virtual void brightnessSet()
+    public virtual void BrightnessSet()
     {
         GameObject starBrightness = Instantiate(brightness);
         starBrightness.transform.parent = gameObject.transform;

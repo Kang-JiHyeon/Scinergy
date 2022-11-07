@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using TMPro;
 public class StarGenerator : MonoBehaviour
@@ -34,6 +35,8 @@ public class StarGenerator : MonoBehaviour
     public GameObject player;
 
     public GameObject starList;
+
+    public GameObject testObject;
 
     int generateTypeNumber = 0;
 
@@ -71,7 +74,7 @@ public class StarGenerator : MonoBehaviour
         if(starNameInput.text !="") starName = starNameInput.text;
         if (decInput.text != "") dec = float.Parse(decInput.text);
         if (raInput.text != "") ra = float.Parse(raInput.text);
-        if (drawStar) DrawStar();
+        if (drawStar && EventSystem.current.IsPointerOverGameObject() == false) DrawStar();
         if (starNameInput == null|| generateTypeDropdown.value == 0 || raInput == null || decInput == null || typeDropdown.value == 0 || brightnessDropdown.value ==0)
         {
             generateBtn.interactable = false;
@@ -83,7 +86,12 @@ public class StarGenerator : MonoBehaviour
     }
     public void DrawStar()
     {
-        Ray starDrawRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Vector3 lookDir = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.nearClipPlane)) - Camera.main.transform.position;
+        lookDir.Normalize();
+        Vector3 rayOrigin = Camera.main.transform.position + lookDir * GameManager.instance.celestialSphereRadius * 1.1f;
+        //Debug.DrawRay(rayOrigin, -lookDir * 1000, Color.red);
+
+        Ray starDrawRay = new Ray(rayOrigin, -lookDir);
         RaycastHit starDrawInfo;
 
         if (Input.GetButtonDown("Fire1"))
@@ -91,10 +99,28 @@ public class StarGenerator : MonoBehaviour
             print("clicked");
             if (Physics.Raycast(starDrawRay, out starDrawInfo))
             {
-                print("Raycasted");
-                if(starDrawInfo.collider.name == "CelestialSphere")
+                if (starDrawInfo.collider.name == "CelestialSphere")
                 {
-                    print(1);
+                    Vector3 shoot = starDrawRay.direction;
+                    shoot.y = 0;
+                    CreatedStarList createdStarList = starList.GetComponent<CreatedStarList>();
+                    GameObject star = Instantiate(starType);
+                    GameManager.instance.createdStarList[starName] = star;
+                    dec = Mathf.Asin(starDrawInfo.point.y / GameManager.instance.celestialSphereRadius);
+                    ra = Mathf.Acos(starDrawInfo.point.z / (GameManager.instance.celestialSphereRadius * Mathf.Cos(dec)));
+                    if ((Vector3.Cross(Vector3.forward, shoot).normalized - Vector3.up).magnitude > 0.5f)
+                    {
+                        ra *= -1;
+                    }
+
+                    dec *= 180 / Mathf.PI;
+                    ra *= 180 / Mathf.PI;
+                    ra /= 15f;
+                    print(dec);
+                    print(ra);
+                    star.GetComponent<Star>().InfoSet(starName, ra, dec, starType, brightness);
+                    //player.GetComponent<PlayerRot>().StarSet(star.transform.position);
+                    createdStarList.Init(starName, star);
                 }
             }
         }
@@ -157,6 +183,9 @@ public class StarGenerator : MonoBehaviour
         star.GetComponent<Star>().InfoSet(starName, ra, dec,starType, brightness);
         player.GetComponent<PlayerRot>().StarSet(star.transform.position);
         createdStarList.Init(starName, star);
+        starNameInput.text = null;
+        raInput.text = null;
+        decInput.text = null;
     }
 
     public void OnRandomGenerateBtn()

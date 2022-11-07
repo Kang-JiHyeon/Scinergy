@@ -94,6 +94,8 @@ public class PlayerRot : MonoBehaviour
         Quaternion LookRotationX = Quaternion.LookRotation(starDirection);
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotationY, Time.deltaTime);
         camPos.rotation = Quaternion.Slerp(camPos.rotation, LookRotationX, Time.deltaTime);
+        //transform.rotation = lookRotationY;
+        //camPos.rotation = LookRotationX;
         //print(Vector3.Angle(camPos.eulerAngles, starDirection));
         if (Vector3.Angle(camPos.forward, starDirection) < 1f)
         {
