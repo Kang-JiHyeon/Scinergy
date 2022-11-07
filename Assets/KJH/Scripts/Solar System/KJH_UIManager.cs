@@ -30,7 +30,6 @@ using System.IO;
 
 public class KJH_UIManager : MonoBehaviour
 {
-
     public KJH_CameraTest2 cam;
     public static KJH_UIManager instance; 
     // 현재 시간 : 계속 Update
@@ -61,6 +60,10 @@ public class KJH_UIManager : MonoBehaviour
 
     public KJH_SelectPlanet selectPlanet;
 
+    // 행성 목록 버튼
+    public RectTransform trContent_CBList;
+    List<Button> buttons = new List<Button>();
+
     private void Awake()
     {
         if(instance == null)
@@ -83,6 +86,12 @@ public class KJH_UIManager : MonoBehaviour
         }
 
         MoveDefalutUI(1f);
+
+        for(int i = 0; i<trContent_CBList.childCount; i++)
+        {
+            buttons.Add(trContent_CBList.GetChild(i).GetComponent<Button>());
+            //buttons[i].onClick.AddListener(OnClick_ButtonCBList);
+        }
 
     }
 
@@ -194,10 +203,11 @@ public class KJH_UIManager : MonoBehaviour
         }
         Invoke("ViewCBInfoMenu", 2f);
 
-        cam.movePos = Vector3.zero;
-        cam.isCameraMoveX = true;
-
         SetActiveModel(true);
+
+        cam.isViewNucleus = false;
+        cam.isViewUI = false;
+        cam.ChangeCenter(Screen.width * 0.5f);
     }
 
     public void OpenInfoMenu()
@@ -206,20 +216,26 @@ public class KJH_UIManager : MonoBehaviour
         {
             MoveDefalutUI(-1f);
             MoveCBInfoMenu(1f);
+            
+            cam.isViewUI = true;
+            float centerX = 600 + (Screen.width - 600) * 0.5f;
+            cam.ChangeCenter(centerX);
         }
         
         if (isActiveControl)
         {
             MoveControllTimeUI(-1f);
         }
+
+        StopObservation();
     }
 
     // 기본 UI 이동 함수
     public void MoveDefalutUI(float sign)
     {
         Transform tr = dict_UI["UI_Defalut"].transform;
-        iTween.MoveTo(tr.GetChild(0).gameObject, iTween.Hash("x", tr.GetChild(0).position.x - 120f * sign, "Time", 2f));
-        iTween.MoveTo(tr.GetChild(1).gameObject, iTween.Hash("y", tr.GetChild(1).position.y + 120f * sign, "Time", 2f));
+        //iTween.MoveTo(tr.GetChild(0).gameObject, iTween.Hash("x", tr.GetChild(0).position.x - 120f * sign, "Time", 2f));
+        iTween.MoveTo(tr.GetChild(0).gameObject, iTween.Hash("y", tr.GetChild(0).position.y + 120f * sign, "Time", 2f));
     }
     // 시간 제어 UI 이동 함수
     public void MoveControllTimeUI(float sign)
@@ -259,6 +275,7 @@ public class KJH_UIManager : MonoBehaviour
         SetActiveModel(false);
 
         // 카메라 : 행성 back 방향으로 이동
+        cam.isViewNucleus = true;
 
     }
 
@@ -281,36 +298,22 @@ public class KJH_UIManager : MonoBehaviour
         selectPlanet.camaraTarget.parent.GetChild(1).gameObject.SetActive(!isActiveAppearance);
     }
 
-    bool isDragZoomScroll = false;
-    public void ZoomScrollbar()
+
+    /// <summary>
+    /// 천체 목록의 버튼을 눌렀을 때 실행되는 함수
+    /// - 카메라를 이동 시킴
+    /// - 카메라의 cameraTarget을 해당 transform 으로 지정
+    /// </summary>
+    public void OnClick_ButtonCBList(Transform target)
     {
-        // 1. 스크롤 바를 마우스 왼쪽 버튼으로 누르고 있는 동안
-        if (Input.GetMouseButtonDown(0))
-        {
-            isDragZoomScroll = true;
-        }
-        // 5. 마우스 좌클릭을 때면 바 값 0.5로 설정됨
-        if (Input.GetMouseButtonUp(1))
-        {
-            isDragZoomScroll = false;
-            zoomScrollbar.value = 0.5f;
-        }
-        // 바를 누르고 있는 동안에
-        if (isDragZoomScroll)
-        {
-            // 2. 값이 0.5 보다 커지면 줌인
-            if(zoomScrollbar.value > 0.5f)
-            {
-                // 줌인
-            }
-            // 3. 값이 0.5보다 작아지면 줌아웃
-            else if(zoomScrollbar.value < 0.5f)
-            {
-                // 줌아웃
-            }
-
-        }
-        print("줌~~");
-
+        selectPlanet.camaraTarget = target;
+        cam.pivot.position = target.position;
+        cam.distance = target.localScale.x + 5;
+        UI_CBList.SetActive(false);
+    }
+    public GameObject UI_CBList;
+    public void OnClick_ViewCB()
+    {
+        UI_CBList.SetActive(!UI_CBList.activeSelf);
     }
 }

@@ -9,17 +9,13 @@ using UnityEngine;
 public class KJH_Focus : MonoBehaviour
 {
     Transform focus;
-    public float speed = 2f;
+    public float speed = 4f;
     public bool isFocus = false;
     // Start is called before the first frame update
     void Start()
     {
         focus = transform.GetChild(0);
         focus.localScale = Vector3.zero;
-
-        //StopAllCoroutines();
-        //StartCoroutine(IeChangeFocusScale(0.3f));
-
     }
 
     // Update is called once per frame
@@ -33,15 +29,17 @@ public class KJH_Focus : MonoBehaviour
     // 같으면 return
     // 다르면 stop and coroutine
 
-    float originTargetScale = -1f;
+    float originTargetScale = 0f;
     public void ChangeFocusScale(float targetScale)
     {
-        if(originTargetScale != targetScale)
+        if (transform.gameObject.activeSelf)
         {
-            StopCoroutine(IeChangeFocusScale(targetScale));
-            StartCoroutine(IeChangeFocusScale(targetScale));
-
-            originTargetScale = targetScale;
+            if(Mathf.Equals(targetScale, originTargetScale) == false)
+            {
+                StopCoroutine(IeChangeFocusScale(targetScale));
+                StartCoroutine(IeChangeFocusScale(targetScale));
+                //originTargetScale = targetScale;
+            }
         }
     }
     IEnumerator IeChangeFocusScale(float targetScale)
@@ -54,5 +52,6 @@ public class KJH_Focus : MonoBehaviour
             yield return null;
         }
         focus.localScale = scale;
+        originTargetScale = targetScale;
     }
 }

@@ -44,6 +44,10 @@ public class KJH_DataManager : MonoBehaviour
     // 이전 Content의 높이 H
     float prevTrContentHeight;
 
+    [Header("Button Celestial List")]
+    public RectTransform trContent_CBList;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -134,6 +138,6 @@ public class KJH_DataManager : MonoBehaviour
                 trContent_info.anchoredPosition = new Vector2(0, trContent_info.sizeDelta.y - trScrollView_info.sizeDelta.y);
             }
         }
-
     }
+
 }

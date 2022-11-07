@@ -97,7 +97,6 @@ GameObject:
   - component: {fileID: 7812053182133315858}
   - component: {fileID: 5941481538549622154}
   - component: {fileID: 1281234431745393372}
-  - component: {fileID: 9121490133900529032}
   m_Layer: 0
   m_Name: EarthModel
   m_TagString: Untagged
@@ -202,17 +201,3 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
---- !u!114 &9121490133900529032
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8604409158209079495}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d71f6c26064999c4bb41fb2b54ffe2c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 2
-  isFocus: 0
