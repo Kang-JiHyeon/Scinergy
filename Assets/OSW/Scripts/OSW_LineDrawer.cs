@@ -1,8 +1,9 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OSW_LineDrawer : MonoBehaviour
+public class OSW_LineDrawer : MonoBehaviourPun
 {
     // 라인 색
     public Color color = Color.black;
@@ -47,12 +48,9 @@ public class OSW_LineDrawer : MonoBehaviour
         {
             Eraser();
         }
-
-        //CtrlZ();
-        //CtrlY();
-        //AllDelete();
     }
 
+    [PunRPC]
     public void Drawing()
     {
         // 마우스 왼쪽 버튼을 누르는 순간
@@ -80,11 +78,16 @@ public class OSW_LineDrawer : MonoBehaviour
 
                     //그려지는 라인에 LineRenderer, Material, Color, Width를 설정해준다.
                     drawLine = newLine.AddComponent<LineRenderer>();
-                    //drawLine.material = new Material(Shader.Find("Universal Render Pipeline/Lit"));
+
+                    // 내가 그리는 라인은 startColor, endColor로 색 지정이 불가
+                    // 그래서 Material의 색을 변경해보니 색이 바뀌어진다. 
                     drawLine.material = Resources.Load<Material>("Color");
                     drawLine.material.color = color;
+
                     drawLine.startWidth = linewidth;
                     drawLine.endWidth = linewidth;
+
+                    // 리스트에 추가
                     lineList.Add(newLine);
                 }
             }
@@ -152,6 +155,7 @@ public class OSW_LineDrawer : MonoBehaviour
         return hitInfo.point;
     }
 
+    [PunRPC]
     void Eraser()
     {
         // 마우스 왼쪽 버튼을 누르는 순간
@@ -236,7 +240,8 @@ public class OSW_LineDrawer : MonoBehaviour
         }
     }
 
-    public void CtrlZ()
+    [PunRPC]
+    void RPCCtrlZ()
     {
         for (int i = lineList.Count - 1; i >= 0; i--)
         {
@@ -248,7 +253,8 @@ public class OSW_LineDrawer : MonoBehaviour
         }
     }
 
-    public void CtrlY()
+    [PunRPC]
+    void RPCCtrlY()
     {
         for(int i = 0; i < lineList.Count; i++)
         {
@@ -260,7 +266,8 @@ public class OSW_LineDrawer : MonoBehaviour
         }
     }
 
-    public void AllDelete()
+    [PunRPC]
+    public void RPCAllDelete()
     {
         for (int i = 0; i < lineList.Count; i++)
         {

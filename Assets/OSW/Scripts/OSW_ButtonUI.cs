@@ -1,3 +1,4 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -61,7 +62,7 @@ public class OSW_ButtonUI : MonoBehaviour
         osw_lineDrawer.isDrawing = false;
         osw_lineDrawer.isEraser = !osw_lineDrawer.isEraser;
         osw_lineDrawer.color = Color.white;
-        osw_lineDrawer.linewidth = 0.5f;
+        osw_lineDrawer.linewidth = 0.3f;
 
         osw_cursor.CursorChange();
     }
@@ -96,6 +97,9 @@ public class OSW_ButtonUI : MonoBehaviour
                 break;
             }
         }
+
+        // 네트워크 동기화
+        osw_lineDrawer.photonView.RPC("RPCCtrlZ", RpcTarget.OthersBuffered);
     }
 
     // 되돌리기 버튼 클릭 시 호출
@@ -109,6 +113,9 @@ public class OSW_ButtonUI : MonoBehaviour
                 break;
             }
         }
+
+        // 네트워크 동기화
+        osw_lineDrawer.photonView.RPC("RPCCtrlY", RpcTarget.OthersBuffered);
     }
 
     // 전체 삭제 버튼 클릭 시 호출
@@ -119,5 +126,8 @@ public class OSW_ButtonUI : MonoBehaviour
             Destroy(osw_lineDrawer.lineList[i].gameObject);
         }
         osw_lineDrawer.lineList.Clear();
+
+        // 네트워크 동기화
+        osw_lineDrawer.photonView.RPC("RPCAllDelete", RpcTarget.OthersBuffered);
     }
 }

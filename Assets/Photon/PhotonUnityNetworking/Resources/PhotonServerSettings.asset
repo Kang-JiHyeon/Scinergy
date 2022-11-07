@@ -52,6 +52,11 @@ MonoBehaviour:
   - RpcTimerBtnClicked
   - RPCVote
   - TimeIsRunningOut
+  - Drawing
+  - Eraser
+  - RPCAllDelete
+  - RPCCtrlY
+  - RPCCtrlZ
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 0
