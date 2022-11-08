@@ -3,8 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
-public class Star : MonoBehaviour
+using Photon.Pun;
+public class Star : MonoBehaviourPun
 {
     //∫∞¿Ã∏ß
     public string starName;
@@ -55,13 +55,13 @@ public class Star : MonoBehaviour
             case State.normalStar:
                 return;
             case State.shootingStar:
-                shootingStar();
+                ShootingStar();
                 return;
         }
 
     }
 
-    private void shootingStar()
+    private void ShootingStar()
     {
         GetComponent<TrailRenderer>().enabled = true;
         currentTime += Time.deltaTime;
@@ -123,8 +123,9 @@ public class Star : MonoBehaviour
     }
     public virtual void BrightnessSet()
     {
-        GameObject starBrightness = Instantiate(brightness);
+        //GameObject starBrightness = Instantiate(brightness);
+        GameObject starBrightness =PhotonNetwork.Instantiate(brightness.ToString(),transform.position,Quaternion.identity);
         starBrightness.transform.parent = gameObject.transform;
-        starBrightness.transform.position = transform.position;
+        //starBrightness.transform.position = transform.position;
     }
 }

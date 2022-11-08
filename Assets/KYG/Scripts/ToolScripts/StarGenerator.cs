@@ -211,7 +211,8 @@ public class StarGenerator : MonoBehaviourPun
         for(int i = 0; i<int.Parse(starAmount.text); i++)
         {
             CreatedStarList createdStarList = starList.GetComponent<CreatedStarList>();
-            GameObject star = Instantiate(starTypeList[0]);
+            //GameObject star = Instantiate(starTypeList[0]);
+            GameObject star = PhotonNetwork.Instantiate(starTypeList[0].gameObject.name, Vector3.zero, Quaternion.identity);
             starName = "Star" + i;
             GameManager.instance.createdStarList[starName] = star;
             ra = Random.Range(0f, 25f);
