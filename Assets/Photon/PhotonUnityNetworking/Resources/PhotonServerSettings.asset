@@ -15,8 +15,8 @@ MonoBehaviour:
   AppSettings:
     AppIdRealtime: 67babe27-86e4-4d0b-9738-79833bfbfd6c
     AppIdFusion: 
-    AppIdChat: 
-    AppIdVoice: 
+    AppIdChat: cade6372-173c-4350-93c1-7aad6bf098c8
+    AppIdVoice: 69c193a8-c01d-4d25-a025-17f7fc889bb9
     AppVersion: 1
     UseNameServer: 1
     FixedRegion: kr
@@ -57,7 +57,7 @@ MonoBehaviour:
   - RPCAllDelete
   - RPCCtrlY
   - RPCCtrlZ
-  - RPCDrawing
+  - RpcMicOnOff
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 0

@@ -111,4 +111,10 @@ public class SYA_SympoRoomList : MonoBehaviourPunCallbacks
         UpdateRoomCache(roomListDe);
         CreateRoomListUI();
     }
+
+    public GameObject creatRoom;
+    public void OnCreateRoom()
+    {
+        creatRoom.SetActive(true);
+    }
 }

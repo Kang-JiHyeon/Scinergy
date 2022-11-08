@@ -1,4 +1,7 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
+using System;
+using System.Runtime.InteropServices;
 
 namespace Photon.Voice.Unity
 {
@@ -15,7 +18,7 @@ namespace Photon.Voice.Unity
             this.source = audioSource;
         }
 
-        override public long OutPos { get { return source.timeSamples; } }
+        override public int OutPos { get { return source.timeSamples; } }
 
         override public void OutCreate(int frequency, int channels, int bufferSamples)
         {

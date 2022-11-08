@@ -107,7 +107,7 @@ public class SYA_AvartaSceneManager : MonoBehaviourPun
             Destroy(GameObject.Find(avatarList[0].name).gameObject);
             avatarList.Clear();
         }
-        avatarP= Instantiate(avatar);
+        avatarP = Instantiate(avatar);
         avatarList.Add(avatarP);
         avatarP.transform.localScale = avatarSca;
         avatarP.transform.position = avatarPos.position;
