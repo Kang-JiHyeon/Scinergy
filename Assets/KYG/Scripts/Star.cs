@@ -85,7 +85,14 @@ public class Star : MonoBehaviour
         starName = starNameInfo;
         ra = raInfo % 24;
         if (ra < 0) ra += 24;
-        dec = decInfo % 90;
+        if (dec > 90)
+        {
+            dec = decInfo % 90;
+        }
+        else
+        {
+            dec = decInfo;
+        }
         starType = starTypeInfo;
         brightness = brightnessInfo;
         generatedType = generateTypeNumber;

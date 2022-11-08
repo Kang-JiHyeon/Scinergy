@@ -4,7 +4,8 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using TMPro;
-public class StarGenerator : MonoBehaviour
+using Photon.Pun;
+public class StarGenerator : MonoBehaviourPun
 {
     public static StarGenerator instance;
     #region Input
