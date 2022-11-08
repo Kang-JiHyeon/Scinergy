@@ -1,4 +1,5 @@
 using Photon.Pun;
+using Photon.Voice.PUN;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -26,8 +27,9 @@ public class SYA_PlayerMove : MonoBehaviourPun
         SYA_SymposiumManager.Instance.PlayerNameAuthority(
             photonView.Owner.NickName, 
             photonView, 
-            photonView.Owner.UserId == PhotonNetwork.MasterClient.UserId);
-
+            photonView.Owner.UserId == PhotonNetwork.MasterClient.UserId,
+            GetComponentInChildren<AudioSource>());
+        GetComponentInChildren<AudioSource>().enabled = false;
         if (!photonView.IsMine) return;
         cc = GetComponent<CharacterController>();
         //nickName.text = PhotonNetwork.NickName ;

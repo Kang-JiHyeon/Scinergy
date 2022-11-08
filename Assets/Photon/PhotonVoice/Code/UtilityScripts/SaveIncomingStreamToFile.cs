@@ -2,6 +2,8 @@
 {
     using UnityEngine;
     using System.IO;
+    using CSCore;
+    using CSCore.Codecs.WAV;
 
     [RequireComponent(typeof(VoiceConnection))]
     [DisallowMultipleComponent]
@@ -22,7 +24,7 @@
 
         private void OnSpeakerLinked(Speaker speaker)
         {
-            if (this.muteLocalSpeaker && speaker.RemoteVoice.PlayerId == voiceConnection.Client.LocalPlayer.ActorNumber)
+            if (this.muteLocalSpeaker && speaker.Actor != null && speaker.Actor.IsLocal)
             {
                 AudioSource audioSource = speaker.GetComponent<AudioSource>();
                 audioSource.mute = true;
@@ -32,6 +34,7 @@
 
         private void OnDestroy()
         {
+            this.voiceConnection.SpeakerLinked -= this.OnSpeakerLinked;
             this.voiceConnection.RemoteVoiceAdded -= this.OnRemoteVoiceAdded;
         }
 
@@ -39,12 +42,18 @@
         {
             int bitsPerSample = 32;
             string filePath = this.GetFilePath(remoteVoiceLink);
-            this.Logger.LogInfo("Incoming stream {0}, output file path: {1}", remoteVoiceLink.VoiceInfo, filePath);
-            WaveWriter waveWriter = new WaveWriter(filePath, remoteVoiceLink.VoiceInfo.SamplingRate, bitsPerSample, remoteVoiceLink.VoiceInfo.Channels);
+            if (this.Logger.IsInfoEnabled)
+            {
+                this.Logger.LogInfo("Incoming stream, output file path: {0}", filePath);
+            }
+            WaveWriter waveWriter = new WaveWriter(filePath, new WaveFormat(remoteVoiceLink.Info.SamplingRate, bitsPerSample, remoteVoiceLink.Info.Channels));
             remoteVoiceLink.FloatFrameDecoded += f => { waveWriter.WriteSamples(f.Buf, 0, f.Buf.Length); };
             remoteVoiceLink.RemoteVoiceRemoved += () =>
             {
-                this.Logger.LogInfo("Remote voice stream removed: Saving wav file.");
+                if (this.Logger.IsInfoEnabled)
+                {
+                    this.Logger.LogInfo("Remote voice stream removed: Saving wav file.");
+                }
                 waveWriter.Dispose();
             };
         }

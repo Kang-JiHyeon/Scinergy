@@ -9,16 +9,14 @@ namespace Photon.Voice.FMOD
     {
         const int NAME_MAX_LENGTH = 1000;
         const string LOG_PREFIX = "[PV] [FMOD] AudioInEnumerator: ";
-        FMODLib.System coreSystem;
-        public AudioInEnumerator(FMODLib.System coreSystem, ILogger logger) : base(logger)
+        public AudioInEnumerator(ILogger logger) : base(logger)
         {
-            this.coreSystem = coreSystem;
             Refresh();
         }
 
         public override void Refresh()
-        {
-            FMODLib.RESULT res = coreSystem.getRecordNumDrivers(out int numDriv, out int numCon);
+        {            
+            FMODLib.RESULT res = FMODUnity.RuntimeManager.CoreSystem.getRecordNumDrivers(out int numDriv, out int numCon);
             if (res != FMODLib.RESULT.OK)
             {
                 Error = "failed to getRecordNumDrivers: " + res;
@@ -29,7 +27,7 @@ namespace Photon.Voice.FMOD
             devices = new List<DeviceInfo>();
             for (int id = 0; id < numDriv; id++)
             {
-                res = coreSystem.getRecordDriverInfo(id, out string name, NAME_MAX_LENGTH, out Guid guid, out int systemRate, out FMODLib.SPEAKERMODE speakerMode, out int speakerModeChannels, out FMODLib.DRIVER_STATE state);
+                res = FMODUnity.RuntimeManager.CoreSystem.getRecordDriverInfo(id, out string name, NAME_MAX_LENGTH, out Guid guid, out int systemRate, out FMODLib.SPEAKERMODE speakerMode, out int speakerModeChannels, out FMODLib.DRIVER_STATE state);
                 if (res != FMODLib.RESULT.OK)
                 {
                     Error = "failed to getRecordDriverInfo: " + res;

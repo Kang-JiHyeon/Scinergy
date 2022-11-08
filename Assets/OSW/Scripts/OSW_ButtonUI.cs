@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class OSW_ButtonUI : MonoBehaviour
+public class OSW_ButtonUI : MonoBehaviourPun
 {
     public GameObject drawOnOff;
     public GameObject drawingTool;
@@ -99,7 +99,7 @@ public class OSW_ButtonUI : MonoBehaviour
         }
 
         // 네트워크 동기화
-        osw_lineDrawer.photonView.RPC("RPCCtrlZ", RpcTarget.OthersBuffered);
+        osw_lineDrawer.photonView.RPC("RPCCtrlZ", RpcTarget.All);
     }
 
     // 되돌리기 버튼 클릭 시 호출
@@ -115,7 +115,7 @@ public class OSW_ButtonUI : MonoBehaviour
         }
 
         // 네트워크 동기화
-        osw_lineDrawer.photonView.RPC("RPCCtrlY", RpcTarget.OthersBuffered);
+        osw_lineDrawer.photonView.RPC("RPCCtrlY", RpcTarget.All);
     }
 
     // 전체 삭제 버튼 클릭 시 호출
@@ -128,6 +128,6 @@ public class OSW_ButtonUI : MonoBehaviour
         osw_lineDrawer.lineList.Clear();
 
         // 네트워크 동기화
-        osw_lineDrawer.photonView.RPC("RPCAllDelete", RpcTarget.OthersBuffered);
+        osw_lineDrawer.photonView.RPC("RPCAllDelete", RpcTarget.All);
     }
 }

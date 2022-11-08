@@ -3,13 +3,11 @@
 // Photon Voice Demo for PUN- Copyright (C) 2016 Exit Games GmbH
 // </copyright>
 // <summary>
-// Class that highlights the Photon Voice features by toggling isometric view
+// Class that highlights the Photon Voice features by toggling isometric view 
 // icons for the two components Recorder and Speaker.
 // </summary>
 // <author>developer@photonengine.com</author>
 // ----------------------------------------------------------------------------
-
-#if PUN_2_OR_NEWER
 
 #pragma warning disable 0649 // Field is never assigned to, and will always have its default value
 
@@ -18,7 +16,8 @@ namespace ExitGames.Demos.DemoPunVoice
 
     using UnityEngine;
     using UnityEngine.UI;
-    using Photon.Voice.PUN;
+	using Photon.Voice.Unity;
+	using Photon.Voice.PUN;
 
     [RequireComponent(typeof(Canvas))]
     public class Highlighter : MonoBehaviour
@@ -87,4 +86,3 @@ namespace ExitGames.Demos.DemoPunVoice
         }
     }
 }
-#endif

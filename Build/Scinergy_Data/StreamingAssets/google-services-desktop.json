@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "368998592249",
+    "project_id": "entertain-earth-9f05e",
+    "storage_bucket": "entertain-earth-9f05e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:368998592249:android:c67e95990be6c408133c28",
+        "android_client_info": {
+          "package_name": "com.DefaultCompany.Scinergy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "368998592249-ckhe0cnnf388nmv8gn4f4fjf1hlksmhf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAQXq-LYGWz-iMSII-o1XweG0gqM6Zo1OA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "368998592249-ckhe0cnnf388nmv8gn4f4fjf1hlksmhf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
