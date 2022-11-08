@@ -12,6 +12,7 @@ public class Sun : Star
         starName = "Sun";
         ra = 13.35185f;
         dec = -09.56045f;
+        generatedType = 1;
         TransformSet();
     }
 

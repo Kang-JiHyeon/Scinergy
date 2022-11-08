@@ -7,6 +7,7 @@ public class PlayerUI : MonoBehaviour
     public GameObject starGenerator;
     public GameObject starList;
     public GameObject telescope;
+    public GameObject constellation;
     public GameObject compas;
     public GameObject Clock;
     public GameObject Map;
@@ -70,6 +71,18 @@ public class PlayerUI : MonoBehaviour
             telescope.SetActive(true);
         }
     }
+
+    public void OnConstellationBtn()
+    {
+        if (constellation.activeSelf)
+        {
+            constellation.SetActive(false);
+        }
+        else
+        {
+            constellation.SetActive(true);
+        }
+    }
     public void OnClockBtn()
     {
         if (Clock.activeSelf)
@@ -92,20 +105,4 @@ public class PlayerUI : MonoBehaviour
             Map.SetActive(true);
         }
     }
-
-    //public void OnTimeFlowBtn()
-    //{
-    //    Clock.GetComponent<Clock>().timeFlow = true;
-    //    Clock.GetComponent<Clock>().timeReverse = false;
-    //}
-    //public void OnTimeReverseBtn()
-    //{
-    //    Clock.GetComponent<Clock>().timeFlow = false;
-    //    Clock.GetComponent<Clock>().timeReverse = true;
-    //}
-    //public void OnTimeStopBtn()
-    //{
-    //    Clock.GetComponent<Clock>().timeFlow = false;
-    //    Clock.GetComponent<Clock>().timeReverse = false;
-    //}
 }

@@ -19,6 +19,8 @@ public class Star : MonoBehaviour
 
     public GameObject starInfo;
 
+    public int generatedType;
+
     #region shootingStar
     public float fallSpeed = 50f;
     public float removeTime = 3f;
@@ -76,17 +78,19 @@ public class Star : MonoBehaviour
             fallDir.y = randY;
             transform.position += fallDir.normalized * fallSpeed * Time.deltaTime;
     }
-
-    internal void InfoSet(string starNameInfo, float raInfo, float decInfo, GameObject starTypeInfo, GameObject brightnessInfo)
+    int starNumber = 1;
+    internal void InfoSet(string starNameInfo, float raInfo, float decInfo, GameObject starTypeInfo, GameObject brightnessInfo, int generateTypeNumber)
     {
         name = starNameInfo;
         starName = starNameInfo;
-        ra = raInfo;
-        dec = decInfo;
+        ra = raInfo % 24;
+        if (ra < 0) ra += 24;
+        dec = decInfo % 90;
         starType = starTypeInfo;
         brightness = brightnessInfo;
+        generatedType = generateTypeNumber;
         TransformSet();
-        brightnessSet();
+        BrightnessSet();
     }
 
 
@@ -102,9 +106,15 @@ public class Star : MonoBehaviour
         float x = rr * Mathf.Sin(RadRa);
         float y = GameManager.instance.celestialSphereRadius * Mathf.Cos(RadDec);
         float z = rr * Mathf.Cos(RadRa);
-        transform.localPosition = new Vector3(x, y, z);
+        if(generatedType == 1)
+        {
+            transform.localPosition = new Vector3(x, y, z);
+        }else if(generatedType == 2)
+        {
+            transform.position = new Vector3(x, y, z);
+        }
     }
-    public virtual void brightnessSet()
+    public virtual void BrightnessSet()
     {
         GameObject starBrightness = Instantiate(brightness);
         starBrightness.transform.parent = gameObject.transform;

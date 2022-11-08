@@ -1,5 +1,9 @@
 fileFormatVersion: 2
-guid: 76d0043280f66a2439a832cba1d3d42f
+<<<<<<<< HEAD:Assets/SYA/Scenes/SymposiumScene/Lightmap-0_comp_light.exr.meta
+guid: 05766a5bef8c0aa42a8502017d4c3ebd
+========
+guid: e9007446e6a4bff409526637c327a485
+>>>>>>>> KYG:Assets/KYG/Materials/NightSkyBox.png.meta
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
