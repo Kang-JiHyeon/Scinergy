@@ -1,3 +1,7 @@
+#if UNITY_EDITOR_WIN || UNITY_EDITOR_OSX || !UNITY_EDITOR && (UNITY_IOS || UNITY_ANDROID || UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX)
+#define WEBRTC_AUDIO_DSP_SUPPORTED
+#endif
+
 namespace Photon.Voice.Unity.Demos.DemoVoiceUI
 {
     using System.Collections.Generic;
@@ -7,10 +11,10 @@ namespace Photon.Voice.Unity.Demos.DemoVoiceUI
     using UnityEngine;
     using UnityEngine.UI;
 
-    [RequireComponent(typeof(UnityVoiceClient), typeof(ConnectAndJoin))]
+    [RequireComponent(typeof(VoiceConnection), typeof(ConnectAndJoin))]
     public class DemoVoiceUI : MonoBehaviour, IInRoomCallbacks, IMatchmakingCallbacks
     {
-#pragma warning disable 649
+        #pragma warning disable 649
         [SerializeField]
         private Text connectionStatusText;
 
@@ -29,7 +33,7 @@ namespace Photon.Voice.Unity.Demos.DemoVoiceUI
         [SerializeField]
         private Text rttVariationText;
 
-        [SerializeField]
+		[SerializeField]
         private Text packetLossWarningText;
 
         [SerializeField]
@@ -49,7 +53,7 @@ namespace Photon.Voice.Unity.Demos.DemoVoiceUI
 
         [SerializeField]
         private Toggle aecToggle;
-
+        
         [SerializeField]
         private Toggle aecHighPassToggle;
 
@@ -61,16 +65,13 @@ namespace Photon.Voice.Unity.Demos.DemoVoiceUI
 
         [SerializeField]
         private Toggle agcToggle;
-
+        
         [SerializeField]
         private Slider agcCompressionGainSlider;
 
         [SerializeField]
-        private Slider agcTargetLevelSlider;
-
-        [SerializeField]
         private Toggle vadToggle;
-
+        
         [SerializeField]
         private Toggle muteToggle;
 
@@ -88,7 +89,7 @@ namespace Photon.Voice.Unity.Demos.DemoVoiceUI
 
         [SerializeField]
         private Toggle photonVadToggle;
-
+        
         [SerializeField]
         private GameObject microphoneSetupGameObject;
 
@@ -108,6 +109,15 @@ namespace Photon.Voice.Unity.Demos.DemoVoiceUI
         private InputField roomNameInputField;
 
         [SerializeField]
+        private InputField globalMinDelaySoftInputField;
+        
+        [SerializeField]
+        private InputField globalMaxDelaySoftInputField;
+        
+        [SerializeField]
+        private InputField globalMaxDelayHardInputField;
+
+        [SerializeField]
         private int rttYellowThreshold = 100;
 
         [SerializeField]
@@ -118,42 +128,37 @@ namespace Photon.Voice.Unity.Demos.DemoVoiceUI
 
         [SerializeField]
         private int rttVariationRedThreshold = 50;
-#pragma warning restore 649
+        #pragma warning restore 649
 
         private GameObject compressionGainGameObject;
-        private GameObject targetLevelGameObject;
         private Text compressionGainText;
-        private Text targetLevelText;
 
         private GameObject aecOptionsGameObject;
 
         public Transform RemoteVoicesPanel;
 
-        protected UnityVoiceClient voiceConnection;
+        protected VoiceConnection voiceConnection;
         private WebRtcAudioDsp voiceAudioPreprocessor;
         private ConnectAndJoin connectAndJoin;
 
-        private readonly Color warningColor = new Color(0.9f, 0.5f, 0f, 1f);
-        private readonly Color okColor = new Color(0.0f, 0.6f, 0.2f, 1f);
-        private readonly Color redColor = new Color(1.0f, 0.0f, 0.0f, 1f);
-        private readonly Color defaultColor = new Color(0.0f, 0.0f, 0.0f, 1f);
+        private readonly Color warningColor = new Color(0.9f,0.5f,0f,1f);
+        private readonly Color okColor = new Color(0.0f,0.6f,0.2f,1f);
+        private readonly Color redColor = new Color(1.0f,0.0f,0.0f,1f);
+        private readonly Color defaultColor = new Color(0.0f,0.0f,0.0f,1f);
 
         private void Awake()
         {
             Screen.SetResolution(this.screenWidth, this.screenHeight, this.fullScreen);
             this.connectAndJoin = this.GetComponent<ConnectAndJoin>();
-            this.voiceConnection = this.GetComponent<UnityVoiceClient>();
+            this.voiceConnection = this.GetComponent<VoiceConnection>();
             this.voiceAudioPreprocessor = this.voiceConnection.PrimaryRecorder.GetComponent<WebRtcAudioDsp>();
             this.compressionGainGameObject = this.agcCompressionGainSlider.transform.parent.gameObject;
             this.compressionGainText = this.compressionGainGameObject.GetComponentInChildren<Text>();
-            this.targetLevelGameObject = this.agcTargetLevelSlider.transform.parent.gameObject;
-            this.targetLevelText = this.targetLevelGameObject.GetComponentInChildren<Text>();
             this.aecOptionsGameObject = this.aecHighPassToggle.transform.parent.gameObject;
             this.SetDefaults();
             this.InitUiCallbacks();
             this.InitUiValues();
             this.GetSavedNickname();
-            this.voiceConnection.PrimaryRecorder.InputFactory = () => new AudioUtil.ToneAudioReader<float>();
         }
 
         protected virtual void SetDefaults()
@@ -209,13 +214,13 @@ namespace Photon.Voice.Unity.Demos.DemoVoiceUI
             }
             else
             {
-                this.voiceConnection.Client.LocalPlayer.Unmute();
+                this.voiceConnection.Client.LocalPlayer.Unmute(); 
             }
         }
 
         protected virtual void ToggleIsRecording(bool isRecording)
         {
-            this.voiceConnection.PrimaryRecorder.RecordingEnabled = isRecording;
+            this.voiceConnection.PrimaryRecorder.IsRecording = isRecording;
         }
 
         private void ToggleDebugEcho(bool isOn)
@@ -248,7 +253,6 @@ namespace Photon.Voice.Unity.Demos.DemoVoiceUI
         {
             this.voiceAudioPreprocessor.AGC = isOn;
             this.compressionGainGameObject.SetActive(isOn);
-            this.targetLevelGameObject.SetActive(isOn);
         }
 
         private void ToggleVAD(bool isOn)
@@ -263,13 +267,9 @@ namespace Photon.Voice.Unity.Demos.DemoVoiceUI
 
         private void ToggleDsp(bool isOn)
         {
+            this.voiceAudioPreprocessor.Bypass = !isOn;
             this.voiceAudioPreprocessor.enabled = isOn;
-            this.voiceConnection.PrimaryRecorder.RestartRecording(); // restart to make 'enabled' change effective
-            // or bypass the processor w/o need to restart the voice (the processor will still be initialized and added but bypassed on the next voice recreation)
-            // see InitUiValues()
-            // this.voiceAudioPreprocessor.Bypass = !isOn;
-
-            this.webRtcDspGameObject.SetActive(isOn); // gui update
+            this.webRtcDspGameObject.SetActive(isOn);
         }
 
         private void ToggleAudioClipStreaming(bool isOn)
@@ -284,6 +284,10 @@ namespace Photon.Voice.Unity.Demos.DemoVoiceUI
             {
                 this.voiceConnection.PrimaryRecorder.SourceType = Recorder.InputSourceType.Microphone;
             }
+            if (this.voiceConnection.PrimaryRecorder.RequiresRestart)
+            {
+                this.voiceConnection.PrimaryRecorder.RestartRecording();
+            }
         }
 
         private void ToggleAudioToneFactory(bool isOn)
@@ -292,11 +296,17 @@ namespace Photon.Voice.Unity.Demos.DemoVoiceUI
             if (isOn)
             {
                 this.streamAudioClipToggle.SetValue(false);
+                this.dspToggle.isOn = false;
+                this.voiceConnection.PrimaryRecorder.InputFactory = () => new AudioUtil.ToneAudioReader<float>();
                 this.voiceConnection.PrimaryRecorder.SourceType = Recorder.InputSourceType.Factory;
             }
             else if (!this.streamAudioClipToggle.isOn)
             {
                 this.voiceConnection.PrimaryRecorder.SourceType = Recorder.InputSourceType.Microphone;
+            }
+            if (this.voiceConnection.PrimaryRecorder.RequiresRestart)
+            {
+                this.voiceConnection.PrimaryRecorder.RestartRecording();
             }
         }
 
@@ -316,10 +326,49 @@ namespace Photon.Voice.Unity.Demos.DemoVoiceUI
             this.compressionGainText.text = string.Concat("Compression Gain: ", agcCompressionGain);
         }
 
-        private void OnAgcTargetLevelChanged(float agcTargetLevel)
+        private void OnGlobalPlaybackDelayMinSoftChanged(string newMinDelaySoftString)
         {
-            this.voiceAudioPreprocessor.AgcTargetLevel = (int)agcTargetLevel;
-            this.targetLevelText.text = string.Concat("Target Level: ", agcTargetLevel);
+            int newMinDelaySoftValue;
+            int newMaxDelaySoftValue = this.voiceConnection.GlobalPlaybackDelayMaxSoft;
+            int newMaxDelayHardValue = this.voiceConnection.GlobalPlaybackDelayMaxHard;
+            if (int.TryParse(newMinDelaySoftString, out newMinDelaySoftValue) && newMinDelaySoftValue >= 0 && newMinDelaySoftValue < newMaxDelaySoftValue)
+            {
+                this.voiceConnection.SetGlobalPlaybackDelaySettings(newMinDelaySoftValue, newMaxDelaySoftValue, newMaxDelayHardValue);
+            }
+            else
+            {
+                this.globalMinDelaySoftInputField.text = this.voiceConnection.GlobalPlaybackDelayMinSoft.ToString();
+            }
+        }
+
+        private void OnGlobalPlaybackDelayMaxSoftChanged(string newMaxDelaySoftString)
+        {
+            int newMinDelaySoftValue = this.voiceConnection.GlobalPlaybackDelayMinSoft;
+            int newMaxDelaySoftValue;
+            int newMaxDelayHardValue = this.voiceConnection.GlobalPlaybackDelayMaxHard;
+            if (int.TryParse(newMaxDelaySoftString, out newMaxDelaySoftValue) && newMaxDelaySoftValue > newMinDelaySoftValue)
+            {
+                this.voiceConnection.SetGlobalPlaybackDelaySettings(newMinDelaySoftValue, newMaxDelaySoftValue, newMaxDelayHardValue);
+            }
+            else
+            {
+                this.globalMaxDelaySoftInputField.text = this.voiceConnection.GlobalPlaybackDelayMaxSoft.ToString();
+            }
+        }
+
+        private void OnGlobalPlaybackDelayMaxHardChanged(string newMaxDelayHardString)
+        {
+            int newMinDelaySoftValue = this.voiceConnection.GlobalPlaybackDelayMinSoft;
+            int newMaxDelaySoftValue = this.voiceConnection.GlobalPlaybackDelayMaxSoft;
+            int newMaxDelayHardValue;
+            if (int.TryParse(newMaxDelayHardString, out newMaxDelayHardValue) && newMaxDelayHardValue >= newMaxDelaySoftValue)
+            {
+                this.voiceConnection.SetGlobalPlaybackDelaySettings(newMinDelaySoftValue, newMaxDelaySoftValue, newMaxDelayHardValue);
+            }
+            else
+            {
+                this.globalMaxDelayHardInputField.text = this.voiceConnection.GlobalPlaybackDelayMaxHard.ToString();
+            }
         }
 
         private void OnReverseStreamDelayChanged(string newReverseStreamString)
@@ -372,9 +421,9 @@ namespace Photon.Voice.Unity.Demos.DemoVoiceUI
 
         protected virtual void Update()
         {
-#if UNITY_EDITOR
+            #if UNITY_EDITOR
             this.InitUiValues(); // refresh UI in case changed from Unity Editor
-#endif
+            #endif
             this.connectionStatusText.text = this.voiceConnection.Client.State.ToString();
             this.serverStatusText.text = string.Format("{0}/{1}", this.voiceConnection.Client.CloudRegion, this.voiceConnection.Client.CurrentServerAddress);
             if (this.voiceConnection.PrimaryRecorder.IsCurrentlyTransmitting)
@@ -384,24 +433,24 @@ namespace Photon.Voice.Unity.Demos.DemoVoiceUI
                 {
                     amplitude /= (short.MaxValue + 1);
                 }
-                if (amplitude > 0.1)
+                if (amplitude > 0.1) 
                 {
                     this.inputWarningText.text = "Input too loud!";
                     this.inputWarningText.color = this.warningColor;
-                }
-                else
+                } 
+                else 
                 {
                     this.inputWarningText.text = string.Empty;
                     this.ResetTextColor(this.inputWarningText);
-                }
+                } 
             }
 
-            if (this.voiceConnection.FramesReceivedPerSecond > 0)
+            if (this.voiceConnection.FramesReceivedPerSecond > 0) 
             {
                 this.packetLossWarningText.text = string.Format("{0:0.##}% Packet Loss", this.voiceConnection.FramesLostPercent);
                 this.packetLossWarningText.color = this.voiceConnection.FramesLostPercent > 1 ? this.warningColor : this.okColor;
-            }
-            else
+            } 
+            else 
             {
                 this.packetLossWarningText.text = string.Empty;
                 this.ResetTextColor(this.packetLossWarningText);
@@ -453,13 +502,24 @@ namespace Photon.Voice.Unity.Demos.DemoVoiceUI
             this.audioToneToggle.SetSingleOnValueChangedCallback(this.ToggleAudioToneFactory);
 
             this.agcCompressionGainSlider.SetSingleOnValueChangedCallback(this.OnAgcCompressionGainChanged);
-            this.agcTargetLevelSlider.SetSingleOnValueChangedCallback(this.OnAgcTargetLevelChanged);
 
             this.localNicknameText.SetSingleOnEndEditCallback(this.UpdateSyncedNickname);
 
             this.roomNameInputField.SetSingleOnEndEditCallback(this.JoinOrCreateRoom);
 
+            #if UNITY_EDITOR
+            this.globalMinDelaySoftInputField.SetSingleOnValueChangedCallback(this.OnGlobalPlaybackDelayMinSoftChanged);
+            this.globalMaxDelaySoftInputField.SetSingleOnValueChangedCallback(this.OnGlobalPlaybackDelayMaxSoftChanged);
+            this.globalMaxDelayHardInputField.SetSingleOnValueChangedCallback(this.OnGlobalPlaybackDelayMaxHardChanged);
+
+            this.reverseStreamDelayInputField.SetSingleOnValueChangedCallback(this.OnReverseStreamDelayChanged);
+            #else
+            this.globalMinDelaySoftInputField.SetSingleOnEndEditCallback(this.OnGlobalPlaybackDelayMinSoftChanged);
+            this.globalMaxDelaySoftInputField.SetSingleOnEndEditCallback(this.OnGlobalPlaybackDelayMaxSoftChanged);
+            this.globalMaxDelayHardInputField.SetSingleOnEndEditCallback(this.OnGlobalPlaybackDelayMaxHardChanged);
+
             this.reverseStreamDelayInputField.SetSingleOnEndEditCallback(this.OnReverseStreamDelayChanged);
+            #endif
         }
 
         private void InitUiValues()
@@ -472,26 +532,37 @@ namespace Photon.Voice.Unity.Demos.DemoVoiceUI
                                                 Recorder.InputSourceType.AudioClip);
             this.audioToneToggle.SetValue(this.voiceConnection.PrimaryRecorder.SourceType == Recorder.InputSourceType.Factory);
             this.microphoneSetupGameObject.SetActive(!this.streamAudioClipToggle.isOn && !this.audioToneToggle.isOn);
+            this.globalMinDelaySoftInputField.SetValue(this.voiceConnection.GlobalPlaybackDelayMinSoft.ToString());
+            this.globalMaxDelaySoftInputField.SetValue(this.voiceConnection.GlobalPlaybackDelayMaxSoft.ToString());
+            this.globalMaxDelayHardInputField.SetValue(this.voiceConnection.GlobalPlaybackDelayMaxHard.ToString());
             if (this.webRtcDspGameObject != null)
             {
-                this.dspToggle.gameObject.SetActive(true);
-                this.dspToggle.SetValue(this.voiceAudioPreprocessor.enabled);
-                // or bypass the processor w/o need to restart the voice (the processor will still be initialized and added but bypassed on the next voice recreation)
-                // see ToggleDsp()
-                // this.dspToggle.SetValue(!this.voiceAudioPreprocessor.Bypass);
-                this.webRtcDspGameObject.SetActive(this.dspToggle.isOn);
-                this.aecToggle.SetValue(this.voiceAudioPreprocessor.AEC);
-                this.aecHighPassToggle.SetValue(this.voiceAudioPreprocessor.AecHighPass);
-                this.reverseStreamDelayInputField.text = this.voiceAudioPreprocessor.ReverseStreamDelayMs.ToString();
-                this.aecOptionsGameObject.SetActive(this.voiceAudioPreprocessor.AEC);
-                this.noiseSuppressionToggle.isOn = this.voiceAudioPreprocessor.NoiseSuppression;
-                this.agcToggle.SetValue(this.voiceAudioPreprocessor.AGC);
-                this.agcCompressionGainSlider.SetValue(this.voiceAudioPreprocessor.AgcCompressionGain);
-                this.agcTargetLevelSlider.SetValue(this.voiceAudioPreprocessor.AgcTargetLevel);
-                this.compressionGainGameObject.SetActive(this.voiceAudioPreprocessor.AGC);
-                this.targetLevelGameObject.SetActive(this.voiceAudioPreprocessor.AGC);
-                this.vadToggle.SetValue(this.voiceAudioPreprocessor.VAD);
-                this.highPassToggle.SetValue(this.voiceAudioPreprocessor.HighPass);
+                #if WEBRTC_AUDIO_DSP_SUPPORTED
+                if (this.voiceAudioPreprocessor == null)
+                {
+                    this.webRtcDspGameObject.SetActive(false);
+                    this.dspToggle.gameObject.SetActive(false);
+                }
+                else
+                {
+                    this.dspToggle.gameObject.SetActive(true);
+                    this.dspToggle.SetValue(!this.voiceAudioPreprocessor.Bypass && this.voiceAudioPreprocessor.enabled);
+                    this.webRtcDspGameObject.SetActive(this.dspToggle.isOn);
+                    this.aecToggle.SetValue(this.voiceAudioPreprocessor.AEC);
+                    this.aecHighPassToggle.SetValue(this.voiceAudioPreprocessor.AecHighPass);
+                    this.reverseStreamDelayInputField.text = this.voiceAudioPreprocessor.ReverseStreamDelayMs.ToString();
+                    this.aecOptionsGameObject.SetActive(this.voiceAudioPreprocessor.AEC);
+                    this.noiseSuppressionToggle.isOn = this.voiceAudioPreprocessor.NoiseSuppression;
+                    this.agcToggle.SetValue(this.voiceAudioPreprocessor.AGC);
+                    this.agcCompressionGainSlider.SetValue(this.voiceAudioPreprocessor.AgcCompressionGain);
+                    this.compressionGainGameObject.SetActive(this.voiceAudioPreprocessor.AGC);
+                    this.vadToggle.SetValue(this.voiceAudioPreprocessor.VAD);
+                    this.highPassToggle.SetValue(this.voiceAudioPreprocessor.HighPass);
+                }
+                #else
+                this.webRtcDspGameObject.SetActive(false);
+                this.dspToggle.gameObject.SetActive(false);
+                #endif
             }
             else
             {
@@ -526,12 +597,6 @@ namespace Photon.Voice.Unity.Demos.DemoVoiceUI
                 this.muteToggle.SetValue(isMuted);
             }
             this.SetRoomDebugText();
-        }
-
-        protected void OnApplicationQuit()
-        {
-            this.voiceConnection.Client.Disconnect();
-            this.voiceConnection.Client.LoadBalancingPeer.StopThread();
         }
 
         #region IInRoomCallbacks
@@ -590,10 +655,13 @@ namespace Photon.Voice.Unity.Demos.DemoVoiceUI
 
         void IMatchmakingCallbacks.OnLeftRoom()
         {
-            this.SetRoomDebugText();
-            this.SetDefaults();
+            if (!ConnectionHandler.AppQuits)
+            {
+                this.SetRoomDebugText();
+                this.SetDefaults();
+            }
         }
-
+ 
         #endregion
     }
 }

@@ -9,7 +9,7 @@
     [RequireComponent(typeof(Speaker))]
     public class RemoteSpeakerUI : MonoBehaviour, IInRoomCallbacks
     {
-#pragma warning disable 649
+        #pragma warning disable 649
         [SerializeField]
         private Text nameText;
         [SerializeField]
@@ -17,13 +17,15 @@
         [SerializeField]
         private Image remoteIsTalking;
         [SerializeField]
-        private InputField playDelayInputField;
+        private InputField minDelaySoftInputField;
+        [SerializeField]
+        private InputField maxDelaySoftInputField;
+        [SerializeField]
+        private InputField maxDelayHardInputField;
         [SerializeField]
         private Text bufferLagText;
-#pragma warning restore 649
+        #pragma warning restore 649
         protected Speaker speaker;
-
-        protected Player Actor { get { return this.loadBalancingClient.CurrentRoom != null ? this.loadBalancingClient.CurrentRoom.GetPlayer(this.speaker.RemoteVoice.PlayerId) : null; } }
 
         protected VoiceConnection voiceConnection;
         protected LoadBalancingClient loadBalancingClient;
@@ -31,21 +33,58 @@
         protected virtual void Start()
         {
             this.speaker = this.GetComponent<Speaker>();
-            this.playDelayInputField.text = this.speaker.PlayDelay.ToString();
-            this.playDelayInputField.SetSingleOnEndEditCallback(this.OnPlayDelayChanged);
+            this.minDelaySoftInputField.text = this.speaker.PlaybackDelayMinSoft.ToString();
+            this.minDelaySoftInputField.SetSingleOnEndEditCallback(this.OnMinDelaySoftChanged);
+            this.maxDelaySoftInputField.text = this.speaker.PlaybackDelayMaxSoft.ToString();
+            this.maxDelaySoftInputField.SetSingleOnEndEditCallback(this.OnMaxDelaySoftChanged);
+            this.maxDelayHardInputField.text = this.speaker.PlaybackDelayMaxHard.ToString();
+            this.maxDelayHardInputField.SetSingleOnEndEditCallback(this.OnMaxDelayHardChanged);
             this.SetNickname();
             this.SetMutedState();
         }
 
-        private void OnPlayDelayChanged(string str)
+        private void OnMinDelaySoftChanged(string newMinDelaySoftString)
         {
-            if (int.TryParse(str, out int x))
+            int newMinDelaySoftValue;
+            int newMaxDelaySoftValue = this.speaker.PlaybackDelayMaxSoft;
+            int newMaxDelayHardValue = this.speaker.PlaybackDelayMaxHard;
+            if (int.TryParse(newMinDelaySoftString, out newMinDelaySoftValue) && newMinDelaySoftValue >= 0 && newMinDelaySoftValue < newMaxDelaySoftValue)
             {
-                this.speaker.PlayDelay = x;
+                this.speaker.SetPlaybackDelaySettings(newMinDelaySoftValue, newMaxDelaySoftValue, newMaxDelayHardValue);
             }
             else
             {
-                Debug.LogErrorFormat("Failed to parse {0}", str);
+                this.minDelaySoftInputField.text = this.speaker.PlaybackDelayMinSoft.ToString();
+            }
+        }
+
+        private void OnMaxDelaySoftChanged(string newMaxDelaySoftString)
+        {
+            int newMinDelaySoftValue = this.speaker.PlaybackDelayMinSoft;
+            int newMaxDelaySoftValue;
+            int newMaxDelayHardValue = this.speaker.PlaybackDelayMaxHard;
+            if (int.TryParse(newMaxDelaySoftString, out newMaxDelaySoftValue) && newMinDelaySoftValue < newMaxDelaySoftValue)
+            {
+                this.speaker.SetPlaybackDelaySettings(newMinDelaySoftValue, newMaxDelaySoftValue, newMaxDelayHardValue);
+            }
+            else
+            {
+                this.maxDelaySoftInputField.text = this.speaker.PlaybackDelayMaxSoft.ToString();
+            }
+        }
+
+        private void OnMaxDelayHardChanged(string newMaxDelayHardString)
+        {
+            int newMinDelaySoftValue = this.speaker.PlaybackDelayMinSoft;
+            int newMaxDelaySoftValue = this.speaker.PlaybackDelayMaxSoft;
+            int newMaxDelayHardValue;
+            if (int.TryParse(newMaxDelayHardString, out newMaxDelayHardValue) && newMaxDelayHardValue >= newMaxDelaySoftValue)
+            {
+                this.speaker.SetPlaybackDelaySettings(newMinDelaySoftValue, newMaxDelaySoftValue, newMaxDelayHardValue);
+            }
+            else
+            {
+                this.maxDelayHardInputField.text = this.speaker.PlaybackDelayMaxHard.ToString();
             }
         }
 
@@ -67,12 +106,12 @@
         private void SetNickname()
         {
             string nick = this.speaker.name;
-            if (this.Actor != null)
+            if (this.speaker.Actor != null)
             {
-                nick = this.Actor.NickName;
+                nick = this.speaker.Actor.NickName;
                 if (string.IsNullOrEmpty(nick))
                 {
-                    nick = string.Concat("user ", this.Actor.ActorNumber);
+                    nick = string.Concat("user ", this.speaker.Actor.ActorNumber);
                 }
             }
             this.nameText.text = nick;
@@ -80,7 +119,7 @@
 
         private void SetMutedState()
         {
-            this.SetMutedState(this.Actor.IsMuted());
+            this.SetMutedState(this.speaker.Actor.IsMuted());
         }
 
         protected virtual void SetMutedState(bool isMuted)
@@ -90,7 +129,7 @@
 
         protected virtual void OnActorPropertiesChanged(Player targetPlayer, Hashtable changedProps)
         {
-            if (targetPlayer.ActorNumber == this.Actor.ActorNumber)
+            if (targetPlayer.ActorNumber == this.speaker.Actor.ActorNumber)
             {
                 this.SetMutedState();
                 this.SetNickname();
