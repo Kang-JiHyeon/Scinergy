@@ -216,6 +216,7 @@ public class StarGenerator : MonoBehaviour
             ra = Random.Range(0f, 25f);
             dec = Random.Range(-90f, 91f);
             brightness = starBrightnessList[Random.Range(1, starBrightnessList.Count)];
+            generateTypeNumber = 1;
             star.GetComponent<Star>().InfoSet(starName, ra, dec, starTypeList[0], brightness,generateTypeNumber);
             createdStarList.Init(starName, star);
         }

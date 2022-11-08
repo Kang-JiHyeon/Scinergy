@@ -5,13 +5,22 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/SYA/Scenes/SymposiumScene.unity
     guid: 168bc06e9c7c2d4428b16cba67bcbcb5
-  - enabled: 1
+  - enabled: 0
     path: Assets/SYA/Scenes/KJH_RevolutionScene.unity
     guid: 751ad783535886e43b3418efaad78f74
-  - enabled: 1
+  - enabled: 0
     path: Assets/SYA/Scenes/KYG_Scene.unity
     guid: c382f3d1a76bf0e4b83b419c482e3786
+  - enabled: 1
+    path: Assets/KYG/Scenes/ConnectionScene.unity
+    guid: a5f71ff965b9f1140801bb9bc9c3c402
+  - enabled: 1
+    path: Assets/KYG/Scenes/LobbyScene.unity
+    guid: 0927ca355a0402b488622bbf9597721e
+  - enabled: 1
+    path: Assets/KYG/Scenes/KYG_Scene.unity
+    guid: c134351f9f0681b489029bacabb0b6dc
   m_configObjects: {}
