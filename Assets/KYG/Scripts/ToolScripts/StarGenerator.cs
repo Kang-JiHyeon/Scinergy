@@ -75,7 +75,7 @@ public class StarGenerator : MonoBehaviour
         if (decInput.text != "") dec = float.Parse(decInput.text);
         if (raInput.text != "") ra = float.Parse(raInput.text);
         if (drawStar && EventSystem.current.IsPointerOverGameObject() == false) DrawStar();
-        if (starNameInput == null|| generateTypeDropdown.value == 0 || raInput == null || decInput == null || typeDropdown.value == 0 || brightnessDropdown.value ==0)
+        if (starNameInput.text == ""|| generateTypeDropdown.value == 0 || raInput == null || decInput == null || typeDropdown.value == 0 || brightnessDropdown.value ==0)
         {
             generateBtn.interactable = false;
         }
@@ -84,6 +84,7 @@ public class StarGenerator : MonoBehaviour
             generateBtn.interactable = true;
         }
     }
+    int starNumber = 1;
     public void DrawStar()
     {
         Vector3 lookDir = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.nearClipPlane)) - Camera.main.transform.position;
@@ -96,7 +97,6 @@ public class StarGenerator : MonoBehaviour
 
         if (Input.GetButtonDown("Fire1"))
         {
-            print("clicked");
             if (Physics.Raycast(starDrawRay, out starDrawInfo))
             {
                 if (starDrawInfo.collider.name == "CelestialSphere")
@@ -105,6 +105,15 @@ public class StarGenerator : MonoBehaviour
                     shoot.y = 0;
                     CreatedStarList createdStarList = starList.GetComponent<CreatedStarList>();
                     GameObject star = Instantiate(starType);
+                    if (GameManager.instance.createdStarList.ContainsKey(starName))
+                    {
+                        starName += ( " ("+starNumber+")");
+                        starNumber++;
+                    }
+                    else
+                    {
+                        starNumber = 1;
+                    }
                     GameManager.instance.createdStarList[starName] = star;
                     dec = Mathf.Asin(starDrawInfo.point.y / GameManager.instance.celestialSphereRadius);
                     ra = Mathf.Acos(starDrawInfo.point.z / (GameManager.instance.celestialSphereRadius * Mathf.Cos(dec)));
@@ -116,9 +125,7 @@ public class StarGenerator : MonoBehaviour
                     dec *= 180 / Mathf.PI;
                     ra *= 180 / Mathf.PI;
                     ra /= 15f;
-                    print(dec);
-                    print(ra);
-                    star.GetComponent<Star>().InfoSet(starName, ra, dec, starType, brightness);
+                    star.GetComponent<Star>().InfoSet(starName, ra, dec, starType, brightness, generateTypeNumber);
                     //player.GetComponent<PlayerRot>().StarSet(star.transform.position);
                     createdStarList.Init(starName, star);
                 }
@@ -179,11 +186,21 @@ public class StarGenerator : MonoBehaviour
     {
         CreatedStarList createdStarList = starList.GetComponent<CreatedStarList>();
         GameObject star = Instantiate(starType);
+        if (GameManager.instance.createdStarList.ContainsKey(starName))
+        {
+            starName += (" (" + starNumber + ")");
+            starNumber++;
+        }
+        else
+        {
+            starNumber = 1;
+        }
         GameManager.instance.createdStarList[starName] = star;
-        star.GetComponent<Star>().InfoSet(starName, ra, dec,starType, brightness);
+        star.GetComponent<Star>().InfoSet(starName, ra, dec,starType, brightness, generateTypeNumber);
         player.GetComponent<PlayerRot>().StarSet(star.transform.position);
         createdStarList.Init(starName, star);
         starNameInput.text = null;
+        starName = null;
         raInput.text = null;
         decInput.text = null;
     }
@@ -199,7 +216,7 @@ public class StarGenerator : MonoBehaviour
             ra = Random.Range(0f, 25f);
             dec = Random.Range(-90f, 91f);
             brightness = starBrightnessList[Random.Range(1, starBrightnessList.Count)];
-            star.GetComponent<Star>().InfoSet(starName, ra, dec, starTypeList[0], brightness);
+            star.GetComponent<Star>().InfoSet(starName, ra, dec, starTypeList[0], brightness,generateTypeNumber);
             createdStarList.Init(starName, star);
         }
     }
