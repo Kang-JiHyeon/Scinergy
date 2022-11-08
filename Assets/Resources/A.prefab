@@ -435,7 +435,7 @@ GameObject:
   - component: {fileID: 2727293135176111747}
   - component: {fileID: 3325941221402563029}
   m_Layer: 0
-  m_Name: A (UnityEngine
+  m_Name: A
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

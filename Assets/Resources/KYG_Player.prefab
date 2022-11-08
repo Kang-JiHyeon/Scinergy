@@ -11187,6 +11187,7 @@ MonoBehaviour:
   CreatedStarItemFactory: {fileID: 419366995324989049, guid: 8b15e5eb2fff17f42a27d82bfc321627, type: 3}
   SelectedStar: {fileID: 0}
   SelectedStarItem: {fileID: 0}
+  Player: {fileID: 2836529994268691361}
 --- !u!1 &2836529994525413128
 GameObject:
   m_ObjectHideFlags: 0

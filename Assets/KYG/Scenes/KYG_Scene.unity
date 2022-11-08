@@ -583,6 +583,8 @@ GameObject:
   - component: {fileID: 968449918}
   - component: {fileID: 968449917}
   - component: {fileID: 968449921}
+  - component: {fileID: 968449923}
+  - component: {fileID: 968449922}
   m_Layer: 0
   m_Name: CelestialSphere
   m_TagString: Untagged
@@ -675,12 +677,51 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 968449916}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0e7b6a2343d62b645adf7427f7d46a07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 398836239}
+--- !u!114 &968449922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 968449916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 1
+--- !u!114 &968449923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 968449916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents:
+  - {fileID: 968449922}
+  sceneViewId: 2
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &1191841092
 GameObject:
   m_ObjectHideFlags: 0
@@ -869,6 +910,10 @@ PrefabInstance:
     - target: {fileID: 4730159595522024, guid: e508b99c1b9828548966ab50d78e7eb3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1552013552834910610, guid: e508b99c1b9828548966ab50d78e7eb3, type: 3}
+      propertyPath: sceneViewId
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e508b99c1b9828548966ab50d78e7eb3, type: 3}
@@ -1229,7 +1274,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2155385382b218a41857091ea4c2be66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CelestialSpehere: {fileID: 968449916}
+  CelestialSphere: {fileID: 968449916}
   celestialSphereRadius: 1000
 --- !u!1 &2114503800
 GameObject:

@@ -79,7 +79,7 @@ public class StarPainter : MonoBehaviour
         StarDrawStartBtn.SetActive(false);
         StarDrawEndBtn.SetActive(true);
         Constellation = Instantiate(ConstellationFactory);
-        Constellation.transform.parent = GameManager.instance.CelestialSpehere.transform;
+        Constellation.transform.parent = GameManager.instance.CelestialSphere.transform;
         Constellation.gameObject.name = ConstellationName.text;
     }
 

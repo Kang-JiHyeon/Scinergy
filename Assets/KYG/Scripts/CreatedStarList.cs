@@ -9,6 +9,7 @@ public class CreatedStarList : MonoBehaviour
     public GameObject CreatedStarItemFactory;
     public GameObject SelectedStar;
     public GameObject SelectedStarItem;
+    public GameObject Player;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,7 +31,7 @@ public class CreatedStarList : MonoBehaviour
     }
     public void OnStarLookBtn()
     {
-        GameObject.Find("Player").GetComponent<PlayerRot>().StarSet(SelectedStar.transform.position);
+        Player.GetComponent<PlayerRot>().StarSet(SelectedStar.transform.position);
     }
     public void OnStarDeleteBtn()
     {

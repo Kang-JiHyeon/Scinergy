@@ -50,11 +50,12 @@ public class WorldMap  : MonoBehaviour
             longitudeAdjust = longitude + 90;
             latitudeAdjust = latitude - 90;
             location.position = Input.mousePosition;
-            CelestialControl.GetComponent<Rotate>().mapControl = true;
+            //CelestialControl.GetComponent<Rotate>().mapControl = true;
+            GameManager.instance.CelestialSphere.transform.rotation = Quaternion.identity * Quaternion.Euler(-latitudeAdjust, longitudeAdjust, 0);
         }
         else
         {
-            CelestialControl.GetComponent<Rotate>().mapControl = false;
+            //CelestialControl.GetComponent<Rotate>().mapControl = false;
         }
     }
 }

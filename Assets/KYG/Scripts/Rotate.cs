@@ -19,6 +19,6 @@ public class Rotate : MonoBehaviour
     {
         
         //if (Clock.GetComponent<Clock>().timeFlow || Clock.GetComponent<Clock>().timeReverse) transform.Rotate(Vector3.up * 360/Clock.GetComponent<Clock>().REAL_SECONDS_PER_INGAME_DAY * Time.deltaTime);
-        if(mapControl)transform.rotation = Quaternion.identity * Quaternion.Euler(-worldMap.GetComponent<WorldMap>().latitudeAdjust, worldMap.GetComponent<WorldMap>().longitudeAdjust,0);
+        //if(mapControl)transform.rotation = Quaternion.identity * Quaternion.Euler(-worldMap.GetComponent<WorldMap>().latitudeAdjust, worldMap.GetComponent<WorldMap>().longitudeAdjust,0);
     }
 }

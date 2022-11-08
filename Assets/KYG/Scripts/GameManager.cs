@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     //천구
-    public GameObject CelestialSpehere;
+    public GameObject CelestialSphere;
     //천구 반지름
     public float celestialSphereRadius;
 

@@ -108,7 +108,7 @@ public class TimeControl : MonoBehaviour
                 hour += (1.0f / 12.0f) * offset;
                 sphereRotateAngle = -offset / 24;
             }
-            if(SelectedHand) GameManager.instance.CelestialSpehere.transform.Rotate(Vector3.up * sphereRotateAngle);
+            if(SelectedHand) GameManager.instance.CelestialSphere.transform.Rotate(Vector3.up * sphereRotateAngle);
             #region ³»ÄÚµå
             //if(rotateAngle <= 10f)
             //{
@@ -180,6 +180,6 @@ public class TimeControl : MonoBehaviour
         min -= timeScale;
         hour -= (1.0f / 12.0f) * timeScale;
         sphereRotateAngle = timeScale / 24;
-        GameManager.instance.CelestialSpehere.transform.Rotate(Vector3.up * sphereRotateAngle);
+        GameManager.instance.CelestialSphere.transform.Rotate(Vector3.up * sphereRotateAngle);
     }
 }

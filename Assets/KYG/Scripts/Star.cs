@@ -103,7 +103,7 @@ public class Star : MonoBehaviourPun
 
     public virtual void TransformSet()
     {
-        transform.parent = GameManager.instance.CelestialSpehere.transform;
+        transform.parent = GameManager.instance.CelestialSphere.transform;
         float RadDec;
         float RadRa;
         RadDec = dec * (Mathf.PI / 180);
@@ -124,7 +124,7 @@ public class Star : MonoBehaviourPun
     public virtual void BrightnessSet()
     {
         //GameObject starBrightness = Instantiate(brightness);
-        GameObject starBrightness =PhotonNetwork.Instantiate(brightness.ToString(),transform.position,Quaternion.identity);
+        GameObject starBrightness =PhotonNetwork.Instantiate(brightness.gameObject.name.ToString(),transform.position,Quaternion.identity);
         starBrightness.transform.parent = gameObject.transform;
         //starBrightness.transform.position = transform.position;
     }
