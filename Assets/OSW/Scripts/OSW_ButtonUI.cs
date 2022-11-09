@@ -43,6 +43,7 @@ public class OSW_ButtonUI : MonoBehaviourPun
     public void ColorPicker(Button button)
     {
         osw_lineDrawer.isDrawing = true;
+        osw_lineDrawer.isEraser = false;
 
         if (osw_lineDrawer.isDrawing)
         {
@@ -50,17 +51,17 @@ public class OSW_ButtonUI : MonoBehaviourPun
             colorPicker.SetActive(!colorPicker.activeSelf);
             osw_cursor.CursorChange();
         }
-        else
-        {
-            // 드로잉 On/Off 기능
-            osw_lineDrawer.isDrawing = !osw_lineDrawer.isDrawing;
-        }
+        //else
+        //{
+        //    // 드로잉 On/Off 기능
+        //    osw_lineDrawer.isDrawing = !osw_lineDrawer.isDrawing;
+        //}
 
     }
     public void Eraser()
     {
         osw_lineDrawer.isDrawing = false;
-        osw_lineDrawer.isEraser = !osw_lineDrawer.isEraser;
+        osw_lineDrawer.isEraser = true;
         osw_lineDrawer.color = Color.white;
         osw_lineDrawer.linewidth = 0.3f;
 
@@ -99,7 +100,7 @@ public class OSW_ButtonUI : MonoBehaviourPun
         }
 
         // 네트워크 동기화
-        osw_lineDrawer.photonView.RPC("RPCCtrlZ", RpcTarget.All);
+        osw_lineDrawer.photonView.RPC("RPCCtrlZ", RpcTarget.OthersBuffered);
     }
 
     // 되돌리기 버튼 클릭 시 호출
@@ -115,7 +116,7 @@ public class OSW_ButtonUI : MonoBehaviourPun
         }
 
         // 네트워크 동기화
-        osw_lineDrawer.photonView.RPC("RPCCtrlY", RpcTarget.All);
+        osw_lineDrawer.photonView.RPC("RPCCtrlY", RpcTarget.OthersBuffered);
     }
 
     // 전체 삭제 버튼 클릭 시 호출
@@ -128,6 +129,6 @@ public class OSW_ButtonUI : MonoBehaviourPun
         osw_lineDrawer.lineList.Clear();
 
         // 네트워크 동기화
-        osw_lineDrawer.photonView.RPC("RPCAllDelete", RpcTarget.All);
+        osw_lineDrawer.photonView.RPC("RPCAllDelete", RpcTarget.OthersBuffered);
     }
 }
