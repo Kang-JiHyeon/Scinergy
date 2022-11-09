@@ -289,7 +289,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1279070540}
         m_TargetAssemblyTypeName: SYA_SceneChange, Assembly-CSharp
-        m_MethodName: LoadScene
+        m_MethodName: NameSettingScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
