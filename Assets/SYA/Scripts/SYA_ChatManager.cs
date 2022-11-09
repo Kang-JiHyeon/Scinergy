@@ -8,11 +8,12 @@ using Photon.Pun;
 using AuthenticationValues = Photon.Chat.AuthenticationValues;
 using ExitGames.Client.Photon;
 using UnityEngine.SceneManagement;
+using SYA_UserInfoManagerSaveLoad;
 
 public class SYA_ChatManager : MonoBehaviourPun, IChatClientListener
 {
-
-    private ChatClient chatClient;
+    public static SYA_ChatManager Instance;
+    public ChatClient chatClient;
 
     //ChatItem공장
     public GameObject chatFactory;
@@ -22,25 +23,35 @@ public class SYA_ChatManager : MonoBehaviourPun, IChatClientListener
     public Text outputText;
     public string currentChannel;
 
-    string Allchannel = "Allchannel";
-    string Lobbychannel = "Lobbychannel";
-    string Constchannel = "Constchannel";
-    string Solarchannel = "Solarchannel";
+    Dictionary<string, string> cannel = new Dictionary<string, string>();
+    public string Allchannel = "Allchannel";
+    public string Lobbychannel = "Lobbychannel";
+    public string Constchannel = "Constchannel";
+    public string Solarchannel = "Solarchannel";
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     // Use this for initialization
-    void Awake()
+    void Start()
     {
+        cannel["Allchannel"] = "전체";
+        cannel["Lobbychannel"] = "로비";
+        cannel["Constchannel"] = "별자리";
+        cannel["Solarchannel"] = "행성";
         Application.runInBackground = true;
 
         //채널 서버 연결
         chatClient = new ChatClient(this);
         chatClient.ChatRegion = "ASIA";
         chatClient.UseBackgroundWorkerForSending = true;
-        chatClient.AuthValues = new AuthenticationValues(PhotonNetwork.NickName);
+        //chatClient.AuthValues = new AuthenticationValues(PhotonNetwork.NickName);
         string appId = PhotonNetwork.PhotonServerSettings.AppSettings.AppIdChat;
-        string appVersion = PhotonNetwork.PhotonServerSettings.AppSettings.AppVersion;
+        string appVersion = PhotonNetwork.AppVersion;
         //앱아이디 , 앱버전 , 채팅 기본 설정 
-        chatClient.Connect(appId, appVersion, chatClient.AuthValues);
+        chatClient.Connect(appId, appVersion, new AuthenticationValues(SYA_UserInfoManager.Instance.NicName));
 
         currentChannel = Allchannel;
 /*        chatClient.Subscribe(new string[] { Allchannel });*/
@@ -53,9 +64,11 @@ public class SYA_ChatManager : MonoBehaviourPun, IChatClientListener
     public void OnSubmit(string s)
     {
         //< color =#FFFFF>닉네임</color>
-        string chatText = $"[{currentChannel}] {PhotonNetwork.NickName} : {s}";
+        string chatText = $"[{cannel[currentChannel]}] {PhotonNetwork.NickName} : {s}";
         //photonView.RPC("RpcAddChat", RpcTarget.All, chatText);
+
         PushMessage(currentChannel, chatText);
+
         //4 인풋챗의 내용 초기화
         inputField.text = "";
         //5 인풋챗에 포커싱 유지
@@ -89,15 +102,42 @@ public class SYA_ChatManager : MonoBehaviourPun, IChatClientListener
     {
         string scene = SceneManager.GetActiveScene().name;
         //전체 → 지역 / 지역 → 전체
-        if (currentChannel == Allchannel)
+        if (PhotonNetwork.MasterClient.UserId != pv.Owner.UserId)
         {
-            if (scene == "SymposiumScene")
+            if (currentChannel == Allchannel)
             {
-                currentChannel = Lobbychannel;
+
+                if (scene == "SymposiumScene")
+                {
+                    currentChannel = Lobbychannel;
+                }
+                else
+                {
+                    currentChannel = scene == "KJH_RevolutionScene" ? Solarchannel : Constchannel;
+                }
             }
             else
             {
-                currentChannel = scene == "KJH_RevolutionScene" ? Constchannel : Solarchannel;
+                currentChannel = Allchannel;
+            }
+        }
+        else
+        {
+            if (currentChannel == Lobbychannel)
+            {
+                currentChannel = Solarchannel;
+            }
+            else if (currentChannel == Solarchannel)
+            {
+                currentChannel = Constchannel;
+            }
+            else if (currentChannel == Constchannel)
+            {
+                currentChannel = Allchannel;
+            }
+            else if (currentChannel==Allchannel)
+            {
+                currentChannel = Lobbychannel;
             }
         }
     }
@@ -105,7 +145,7 @@ public class SYA_ChatManager : MonoBehaviourPun, IChatClientListener
     //전송버튼을 누른다
     public void OnClickChat()
     {
-        PushMessage(currentChannel, inputField.text);
+        OnSubmit(inputField.text);
     }
 
     public void PushMessage(string channelName, string message)
@@ -115,7 +155,6 @@ public class SYA_ChatManager : MonoBehaviourPun, IChatClientListener
 
     public void DebugReturn(DebugLevel level, string message)
     {
-        throw new System.NotImplementedException();
     }
 
     // 서버에 연결을 성공함
@@ -129,13 +168,14 @@ public class SYA_ChatManager : MonoBehaviourPun, IChatClientListener
             pv = SYA_SymposiumManager.Instance.player[PhotonNetwork.NickName];
             if (PhotonNetwork.MasterClient.UserId == pv.Owner.UserId)//방장이라면
             {
-                chatClient.Subscribe(new string[] { Allchannel, Lobbychannel, Constchannel, Solarchannel });
+                chatClient.Subscribe(new string[] { Allchannel,Lobbychannel, Constchannel, Solarchannel });
             }
             else
             {
-                chatClient.Subscribe(new string[] { Allchannel, Lobbychannel });
+                chatClient.Subscribe(new string[] { Allchannel,Lobbychannel });
             }
         }
+        chatClient.SetOnlineStatus(ChatUserStatus.Online);
     }
     // 서버와의 연결이 끊어짐
     public void OnDisconnected()
@@ -152,8 +192,8 @@ public class SYA_ChatManager : MonoBehaviourPun, IChatClientListener
     //채널에 메세지가 새로 올라오면 불리는 함수
     public void OnGetMessages(string channelName, string[] senders, object[] messages)
     {
-        if (channelName.Equals(currentChannel))
-        {
+        /*if (channelName.Equals(currentChannel))
+        {*/
             //바뀌기 전 h값 넣기
             prevContentH = trContent.sizeDelta.y;
 
@@ -161,10 +201,15 @@ public class SYA_ChatManager : MonoBehaviourPun, IChatClientListener
             GameObject item = Instantiate(chatFactory, trContent);
             //2 만든 챗아이템에서 챗아이템 컴포넌트 가져오기
             SYA_ChatItem chat = item.GetComponent<SYA_ChatItem>();
+            
+            /*Vector2 y = trContent.;
+            y.y += item.transform.localScale.y;
+            trContent.localScale = y;*/
             //3 가져온 컴포넌트에 s셋팅
-            chat.SetText(messages.ToString());
+            string mess = $" {messages[0].ToString()}";
+            chat.SetText(mess);
             StartCoroutine(AutoScrollBottom());
-        }
+        //}
 
     }
 
@@ -184,37 +229,34 @@ public class SYA_ChatManager : MonoBehaviourPun, IChatClientListener
 
     public void OnPrivateMessage(string sender, object message, string channelName)
     {
-        throw new System.NotImplementedException();
+     
     }
 
     public void OnSubscribed(string[] channels, bool[] results)
     {
-        throw new System.NotImplementedException();
     }
 
     public void OnUnsubscribed(string[] channels)
     {
-        throw new System.NotImplementedException();
     }
 
     public void OnStatusUpdate(string user, int status, bool gotMessage, object message)
     {
-        throw new System.NotImplementedException();
     }
 
     public void OnUserSubscribed(string channel, string user)
     {
-        throw new System.NotImplementedException();
+       
     }
 
     public void OnUserUnsubscribed(string channel, string user)
     {
-        throw new System.NotImplementedException();
+        
     }
 
     public void OnChatStateChange(ChatState state)
     {
-        throw new System.NotImplementedException();
+       
     }
 }
 
