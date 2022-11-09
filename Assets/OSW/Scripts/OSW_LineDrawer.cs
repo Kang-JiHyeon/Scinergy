@@ -12,7 +12,6 @@ public class OSW_LineDrawer : MonoBehaviourPun
     //public int brushNum = 1;
 
     List<Vector3> linePoints;
-    List<Vector3> R_linePoints;
     float timer;
     public float timeDelay;
     public GameObject newLine;
@@ -31,26 +30,41 @@ public class OSW_LineDrawer : MonoBehaviourPun
 
     int index = 0;
     int sortingOrder;
+
+    // 플레이어를 받아
+    PhotonView pv = null;
+    
     void Start()
     {
-        if (photonView.IsMine)
-        {
-            linePoints = new List<Vector3>();
-            timer = timeDelay;
-        }
     }
 
     void Update()
     {
-        // 라인 버튼이 눌렸다면 드로잉 시작!
-        if(isDrawing == true)
+        if (pv == null)
         {
-            Drawing();
+            pv = SYA_SymposiumManager.Instance.player[PhotonNetwork.NickName];
+            if (pv)
+            {
+                linePoints = new List<Vector3>();
+                timer = timeDelay;
+            }
         }
 
-        if (isEraser == true)
+        if (SYA_SymposiumManager.Instance.player[PhotonNetwork.NickName].IsMine)
         {
-            Eraser();
+            // 라인 버튼이 눌렸다면 드로잉 시작!
+            if(SYA_SymposiumManager.Instance.player[PhotonNetwork.NickName].IsMine)
+            {
+                if (isDrawing == true)
+                {
+                    Drawing();
+                }
+            }
+
+            if (isEraser == true)
+            {
+                Eraser();
+            }
         }
     }
 
@@ -63,6 +77,7 @@ public class OSW_LineDrawer : MonoBehaviourPun
             RaycastHit hitInfo;
             if (Physics.Raycast(ray, out hitInfo))
             {
+                print(hitInfo.collider.name);
                 if (hitInfo.collider.name == "Board" || hitInfo.collider.name == "uWC Window Object(Clone)")
                 {
                     // 라인을 생성한다.
@@ -94,11 +109,12 @@ public class OSW_LineDrawer : MonoBehaviourPun
                     lineList.Add(newLine);
 
                     // 네트워크
-                    photonView.RPC("RPCDrawing", RpcTarget.OthersBuffered, linewidth, color, sortingOrder, R_linePoints);
+                    //pv.RPC("RPCDrawing", RpcTarget.OthersBuffered, linewidth, color, sortingOrder, linePoints);
+                    pv.RPC("RpcDraw", RpcTarget.OthersBuffered);
                 }
             }
-
         }
+
         // 마우스 왼쪽 버튼을 누른 상태
         if (Input.GetMouseButton(0))
         {
@@ -123,6 +139,10 @@ public class OSW_LineDrawer : MonoBehaviourPun
                         }
 
                         linePoints.Add(GetMousePosition());
+
+                        // 1109 포톤 체크
+                        if (drawLine == null) return;
+
                         drawLine.positionCount = linePoints.Count;
                         drawLine.SetPositions(linePoints.ToArray());
 
@@ -131,7 +151,8 @@ public class OSW_LineDrawer : MonoBehaviourPun
                         drawLine.GetComponent<LineRenderer>().sortingOrder = sortingOrder;
 
                         // 네트워크
-                        photonView.RPC("RPCDrawing", RpcTarget.OthersBuffered, linewidth, color, sortingOrder, R_linePoints);
+                        //pv.RPC("RPCDrawing", RpcTarget.OthersBuffered, linewidth, color, sortingOrder, linePoints);
+                        pv.RPC("RpcDrawing", RpcTarget.OthersBuffered, linePoints, sortingOrder);
 
                         // 화면 공유된 오브젝트에 글씨를 쓰고 오브젝트를 움직이면 글씨가 그 오브젝트 자식으로 들어가서 같이 움직이게
                         drawLine.transform.parent = hitInfo.transform;
@@ -150,46 +171,63 @@ public class OSW_LineDrawer : MonoBehaviourPun
     }
 
     [PunRPC]
-    void RPCDrawing(float _linewidth, float r, float g, float b, int _sortingOrder, List<Vector3> _linePoints)
+    void RpcDraw()
     {
-        Color color = new Color(r, g, b);
-
-        // 라인을 생성한다.
-        newLine = new GameObject("Line" + lineList.Count);
-
-        // 만약 생성될 때, 리스트에 active가 false인 것들은 삭제
-        for (int i = 0; i < lineList.Count; i++)
-        {
-            if (lineList[i].activeSelf == false)
-            {
-                Destroy(lineList[i].gameObject);
-                lineList.RemoveAt(i); // RemoveAt을 해줘야 되돌리고 다시 선을 그었을때 뻑이 안남.
-                i--;
-            }
-        }
-
-        //그려지는 라인에 LineRenderer, Material, Color, Width를 설정해준다.
-        drawLine = newLine.AddComponent<LineRenderer>();
-
-        // 내가 그리는 라인은 startColor, endColor로 색 지정이 불가
-        // 그래서 Material의 색을 변경해보니 색이 바뀌어진다. 
-        drawLine.material = Resources.Load<Material>("Color");
-        drawLine.material.color = color;
-
-        drawLine.startWidth = _linewidth;
-        drawLine.endWidth = _linewidth;
-
-        // 리스트에 추가
         lineList.Add(newLine);
+    }
 
-        _linePoints.Add(GetMousePosition());
+    [PunRPC]
+    void RpcDrawing(List<Vector3> _linePoints, int _sortingOrder)
+    {
         drawLine.positionCount = _linePoints.Count;
         drawLine.SetPositions(_linePoints.ToArray());
 
-        // 나중에 생긴 선은 위에 올라오게끔
-         _sortingOrder++;
+        _sortingOrder++;
         drawLine.GetComponent<LineRenderer>().sortingOrder = _sortingOrder;
     }
+
+    //[PunRPC]
+    //void RPCDrawing(float _linewidth, Color color, int _sortingOrder, List<Vector3> _linePoints)
+    //{
+    //    //Color color = new Color(r, g, b);
+
+    //    // 라인을 생성한다.
+    //    newLine = new GameObject("Line" + lineList.Count);
+
+    //    /*// 만약 생성될 때, 리스트에 active가 false인 것들은 삭제
+    //    for (int i = 0; i < lineList.Count; i++)
+    //    {
+    //        if (lineList[i].activeSelf == false)
+    //        {
+    //            Destroy(lineList[i].gameObject);
+    //            lineList.RemoveAt(i); // RemoveAt을 해줘야 되돌리고 다시 선을 그었을때 뻑이 안남.
+    //            i--;
+    //        }
+    //    }*/
+
+    //    //그려지는 라인에 LineRenderer, Material, Color, Width를 설정해준다.
+    //    drawLine = newLine.AddComponent<LineRenderer>();
+
+    //    // 내가 그리는 라인은 startColor, endColor로 색 지정이 불가
+    //    // 그래서 Material의 색을 변경해보니 색이 바뀌어진다. 
+    //    drawLine.material = Resources.Load<Material>("Color");
+    //    drawLine.material.color = color;
+
+    //    drawLine.startWidth = _linewidth;
+    //    drawLine.endWidth = _linewidth;
+
+    //    // 리스트에 추가
+    //    lineList.Add(newLine);
+
+    //    _linePoints.Add(GetMousePosition());
+    //    drawLine.positionCount = _linePoints.Count;
+    //    drawLine.SetPositions(_linePoints.ToArray());
+
+    //    // 나중에 생긴 선은 위에 올라오게끔
+    //     _sortingOrder++;
+    //    drawLine.GetComponent<LineRenderer>().sortingOrder = _sortingOrder;
+    //}
+
 
     Vector3 GetMousePosition()
     {
@@ -200,7 +238,7 @@ public class OSW_LineDrawer : MonoBehaviourPun
         {
             if (hitInfo.collider.name == "Board" || hitInfo.collider.name == "uWC Window Object(Clone)")
             {
-                //Debug.Log(hitInfo.collider.name);
+                Debug.Log(hitInfo.collider.name);
             }
         }
         return hitInfo.point;
@@ -241,7 +279,7 @@ public class OSW_LineDrawer : MonoBehaviourPun
                     lineList.Add(newLine);
 
                     // 네트워크
-                    photonView.RPC("RPCDrawing", RpcTarget.OthersBuffered, linewidth, color, sortingOrder, linePoints);
+                    pv.RPC("RPCDrawing", RpcTarget.OthersBuffered, linewidth, color, sortingOrder, linePoints);
                 }
             }
 
@@ -282,7 +320,7 @@ public class OSW_LineDrawer : MonoBehaviourPun
                         timer = timeDelay;
 
                         // 네트워크
-                        photonView.RPC("RPCDrawing", RpcTarget.OthersBuffered, linewidth, color, sortingOrder, linePoints);
+                        pv.RPC("RPCDrawing", RpcTarget.OthersBuffered, linewidth, color, sortingOrder, linePoints);
                     }
                 }
             }
