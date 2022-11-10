@@ -113,6 +113,7 @@ namespace SYA_UI
             SceneManager.LoadScene("KJH_RevolutionScene");
             if (PhotonNetwork.MasterClient.UserId != SYA_SymposiumManager.Instance.player[PhotonNetwork.NickName].Owner.UserId)
             {
+                SYA_ChatManager.Instance.chatClient.Unsubscribe(new string[] { SYA_ChatManager.Instance.Constchannel, SYA_ChatManager.Instance.Lobbychannel });
                 SYA_ChatManager.Instance.chatClient.Subscribe(new string[] { SYA_ChatManager.Instance.Allchannel, SYA_ChatManager.Instance.Solarchannel });
             }
             SYA_ChatManager.Instance.currentChannel = SYA_ChatManager.Instance.Allchannel;
@@ -125,6 +126,7 @@ namespace SYA_UI
             SceneManager.LoadScene("KYG_Scene");
             if (PhotonNetwork.MasterClient.UserId != SYA_SymposiumManager.Instance.player[PhotonNetwork.NickName].Owner.UserId)
             {
+                SYA_ChatManager.Instance.chatClient.Unsubscribe(new string[] { SYA_ChatManager.Instance.Lobbychannel, SYA_ChatManager.Instance.Solarchannel });
                 SYA_ChatManager.Instance.chatClient.Subscribe(new string[] { SYA_ChatManager.Instance.Allchannel, SYA_ChatManager.Instance.Constchannel });
             }
             SYA_ChatManager.Instance.currentChannel = SYA_ChatManager.Instance.Allchannel;
