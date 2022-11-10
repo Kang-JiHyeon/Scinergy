@@ -26,25 +26,33 @@ public class UwcWindowTextureManager : MonoBehaviour
     { 
         get { return onWindowTextureRemoved_; }
     }
+        public GameObject moniter;
+        public UwcWindow[] gameObjects = new UwcWindow[2];
+        public UwcWindowTexture AddWindowTexture(UwcWindow window)
+        {
+            if (gameObjects[0] != null)
+            {
+                RemoveWindowTexture(gameObjects[0]);
+            }
+            if (!windowPrefab)
+            {
+                Debug.LogError("windowPrefab is null.");
+                return null;
+            }
 
-    public UwcWindowTexture AddWindowTexture(UwcWindow window)
-    {
-        if (!windowPrefab) {
-            Debug.LogError("windowPrefab is null.");
-            return null;
-        }
-        
             var obj = Instantiate(windowPrefab, transform);
-        var windowTexture = obj.GetComponent<UwcWindowTexture>();
-        Assert.IsNotNull(windowTexture, "Prefab must have UwcWindowTexture component.");
-        windowTexture.window = window;
-        windowTexture.manager = this;
+            gameObjects[0] = window;
+            //float z = obj.transform.position.z;
+            var windowTexture = obj.GetComponent<UwcWindowTexture>();
+            Assert.IsNotNull(windowTexture, "Prefab must have UwcWindowTexture component.");
+            windowTexture.window = window;
+            windowTexture.manager = this;
 
-        windows_.Add(window.id, windowTexture);
-        onWindowTextureAdded.Invoke(windowTexture);
+            windows_.Add(window.id, windowTexture);
+            onWindowTextureAdded.Invoke(windowTexture);
 
-        return windowTexture;
-    }
+            return windowTexture;
+        } 
 
     public void RemoveWindowTexture(UwcWindow window)
     {

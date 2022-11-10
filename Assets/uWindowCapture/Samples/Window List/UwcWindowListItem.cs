@@ -10,6 +10,8 @@ namespace uWindowCapture
     [RequireComponent(typeof(Image))]
     public class UwcWindowListItem : MonoBehaviour
     {
+        public static UwcWindowListItem Instance;
+
         //영아
         public GameObject slider;
         public Slider sliderScale;
@@ -35,6 +37,7 @@ namespace uWindowCapture
 
         void Awake()
         {
+            Instance = this;
             gr = GetComponentInParent<GraphicRaycaster>();
             image_ = GetComponent<Image>();
             image_.color = notSelected;
@@ -118,10 +121,11 @@ namespace uWindowCapture
             windowTexture.scalePer1000Pixel = scale;
         }
 
+        public GameObject moniter;
         public void SliderValue()
         {
             if(windowTexture !=null)
-            ScaleWindow(windowTexture, false, sliderScale.value);
+            ScaleWindow(windowTexture, false, 2.5f);
         }
         //
     }

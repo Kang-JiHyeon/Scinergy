@@ -9,6 +9,7 @@ public class UwcWindowList : MonoBehaviour
     [SerializeField] GameObject windowListItem;
     [SerializeField] Transform listRoot;
 
+
     public UwcWindowTextureManager windowTextureManager;
 
     Dictionary<int, UwcWindowListItem> items_ = new Dictionary<int, UwcWindowListItem>();
@@ -25,9 +26,10 @@ public class UwcWindowList : MonoBehaviour
 
     void OnWindowAdded(UwcWindow window)
     {
-        if (!window.isAltTabWindow || window.isBackground) return;
 
+        if (!window.isAltTabWindow || window.isBackground) return;
         var gameObject = Instantiate(windowListItem, listRoot, false);
+
         var listItem = gameObject.GetComponent<UwcWindowListItem>();
         listItem.window = window;
         listItem.list = this;

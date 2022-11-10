@@ -95,7 +95,7 @@ public class UwcWindowTexture : MonoBehaviour
     }
 
     public GameObject childWindowPrefab;
-    public float childWindowZDistance = 0.02f;
+    public float childWindowZDistance =0;
 
     [SerializeField]
     string partialWindowTitle_;

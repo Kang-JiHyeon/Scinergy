@@ -25,6 +25,7 @@ Material:
   m_ValidKeywords:
   - _EMISSION
   - _ENVIRONMENTREFLECTIONS_OFF
+  - _RECEIVE_SHADOWS_OFF
   - _SPECULARHIGHLIGHTS_OFF
   m_InvalidKeywords:
   - _GLOSSYREFLECTIONS_OFF
@@ -285,7 +286,7 @@ Material:
     - _Parallax: 0.005
     - _QueueOffset: 0
     - _RayTracing: 0
-    - _ReceiveShadows: 1
+    - _ReceiveShadows: 0
     - _ReceivesSSR: 0
     - _ReceivesSSRTransparent: 0
     - _RefractionModel: 0

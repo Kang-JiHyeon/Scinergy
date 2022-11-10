@@ -12,6 +12,7 @@ namespace SYA_UI
 {
     public class SYA_SympoUI : MonoBehaviourPun
     {
+
         public GameObject window;
         public GameObject windowList;
         //move버튼 On / Off
@@ -42,19 +43,21 @@ namespace SYA_UI
             roomName.text = SYA_SymposiumManager.Instance.roomName;
             roomOwner.text = SYA_SymposiumManager.Instance.roomOwner;
             roomPassward.text = SYA_SymposiumManager.Instance.roomCode;
+           
+
         }
 
         public void UwcOnOff()
         {
             window.SetActive(!window.activeSelf);
             windowList.SetActive(!windowList.activeSelf);
-            moveOnOff.SetActive(!moveOnOff.activeSelf);
+            //moveOnOff.SetActive(!moveOnOff.activeSelf);
         }
 
         public void UwcMoveOnOff()
         {
-            window.GetComponent<SYA_SympoWindowsMoving>().enabled = !window.GetComponent<SYA_SympoWindowsMoving>().enabled;
-            moveOnOffstr.text = $"MOVE : {window.GetComponent<SYA_SympoWindowsMoving>().enabled}";
+            //window.GetComponent<SYA_SympoWindowsMoving>().enabled = !window.GetComponent<SYA_SympoWindowsMoving>().enabled;
+            //moveOnOffstr.text = $"MOVE : {window.GetComponent<SYA_SympoWindowsMoving>().enabled}";
         }
 
         //누르면 플레이어의 리스트를 업데이트
@@ -110,7 +113,7 @@ namespace SYA_UI
 
         public void SolarSystemChange()
         {
-            SceneManager.LoadScene("KJH_RevolutionScene");
+            PhotonNetwork.LoadLevel("KJH_RevolutionScene");
             if (PhotonNetwork.MasterClient.UserId != SYA_SymposiumManager.Instance.player[PhotonNetwork.NickName].Owner.UserId)
             {
                 SYA_ChatManager.Instance.chatClient.Unsubscribe(new string[] { SYA_ChatManager.Instance.Constchannel, SYA_ChatManager.Instance.Lobbychannel });
@@ -123,7 +126,7 @@ namespace SYA_UI
 
         public void ConstellationChange()
         {
-            SceneManager.LoadScene("KYG_Scene");
+           PhotonNetwork.LoadLevel("KYG_Scene");
             if (PhotonNetwork.MasterClient.UserId != SYA_SymposiumManager.Instance.player[PhotonNetwork.NickName].Owner.UserId)
             {
                 SYA_ChatManager.Instance.chatClient.Unsubscribe(new string[] { SYA_ChatManager.Instance.Lobbychannel, SYA_ChatManager.Instance.Solarchannel });

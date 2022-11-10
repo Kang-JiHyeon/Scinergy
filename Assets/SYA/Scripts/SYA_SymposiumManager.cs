@@ -32,7 +32,8 @@ public class SYA_SymposiumManager : MonoBehaviourPun
     // Start is called before the first frame update
     void Start()
     {
-      PhotonNetwork.Instantiate(SYA_UserInfoManager.Instance.Avatar, new Vector3(0, 5.5f, 1), Quaternion.identity);
+        PhotonNetwork.Instantiate(SYA_UserInfoManager.Instance.Avatar, new Vector3(0, 5.5f, 1), Quaternion.identity);
+        PhotonNetwork.AutomaticallySyncScene = false;
     }
 
     // Update is called once per frame
@@ -49,7 +50,7 @@ public class SYA_SymposiumManager : MonoBehaviourPun
         playerName.Add(name);
         player[name] = photonView;
         if (master)//만약 마스터 클라이언트라면
-            playerAuthority[name] = " Presenter";
+            playerAuthority[name] = "Presenter";
         else //아니라면
             playerAuthority[name] = "Audience";
         playerVoice[name] = audioSource;

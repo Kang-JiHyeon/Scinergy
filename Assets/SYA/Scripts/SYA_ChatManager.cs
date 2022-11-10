@@ -210,7 +210,6 @@ public class SYA_ChatManager : MonoBehaviourPun, IChatClientListener
             chat.SetText(mess);
             StartCoroutine(AutoScrollBottom());
         //}
-
     }
 
     IEnumerator AutoScrollBottom()
