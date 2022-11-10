@@ -2,12 +2,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using TMPro;
 public class CreatedStarList : MonoBehaviour
 {
     public Transform CreatedStarListContent;
     public GameObject CreatedStarItemFactory;
     public GameObject SelectedStar;
+    public TextMeshProUGUI SelectedStarName;
     public GameObject SelectedStarItem;
     public GameObject Player;
     public GameObject CreatedStarListUI;
