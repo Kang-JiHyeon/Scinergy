@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,8 +13,10 @@ using UnityEngine.UI;
 
 public class KJH_CustomOption : MonoBehaviour
 {
-    public Transform celestials;
+    public GameObject customUI;
+    public GameObject sunLight;
 
+    public Transform celestials;
     public Transform tr_sun;
     public Transform tr_earth;
     Transform pivot;
@@ -32,12 +35,12 @@ public class KJH_CustomOption : MonoBehaviour
     Vector3 originEarthPos;
 
     public KJH_Orbit orbit;
-    bool isOrbitMove = false;
+    public bool isOrbitMove = false;
 
     List<TrailRenderer> trails = new List<TrailRenderer>();
 
-    public Scrollbar scroll;
-    public Text text_distance;
+    //public Scrollbar scroll;
+    //public Text text_distance;
 
     public KJH_OrbitCamera camara;
 
@@ -45,6 +48,7 @@ public class KJH_CustomOption : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
         //// Rigidbody
         //rb_sun = tr_sun.GetComponent<Rigidbody>();
         //rb_earth = tr_earth.GetComponent<Rigidbody>();
@@ -73,28 +77,40 @@ public class KJH_CustomOption : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        text_distance.text = Vector3.Distance(tr_sun.position, tr_earth.position).ToString();
+
+        sunLight.transform.LookAt(tr_earth.position);
+
+        //text_distance.text = Vector3.Distance(tr_sun.position, tr_earth.position).ToString();
 
         if (isOrbitMove)
         {
             orbit.Gravity();
             //pivot.position = pivotPos;
-            camara.pivot.position = pivot.position;
+            camara.pivot.position = pivotPos;
+
+            // 두 행성 중심을 기준으로 카메라 회전
+            //camara.pivot.position = (tr_sun.position + tr_earth.position) / 2;
         }
     }
 
     void ChangeSunMass(string text)
     {
-        sunMassValue = int.Parse(text);
+        if (text == "") return;
+        sunMassValue = float.Parse(text);
+
     }
 
     void ChangeEarthMass(string text)
     {
-        earthMassValue = int.Parse(text);
+        if (text == "") return;
+        earthMassValue = float.Parse(text);
     }
 
     public void OnClickPlay()
     {
+        // 두 천체의 질량이 모두 입력됬을 때 실행
+        if (input_sun.text.Length <= 0 || input_earth.text.Length <= 0) return;
+
         isOrbitMove = true;
 
         // rigidbody 추가
@@ -105,7 +121,8 @@ public class KJH_CustomOption : MonoBehaviour
         rb_earth.useGravity = false;
 
 
-        if(sunMassValue > earthMassValue)
+        // 질량 큰 행성 기준으로 카메라 회전
+        if (sunMassValue > earthMassValue)
         {
             pivot = tr_sun;
             pivotPos = tr_sun.position;
@@ -115,7 +132,7 @@ public class KJH_CustomOption : MonoBehaviour
             pivot = tr_earth;
             pivotPos = tr_earth.position;
         }
-        
+
         // 질량 변경
         rb_sun.mass = sunMassValue;
         rb_earth.mass = earthMassValue;
@@ -148,6 +165,11 @@ public class KJH_CustomOption : MonoBehaviour
         tr_sun.position = originSunPos;
         tr_earth.position = originEarthPos;
 
+        // inputfield 값 초기화
+        input_sun.text = "";
+        input_earth.text = "";
+
+
         // 궤도 그리기 비활성화
         ChangeTrailTime(0f);
     }
@@ -160,11 +182,14 @@ public class KJH_CustomOption : MonoBehaviour
         }
     }
 
-    public void ChangeDistance()
+    public void OnClickOpen()
     {
-        float x = Mathf.Abs(0.5f - scroll.value);
-        float distance = scroll.value < 0.5f ? -x : x;
-
-        tr_earth.position = new Vector3(distance * 100f, 0, 0);
+        customUI.SetActive(true);
     }
+
+    public void OnClickClose()
+    {
+        customUI.SetActive(false);
+    }
+
 }

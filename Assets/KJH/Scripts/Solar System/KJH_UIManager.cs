@@ -55,14 +55,14 @@ public class KJH_UIManager : MonoBehaviour
 
     Dictionary<string, GameObject> dict_UI = new Dictionary<string, GameObject>();
 
-    // 줌 스크롤 바
-    public Scrollbar zoomScrollbar;
-
     public KJH_SelectPlanet selectPlanet;
 
     // 행성 목록 버튼
     public RectTransform trContent_CBList;
     List<Button> buttons = new List<Button>();
+
+    //[Header("Defalut")]
+
 
     private void Awake()
     {
@@ -214,12 +214,21 @@ public class KJH_UIManager : MonoBehaviour
     {
         if (!isActiveInfo)
         {
-            MoveDefalutUI(-1f);
-            MoveCBInfoMenu(1f);
-            
-            cam.isViewUI = true;
-            float centerX = 600 + (Screen.width - 600) * 0.5f;
-            cam.ChangeCenter(centerX);
+            //MoveDefalutUI(-1f);
+            //MoveCBInfoMenu(1f);
+
+            //cam.isViewUI = true;
+            //float centerX = 600 + (Screen.width - 600) * 0.5f;
+            //cam.ChangeCenter(centerX);
+
+            Transform tr = dict_UI["UI_Info"].transform;
+
+            tr.GetChild(0).gameObject.SetActive(true);
+            tr.GetChild(1).gameObject.SetActive(false);
+            tr.GetChild(2).gameObject.SetActive(false);
+
+            tr.gameObject.SetActive(true);
+
         }
         
         if (isActiveControl)
@@ -304,16 +313,50 @@ public class KJH_UIManager : MonoBehaviour
     /// - 카메라를 이동 시킴
     /// - 카메라의 cameraTarget을 해당 transform 으로 지정
     /// </summary>
-    public void OnClick_ButtonCBList(Transform target)
+    public void OnClick_CBList(Transform target)
     {
         selectPlanet.camaraTarget = target;
         cam.pivot.position = target.position;
         cam.distance = target.localScale.x + 5;
         UI_CBList.SetActive(false);
     }
+
+    // 행성 목록 UI 띄우기
     public GameObject UI_CBList;
     public void OnClick_ViewCB()
     {
         UI_CBList.SetActive(!UI_CBList.activeSelf);
     }
+
+
+    // 정보보기 메뉴의 x 버튼 클릭
+    public void OnClick_Close(GameObject go)
+    {
+        go.SetActive(false);
+
+        if(go.name == "UI_ViewCBStructure")
+        {
+            SetActiveModel(true);
+        }
+    }
+
+    // 정보보기
+    public void OnClick_Info()
+    {
+        dict_UI["UI_Info"].transform.GetChild(1).gameObject.SetActive(true);
+    }
+
+    // 내부구조
+    public void OnClick_Structure()
+    {
+        dict_UI["UI_Info"].transform.GetChild(2).gameObject.SetActive(true);
+        SetActiveModel(false);
+    }
+
+    // 행성 목록 UI 띄우기
+    public void OnClick_OpenCBList()
+    {
+
+    }
+
 }

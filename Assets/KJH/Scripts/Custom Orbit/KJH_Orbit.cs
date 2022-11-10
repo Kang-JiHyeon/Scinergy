@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class KJH_Orbit : MonoBehaviour
 {
+
+
     float G = 100f;
     GameObject[] celestials;
 
@@ -24,9 +26,7 @@ public class KJH_Orbit : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        //Gravity();
 
-        //celestials[1].transform.position = Vector3.zero;
     }
 
     public void Gravity()

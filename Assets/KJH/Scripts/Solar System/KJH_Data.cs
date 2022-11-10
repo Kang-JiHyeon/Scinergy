@@ -77,8 +77,8 @@ public class KJH_Data : MonoBehaviour
         detailInfos = new List<List<string>>();
         strucInfos = new List<List<string>>();
 
-        List<Dictionary<string, object>> infoData = KJH_CSVReader.Read("InfoData");
-        List<Dictionary<string, object>> structureData = KJH_CSVReader.Read("StructureData");
+        List<Dictionary<string, object>> infoData = KJH_CSVReader.Read("SolarSystem/InfoData");
+        List<Dictionary<string, object>> structureData = KJH_CSVReader.Read("SolarSystem/StructureData");
 
 
         // infoData Read

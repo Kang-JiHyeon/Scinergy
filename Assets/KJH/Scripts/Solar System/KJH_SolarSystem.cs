@@ -65,9 +65,9 @@ public class KJH_SolarSystem : MonoBehaviour
     void Start()
     {
         // 행성 리스트에 추가
-        for (int i = 0; i < go_planets.childCount; i++)
+        for (int i = 0; i < planets.Count; i++)
         {
-            planets.Add(go_planets.GetChild(i).transform);
+            //planets.Add(go_planets.GetChild(i).transform);
             // 행성 자전축 기울기 초기화
             planets[i].GetChild(1).localRotation = Quaternion.Euler(axisTilts[i], 0, 0);
 
@@ -80,6 +80,7 @@ public class KJH_SolarSystem : MonoBehaviour
             // 라이트 각도 행성을 비추도록 초기화
             planets[i].Find("OrbitAxis").GetChild(0).forward = planets[i].position - transform.position;
 
+            if (i > 7) break;
             // 행성 궤도 그리기
             lr = planets[i].GetChild(0).GetComponent<LineRenderer>();
             radius = Vector3.Distance(planets[i].GetChild(0).position, planets[i].position);

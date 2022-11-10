@@ -49,37 +49,45 @@ public class KJH_OrbitCamera : MonoBehaviour
 
         // 마우스 버튼 입력에 따른 카메라 회전 제어 변수
         if (Input.GetMouseButtonDown(0))
+        {
             isRot = true;
+            ClickCelestials();
+        }
 
         if (Input.GetMouseButtonUp(0))
+        {
             isRot = false;
+            isDraging = false;
+        }
 
         // ui를 클릭하지 않을 때 카메라 회전 실행
         if (!EventSystem.current.IsPointerOverGameObject())
         {
-            //ZoomInOut();
-            CameraZoom();
-
-            // 마우스 왼쪽 버튼을 누르고 있을 때
-            if (isRot)
+            if(isDraging == false)
             {
-                // 이전 마우스 입력값
-                preMouse.x = mx;
-                preMouse.y = my;
+                CameraZoom();
 
-                // 현재 마우스 입력값
-                mx = Input.GetAxis("Mouse X");
-                my = Input.GetAxis("Mouse Y");
+                // 마우스 왼쪽 버튼을 누르고 있을 때
+                if (isRot)
+                {
+                    // 이전 마우스 입력값
+                    preMouse.x = mx;
+                    preMouse.y = my;
 
-                Rotate(mx, my);
+                    // 현재 마우스 입력값
+                    mx = Input.GetAxis("Mouse X");
+                    my = Input.GetAxis("Mouse Y");
+
+                    Rotate(mx, my);
+                }
+                // 마우스 왼쪽 버튼을 누르고 있지 않을 때
+                else
+                {
+                    Rotate(preMouse.x, preMouse.y);
+                    preMouse = Vector2.Lerp(preMouse, Vector2.zero, Time.deltaTime);
+                }
             }
-            // 마우스 왼쪽 버튼을 누르고 있지 않을 때
-            else
-            {
-                Rotate(preMouse.x, preMouse.y);
-                preMouse = Vector2.Lerp(preMouse, Vector2.zero, Time.deltaTime);
-            }
-
+            
         }
     }
 
@@ -92,24 +100,6 @@ public class KJH_OrbitCamera : MonoBehaviour
         rotY = Mathf.Clamp(rotY, -90, 90);
 
         pivot.localEulerAngles = new Vector3(-rotY, rotX, 0);
-    }
-
-
-    void ZoomInOut()
-    {
-
-        // 마우스 휠 입력
-        distance -= Input.GetAxis("Mouse ScrollWheel") * zoomSpeed;
-
-        if (distance < minDistance) distance = minDistance;
-        if (distance > maxDistance) distance = maxDistance;
-
-
-        Vector3 reverseDistance = new Vector3(0f, 0f, distance);
-
-        cam.position = Vector3.SmoothDamp(cam.position, pivot.position - cam.rotation * reverseDistance, ref velocity, zoomSmoothTime);
-
-
     }
 
     void CameraZoom()
@@ -134,5 +124,21 @@ public class KJH_OrbitCamera : MonoBehaviour
         if (scroll < 0) return -1;
         if (scroll > 0) return 1;
         return 0;
+    }
+
+    bool isDraging = false;
+    void ClickCelestials()
+    {
+        Vector3 mouse = Input.mousePosition;
+        mouse.z = Camera.main.farClipPlane;
+        Vector3 dir = Camera.main.ScreenToWorldPoint(mouse);
+
+        RaycastHit hitInfo;
+        if(Physics.Raycast(Camera.main.transform.position, dir, out hitInfo, mouse.z)){
+            if (hitInfo.transform.CompareTag("Celestial"))
+            {
+                isDraging = true;
+            }
+        }
     }
 }
