@@ -1,13 +1,11 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/SYA/Scenes/SymposiumScene/Lightmap-3_comp_light.exr.meta
-guid: aebe1b5731fcde6449456b0c7fee8c39
-========
-guid: aa25c43d37c9b3848a25f805deb8c658
->>>>>>>> YCW:Assets/1toonteen/textures/TTLegs01.png.meta
+guid: 0660363992b2bc940b5de813bf0c8fa0
+timeCreated: 1554235401
+licenseType: Store
 TextureImporter:
   fileIDToRecycleName: {}
   externalObjects: {}
-  serializedVersion: 9
+  serializedVersion: 4
   mipmaps:
     mipMapMode: 0
     enableMipMap: 1
@@ -25,8 +23,6 @@ TextureImporter:
     heightScale: 0.25
     normalMapFilter: 0
   isReadable: 0
-  streamingMipmaps: 1
-  streamingMipmapsPriority: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -35,21 +31,12 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-<<<<<<<< HEAD:Assets/SYA/Scenes/SymposiumScene/Lightmap-3_comp_light.exr.meta
-    filterMode: 1
-    aniso: 3
-    mipBias: 0
-    wrapU: 1
-    wrapV: 1
-    wrapW: 1
-========
     filterMode: -1
     aniso: -1
-    mipBias: -100
+    mipBias: -1
     wrapU: -1
     wrapV: -1
     wrapW: -1
->>>>>>>> YCW:Assets/1toonteen/textures/TTLegs01.png.meta
   nPOTScale: 1
   lightmap: 0
   compressionQuality: 50
@@ -58,26 +45,19 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spriteGenerateFallbackPhysicsShape: 1
-  alphaUsage: 0
+  spritePixelsToUnits: 100
+  alphaUsage: 1
   alphaIsTransparency: 0
   spriteTessellationDetail: -1
-  textureType: 6
+  textureType: 0
   textureShape: 1
-  singleChannelComponent: 0
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
   platformSettings:
-  - serializedVersion: 2
-    buildTarget: DefaultTexturePlatform
-<<<<<<<< HEAD:Assets/SYA/Scenes/SymposiumScene/Lightmap-3_comp_light.exr.meta
+  - buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
-========
-    maxTextureSize: 1024
->>>>>>>> YCW:Assets/1toonteen/textures/TTLegs01.png.meta
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -85,32 +65,12 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
-    androidETC2FallbackOverride: 0
-  - serializedVersion: 2
-    buildTarget: Standalone
-    maxTextureSize: 1024
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
     sprites: []
     outline: []
     physicsShape: []
-    bones: []
-    spriteID: 
-    vertices: []
-    indices: 
-    edges: []
-    weights: []
   spritePackingTag: 
-  pSDRemoveMatte: 0
-  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 
