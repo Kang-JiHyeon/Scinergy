@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Cursor.visible = false;
+        //Cursor.visible = false;
         //플레이어를 생성한다.
         PhotonNetwork.Instantiate("KYG_Player", Vector3.zero, Quaternion.identity);
     }

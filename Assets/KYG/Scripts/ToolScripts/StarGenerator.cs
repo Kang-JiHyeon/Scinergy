@@ -37,9 +37,11 @@ public class StarGenerator : MonoBehaviourPun
 
     public GameObject starList;
 
+    public GameObject createdStarListUI;
+
     public GameObject testObject;
 
-    int generateTypeNumber = 0;
+    public int generateTypeNumber = 0;
 
     public bool drawStar;
     private void Awake()
@@ -75,15 +77,20 @@ public class StarGenerator : MonoBehaviourPun
         if(starNameInput.text !="") starName = starNameInput.text;
         if (decInput.text != "") dec = float.Parse(decInput.text);
         if (raInput.text != "") ra = float.Parse(raInput.text);
-        if (drawStar && EventSystem.current.IsPointerOverGameObject() == false) DrawStar();
-        if (starNameInput.text == ""|| generateTypeDropdown.value == 0 || raInput == null || decInput == null || typeDropdown.value == 0 || brightnessDropdown.value ==0)
+
+        print("UI 위에 마우스 위치 : " + EventSystem.current.IsPointerOverGameObject());
+
+
+        if (drawStar)
         {
-            generateBtn.interactable = false;
+            if (EventSystem.current.IsPointerOverGameObject() == false)
+            {
+                DrawStar();
+            }
+
         }
-        else
-        {
-            generateBtn.interactable = true;
-        }
+        GenerateType();
+
     }
     int starNumber = 1;
     public void DrawStar()
@@ -98,10 +105,13 @@ public class StarGenerator : MonoBehaviourPun
 
         if (Input.GetButtonDown("Fire1"))
         {
+            print("clicked");
             if (Physics.Raycast(starDrawRay, out starDrawInfo))
             {
+                print("rayCasted");
                 if (starDrawInfo.collider.name == "CelestialSphere")
                 {
+                    print("ColliderChecked");
                     Vector3 shoot = starDrawRay.direction;
                     shoot.y = 0;
                     CreatedStarList createdStarList = starList.GetComponent<CreatedStarList>();
@@ -160,19 +170,64 @@ public class StarGenerator : MonoBehaviourPun
     public void OnGenerateTypeDropDownEvent(int index)
     {
         generateTypeNumber = index;
-        if (generateTypeNumber == 1)
+    }
+    public void GenerateType()
+    {
+        switch (generateTypeNumber)
         {
-            decInput.transform.gameObject.SetActive(true);
-            raInput.transform.gameObject.SetActive(true);
-            generateBtn.interactable = true;
-            drawStar = false;
-        }
-        if (generateTypeNumber == 2)
-        {
-            decInput.transform.gameObject.SetActive(false);
-            raInput.transform.gameObject.SetActive(false);
-            generateBtn.interactable = false;
-            drawStar = true;
+            case 0:
+                generateBtn.interactable = false;
+                return;
+            case 1:
+                decInput.transform.gameObject.SetActive(true);
+                raInput.transform.gameObject.SetActive(true);
+                starAmount.transform.gameObject.SetActive(false);
+                starNameInput.interactable = true;
+                typeDropdown.interactable = true;
+                brightnessDropdown.interactable = true;
+                if (starNameInput.text == "" || generateTypeDropdown.value == 0 || raInput.text ==""  || decInput.text == "" || typeDropdown.value == 0 || brightnessDropdown.value == 0)
+                {
+                    generateBtn.interactable = false;
+                }
+                else
+                {
+                    generateBtn.interactable = true;
+                }
+                drawStar = false;
+                return;
+            case 2:
+                decInput.transform.gameObject.SetActive(false);
+                raInput.transform.gameObject.SetActive(false);
+                starAmount.transform.gameObject.SetActive(false);
+                starNameInput.interactable = true;
+                typeDropdown.interactable = true;
+                brightnessDropdown.interactable = true;
+                if(starNameInput.text != ""|| typeDropdown.value == 0 || brightnessDropdown.value == 0)
+                {
+                    generateBtn.interactable = false;
+                }
+                else
+                {
+                    generateBtn.interactable = true;
+                }
+                drawStar = true;
+                return;
+            case 3:
+                decInput.transform.gameObject.SetActive(false);
+                raInput.transform.gameObject.SetActive(false);
+                starAmount.transform.gameObject.SetActive(true);
+                starNameInput.interactable = false;
+                typeDropdown.interactable = false;
+                brightnessDropdown.interactable = false;
+                if(starAmount.text != "")
+                {
+                    generateBtn.interactable = true;
+                }
+                else
+                {
+                    generateBtn.interactable = false;
+                }
+                return;
         }
     }
     public void OnTypeDropDownEvent(int index)
@@ -185,53 +240,64 @@ public class StarGenerator : MonoBehaviourPun
     }
     public void OnGenerateStarBtn()
     {
-        CreatedStarList createdStarList = starList.GetComponent<CreatedStarList>();
-        GameObject star = Instantiate(starType);
-        if (GameManager.instance.createdStarList.ContainsKey(starName))
+        if (generateTypeNumber ==3)
         {
-            starName += (" (" + starNumber + ")");
-            starNumber++;
+            for (int i = 0; i < int.Parse(starAmount.text); i++)
+            {
+                CreatedStarList createdStarList = starList.GetComponent<CreatedStarList>();
+                //GameObject star = Instantiate(starTypeList[0]);
+                GameObject star = PhotonNetwork.Instantiate(starTypeList[0].gameObject.name, Vector3.zero, Quaternion.identity);
+                starName = "Star" + i;
+                GameManager.instance.createdStarList[starName] = star;
+                ra = Random.Range(0f, 25f);
+                dec = Random.Range(-90f, 91f);
+                brightness = starBrightnessList[Random.Range(1, starBrightnessList.Count)];
+                //generateTypeNumber = 1;
+                star.GetComponent<Star>().InfoSet(starName, ra, dec, starTypeList[0], brightness, generateTypeNumber);
+                createdStarList.Init(starName, star);
+            }
         }
         else
         {
-            starNumber = 1;
+            CreatedStarList createdStarList = starList.GetComponent<CreatedStarList>();
+            GameObject star = Instantiate(starType);
+            if (GameManager.instance.createdStarList.ContainsKey(starName))
+            {
+                starName += (" (" + starNumber + ")");
+                starNumber++;
+            }
+            else
+            {
+                starNumber = 1;
+            }
+            GameManager.instance.createdStarList[starName] = star;
+            star.GetComponent<Star>().InfoSet(starName, ra, dec,starType, brightness, generateTypeNumber);
+            player.GetComponent<PlayerRot>().StarSet(star.transform.position);
+            createdStarList.Init(starName, star);
+            starNameInput.text = null;
+            starName = null;
+            raInput.text = null;
+            decInput.text = null;
         }
-        GameManager.instance.createdStarList[starName] = star;
-        star.GetComponent<Star>().InfoSet(starName, ra, dec,starType, brightness, generateTypeNumber);
-        player.GetComponent<PlayerRot>().StarSet(star.transform.position);
-        createdStarList.Init(starName, star);
-        starNameInput.text = null;
-        starName = null;
-        raInput.text = null;
-        decInput.text = null;
     }
 
     public void OnRandomGenerateBtn()
     {
-        for(int i = 0; i<int.Parse(starAmount.text); i++)
-        {
-            CreatedStarList createdStarList = starList.GetComponent<CreatedStarList>();
-            //GameObject star = Instantiate(starTypeList[0]);
-            GameObject star = PhotonNetwork.Instantiate(starTypeList[0].gameObject.name, Vector3.zero, Quaternion.identity);
-            starName = "Star" + i;
-            GameManager.instance.createdStarList[starName] = star;
-            ra = Random.Range(0f, 25f);
-            dec = Random.Range(-90f, 91f);
-            brightness = starBrightnessList[Random.Range(1, starBrightnessList.Count)];
-            generateTypeNumber = 1;
-            star.GetComponent<Star>().InfoSet(starName, ra, dec, starTypeList[0], brightness,generateTypeNumber);
-            createdStarList.Init(starName, star);
-        }
+
     }
     public void OnStarListBtn()
     {
-        if (starList.activeSelf)
+        if (createdStarListUI.activeSelf)
         {
-            starList.SetActive(false);
+            createdStarListUI.SetActive(false);
         }
         else
         {
-            starList.SetActive(true);
+            createdStarListUI.SetActive(true);
         }
+    }
+    public void OnCloseBtn()
+    {
+        gameObject.SetActive(false);
     }
 }

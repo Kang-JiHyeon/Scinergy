@@ -113,7 +113,7 @@ public class Star : MonoBehaviourPun
         float x = rr * Mathf.Sin(RadRa);
         float y = GameManager.instance.celestialSphereRadius * Mathf.Cos(RadDec);
         float z = rr * Mathf.Cos(RadRa);
-        if(generatedType == 1)
+        if(generatedType == 1 || generatedType ==3)
         {
             transform.localPosition = new Vector3(x, y, z);
         }else if(generatedType == 2)

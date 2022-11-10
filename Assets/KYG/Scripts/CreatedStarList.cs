@@ -10,6 +10,7 @@ public class CreatedStarList : MonoBehaviour
     public GameObject SelectedStar;
     public GameObject SelectedStarItem;
     public GameObject Player;
+    public GameObject CreatedStarListUI;
     // Start is called before the first frame update
     void Start()
     {
@@ -56,5 +57,10 @@ public class CreatedStarList : MonoBehaviour
             }
         }
         GameManager.instance.createdStarList.Clear();
+    }
+
+    public void OnCloseBtn()
+    {
+        CreatedStarListUI.SetActive(false);
     }
 }
