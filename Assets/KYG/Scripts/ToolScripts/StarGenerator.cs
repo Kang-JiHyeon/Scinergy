@@ -237,25 +237,25 @@ public class StarGenerator : MonoBehaviourPun
     {
         if (generateTypeNumber ==3)
         {
-            for (int i = 0; i < int.Parse(starAmount.text); i++)
+            for(int i = 0; i < int.Parse(starAmount.text); i++)
             {
-                CreatedStarList createdStarList = starList.GetComponent<CreatedStarList>();
-                //GameObject star = Instantiate(starTypeList[0]);
-                GameObject star = PhotonNetwork.Instantiate(starTypeList[0].gameObject.name, Vector3.zero, Quaternion.identity);
                 starName = "Star" + i;
-                GameManager.instance.createdStarList[starName] = star;
                 ra = Random.Range(0f, 25f);
                 dec = Random.Range(-90f, 91f);
-                brightness = starBrightnessList[Random.Range(1, starBrightnessList.Count)];
-                //generateTypeNumber = 1;
-                star.GetComponent<Star>().InfoSet(starName, ra, dec, starTypeList[0], brightness, generateTypeNumber);
-                createdStarList.Init(starName, star);
+                int brightnessType = Random.Range(1, starBrightnessList.Count);
+                photonView.RPC("RPCRandomGenerate", RpcTarget.All,
+                    0,
+                    starName,
+                    ra,
+                    dec,
+                    brightnessType-1,
+                    generateTypeNumber
+                    );
+
             }
         }
         else
         {
-            CreatedStarList createdStarList = starList.GetComponent<CreatedStarList>();
-            GameObject star = Instantiate(starType);
             if (GameManager.instance.createdStarList.ContainsKey(starName))
             {
                 starName += (" (" + starNumber + ")");
@@ -265,21 +265,43 @@ public class StarGenerator : MonoBehaviourPun
             {
                 starNumber = 1;
             }
-            GameManager.instance.createdStarList[starName] = star;
-            star.GetComponent<Star>().InfoSet(starName, ra, dec,starType, brightness, generateTypeNumber);
+            photonView.RPC("RPCNormalGenerate", RpcTarget.All,
+                            typeDropdown.value-1,
+                            starName,
+                            ra,
+                            dec,
+                            brightnessDropdown.value-1,
+                            generateTypeNumber
+                            );
             player.GetComponent<PlayerRot>().StarSet(star.transform.position);
-            createdStarList.Init(starName, star);
-            starNameInput.text = null;
-            starName = null;
-            raInput.text = null;
-            decInput.text = null;
         }
+        starNameInput.text = null;
+        starName = null;
+        raInput.text = null;
+        decInput.text = null;
     }
-
-    public void OnRandomGenerateBtn()
+    public GameObject star;
+    [PunRPC]
+    void RPCNormalGenerate(int starType, string starName, float ra, float dec, int brightness, int generateTypeNumber)
     {
-
+        CreatedStarList createdStarList = starList.GetComponent<CreatedStarList>();
+        star = Instantiate(starTypeList[starType]);
+        GameManager.instance.createdStarList[starName] = star;
+        star.GetComponent<Star>().InfoSet(starName, ra, dec, starTypeList[starType], starBrightnessList[brightness], generateTypeNumber);
+        createdStarList.Init(starName, star);
     }
+    [PunRPC]
+    void RPCRandomGenerate(int starType, string starName, float ra, float dec, int brightnessType, int generateTypeNumber)
+    {
+            CreatedStarList createdStarList = starList.GetComponent<CreatedStarList>();
+            //GameObject star = Instantiate(starTypeList[0]);
+            GameObject star = Instantiate(starTypeList[starType]);            
+            GameManager.instance.createdStarList[starName] = star;          
+            brightness = starBrightnessList[brightnessType];
+            star.GetComponent<Star>().InfoSet(starName, ra, dec, starTypeList[starType], brightness, generateTypeNumber);
+            createdStarList.Init(starName, star);       
+    }
+
     public void OnStarListBtn()
     {
         if (createdStarListUI.activeSelf)
