@@ -257,8 +257,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7238612778253290705}
-        m_TargetAssemblyTypeName: CreatedStarList, Assembly-CSharp
+      - m_Target: {fileID: 7732360376151840648}
+        m_TargetAssemblyTypeName: CreatedConstellationList, Assembly-CSharp
         m_MethodName: OnCloseBtn
         m_Mode: 1
         m_Arguments:
@@ -282,7 +282,7 @@ GameObject:
   - component: {fileID: 1740548864787338146}
   - component: {fileID: 7662733276343432628}
   m_Layer: 5
-  m_Name: StarLookBtn
+  m_Name: ConstellationLookBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -391,9 +391,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7238612778253290705}
-        m_TargetAssemblyTypeName: CreatedStarList, Assembly-CSharp
-        m_MethodName: OnStarLookBtn
+      - m_Target: {fileID: 7732360376151840648}
+        m_TargetAssemblyTypeName: CreatedConstellationList, Assembly-CSharp
+        m_MethodName: OnConstellationLookBtn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -416,7 +416,7 @@ GameObject:
   - component: {fileID: 686950769250981469}
   - component: {fileID: 6321954566304392226}
   m_Layer: 5
-  m_Name: DeleteStarBtn
+  m_Name: DeleteConstellationBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -525,9 +525,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7238612778253290705}
-        m_TargetAssemblyTypeName: CreatedStarList, Assembly-CSharp
-        m_MethodName: OnStarDeleteBtn
+      - m_Target: {fileID: 7732360376151840648}
+        m_TargetAssemblyTypeName: CreatedConstellationList, Assembly-CSharp
+        m_MethodName: OnConstellationDeleteBtn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2147,7 +2147,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &2836529993212779531
@@ -4683,7 +4683,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2836529993570609018
 Transform:
   m_ObjectHideFlags: 0
@@ -7078,7 +7078,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &2836529993945222397
@@ -9289,7 +9289,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &2836529994254188586
@@ -11415,6 +11415,7 @@ MonoBehaviour:
   SelectedStarItem: {fileID: 0}
   Player: {fileID: 2836529994268691361}
   CreatedStarListUI: {fileID: 6655743558778287354}
+  createdConstellationList: {fileID: 0}
 --- !u!1 &2836529994525413128
 GameObject:
   m_ObjectHideFlags: 0
@@ -12749,7 +12750,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &2836529994756472506
@@ -14565,12 +14566,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lineFactory: {fileID: 1165502114755997006, guid: f148066725fc8b34ea64bc8e79a9ac1d, type: 3}
   ConstellationFactory: {fileID: 2910400192313477546, guid: 293d590ff690e2841870c84a6c6d4bfd, type: 3}
-  ConstellationName: {fileID: 2836529993922686909}
+  ConstellationNameInput: {fileID: 2836529993922686909}
   StarDrawStartBtn: {fileID: 2836529994254188586}
   StarDrawEndBtn: {fileID: 2836529993690294058}
   Constellation: {fileID: 0}
+  ConstellationList: {fileID: 7301561596998372735}
   starLine: {fileID: 0}
   player: {fileID: 2836529994268691361}
+  constellationName: 
+  starName: []
 --- !u!1 &2836529995034815097
 GameObject:
   m_ObjectHideFlags: 0
@@ -15080,7 +15084,7 @@ GameObject:
   - component: {fileID: 3290849643267672867}
   - component: {fileID: 419497746439446018}
   m_Layer: 5
-  m_Name: 'DeleteAllStarBtn '
+  m_Name: 'DeleteAllConstellationBtn '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15189,9 +15193,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7238612778253290705}
-        m_TargetAssemblyTypeName: CreatedStarList, Assembly-CSharp
-        m_MethodName: OnDeleteAllStar
+      - m_Target: {fileID: 7732360376151840648}
+        m_TargetAssemblyTypeName: CreatedConstellationList, Assembly-CSharp
+        m_MethodName: OnDeleteAllConstellation
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -16393,7 +16397,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -100, y: 97.49951}
+  m_AnchoredPosition: {x: -100, y: 97.50001}
   m_SizeDelta: {x: 200, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &9136316450345724185
@@ -16939,7 +16943,7 @@ GameObject:
   - component: {fileID: 3929019395340062408}
   - component: {fileID: 8088902310080487734}
   - component: {fileID: 5537425052223885026}
-  - component: {fileID: 7238612778253290705}
+  - component: {fileID: 7732360376151840648}
   m_Layer: 5
   m_Name: CreatedConstellationList
   m_TagString: Untagged
@@ -17038,7 +17042,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &7238612778253290705
+--- !u!114 &7732360376151840648
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -17047,16 +17051,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 7301561596998372735}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 250a574b420027a41bc79b94503a9965, type: 3}
+  m_Script: {fileID: 11500000, guid: 2ac73714d0e661442ae17c526e78600a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CreatedStarListContent: {fileID: 3197163221486523368}
-  CreatedStarItemFactory: {fileID: 419366995324989049, guid: 8b15e5eb2fff17f42a27d82bfc321627, type: 3}
-  SelectedStar: {fileID: 0}
-  SelectedStarName: {fileID: 5782360084818130402}
-  SelectedStarItem: {fileID: 0}
+  CreatedConstellationListContent: {fileID: 3197163221486523368}
+  CreatedConstellationItemFactory: {fileID: 419366995324989049, guid: 6a80dff662703494bbe9db400adbe616, type: 3}
+  SelectedConstellation: {fileID: 0}
+  SelectedConstellationName: {fileID: 5782360084818130402}
+  SelectedConstellationItem: {fileID: 0}
   Player: {fileID: 2836529994268691361}
-  CreatedStarListUI: {fileID: 3480175199253437390}
+  CreatedConstellationListUI: {fileID: 3480175199253437390}
+  CreatedStarList: {fileID: 2836529994806683588}
 --- !u!1 &8050592590369331233
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,13 +8,15 @@ public class StarPainter : MonoBehaviour
 {
     public GameObject lineFactory;
     public GameObject ConstellationFactory;
-    public TMP_InputField ConstellationName;
+    public TMP_InputField ConstellationNameInput;
     public GameObject StarDrawStartBtn;
     public GameObject StarDrawEndBtn;
     public GameObject Constellation;
+    public GameObject ConstellationList;
     public StarLine starLine;
     public GameObject player;
     bool isDrawing = false;
+    public string constellationName;
     GameObject star1;
     GameObject star2;
 
@@ -29,7 +31,7 @@ public class StarPainter : MonoBehaviour
     {
 
         if(isDrawing) StarRay();
-        if (ConstellationName.GetComponent<TMP_InputField>().isFocused)
+        if (ConstellationNameInput.GetComponent<TMP_InputField>().isFocused)
         {
             player.GetComponent<PlayerMove>().enabled = false;
         }
@@ -49,7 +51,6 @@ public class StarPainter : MonoBehaviour
             {
                 if (starInfo.transform.GetComponent<Star>())
                 {
-                    print(starInfo.transform.name);
                     star1 = starInfo.transform.gameObject;
                     star1.transform.parent = Constellation.transform;
                 }
@@ -73,6 +74,7 @@ public class StarPainter : MonoBehaviour
         }
 
     }
+    public List<string> starName = new();
     public void OnDrawStartBtn()
     {
         isDrawing = true;
@@ -80,14 +82,19 @@ public class StarPainter : MonoBehaviour
         StarDrawEndBtn.SetActive(true);
         Constellation = Instantiate(ConstellationFactory);
         Constellation.transform.parent = GameManager.instance.CelestialSphere.transform;
-        Constellation.gameObject.name = ConstellationName.text;
+        constellationName = ConstellationNameInput.text;
+        Constellation.name = constellationName;
+        GameManager.instance.createdConstellationList[constellationName] = Constellation;
+        starName.Add(constellationName);
     }
-
+    
     public void OnDrawEndBtn()
     {
+        CreatedConstellationList createdConstellationList = ConstellationList.GetComponent<CreatedConstellationList>();
+        createdConstellationList.Init(constellationName, Constellation);
         isDrawing = false;
         StarDrawStartBtn.SetActive(true);
         StarDrawEndBtn.SetActive(false);
-        ConstellationName.text = null;
+        ConstellationNameInput.text = null;
     }
 }

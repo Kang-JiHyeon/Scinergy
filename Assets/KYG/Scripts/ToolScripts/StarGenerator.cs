@@ -78,9 +78,6 @@ public class StarGenerator : MonoBehaviourPun
         if (decInput.text != "") dec = float.Parse(decInput.text);
         if (raInput.text != "") ra = float.Parse(raInput.text);
 
-        print("UI 위에 마우스 위치 : " + EventSystem.current.IsPointerOverGameObject());
-
-
         if (drawStar)
         {
             if (EventSystem.current.IsPointerOverGameObject() == false)
@@ -105,13 +102,10 @@ public class StarGenerator : MonoBehaviourPun
 
         if (Input.GetButtonDown("Fire1"))
         {
-            print("clicked");
             if (Physics.Raycast(starDrawRay, out starDrawInfo))
             {
-                print("rayCasted");
                 if (starDrawInfo.collider.name == "CelestialSphere")
                 {
-                    print("ColliderChecked");
                     Vector3 shoot = starDrawRay.direction;
                     shoot.y = 0;
                     CreatedStarList createdStarList = starList.GetComponent<CreatedStarList>();

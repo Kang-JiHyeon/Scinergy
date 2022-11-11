@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
     public float celestialSphereRadius;
 
     public Dictionary<string, GameObject> createdStarList = new ();
+
+    public Dictionary<string, GameObject> createdConstellationList = new();
     private void Awake()
     {
         if (!instance)

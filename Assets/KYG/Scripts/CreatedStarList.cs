@@ -12,6 +12,7 @@ public class CreatedStarList : MonoBehaviour
     public GameObject SelectedStarItem;
     public GameObject Player;
     public GameObject CreatedStarListUI;
+    public GameObject createdConstellationList;
     // Start is called before the first frame update
     void Start()
     {
