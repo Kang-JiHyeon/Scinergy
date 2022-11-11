@@ -59,6 +59,13 @@ MonoBehaviour:
   - RPCCtrlZ
   - RpcMicOnOff
   - RPCDrawing
+  - RpcDraw
+  - SendLineVec
+  - RpcCtrlZ
+  - RpcAllDelete
+  - RpcCtrlY
+  - RpcAllMute
+  - RpcAllUnmute
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

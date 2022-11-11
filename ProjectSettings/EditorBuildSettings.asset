@@ -21,6 +21,9 @@ EditorBuildSettings:
     path: Assets/SYA/Scenes/SYA_SymposiumRoomMake.unity
     guid: 88750382d40875e4aa51d2cfe97860f7
   - enabled: 1
+    path: Assets/OSW/Scenes/SymposiumScene.unity
+    guid: eb7cf22e5da8d994d82f77a54a5e3ba4
+  - enabled: 0
     path: Assets/SYA/Scenes/SymposiumScene.unity
     guid: 168bc06e9c7c2d4428b16cba67bcbcb5
   - enabled: 1

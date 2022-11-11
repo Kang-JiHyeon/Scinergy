@@ -35,6 +35,18 @@ public class SYA_SymposiumManager : MonoBehaviourPun
       PhotonNetwork.Instantiate(SYA_UserInfoManager.Instance.Avatar, new Vector3(0, 5.5f, 1), Quaternion.identity);
     }
 
+    public PhotonView GetMyPlayer()
+    {
+        foreach(PhotonView val in player.Values)
+        {
+            if(val.IsMine)
+            {
+                return val;
+            }
+        }
+        return null;
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -49,7 +61,7 @@ public class SYA_SymposiumManager : MonoBehaviourPun
         playerName.Add(name);
         player[name] = photonView;
         if (master)//만약 마스터 클라이언트라면
-            playerAuthority[name] = " Presenter";
+            playerAuthority[name] = "Presenter";
         else //아니라면
             playerAuthority[name] = "Audience";
         playerVoice[name] = audioSource;

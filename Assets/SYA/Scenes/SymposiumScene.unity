@@ -16380,7 +16380,7 @@ GameObject:
   - component: {fileID: 1704980136}
   - component: {fileID: 1704980135}
   m_Layer: 5
-  m_Name: Line Width
+  m_Name: 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16452,11 +16452,11 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1272215736}
         m_TargetAssemblyTypeName: OSW_ButtonUI, Assembly-CSharp
-        m_MethodName: ThickWitdh
-        m_Mode: 1
+        m_MethodName: WitdhBtn
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 1704980135}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -16770,7 +16770,7 @@ GameObject:
   - component: {fileID: 1739486831}
   - component: {fileID: 1739486830}
   m_Layer: 5
-  m_Name: Line Width
+  m_Name: 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16842,11 +16842,11 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1272215736}
         m_TargetAssemblyTypeName: OSW_ButtonUI, Assembly-CSharp
-        m_MethodName: ThinWitdh
-        m_Mode: 1
+        m_MethodName: WitdhBtn
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 1739486830}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -18157,6 +18157,10 @@ MonoBehaviour:
   inputField: {fileID: 1972268782}
   outputText: {fileID: 0}
   currentChannel: 
+  Allchannel: Allchannel
+  Lobbychannel: Lobbychannel
+  Constchannel: Constchannel
+  Solarchannel: Solarchannel
   trScrollView: {fileID: 238351093}
 --- !u!1 &1922383699
 GameObject:
@@ -19169,7 +19173,7 @@ GameObject:
   - component: {fileID: 2006057170}
   - component: {fileID: 2006057169}
   m_Layer: 5
-  m_Name: Line Width
+  m_Name: 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19241,11 +19245,11 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1272215736}
         m_TargetAssemblyTypeName: OSW_ButtonUI, Assembly-CSharp
-        m_MethodName: MiddleWitdh
-        m_Mode: 1
+        m_MethodName: WitdhBtn
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 2006057169}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
