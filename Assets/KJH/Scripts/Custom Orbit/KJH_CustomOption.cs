@@ -48,10 +48,10 @@ public class KJH_CustomOption : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         
-        //// Rigidbody
-        //rb_sun = tr_sun.GetComponent<Rigidbody>();
-        //rb_earth = tr_earth.GetComponent<Rigidbody>();
+        btn_custom.image.sprite = btn_sprites[1];
+
 
         // 천체들의 초기 위치
         originSunPos = tr_sun.position;
@@ -182,14 +182,28 @@ public class KJH_CustomOption : MonoBehaviour
         }
     }
 
-    public void OnClickOpen()
+    public Button btn_custom;
+    public List<Sprite> btn_sprites;
+
+    public void OnClick_Custom()
     {
-        customUI.SetActive(true);
+        customUI.SetActive(!customUI.activeSelf);
+
+        if (customUI.activeSelf)
+        {
+            btn_custom.image.sprite = btn_sprites[1];
+        }
+        else
+        {
+            btn_custom.image.sprite = btn_sprites[0];
+        }
+
     }
 
     public void OnClickClose()
     {
         customUI.SetActive(false);
+        btn_custom.image.sprite = btn_sprites[0];
     }
 
 }

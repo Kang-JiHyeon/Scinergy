@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 public class KJH_SpaceSceneManager : MonoBehaviour
 {
     public static KJH_SpaceSceneManager instance;
+    public bool isSolar = false;
+    public bool isTime = false;
 
     private void Awake()
     {
@@ -39,9 +41,9 @@ public class KJH_SpaceSceneManager : MonoBehaviour
 
     public void Load_CustomOrbitScene()
     {
-        if (SceneManager.GetActiveScene().name != "KJH_CustomOrbitScene")
+        if (SceneManager.GetActiveScene().name != "KJH_OrbitScene")
         {
-            SceneManager.LoadScene("KJH_CustomOrbitScene");
+            SceneManager.LoadScene("KJH_OrbitScene");
         }
     }
 }

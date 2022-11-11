@@ -168,12 +168,12 @@ public class KJH_SolarSystem : MonoBehaviour
         if(unitTimeScrolbar.value > 0.5f)
         {
             sign = 1;
-            pastFutureText.text = "미래로";
+            //pastFutureText.text = "미래로";
         }
         else
         {
             sign = -1;
-            pastFutureText.text = "과거로";
+            //pastFutureText.text = "과거로";
         }
 
         //originScrollValue = unitTimeScrolbar.value;
@@ -183,7 +183,7 @@ public class KJH_SolarSystem : MonoBehaviour
         {
             unitTimeNum = 0;
             unitTimeText.text = "멈추기";
-            pastFutureText.text = "멈추기";
+            //pastFutureText.text = "멈추기";
         }
         else
         {

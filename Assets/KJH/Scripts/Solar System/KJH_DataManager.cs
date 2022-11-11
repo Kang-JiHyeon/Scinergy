@@ -17,7 +17,7 @@ public class KJH_DataManager : MonoBehaviour
 
     [Header("Info")]
     // 천체이름
-    public Text CB_Name;
+    public List<Text> CB_Names;
     // 천체종류
     public Text CB_Type;
     // Info ScrollView의 Content
@@ -67,7 +67,11 @@ public class KJH_DataManager : MonoBehaviour
 
         if (data.infos.Count > index && index >= 0)
         {
-            CB_Name.text = data.infos[index][0];
+            for(int i=0; i<CB_Names.Count; i++)
+            {
+                CB_Names[i].text = data.infos[index][0];
+            }
+
             CB_Type.text = data.infos[index][1];
 
             // wjdGrid Layout Group에 추가

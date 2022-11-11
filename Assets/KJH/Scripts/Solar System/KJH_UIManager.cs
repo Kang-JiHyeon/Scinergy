@@ -61,8 +61,13 @@ public class KJH_UIManager : MonoBehaviour
     public RectTransform trContent_CBList;
     List<Button> buttons = new List<Button>();
 
-    //[Header("Defalut")]
+    // 기본 버튼 
+    [Header("Defalut Button")]
+    public List<Button> button_defaluts;
+    public List<Sprite> buttonSprite_defaluts;
+    public List<Sprite> buttonSprite_clicks;
 
+    public KJH_DataManager data;
 
     private void Awake()
     {
@@ -74,10 +79,10 @@ public class KJH_UIManager : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    {
+    {        
         curDate = DateTime.Now;
         obsDate = curDate;
-        SetObsDateText();
+        //SetObsDateText();
 
         for (int i = 0; i < transform.childCount; i++)
         {
@@ -93,10 +98,28 @@ public class KJH_UIManager : MonoBehaviour
             //buttons[i].onClick.AddListener(OnClick_ButtonCBList);
         }
 
+        // 메인 버튼들
+        Transform trMainUI = dict_UI["UI_Main"].transform;
+        for (int i=0; i < trMainUI.childCount; i++)
+        {
+            Button btn = trMainUI.GetChild(i).GetComponent<Button>();
+            if (btn)
+            {
+                button_defaluts.Add(btn);
+            }
+        }
+
     }
 
     private void FixedUpdate()
     {
+        if (KJH_SpaceSceneManager.instance.isSolar)
+        {
+            OnClick_OpenCBList();
+            KJH_SpaceSceneManager.instance.isSolar = false;
+        }
+
+
         // 현재 시각 Update
         curDate = DateTime.Now;
 
@@ -133,21 +156,21 @@ public class KJH_UIManager : MonoBehaviour
                 break;
         }
 
-        SetObsDateText();
+        //SetObsDateText();
     }
 
-    void SetObsDateText()
-    {
-        // 2022
-        yearText.text = obsDate.ToString("yyyy");
-        // 10월 23일
-        dateText.text = obsDate.ToString("MM") + "월 " + obsDate.ToString("dd") + "일";
-        // 01시 15분 오전
-        timeText.text = obsDate.ToString("HH") + " : " + obsDate.ToString("mm") + " " + obsDate.ToString("tt");
+    //void SetObsDateText()
+    //{
+    //    // 2022
+    //    yearText.text = obsDate.ToString("yyyy");
+    //    // 10월 23일
+    //    dateText.text = obsDate.ToString("MM") + "월 " + obsDate.ToString("dd") + "일";
+    //    // 01시 15분 오전
+    //    timeText.text = obsDate.ToString("HH") + " : " + obsDate.ToString("mm") + " " + obsDate.ToString("tt");
 
-        // 2022년 10월 23일 01시 15분 오전
-        obsDateText.text = yearText.text + "년 " + dateText.text + " " + timeText.text;
-    }
+    //    // 2022년 10월 23일 01시 15분 오전
+    //    obsDateText.text = yearText.text + "년 " + dateText.text + " " + timeText.text;
+    //}
 
     public void StopObservation()
     {
@@ -169,7 +192,7 @@ public class KJH_UIManager : MonoBehaviour
     public void ToCurTime()
     {
         obsDate = DateTime.Now;
-        SetObsDateText();
+        //SetObsDateText();
     }
 
 
@@ -210,17 +233,11 @@ public class KJH_UIManager : MonoBehaviour
         cam.ChangeCenter(Screen.width * 0.5f);
     }
 
+    // 정보 메뉴 UI
     public void OpenInfoMenu()
     {
         if (!isActiveInfo)
         {
-            //MoveDefalutUI(-1f);
-            //MoveCBInfoMenu(1f);
-
-            //cam.isViewUI = true;
-            //float centerX = 600 + (Screen.width - 600) * 0.5f;
-            //cam.ChangeCenter(centerX);
-
             Transform tr = dict_UI["UI_Info"].transform;
 
             tr.GetChild(0).gameObject.SetActive(true);
@@ -229,6 +246,7 @@ public class KJH_UIManager : MonoBehaviour
 
             tr.gameObject.SetActive(true);
 
+            
         }
         
         if (isActiveControl)
@@ -242,9 +260,9 @@ public class KJH_UIManager : MonoBehaviour
     // 기본 UI 이동 함수
     public void MoveDefalutUI(float sign)
     {
-        Transform tr = dict_UI["UI_Defalut"].transform;
+        //Transform tr = dict_UI["UI_Defalut"].transform;
         //iTween.MoveTo(tr.GetChild(0).gameObject, iTween.Hash("x", tr.GetChild(0).position.x - 120f * sign, "Time", 2f));
-        iTween.MoveTo(tr.GetChild(0).gameObject, iTween.Hash("y", tr.GetChild(0).position.y + 120f * sign, "Time", 2f));
+        //iTween.MoveTo(tr.GetChild(0).gameObject, iTween.Hash("y", tr.GetChild(0).position.y + 120f * sign, "Time", 2f));
     }
     // 시간 제어 UI 이동 함수
     public void MoveControllTimeUI(float sign)
@@ -316,25 +334,41 @@ public class KJH_UIManager : MonoBehaviour
     public void OnClick_CBList(Transform target)
     {
         selectPlanet.camaraTarget = target;
+        selectPlanet.focusTarget = target;
+
         cam.pivot.position = target.position;
         cam.distance = target.localScale.x + 5;
-        UI_CBList.SetActive(false);
+
+        dict_UI["UI_Info"].SetActive(true);
+        dict_UI["UI_Info"].transform.GetChild(0).gameObject.SetActive(true);
+
+        dict_UI["UI_CelestialList"].SetActive(false);
+        ChangeSprite(dict_UI["UI_CelestialList"], 3);
+        data.ChangeInfo();
+        //dict_UI["UI_CelestialList"].SetActive(false);
     }
 
-    // 행성 목록 UI 띄우기
-    public GameObject UI_CBList;
-    public void OnClick_ViewCB()
-    {
-        UI_CBList.SetActive(!UI_CBList.activeSelf);
-    }
 
 
     // 정보보기 메뉴의 x 버튼 클릭
     public void OnClick_Close(GameObject go)
     {
         go.SetActive(false);
+        
+        if(go.name == "UI_CelestialList")
+        {
+            ChangeSprite(go, 0);
+            ChangeSprite(go, 3);
+        }
 
-        if(go.name == "UI_ViewCBStructure")
+        if(go.name == "UI_ControlTime")
+        {
+            SS_UI.SetActive(false);
+            ChangeSprite(go, 0);
+            ChangeSprite(go, 4);
+        }
+
+        if (go.name == "UI_ViewCBStructure")
         {
             SetActiveModel(true);
         }
@@ -356,7 +390,77 @@ public class KJH_UIManager : MonoBehaviour
     // 행성 목록 UI 띄우기
     public void OnClick_OpenCBList()
     {
+        GameObject go = dict_UI["UI_CelestialList"];
+        
+        go.SetActive(!go.activeSelf);
+
+        SS_UI.SetActive(false);
+        ChangeSprite(go, 3);
 
     }
 
+    public void OnClick_ControlTime()
+    {
+        GameObject go = dict_UI["UI_ControlTime"];
+
+        go.SetActive(!go.activeSelf);
+        isActiveControl = go.activeSelf;
+
+        if (dict_UI["UI_CelestialList"].activeSelf)
+        {
+            dict_UI["UI_CelestialList"].SetActive(false);
+            ChangeSprite(dict_UI["UI_CelestialList"], 3);
+        }
+        ChangeSprite(go, 4);
+    }
+
+
+    public void OnClick_Custom()
+    {
+        KJH_SpaceSceneManager.instance.Load_CustomOrbitScene();
+    }
+
+
+    public GameObject SS_UI;
+    public void OnClick_SolarSystem()
+    {
+        SS_UI.SetActive(!SS_UI.activeSelf);
+        ChangeSprite(SS_UI, 0);
+
+        GameObject go_list = dict_UI["UI_CelestialList"];
+        GameObject go_time = dict_UI["UI_ControlTime"];
+
+        if(SS_UI.activeSelf == false)
+        {
+            Transform tr = dict_UI["UI_Info"].transform;
+
+            tr.gameObject.SetActive(false);
+            tr.GetChild(0).gameObject.SetActive(true);
+            tr.GetChild(1).gameObject.SetActive(false);
+            tr.GetChild(2).gameObject.SetActive(false);
+
+            if (go_list.activeSelf)
+            {
+                go_list.SetActive(false);
+                ChangeSprite(go_list, 3);
+            }
+
+            go_time.SetActive(false);
+            ChangeSprite(go_time, 4);
+
+            SetActiveModel(true);
+        }
+    }
+    void ChangeSprite(GameObject go, int index)
+    {
+        if (go.activeSelf)
+        {
+            // 주황색
+            button_defaluts[index].image.sprite = buttonSprite_clicks[index];
+        }
+        else
+        {
+            button_defaluts[index].image.sprite = buttonSprite_defaluts[index];
+        }
+    }
 }
