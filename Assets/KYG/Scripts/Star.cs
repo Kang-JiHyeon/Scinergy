@@ -124,8 +124,8 @@ public class Star : MonoBehaviourPun
     public virtual void BrightnessSet()
     {
         //GameObject starBrightness = Instantiate(brightness);
-        GameObject starBrightness =PhotonNetwork.Instantiate(brightness.gameObject.name.ToString(),transform.position,Quaternion.identity);
+        GameObject starBrightness = Instantiate(brightness);
         starBrightness.transform.parent = gameObject.transform;
-        //starBrightness.transform.position = transform.position;
+        starBrightness.transform.position = transform.position;
     }
 }

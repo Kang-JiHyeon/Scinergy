@@ -232,6 +232,7 @@ public class StarGenerator : MonoBehaviourPun
     {
         brightness = starBrightnessList[index - 1];
     }
+
     public void OnGenerateStarBtn()
     {
         if (generateTypeNumber ==3)

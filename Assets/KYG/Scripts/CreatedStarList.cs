@@ -42,6 +42,17 @@ public class CreatedStarList : MonoBehaviour
         SelectedStar.GetComponent<Star>().StarState = Star.State.shootingStar;
         Destroy(SelectedStarItem);
         SelectedStarItem = null;
+        //foreach (KeyValuePair<string, GameObject> constellation in GameManager.instance.createdConstellationList)
+        //{
+        //    for(int i = 0; i< constellation.Value.transform.childCount; i++)
+        //    {
+        //        Star childStar = constellation.Value.transform.GetChild(i).GetComponent<Star>();
+        //        if(childStar == SelectedStar)
+        //        {
+        //            Destroy(constellation.Value);
+        //        }
+        //    }
+        //}
     }
     
     public void OnDeleteAllStar()
