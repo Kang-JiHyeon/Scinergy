@@ -19,6 +19,6 @@ public class Sun : Star
     // Update is called once per frame
     void Update()
     {
-        SunShine.transform.forward = GameManager.instance.CelestialSpehere.transform.position - transform.position;
+        SunShine.transform.forward = GameManager.instance.CelestialSphere.transform.position - transform.position;
     }
 }

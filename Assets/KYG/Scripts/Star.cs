@@ -3,8 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
-public class Star : MonoBehaviour
+using Photon.Pun;
+public class Star : MonoBehaviourPun
 {
     //∫∞¿Ã∏ß
     public string starName;
@@ -55,13 +55,13 @@ public class Star : MonoBehaviour
             case State.normalStar:
                 return;
             case State.shootingStar:
-                shootingStar();
+                ShootingStar();
                 return;
         }
 
     }
 
-    private void shootingStar()
+    private void ShootingStar()
     {
         GetComponent<TrailRenderer>().enabled = true;
         currentTime += Time.deltaTime;
@@ -85,7 +85,14 @@ public class Star : MonoBehaviour
         starName = starNameInfo;
         ra = raInfo % 24;
         if (ra < 0) ra += 24;
-        dec = decInfo % 90;
+        if (dec > 90)
+        {
+            dec = decInfo % 90;
+        }
+        else
+        {
+            dec = decInfo;
+        }
         starType = starTypeInfo;
         brightness = brightnessInfo;
         generatedType = generateTypeNumber;
@@ -96,7 +103,7 @@ public class Star : MonoBehaviour
 
     public virtual void TransformSet()
     {
-        transform.parent = GameManager.instance.CelestialSpehere.transform;
+        transform.parent = GameManager.instance.CelestialSphere.transform;
         float RadDec;
         float RadRa;
         RadDec = dec * (Mathf.PI / 180);
@@ -106,7 +113,7 @@ public class Star : MonoBehaviour
         float x = rr * Mathf.Sin(RadRa);
         float y = GameManager.instance.celestialSphereRadius * Mathf.Cos(RadDec);
         float z = rr * Mathf.Cos(RadRa);
-        if(generatedType == 1)
+        if(generatedType == 1 || generatedType ==3)
         {
             transform.localPosition = new Vector3(x, y, z);
         }else if(generatedType == 2)
@@ -116,8 +123,9 @@ public class Star : MonoBehaviour
     }
     public virtual void BrightnessSet()
     {
-        GameObject starBrightness = Instantiate(brightness);
+        //GameObject starBrightness = Instantiate(brightness);
+        GameObject starBrightness =PhotonNetwork.Instantiate(brightness.gameObject.name.ToString(),transform.position,Quaternion.identity);
         starBrightness.transform.parent = gameObject.transform;
-        starBrightness.transform.position = transform.position;
+        //starBrightness.transform.position = transform.position;
     }
 }

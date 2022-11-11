@@ -2,13 +2,17 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using TMPro;
 public class CreatedStarList : MonoBehaviour
 {
     public Transform CreatedStarListContent;
     public GameObject CreatedStarItemFactory;
     public GameObject SelectedStar;
+    public TextMeshProUGUI SelectedStarName;
     public GameObject SelectedStarItem;
+    public GameObject Player;
+    public GameObject CreatedStarListUI;
+    public GameObject createdConstellationList;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,7 +34,7 @@ public class CreatedStarList : MonoBehaviour
     }
     public void OnStarLookBtn()
     {
-        GameObject.Find("Player").GetComponent<PlayerRot>().StarSet(SelectedStar.transform.position);
+        Player.GetComponent<PlayerRot>().StarSet(SelectedStar.transform.position);
     }
     public void OnStarDeleteBtn()
     {
@@ -55,5 +59,10 @@ public class CreatedStarList : MonoBehaviour
             }
         }
         GameManager.instance.createdStarList.Clear();
+    }
+
+    public void OnCloseBtn()
+    {
+        CreatedStarListUI.SetActive(false);
     }
 }

@@ -16,12 +16,13 @@ public class CreatedStarItem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void OnClick()
     {
         GetComponentInParent<CreatedStarList>().SelectedStar = star;
+        GetComponentInParent<CreatedStarList>().SelectedStarName.text = "   선택된 별 :  " + star.name;
         GetComponentInParent<CreatedStarList>().SelectedStarItem = gameObject;
     }
     
