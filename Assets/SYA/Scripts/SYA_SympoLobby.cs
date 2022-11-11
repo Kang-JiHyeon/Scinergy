@@ -47,6 +47,11 @@ public class SYA_SympoLobby : MonoBehaviourPunCallbacks
         btnCreate.interactable = s.Length > 0;
     }
 
+    public void offroomCo()
+    {
+        roomCompletion.SetActive(false);
+    }
+
     //생성을 누를 경우
     public void OnClickCreate()
     {
@@ -58,15 +63,24 @@ public class SYA_SympoLobby : MonoBehaviourPunCallbacks
         CreateRoom();
     }
 
+    public void offRoommake()
+    {
+        roomCreate.SetActive(false);
+    }
+
+    public GameObject publ;
+    public GameObject Unpubl;
     //방 공개 여부 클릭
     public void OnClickPublic()
     {
         public_ = !public_;
-        Vector2 pos = falseC.transform.position;
+        /*Vector2 pos = falseC.transform.position;
         falseC.transform.position = trueC.transform.position;
-        trueC.transform.position = pos;
+        trueC.transform.position = pos;*/
+        publ.SetActive(!public_);
+        Unpubl.SetActive(public_);
         publicText.SetActive(!public_);
-        Color Fc = falseC.GetComponent<Image>().color;
+        /*Color Fc = falseC.GetComponent<Image>().color;
         if (public_)
         {
             Fc.b = 255;
@@ -79,7 +93,7 @@ public class SYA_SympoLobby : MonoBehaviourPunCallbacks
             Fc.r = 255;
             Fc.g = 255;
         }
-        falseC.GetComponent<Image>().color = Fc;
+        falseC.GetComponent<Image>().color = Fc;*/
     }
 
         // 방 옵션을 설정

@@ -92,11 +92,16 @@ public class SYA_SympoRoomList : MonoBehaviourPunCallbacks
         }
     }
 
+    public GameObject AllOn;
+    public GameObject OpenOn;
+
     //디폴트
     //버튼을 누르면 모든 방(공개, 비공개 상관없이)
     public void AllRoomList()
     {
         openRoomListOn = false;
+        AllOn.SetActive(!openRoomListOn);
+        OpenOn.SetActive(openRoomListOn);
         DeleteRoomListUI();
         UpdateRoomCache(roomListDe);
         CreateRoomListUI();
@@ -107,6 +112,8 @@ public class SYA_SympoRoomList : MonoBehaviourPunCallbacks
     public void OpenRoomList()
     {
         openRoomListOn = true;
+        OpenOn.SetActive(openRoomListOn);
+        AllOn.SetActive(!openRoomListOn);
         DeleteRoomListUI();
         UpdateRoomCache(roomListDe);
         CreateRoomListUI();
