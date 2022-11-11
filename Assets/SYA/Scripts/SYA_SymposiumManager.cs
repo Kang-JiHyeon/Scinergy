@@ -36,6 +36,18 @@ public class SYA_SymposiumManager : MonoBehaviourPun
         PhotonNetwork.AutomaticallySyncScene = false;
     }
 
+    public PhotonView GetMyPlayer()
+    {
+        foreach(PhotonView val in player.Values)
+        {
+            if(val.IsMine)
+            {
+                return val;
+            }
+        }
+        return null;
+    }
+
     // Update is called once per frame
     void Update()
     {

@@ -28,6 +28,7 @@ public class OSW_ButtonUI : MonoBehaviourPun
         }
     }
 
+
     public void DrawOnOff()
     {
         drawingTool.SetActive(!drawingTool.activeSelf);
@@ -51,12 +52,6 @@ public class OSW_ButtonUI : MonoBehaviourPun
             colorPicker.SetActive(!colorPicker.activeSelf);
             osw_cursor.CursorChange();
         }
-        //else
-        //{
-        //    // 드로잉 On/Off 기능
-        //    osw_lineDrawer.isDrawing = !osw_lineDrawer.isDrawing;
-        //}
-
     }
     public void Eraser()
     {
@@ -68,67 +63,65 @@ public class OSW_ButtonUI : MonoBehaviourPun
         osw_cursor.CursorChange();
     }
 
-    // 얇은 선 두께
-    public void ThinWitdh()
+    // 선 두께 변경
+    public void WitdhBtn(Button button)
     {
-        osw_lineDrawer.linewidth = 0.1f;
+        if(button.name == "1") osw_lineDrawer.linewidth = 0.1f;
+        else if(button.name == "2") osw_lineDrawer.linewidth = 0.2f;
+        else if(button.name == "3") osw_lineDrawer.linewidth = 0.3f;
     }
-
-    // 중간 선 두께
-    public void MiddleWitdh()
-    {
-        osw_lineDrawer.linewidth = 0.2f;
-    }
-
-    // 두꺼운 선 두께
-    public void ThickWitdh()
-    {
-        osw_lineDrawer.linewidth = 0.3f;
-    }
+    
 
 
     // 실행취소 버튼 클릭 시 호출
     public void CtrlZ()
     {
-        for(int i = osw_lineDrawer.lineList.Count - 1; i >= 0; i--)
-        {
-            if (osw_lineDrawer.lineList[i].activeSelf == true)
-            {
-                osw_lineDrawer.lineList[i].SetActive(false);
-                break;
-            }
-        }
+        //for(int i = osw_lineDrawer.lineList.Count - 1; i >= 0; i--)
+        //{
+        //    if (osw_lineDrawer.lineList[i].activeSelf == true)
+        //    {
+        //        print("실행취소");
+        //        osw_lineDrawer.lineList[i].SetActive(false);
+        //        break;
+        //    }
+        //}
 
         // 네트워크 동기화
-        osw_lineDrawer.photonView.RPC("RPCCtrlZ", RpcTarget.OthersBuffered);
+        PhotonView mine = SYA_SymposiumManager.Instance.GetMyPlayer();
+        if (mine)
+        {
+            mine.RPC("RPCCtrlZ", RpcTarget.All);
+        }
     }
 
     // 되돌리기 버튼 클릭 시 호출
     public void CtrlY()
     {
-        for(int i = 0; i < osw_lineDrawer.lineList.Count; i++)
-        {
-            if (osw_lineDrawer.lineList[i].activeSelf == false)
-            {
-                osw_lineDrawer.lineList[i].SetActive(true);
-                break;
-            }
-        }
-
+        //for(int i = 0; i < osw_lineDrawer.lineList.Count; i++)
+        //{
+        //    if (osw_lineDrawer.lineList[i].activeSelf == false)
+        //    {
+        //        print("되돌리기");
+        //        osw_lineDrawer.lineList[i].SetActive(true);
+        //        break;
+        //    }
+        //}
         // 네트워크 동기화
-        osw_lineDrawer.photonView.RPC("RPCCtrlY", RpcTarget.OthersBuffered);
+        PhotonView mine = SYA_SymposiumManager.Instance.GetMyPlayer();
+        if(mine)
+        {
+            mine.RPC("RPCCtrlY", RpcTarget.All);
+        }
+        
     }
 
     // 전체 삭제 버튼 클릭 시 호출
     public void AllDelete()
     {
-        for(int i = 0; i < osw_lineDrawer.lineList.Count; i++)
+        PhotonView mine = SYA_SymposiumManager.Instance.GetMyPlayer();
+        if (mine)
         {
-            Destroy(osw_lineDrawer.lineList[i].gameObject);
+            mine.RPC("RPCAllDelete", RpcTarget.All);
         }
-        osw_lineDrawer.lineList.Clear();
-
-        // 네트워크 동기화
-        osw_lineDrawer.photonView.RPC("RPCAllDelete", RpcTarget.OthersBuffered);
     }
 }
