@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
+using Photon.Pun;
+using Photon.Realtime;
 public class PlayerUI : MonoBehaviour
 {
     public GameObject starGenerator;
@@ -11,10 +13,16 @@ public class PlayerUI : MonoBehaviour
     public GameObject compas;
     public GameObject Clock;
     public GameObject Map;
+    public List<Button> masterBtn = new();
+    public List<Button> clientBtn = new();
     // Start is called before the first frame update
     void Start()
     {
         
+        for(int i = 0; i<masterBtn.Count; i++)
+        {
+            
+        }
     }
 
     // Update is called once per frame
@@ -28,6 +36,7 @@ public class PlayerUI : MonoBehaviour
         if (compas.activeSelf)
         {
             compas.SetActive(false);
+            
         }
         else
         {
