@@ -201,14 +201,14 @@ public class KJH_UIManager : MonoBehaviour
     public void OnClick_ControllObsTime()
     {
         MoveDefalutUI(-1f);
-        MoveControllTimeUI(1f);
+        //MoveControllTimeUI(1f);
         isActiveControl = true;
     }
 
     // ControllTime -> DefalutUI
     public void OnClick_Back()
     {
-        MoveControllTimeUI(-1f);
+        //MoveControllTimeUI(-1f);
         MoveDefalutUI(1f);
         isActiveControl = false;
     }
@@ -251,7 +251,7 @@ public class KJH_UIManager : MonoBehaviour
         
         if (isActiveControl)
         {
-            MoveControllTimeUI(-1f);
+            //MoveControllTimeUI(-1f);
         }
 
         StopObservation();
@@ -264,13 +264,13 @@ public class KJH_UIManager : MonoBehaviour
         //iTween.MoveTo(tr.GetChild(0).gameObject, iTween.Hash("x", tr.GetChild(0).position.x - 120f * sign, "Time", 2f));
         //iTween.MoveTo(tr.GetChild(0).gameObject, iTween.Hash("y", tr.GetChild(0).position.y + 120f * sign, "Time", 2f));
     }
-    // 시간 제어 UI 이동 함수
-    public void MoveControllTimeUI(float sign)
-    {
-        //isActiveControl = sign > 0 ? true : false;
-        Transform tr = dict_UI["UI_ControlTime"].transform;
-        iTween.MoveTo(tr.gameObject, iTween.Hash("y", tr.position.y + 300f * sign, "Time", 2f));
-    }
+    //// 시간 제어 UI 이동 함수
+    //public void MoveControllTimeUI(float sign)
+    //{
+    //    //isActiveControl = sign > 0 ? true : false;
+    //    Transform tr = dict_UI["UI_ControlTime"].transform;
+    //    iTween.MoveTo(tr.gameObject, iTween.Hash("y", tr.position.y + 300f * sign, "Time", 2f));
+    //}
 
     // 행성 정보 메뉴 이동
     public void MoveCBInfoMenu(float sign)
@@ -392,6 +392,7 @@ public class KJH_UIManager : MonoBehaviour
         dict_UI["UI_Info"].transform.GetChild(2).gameObject.SetActive(true);
 
         cam.isViewNucleus = true;
+        cam.isMoveToNucleus = true;
         SetActiveModel(false);
     }
 

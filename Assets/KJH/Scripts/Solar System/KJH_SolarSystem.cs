@@ -65,7 +65,7 @@ public class KJH_SolarSystem : MonoBehaviour
     void Start()
     {
         // 행성 리스트에 추가
-        for (int i = 0; i < planets.Count; i++)
+        for (int i = 0; i < planets.Count-1; i++)
         {
             //planets.Add(go_planets.GetChild(i).transform);
             // 행성 자전축 기울기 초기화
@@ -80,12 +80,11 @@ public class KJH_SolarSystem : MonoBehaviour
             // 라이트 각도 행성을 비추도록 초기화
             planets[i].Find("OrbitAxis").GetChild(0).forward = planets[i].position - transform.position;
 
-            if (i > 7) break;
             // 행성 궤도 그리기
             lr = planets[i].GetChild(0).GetComponent<LineRenderer>();
             radius = Vector3.Distance(planets[i].GetChild(0).position, planets[i].position);
 
-            DrawOrbit(planets[i].GetChild(0));
+            DrawOrbit(planets[i].GetChild(0), radius);
         }
     }
 
@@ -122,21 +121,25 @@ public class KJH_SolarSystem : MonoBehaviour
             // 각도만큼 회전
             planets[i].RotateAround(planets[i].GetChild(0).position, -transform.up, rotAngle * Time.fixedDeltaTime);
 
-            // 라이트 방향 설정
-            planets[i].Find("OrbitAxis").GetChild(0).forward = planets[i].position - transform.position;
+
+            if(i < planets.Count - 1)
+            {
+                // 라이트 방향 설정
+                planets[i].Find("OrbitAxis").GetChild(0).forward = planets[i].position - transform.position;
+
+            }
         }
     }
 
 
     // 행성 공전 궤도 그리는 함수
-    private void DrawOrbit(Transform orbitAxis)
+    public void DrawOrbit(Transform orbitAxis, float radius)
     {
         Vector3[] points = new Vector3[segment + 1];
-        //float angle = 360f / segment;
 
         for (int i = 0; i < points.Length; i++)
         {
-            points[i] = orbitAxis.position + CalculatePosition((float)i / (float)segment);
+            points[i] = orbitAxis.position + CalculatePosition((float)i / (float)segment, radius);
             //points[i] = transform.position + CalculatePosition((float)i / (float)segment);
         }
 
@@ -145,7 +148,7 @@ public class KJH_SolarSystem : MonoBehaviour
         lr.SetPositions(points);
     }
 
-    private Vector3 CalculatePosition(float t)
+    public Vector3 CalculatePosition(float t, float radius)
     {
         float angle = Mathf.Deg2Rad * 360f * t;
         float x = Mathf.Sin(angle) * radius;

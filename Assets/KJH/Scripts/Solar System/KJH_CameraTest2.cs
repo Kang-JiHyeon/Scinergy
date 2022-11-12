@@ -40,14 +40,14 @@ public class KJH_CameraTest2 : MonoBehaviour
     void Start()
     {
         //cam = Camera.main.transform;
-        
+
     }
 
 
     // Update is called once per frame
     void Update()
     {
-        if(cam == null)
+        if (cam == null)
         {
             cam = Camera.main.transform;
             selectPlanet = cam.GetComponent<KJH_SelectPlanet>();
@@ -76,30 +76,34 @@ public class KJH_CameraTest2 : MonoBehaviour
         // ui를 클릭하지 않을 때 카메라 회전 실행
         if (!EventSystem.current.IsPointerOverGameObject())
         {
-            CameraZoom();
-
-            // 마우스 왼쪽 버튼을 누르고 있을 때
-            if (isRot)
+            if (isViewNucleus == false && isMoveToNucleus == false)
             {
-                // 이전 마우스 입력값
-                preMouse.x = mx;
-                preMouse.y = my;
 
-                // 현재 마우스 입력값
-                mx = Input.GetAxis("Mouse X");
-                my = Input.GetAxis("Mouse Y");
+                CameraZoom();
 
-                Rotate(mx, my);
-            }
-            // 마우스 왼쪽 버튼을 누르고 있지 않을 때
-            else
-            {
-                Rotate(preMouse.x, preMouse.y);
-                preMouse = Vector2.Lerp(preMouse, Vector2.zero, Time.deltaTime);
+                // 마우스 왼쪽 버튼을 누르고 있을 때
+                if (isRot)
+                {
+                    // 이전 마우스 입력값
+                    preMouse.x = mx;
+                    preMouse.y = my;
+
+                    // 현재 마우스 입력값
+                    mx = Input.GetAxis("Mouse X");
+                    my = Input.GetAxis("Mouse Y");
+
+                    Rotate(mx, my);
+                }
+                // 마우스 왼쪽 버튼을 누르고 있지 않을 때
+                else
+                {
+                    Rotate(preMouse.x, preMouse.y);
+                    preMouse = Vector2.Lerp(preMouse, Vector2.zero, Time.deltaTime);
+                }
             }
         }
 
-        if(isMovingToCB == false)
+        if (isMovingToCB == false)
         {
             pivot.position = target.position;
         }
@@ -109,10 +113,10 @@ public class KJH_CameraTest2 : MonoBehaviour
             MoveToCB(target);
         }
 
-        //if (isViewNucleus)
-        //{
-        //    ViewNucleus();
-        //}
+        if (isViewNucleus || isMoveToNucleus)
+        {
+            ViewNucleus();
+        }
 
     }
 
@@ -123,7 +127,7 @@ public class KJH_CameraTest2 : MonoBehaviour
         rotX += x * rotSpeed * Time.deltaTime;
         rotY += y * rotSpeed * Time.deltaTime;
 
-        rotY = Mathf.Clamp(rotY, -90, 90); 
+        rotY = Mathf.Clamp(rotY, -90, 90);
 
         pivot.localEulerAngles = new Vector3(-rotY, rotX, 0);
     }
@@ -193,16 +197,39 @@ public class KJH_CameraTest2 : MonoBehaviour
     }
 
     public bool isViewNucleus = false;
+    public bool isMoveToNucleus = false;
     // 내부구조 카메라
     void ViewNucleus()
     {
-        Vector3 nucleusDir = target.forward;
-        pivot.forward = Vector3.Slerp(pivot.forward, nucleusDir, Time.deltaTime * 5f);
+        Vector3 targetDir = target.forward;
 
-        if (Vector3.Angle(pivot.forward, nucleusDir) < 0.1f)
+        targetDir += new Vector3(1f, -2f, 1f);
+        //targetDir.y -= 1;
+        //targetDir.z += 1;
+
+        // 각도 이동
+        pivot.forward = Vector3.Slerp(pivot.forward, targetDir, Time.deltaTime * 5f);
+
+        if (Vector3.Angle(pivot.forward, targetDir) < 0.1f)
         {
-            pivot.forward = nucleusDir;
-            //isViewNucleus = false;
+            pivot.forward = targetDir;
+            isViewNucleus = false;
+
+            rotY = -pivot.localEulerAngles.x;
+            rotX = pivot.localEulerAngles.y;
         }
+
+
+        float camZ = Mathf.Lerp(cam.localPosition.z, -minDistance, Time.deltaTime * 3f);
+        cam.localPosition = new Vector3(0, 0, camZ);
+
+        if (Mathf.Abs(cam.localPosition.z + minDistance) < 0.1f)
+        {
+            isMoveToNucleus = false;
+            cam.localPosition = new Vector3(0, 0, -minDistance);
+
+            distance = minDistance;
+        }
+
     }
 }

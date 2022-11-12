@@ -48,10 +48,7 @@ public class KJH_CustomOption : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
-        
         btn_custom.image.sprite = btn_sprites[1];
-
 
         // 천체들의 초기 위치
         originSunPos = tr_sun.position;
@@ -89,8 +86,11 @@ public class KJH_CustomOption : MonoBehaviour
             camara.pivot.position = pivotPos;
 
             // 두 행성 중심을 기준으로 카메라 회전
-            //camara.pivot.position = (tr_sun.position + tr_earth.position) / 2;
+            camara.pivot.position = (tr_sun.position + tr_earth.position) / 2;
         }
+
+        input_sun.enabled = !isOrbitMove;
+        input_earth.enabled = !isOrbitMove;
     }
 
     void ChangeSunMass(string text)
@@ -122,17 +122,17 @@ public class KJH_CustomOption : MonoBehaviour
         rb_earth.useGravity = false;
 
 
-        // 질량 큰 행성 기준으로 카메라 회전
-        if (sunMassValue > earthMassValue)
-        {
-            pivot = tr_sun;
-            pivotPos = tr_sun.position;
-        }
-        else
-        {
-            pivot = tr_earth;
-            pivotPos = tr_earth.position;
-        }
+        //// 질량 큰 행성 기준으로 카메라 회전
+        //if (sunMassValue > earthMassValue)
+        //{
+        //    pivot = tr_sun; 
+        //    pivotPos = tr_sun.position;
+        //}
+        //else
+        //{
+        //    pivot = tr_earth;
+        //    pivotPos = tr_earth.position;
+        //}
 
         // 질량 변경
         rb_sun.mass = sunMassValue;
