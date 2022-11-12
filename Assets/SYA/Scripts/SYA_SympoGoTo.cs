@@ -10,6 +10,7 @@ public class SYA_SympoGoTo : MonoBehaviourPun
     {
         if (other.gameObject.name.Contains("Player"))
         {
+            if (!other.GetComponent<PhotonView>().IsMine) return;
 /*            if (SYA_SymposiumManager.Instance.player[PhotonNetwork.NickName].IsMine)
             {*/
                 print("in");
@@ -29,6 +30,7 @@ public class SYA_SympoGoTo : MonoBehaviourPun
     {
         if (other.gameObject.name.Contains("Player"))
         {
+            if (!other.GetComponent<PhotonView>().IsMine) return;
 /*            if (SYA_SymposiumManager.Instance.player[PhotonNetwork.NickName].IsMine)
             {*/
 

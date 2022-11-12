@@ -76,18 +76,18 @@ public class SYA_AvartaSceneManager : MonoBehaviourPun
         //print(111);
         Vector3 avartaPos = avatar[num].transform.position;
         Vector3 avartaSca = avatar[num].transform.localScale;
-        avartaSca = Vector3.Lerp(avartaSca, sca[num], Time.deltaTime * 1.7f);
+        iTween.ScaleTo(avatar[num], sca[num], 2f);
         iTween.MoveTo(avatar[num], pos[num].transform.position, 2f);
         avatar[num].transform.localScale = avartaSca;
-        if (Vector3.Distance(avatar[num].transform.position, pos[num].transform.position) < 0.2f
-            && Vector3.Distance(avatar[num].transform.localScale, sca[num]) < 0.2f)
+        if (Vector3.Distance(avatar[num].transform.position, pos[num].transform.position) < 0.3f
+            && Vector3.Distance(avatar[num].transform.localScale, sca[num]) < 0.3f)
         {
             //avatar[num].transform.position = pos[num].transform.position;
             avatar[num].transform.localScale = sca[num];
             LayerChange = true;
                 rotateIng = false;
             //����� �ִ��� �к��ϴ� �ڵ�
-            if (1.2f - avatar[num].transform.localScale.x < 0.1f)
+            if (1.2f - avatar[num].transform.localScale.x < 0.3f)
             {
                 buttonOn = false;
                 WhiteClircle(num);

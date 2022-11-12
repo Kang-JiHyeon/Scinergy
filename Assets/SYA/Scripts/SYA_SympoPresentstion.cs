@@ -13,6 +13,7 @@ public class SYA_SympoPresentstion : MonoBehaviour
         {
             if (other.gameObject.name.Contains("Player"))
             {
+                if (!other.GetComponent<PhotonView>().IsMine) return;
                 print("in");
                 //공간 이동 버튼 띄우기
                 pre.SetActive(true);
@@ -26,6 +27,7 @@ public class SYA_SympoPresentstion : MonoBehaviour
         {
             if (other.gameObject.name.Contains("Player"))
             {
+                if (!other.GetComponent<PhotonView>().IsMine) return;
                 print("out");
                 //공간 이동 버튼 띄우기
                 pre.SetActive(false);
