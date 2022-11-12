@@ -23,13 +23,16 @@ public class PlayerUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (SYA_SymposiumManager.Instance.roomOwner != GetComponentInParent<PhotonView>().name)
+        if (GetComponentInParent<PhotonView>().IsMine)
         {
-            for (int i = 0; i < masterBtn.Count; i++)
+            if (PhotonNetwork.MasterClient.UserId != GetComponentInParent<PhotonView>().Owner.UserId)
             {
-                masterBtn[i].interactable = false;
-            }
+                for (int i = 0; i < masterBtn.Count; i++)
+                {
+                    masterBtn[i].interactable = false;
+                }
 
+            }
         }
     }
     public void OnCompasBtn()

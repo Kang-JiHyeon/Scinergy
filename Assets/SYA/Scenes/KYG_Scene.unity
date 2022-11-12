@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.0024158515, g: 0.003617383, b: 0.015014526, a: 1}
+  m_IndirectSpecularColor: {r: 0.0069007706, g: 0.007858268, b: 0.011398275, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3928,7 +3928,10 @@ MonoBehaviour:
   sphereRotateAngle: 0
   rotateAngle: 0
   SelectedHand: {fileID: 0}
+  TimeFlowBtn: {fileID: 0}
   CelestialSphere: {fileID: 398836238}
+  timeScaleSlider: {fileID: 0}
+  timeScale: 0
 --- !u!114 &675359299
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4075,7 +4078,11 @@ MonoBehaviour:
   CreatedStarListContent: {fileID: 461013788}
   CreatedStarItemFactory: {fileID: 419366995324989049, guid: 8b15e5eb2fff17f42a27d82bfc321627, type: 3}
   SelectedStar: {fileID: 0}
+  SelectedStarName: {fileID: 0}
   SelectedStarItem: {fileID: 0}
+  Player: {fileID: 0}
+  CreatedStarListUI: {fileID: 0}
+  createdConstellationList: {fileID: 0}
 --- !u!1 &707161047
 GameObject:
   m_ObjectHideFlags: 0
@@ -6795,9 +6802,11 @@ MonoBehaviour:
   starGenerator: {fileID: 1372554147}
   starList: {fileID: 705873283}
   telescope: {fileID: 925081095}
+  constellation: {fileID: 0}
   compas: {fileID: 1647333581}
   Clock: {fileID: 675359296}
   Map: {fileID: 1480212558}
+  masterBtn: []
 --- !u!1 &1101706121
 GameObject:
   m_ObjectHideFlags: 0
@@ -8246,10 +8255,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   starNameInput: {fileID: 879833000}
+  generateTypeDropdown: {fileID: 0}
   decInput: {fileID: 1245153437}
   raInput: {fileID: 1760989060}
+  starAmount: {fileID: 0}
   typeDropdown: {fileID: 776536908}
   brightnessDropdown: {fileID: 1713602932}
+  generateBtn: {fileID: 0}
   starTypeList:
   - {fileID: 7177477379725082803, guid: 2dde6c732a0a7744aaf91737fe803f6b, type: 3}
   starBrightnessList:
@@ -8267,6 +8279,11 @@ MonoBehaviour:
   brightness: {fileID: 0}
   player: {fileID: 996913022}
   starList: {fileID: 705873283}
+  createdStarListUI: {fileID: 0}
+  testObject: {fileID: 0}
+  generateTypeNumber: 0
+  drawStar: 0
+  star: {fileID: 0}
 --- !u!4 &1372554149
 Transform:
   m_ObjectHideFlags: 0
@@ -8533,6 +8550,10 @@ PrefabInstance:
     - target: {fileID: 4730159595522024, guid: e508b99c1b9828548966ab50d78e7eb3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1552013552834910610, guid: e508b99c1b9828548966ab50d78e7eb3, type: 3}
+      propertyPath: sceneViewId
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e508b99c1b9828548966ab50d78e7eb3, type: 3}
@@ -10391,7 +10412,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2155385382b218a41857091ea4c2be66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CelestialSpehere: {fileID: 968449916}
+  CelestialSphere: {fileID: 0}
   celestialSphereRadius: 1000
 --- !u!1 &1819114874
 GameObject:
@@ -11598,6 +11619,7 @@ MonoBehaviour:
   starType: {fileID: 7177477379725082803, guid: 2dde6c732a0a7744aaf91737fe803f6b, type: 3}
   brightness: {fileID: 1607489160101874, guid: e508b99c1b9828548966ab50d78e7eb3, type: 3}
   starInfo: {fileID: 0}
+  generatedType: 0
   fallSpeed: 5
   removeTime: 3
   StarState: 0
