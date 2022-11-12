@@ -14,21 +14,25 @@ public class PlayerUI : MonoBehaviour
     public GameObject Clock;
     public GameObject Map;
     public List<Button> masterBtn = new();
-    public List<Button> clientBtn = new();
     // Start is called before the first frame update
     void Start()
     {
-        
-        for(int i = 0; i<masterBtn.Count; i++)
-        {
-            
-        }
+       
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        print(PhotonNetwork.MasterClient.UserId);
+        print(PhotonNetwork.MasterClient.UserId != GetComponentInParent<PhotonView>().Owner.UserId);
+        if (PhotonNetwork.MasterClient.UserId != GetComponentInParent<PhotonView>().Owner.UserId)
+        {
+            for (int i = 0; i < masterBtn.Count; i++)
+            {
+                masterBtn[i].interactable = false;
+            }
+
+        }
     }
     public void OnCompasBtn()
     {
