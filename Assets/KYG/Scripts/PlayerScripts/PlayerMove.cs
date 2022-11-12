@@ -13,6 +13,8 @@ public class PlayerMove : MonoBehaviourPun
     public float gravity = -9.81f;
     public CharacterController cc;
     public TextMeshProUGUI nickName;
+
+    Vector3 dir;
     ////도착위치
     //Vector3 receivePos;
     ////회전되어야 하는 값
@@ -36,6 +38,16 @@ public class PlayerMove : MonoBehaviourPun
 
     //}
 
+    private void Awake()
+    {
+        SYA_SymposiumManager.Instance.PlayerNameAuthority(
+    photonView.Owner.NickName,
+    photonView,
+    photonView.Owner.UserId == PhotonNetwork.MasterClient.UserId,
+    GetComponentInChildren<AudioSource>());
+        GetComponentInChildren<AudioSource>().enabled = false;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -46,34 +58,36 @@ public class PlayerMove : MonoBehaviourPun
     // Update is called once per frame
     void Update()
     {
-        if (photonView.IsMine)
+        if (!photonView.IsMine) return;
+
+        float h = SYA_InputManager.GetAxis("Horizontal");
+        float v = SYA_InputManager.GetAxis("Vertical");
+
+        dir = Vector3.forward * v + Vector3.right * h;
+
+        if (cc.isGrounded)
         {
-            float h = Input.GetAxis("Horizontal");
-            float v = Input.GetAxis("Vertical");
-            Vector3 dir = Vector3.forward * v + Vector3.right * h;
-            dir = Camera.main.transform.TransformDirection(dir);
-            dir.Normalize();
-            if(cc.isGrounded)
-            {
-                yVelocity = 0;
-                jumpCount = 0;
-            }
-            if (Input.GetButtonDown("Jump") && jumpCount == 0)
-            {
-                jumpCount++;
-                yVelocity = jumpPower;
-            }
-            yVelocity += gravity * Time.deltaTime;
-            dir.y = yVelocity;
-            cc.Move(dir * speed * Time.deltaTime);
+            yVelocity = 0;
+            jumpCount = 0;
         }
-        else
+        if (SYA_InputManager.GetButtonDown("Jump"))
         {
-            ////Lerp를 이용해서 목적지, 목적방향까지 이동 및 회전
-            //transform.position = Vector3.Lerp(transform.position, receivePos, lerpSpeed * Time.deltaTime);
-            //transform.rotation = Quaternion.Lerp(transform.rotation, receiveRot, lerpSpeed * Time.deltaTime);
-            return;
-            
+            GetJump();
         }
+
+        dir = Camera.main.transform.TransformDirection(dir);
+        dir.Normalize();
+
+        //jumpButton.onClick.AddListener(GetJump);
+        yVelocity += gravity * Time.deltaTime;
+        dir.y = yVelocity;
+        cc.Move(dir * speed * Time.deltaTime);
+    }
+
+    public void GetJump()
+    {
+        if (jumpCount == 0)
+            jumpCount++;
+        yVelocity = jumpPower;
     }
 }
