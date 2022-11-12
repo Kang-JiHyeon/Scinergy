@@ -23,9 +23,7 @@ public class PlayerUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        print(PhotonNetwork.MasterClient.UserId);
-        print(PhotonNetwork.MasterClient.UserId != GetComponentInParent<PhotonView>().Owner.UserId);
-        if (PhotonNetwork.MasterClient.UserId != GetComponentInParent<PhotonView>().Owner.UserId)
+        if (SYA_SymposiumManager.Instance.roomOwner != GetComponentInParent<PhotonView>().name)
         {
             for (int i = 0; i < masterBtn.Count; i++)
             {
