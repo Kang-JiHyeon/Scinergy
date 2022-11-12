@@ -139,11 +139,10 @@ namespace SYA_UI
             {
                 if(!SYA_SymposiumManager.Instance.player[player[i]].IsMine)
                 {
-                    Destroy(SYA_SymposiumManager.Instance.playerObj[player[i]]);
+                    SYA_SymposiumManager.Instance.playerObj[player[i]]./*transform.GetChild(0).gameObject.*/SetActive(false);
                 }
             }
-            Destroy(SYA_SymposiumManager.Instance.playerObj[PhotonNetwork.NickName]);
-            SceneManager.LoadScene("KYG_Scene");
+            PhotonNetwork.LoadLevel("KYG_Scene");
             if (PhotonNetwork.MasterClient.UserId != SYA_SymposiumManager.Instance.player[PhotonNetwork.NickName].Owner.UserId)
             {
                 SYA_ChatManager.Instance.chatClient.Unsubscribe(new string[] { SYA_ChatManager.Instance.Lobbychannel, SYA_ChatManager.Instance.Solarchannel });

@@ -10178,10 +10178,10 @@ GameObject:
   - component: {fileID: -4641142783850514307}
   - component: {fileID: 1541200876443619569}
   - component: {fileID: 1477248364120336868}
-  - component: {fileID: 5491574867658027024}
   - component: {fileID: 5680994058017818409}
   - component: {fileID: -4531654922911511907}
   - component: {fileID: 6497769746752762209}
+  - component: {fileID: 4222501657822552905}
   m_Layer: 0
   m_Name: Player 3
   m_TagString: Untagged
@@ -10334,19 +10334,6 @@ MonoBehaviour:
   AutoCreateRecorderIfNotFound: 0
   UsePrimaryRecorder: 1
   SetupDebugSpeaker: 0
---- !u!114 &5491574867658027024
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2836529994268691361}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35fa938aab1fd474e9839b92bdbf47c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  setActive: 1
 --- !u!114 &5680994058017818409
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10389,6 +10376,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f387dddbeff30194d903d2c1f77b463e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4222501657822552905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2836529994268691361}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35fa938aab1fd474e9839b92bdbf47c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  setActive: 0
 --- !u!1 &2836529994272077557
 GameObject:
   m_ObjectHideFlags: 0

@@ -7,11 +7,11 @@ public class SYA_DontDestroy : MonoBehaviour
     public bool setActive;
     private void Awake()
     {
-        DontDestroyOnLoad(gameObject);
         gameObject.SetActive(setActive);
     }
     private void Start()
     {
+        DontDestroyOnLoad(gameObject);
         
     }
 }

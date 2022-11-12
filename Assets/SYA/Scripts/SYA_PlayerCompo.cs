@@ -9,6 +9,13 @@ public class SYA_PlayerCompo : MonoBehaviourPun
    PlayerMove SYA_PlayerMove;
    CharacterController CharacterController;
    PlayerRot PlayerRot;
+    SYA_DontDestroy SYA_DontDestroy;
+
+    private void Awake()
+    {
+        SYA_DontDestroy = GetComponent<SYA_DontDestroy>();
+        if (!photonView.IsMine) Destroy(SYA_DontDestroy);
+    }
 
     private void Start()
     {
