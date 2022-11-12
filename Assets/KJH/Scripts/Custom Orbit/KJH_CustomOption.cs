@@ -117,6 +117,7 @@ public class KJH_CustomOption : MonoBehaviour
         rb_sun = tr_sun.gameObject.AddComponent<Rigidbody>();
         rb_earth = tr_earth.gameObject.AddComponent<Rigidbody>();
 
+        //if(rb_sun)
         rb_sun.useGravity = false;
         rb_earth.useGravity = false;
 

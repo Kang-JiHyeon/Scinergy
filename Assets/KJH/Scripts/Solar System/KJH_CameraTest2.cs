@@ -39,14 +39,19 @@ public class KJH_CameraTest2 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        cam = Camera.main.transform;
-        selectPlanet = cam.GetComponent<KJH_SelectPlanet>();
+        //cam = Camera.main.transform;
+        
     }
 
 
     // Update is called once per frame
     void Update()
     {
+        if(cam == null)
+        {
+            cam = Camera.main.transform;
+            selectPlanet = cam.GetComponent<KJH_SelectPlanet>();
+        }
         // B키 누르면 카메라 회전 및 줌인 비활성화
         if (Input.GetKeyDown(KeyCode.B))
             isStop = !isStop;
@@ -107,10 +112,10 @@ public class KJH_CameraTest2 : MonoBehaviour
             MoveToCB(target);
         }
 
-        if (isViewNucleus)
-        {
-            ViewNucleus();
-        }
+        //if (isViewNucleus)
+        //{
+        //    ViewNucleus();
+        //}
 
     }
 

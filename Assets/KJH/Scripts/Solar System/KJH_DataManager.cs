@@ -9,7 +9,7 @@ using UnityEngine.EventSystems;
 public class KJH_DataManager : MonoBehaviour
 {
     // 선택한 천체 관련 스크립트
-    KJH_SelectPlanet selectPlanet;
+    public KJH_SelectPlanet selectPlanet;
 
     // 읽어온 정보 데이터
     KJH_Data data;
@@ -52,9 +52,7 @@ public class KJH_DataManager : MonoBehaviour
     void Start()
     {
         data = GetComponent<KJH_Data>();
-        selectPlanet = Camera.main.GetComponent<KJH_SelectPlanet>();
     }
-
 
     public void ChangeInfo()
     {
@@ -62,6 +60,8 @@ public class KJH_DataManager : MonoBehaviour
         ClearContent(trGrid);
         ClearContent(trContent_structure);
 
+
+        print(data);
 
         int index = data.cbNames.FindIndex(x => x == selectPlanet.focusTarget.name);
 
