@@ -414,6 +414,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpaceShuttle_01
       objectReference: {fileID: 0}
+    - target: {fileID: 111078, guid: b271505711828fd4e9719f1b97a0922a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 486654, guid: b271505711828fd4e9719f1b97a0922a, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -655,7 +659,6 @@ GameObject:
   - component: {fileID: 968449919}
   - component: {fileID: 968449918}
   - component: {fileID: 968449917}
-  - component: {fileID: 968449921}
   - component: {fileID: 968449923}
   - component: {fileID: 968449922}
   m_Layer: 0
@@ -743,19 +746,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &968449921
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 968449916}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e7b6a2343d62b645adf7427f7d46a07, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 398836239}
 --- !u!114 &968449922
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1313,6 +1303,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1807182057}
   - component: {fileID: 1807182058}
+  - component: {fileID: 1807182059}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1349,6 +1340,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CelestialSphere: {fileID: 968449916}
   celestialSphereRadius: 1000
+--- !u!114 &1807182059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1807182056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 3
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &2114503800
 GameObject:
   m_ObjectHideFlags: 0

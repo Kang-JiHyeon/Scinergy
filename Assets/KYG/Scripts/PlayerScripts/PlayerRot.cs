@@ -25,7 +25,7 @@ public class PlayerRot : MonoBehaviourPun
     // Start is called before the first frame update
     void Start()
     {
-        camPos.GetChild(0).gameObject.SetActive(photonView.IsMine);
+        camPos.gameObject.SetActive(photonView.IsMine);
     }
 
     // Update is called once per frame

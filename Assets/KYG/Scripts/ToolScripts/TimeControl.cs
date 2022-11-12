@@ -182,4 +182,8 @@ public class TimeControl : MonoBehaviour
         sphereRotateAngle = timeScale / 24;
         GameManager.instance.CelestialSphere.transform.Rotate(Vector3.up * sphereRotateAngle);
     }
+    public void OnCloseBtn()
+    {
+        gameObject.SetActive(false);
+    }
 }
