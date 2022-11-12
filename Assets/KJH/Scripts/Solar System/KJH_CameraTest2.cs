@@ -89,10 +89,7 @@ public class KJH_CameraTest2 : MonoBehaviour
                 mx = Input.GetAxis("Mouse X");
                 my = Input.GetAxis("Mouse Y");
 
-                if(isViewNucleus == false)
-                {
-                    Rotate(mx, my);
-                }
+                Rotate(mx, my);
             }
             // 마우스 왼쪽 버튼을 누르고 있지 않을 때
             else
@@ -126,7 +123,7 @@ public class KJH_CameraTest2 : MonoBehaviour
         rotX += x * rotSpeed * Time.deltaTime;
         rotY += y * rotSpeed * Time.deltaTime;
 
-        rotY = Mathf.Clamp(rotY, -90, 90);
+        rotY = Mathf.Clamp(rotY, -90, 90); 
 
         pivot.localEulerAngles = new Vector3(-rotY, rotX, 0);
     }
