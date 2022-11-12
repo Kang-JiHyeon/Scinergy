@@ -120,7 +120,7 @@ namespace SYA_UI
                 SYA_ChatManager.Instance.chatClient.Subscribe(new string[] { SYA_ChatManager.Instance.Allchannel, SYA_ChatManager.Instance.Solarchannel });
             }
             SYA_ChatManager.Instance.currentChannel = SYA_ChatManager.Instance.Allchannel;
-            OnOffChsnge();
+            //OnOffChsnge();
             print("솔라 시스템으로 이동");
         }
 
@@ -133,14 +133,14 @@ namespace SYA_UI
                 SYA_ChatManager.Instance.chatClient.Subscribe(new string[] { SYA_ChatManager.Instance.Allchannel, SYA_ChatManager.Instance.Constchannel });
             }
             SYA_ChatManager.Instance.currentChannel = SYA_ChatManager.Instance.Allchannel;
-            OnOffChsnge();
+            //OnOffChsnge();
             print("별자리로 이동");
         }
 
         public void SymposiumChsnge()
         {
             SceneManager.LoadScene("SymposiumScene");
-            OnOffChsnge();
+            //OnOffChsnge();
         }
 
         void OnOffChsnge()
