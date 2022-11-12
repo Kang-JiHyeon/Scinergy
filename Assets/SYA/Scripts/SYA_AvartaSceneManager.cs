@@ -230,7 +230,7 @@ public class SYA_AvartaSceneManager : MonoBehaviourPun
     {
         SYA_UserInfoSave.Instance.AvatarSave($"Player {avatarP.name}");
         SYA_UserInfoSave.Instance.NicNameSave(name.text);
-        SYA_SceneChange.Instance.SymposiumRoomList();
+        //SYA_SceneChange.Instance.SymposiumRoomList();
     }
 
    /* public void AvatarLayerChange(float z, Transform avatar)
