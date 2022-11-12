@@ -74,7 +74,6 @@ public class KJH_CustomOption : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-
         sunLight.transform.LookAt(tr_earth.position);
 
         //text_distance.text = Vector3.Distance(tr_sun.position, tr_earth.position).ToString();
@@ -83,10 +82,10 @@ public class KJH_CustomOption : MonoBehaviour
         {
             orbit.Gravity();
             //pivot.position = pivotPos;
-            camara.pivot.position = pivotPos;
+            //camara.pivot.position = pivotPos;
 
-            // 두 행성 중심을 기준으로 카메라 회전
-            camara.pivot.position = (tr_sun.position + tr_earth.position) / 2;
+            //// 두 행성 중심을 기준으로 카메라 회전
+            //camara.pivot.position = (tr_sun.position + tr_earth.position) / 2;
         }
 
         input_sun.enabled = !isOrbitMove;
@@ -122,17 +121,17 @@ public class KJH_CustomOption : MonoBehaviour
         rb_earth.useGravity = false;
 
 
-        //// 질량 큰 행성 기준으로 카메라 회전
-        //if (sunMassValue > earthMassValue)
-        //{
-        //    pivot = tr_sun; 
-        //    pivotPos = tr_sun.position;
-        //}
-        //else
-        //{
-        //    pivot = tr_earth;
-        //    pivotPos = tr_earth.position;
-        //}
+        // 질량 큰 행성 기준으로 카메라 회전
+        if (sunMassValue > earthMassValue)
+        {
+            pivot = tr_sun;
+            pivotPos = tr_sun.position;
+        }
+        else
+        {
+            pivot = tr_earth;
+            pivotPos = tr_earth.position;
+        }
 
         // 질량 변경
         rb_sun.mass = sunMassValue;
