@@ -31,6 +31,7 @@ public class PlayerRot : MonoBehaviourPun
     // Update is called once per frame
     void Update()
     {
+        camPos.GetChild(0).gameObject.SetActive(SceneManager.GetActiveScene().name != "KJH_SolarSystemScene");
         if (!photonView.IsMine) return;
         StateMachine();
     }
