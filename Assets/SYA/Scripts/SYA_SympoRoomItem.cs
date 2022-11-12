@@ -53,6 +53,12 @@ public class SYA_SympoRoomItem : MonoBehaviour
         unpubl.SetActive(info.CustomProperties["public"].ToString() == "False");
     }
 
+ 
+    public void OffPassward()
+    {
+        password.SetActive(false);
+    }
+
     public void JoinRoom()
     {
         if(!unpubl.activeSelf)

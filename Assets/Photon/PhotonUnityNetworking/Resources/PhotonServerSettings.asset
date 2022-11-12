@@ -19,7 +19,7 @@ MonoBehaviour:
     AppIdVoice: 69c193a8-c01d-4d25-a025-17f7fc889bb9
     AppVersion: 1
     UseNameServer: 1
-    FixedRegion: kr
+    FixedRegion: 
     Server: 
     Port: 0
     ProxyServer: 
@@ -64,8 +64,6 @@ MonoBehaviour:
   - RpcAllMute
   - RpcAllUnmute
   - SendLineVec
-  - RPCNormalGenerate
-  - RPCRandomGenerate
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

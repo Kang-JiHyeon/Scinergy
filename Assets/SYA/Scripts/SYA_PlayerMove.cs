@@ -20,16 +20,19 @@ public class SYA_PlayerMove : MonoBehaviourPun
 
     Vector3 dir;
 
+    private void Awake()
+    {
+        SYA_SymposiumManager.Instance.PlayerNameAuthority(
+    photonView.Owner.NickName,
+    photonView,
+    photonView.Owner.UserId == PhotonNetwork.MasterClient.UserId,
+    GetComponentInChildren<AudioSource>());
+        GetComponentInChildren<AudioSource>().enabled = false;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        
-        SYA_SymposiumManager.Instance.PlayerNameAuthority(
-            photonView.Owner.NickName, 
-            photonView, 
-            photonView.Owner.UserId == PhotonNetwork.MasterClient.UserId,
-            GetComponentInChildren<AudioSource>());
-        GetComponentInChildren<AudioSource>().enabled = false;
         if (!photonView.IsMine) return;
         cc = GetComponent<CharacterController>();
         //nickName.text = PhotonNetwork.NickName ;
