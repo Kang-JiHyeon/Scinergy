@@ -7,6 +7,7 @@ public class KJH_OrbitCamera : MonoBehaviour
 {
     // 회전 기준 -> cameraTarget의 position
     public Transform pivot;
+    public Transform target;
     Transform cam;
 
     // 카메라 회전
@@ -16,21 +17,18 @@ public class KJH_OrbitCamera : MonoBehaviour
     float rotY;
     float rotX;
 
-
     // 카메라 줌인/줌아웃
     Vector2 preMouse;
-    Vector3 preCameraPos;
 
-    Vector3 velocity = Vector3.zero;
     public float distance = 10f;
-    public float zoomSmoothTime = 0.2f;
     public float zoomSpeed = 50.0f;
     public float minDistance = 3f;
     public float maxDistance = 100f;
 
-    public KJH_SelectPlanet selectPlanet;
-    public Transform target;
     bool isRot = false;
+    bool isDraging = false;
+
+
 
 
     // Start is called before the first frame update
@@ -43,9 +41,6 @@ public class KJH_OrbitCamera : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // 카메라 포커스 대상
-
-        //pivot.position = Vector3.zero;
 
         // 마우스 버튼 입력에 따른 카메라 회전 제어 변수
         if (Input.GetMouseButtonDown(0))
@@ -126,7 +121,7 @@ public class KJH_OrbitCamera : MonoBehaviour
         return 0;
     }
 
-    bool isDraging = false;
+    
     void ClickCelestials()
     {
         Vector3 mouse = Input.mousePosition;

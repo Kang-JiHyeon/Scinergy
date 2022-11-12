@@ -104,10 +104,10 @@ public class KJH_CameraTest2 : MonoBehaviour
             MoveToCB(target);
         }
 
-        //if (isViewNucleus)
-        //{
-        //    ViewNucleus();
-        //}
+        if (isViewNucleus)
+        {
+            ViewNucleus();
+        }
 
     }
 
@@ -191,7 +191,6 @@ public class KJH_CameraTest2 : MonoBehaviour
     // 내부구조 카메라
     void ViewNucleus()
     {
-
         Vector3 nucleusDir = target.forward;
         pivot.forward = Vector3.Slerp(pivot.forward, nucleusDir, Time.deltaTime * 5f);
 

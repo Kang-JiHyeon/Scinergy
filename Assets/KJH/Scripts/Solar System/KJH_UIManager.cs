@@ -354,12 +354,18 @@ public class KJH_UIManager : MonoBehaviour
     public void OnClick_Close(GameObject go)
     {
         go.SetActive(false);
-        
-        if(go.name == "UI_CelestialList")
+
+        if (go.name == "UI_CelestialList")
         {
             ChangeSprite(go, 0);
             ChangeSprite(go, 3);
         }
+
+        if (go.name == "UI_InfoMenu")
+        {
+            ChangeSprite(go, 0);
+        }
+
 
         if(go.name == "UI_ControlTime")
         {
@@ -384,6 +390,8 @@ public class KJH_UIManager : MonoBehaviour
     public void OnClick_Structure()
     {
         dict_UI["UI_Info"].transform.GetChild(2).gameObject.SetActive(true);
+
+        cam.isViewNucleus = true;
         SetActiveModel(false);
     }
 
