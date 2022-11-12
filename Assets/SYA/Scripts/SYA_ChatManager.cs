@@ -113,7 +113,7 @@ public class SYA_ChatManager : MonoBehaviourPun, IChatClientListener
                 }
                 else
                 {
-                    currentChannel = scene == "KJH_RevolutionScene" ? Solarchannel : Constchannel;
+                    currentChannel = scene == "KJH_SolarSystemScene" ? Solarchannel : Constchannel;
                 }
             }
             else

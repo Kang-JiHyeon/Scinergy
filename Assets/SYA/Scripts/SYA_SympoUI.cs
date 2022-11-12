@@ -95,7 +95,7 @@ namespace SYA_UI
                 solSympoButton.SetActive(false);
                 conSympoButton.SetActive(false);
             }
-            else if (SceneManager.GetActiveScene().name == "KJH_RevolutionScene")
+            else if (SceneManager.GetActiveScene().name == "KJH_SolarSystemScene")
             {
                 solButton.SetActive(false);
                 conButton.SetActive(true);
@@ -113,7 +113,7 @@ namespace SYA_UI
 
         public void SolarSystemChange()
         {
-            PhotonNetwork.LoadLevel("KJH_RevolutionScene");
+            PhotonNetwork.LoadLevel("KJH_SolarSystemScene");
             if (PhotonNetwork.MasterClient.UserId != SYA_SymposiumManager.Instance.player[PhotonNetwork.NickName].Owner.UserId)
             {
                 SYA_ChatManager.Instance.chatClient.Unsubscribe(new string[] { SYA_ChatManager.Instance.Constchannel, SYA_ChatManager.Instance.Lobbychannel });
