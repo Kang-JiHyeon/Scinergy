@@ -84,7 +84,10 @@ public class KJH_CameraTest2 : MonoBehaviour
                 mx = Input.GetAxis("Mouse X");
                 my = Input.GetAxis("Mouse Y");
 
-                Rotate(mx, my);
+                if(isViewNucleus == false)
+                {
+                    Rotate(mx, my);
+                }
             }
             // 마우스 왼쪽 버튼을 누르고 있지 않을 때
             else
@@ -197,7 +200,7 @@ public class KJH_CameraTest2 : MonoBehaviour
         if (Vector3.Angle(pivot.forward, nucleusDir) < 0.1f)
         {
             pivot.forward = nucleusDir;
-            isViewNucleus = false;
+            //isViewNucleus = false;
         }
     }
 }

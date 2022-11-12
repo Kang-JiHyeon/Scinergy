@@ -292,19 +292,19 @@ public class KJH_UIManager : MonoBehaviour
         SetActiveUI("UI_ViewCBInfo");
     }
 
-    // 천체 내부 구조 보기
-    public void ViewCBStructure()
-    {
-        // ui 변경
-        SetActiveUI("UI_ViewCBStructure");
+    //// 천체 내부 구조 보기
+    //public void ViewCBStructure()
+    //{
+    //    // ui 변경
+    //    SetActiveUI("UI_ViewCBStructure");
 
-        // 모델 변경 : 현재 선택된 모델의 부모의 1번째 자식은 끄고, 2번째 자식은 킨다.
-        SetActiveModel(false);
+    //    // 모델 변경 : 현재 선택된 모델의 부모의 1번째 자식은 끄고, 2번째 자식은 킨다.
+    //    SetActiveModel(false);
 
-        // 카메라 : 행성 back 방향으로 이동
-        cam.isViewNucleus = true;
+    //    // 카메라 : 행성 back 방향으로 이동
+    //    cam.isViewNucleus = true;
 
-    }
+    //}
 
     // 천체 정보 UI 중에서 활성화 고르기
     void SetActiveUI(string targetName)
