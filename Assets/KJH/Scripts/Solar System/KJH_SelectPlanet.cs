@@ -73,17 +73,16 @@ public class KJH_SelectPlanet : MonoBehaviour
             {
                 m_Timer = Time.time;
                 m_isOneClick = true;
-                ClickPlanet();
             }
             // 마우스 2번 클릭
             else if (m_isOneClick && ((Time.time - m_Timer) < m_DoubleClickSecond))
             {
                 isMove = true;
                 m_isOneClick = false;
-                ClickPlanet();
             }
-        }
 
+            ClickPlanet();
+        }
 
         print("focusTarget : " + focusTarget);
         print("camaraTarget : " + camaraTarget);
@@ -138,10 +137,18 @@ public class KJH_SelectPlanet : MonoBehaviour
             {
                 if(camaraTarget != hit.transform)
                 {
+                    // 모델 변경 -> 내부구조 열려있으면 닫고 다음 행성으로 이동
+                    Transform parent = camaraTarget.parent;
+                    if (parent.GetChild(1).gameObject.activeSelf)
+                    {
+                        parent.GetChild(0).gameObject.SetActive(true);
+                        parent.GetChild(1).gameObject.SetActive(false);
+                    }
                     // 중심 target 설정
                     camaraTarget = hit.transform;
                     // 카메라 움직임
                     cam.isMovingToCB = true;
+                    
                 }
                 else
                 {

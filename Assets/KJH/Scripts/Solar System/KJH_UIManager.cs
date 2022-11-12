@@ -392,6 +392,7 @@ public class KJH_UIManager : MonoBehaviour
         dict_UI["UI_Info"].transform.GetChild(2).gameObject.SetActive(true);
 
         cam.isViewNucleus = true;
+        cam.isMoveToNucleus = true;
         SetActiveModel(false);
     }
 
