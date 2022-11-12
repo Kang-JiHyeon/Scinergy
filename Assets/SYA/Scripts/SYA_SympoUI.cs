@@ -113,7 +113,15 @@ namespace SYA_UI
 
         public void SolarSystemChange()
         {
-            PhotonNetwork.LoadLevel("KJH_SolarSystemScene");
+            List<string> player = SYA_SymposiumManager.Instance.playerName;
+            for (int i = 0; i < player.Count; ++i)
+            {
+                if (!SYA_SymposiumManager.Instance.player[player[i]].IsMine)
+                {
+                    Destroy(SYA_SymposiumManager.Instance.playerObj[player[i]]);
+                }
+            }
+            SceneManager.LoadScene("KJH_SolarSystemScene");
             if (PhotonNetwork.MasterClient.UserId != SYA_SymposiumManager.Instance.player[PhotonNetwork.NickName].Owner.UserId)
             {
                 SYA_ChatManager.Instance.chatClient.Unsubscribe(new string[] { SYA_ChatManager.Instance.Constchannel, SYA_ChatManager.Instance.Lobbychannel });
@@ -126,7 +134,16 @@ namespace SYA_UI
 
         public void ConstellationChange()
         {
-           PhotonNetwork.LoadLevel("KYG_Scene");
+            List<string> player = SYA_SymposiumManager.Instance.playerName;
+            for (int i=0; i< player.Count; ++i)
+            {
+                if(!SYA_SymposiumManager.Instance.player[player[i]].IsMine)
+                {
+                    Destroy(SYA_SymposiumManager.Instance.playerObj[player[i]]);
+                }
+            }
+            Destroy(SYA_SymposiumManager.Instance.playerObj[PhotonNetwork.NickName]);
+            SceneManager.LoadScene("KYG_Scene");
             if (PhotonNetwork.MasterClient.UserId != SYA_SymposiumManager.Instance.player[PhotonNetwork.NickName].Owner.UserId)
             {
                 SYA_ChatManager.Instance.chatClient.Unsubscribe(new string[] { SYA_ChatManager.Instance.Lobbychannel, SYA_ChatManager.Instance.Solarchannel });

@@ -10,4 +10,8 @@ public class SYA_DontDestroy : MonoBehaviour
         DontDestroyOnLoad(gameObject);
         gameObject.SetActive(setActive);
     }
+    private void Start()
+    {
+        
+    }
 }
