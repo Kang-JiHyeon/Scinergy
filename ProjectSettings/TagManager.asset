@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Celestial
   layers:
   - Default
   - TransparentFX
@@ -21,7 +22,7 @@ TagManager:
   - Saturn
   - Uranus
   - Neptune
-  - 
+  - Moon
   - Avatar_Front
   - Avatar_Back
   - 
