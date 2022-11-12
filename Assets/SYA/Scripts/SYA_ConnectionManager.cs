@@ -36,6 +36,7 @@ public class SYA_ConnectionManager : MonoBehaviourPunCallbacks
     //마스터 서버 접속성공시 호출(Lobby에 진입할 수 있는 상태)
     public override void OnConnectedToMaster()
     {
+        print(PhotonNetwork.NickName);
         base.OnConnectedToMaster();
         print(System.Reflection.MethodBase.GetCurrentMethod().Name);
         //내 닉네임 설정
@@ -44,6 +45,7 @@ public class SYA_ConnectionManager : MonoBehaviourPunCallbacks
         //로비 진입 요청
         TypedLobby typed = new TypedLobby("C1", LobbyType.Default);
         PhotonNetwork.JoinLobby(typed);
+        SYA_SceneChange.Instance.SymposiumRoomList();
     }
 
     //로비 진입 성공시 호출
