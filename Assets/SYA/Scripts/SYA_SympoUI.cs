@@ -259,7 +259,7 @@ namespace SYA_UI
             if (goStar)
                 PhotonNetwork.LoadLevel("KYG_Scene");
             else
-                PhotonNetwork.LoadLevel("SymposiumScene");
+                PhotonNetwork.LoadLevel("AvatarSympo");
         }
 
         public override void OnJoinRoomFailed(short returnCode, string message)

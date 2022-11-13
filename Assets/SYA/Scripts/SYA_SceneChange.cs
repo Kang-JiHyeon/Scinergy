@@ -74,6 +74,11 @@ public class SYA_SceneChange : MonoBehaviour
         SceneManager.LoadScene("SYA_SymposiumRoomList");
     }
 
+    public void AvatarCreateScene()
+    {
+        SceneManager.LoadScene("AvatarSympo");
+    }
+
     public void Quit()
     {
         Application.Quit();
