@@ -14347,6 +14347,7 @@ MonoBehaviour:
   roomName: {fileID: 209323808}
   roomOwner: {fileID: 115617530}
   roomPassward: {fileID: 1146280104}
+  text_user: {fileID: 424100391}
   AudienceTran: {fileID: 395739503}
   PresenterTran: {fileID: 536997918}
   recordeOnOff: {fileID: 0}

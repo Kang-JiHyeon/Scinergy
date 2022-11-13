@@ -7,10 +7,11 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.Windows.WebCam;
 using Photon.Pun;
+using Photon.Realtime;
 
 namespace SYA_UI
 {
-    public class SYA_SympoUI : MonoBehaviourPun
+    public class SYA_SympoUI : MonoBehaviourPunCallbacks
     {
 
         public GameObject window;
@@ -33,6 +34,10 @@ namespace SYA_UI
         public Text roomOwner;
         public Text roomPassward;
 
+        // [지현]
+        // 현재 인원 / 최대 인원
+        public Text text_user;
+
         private void Awake()
         {
             //transform.parent = GameObject.Find("Canvas_DontDestroy").transform.GetChild(0).transform;
@@ -43,7 +48,9 @@ namespace SYA_UI
             roomName.text = SYA_SymposiumManager.Instance.roomName;
             roomOwner.text = SYA_SymposiumManager.Instance.roomOwner;
             roomPassward.text = SYA_SymposiumManager.Instance.roomCode;
-           
+
+            // 지현
+            text_user.text = string.Format("{0:D2}", PhotonNetwork.PlayerList.Length) + "/20";
 
         }
 
@@ -66,6 +73,12 @@ namespace SYA_UI
         public void OnUserList()
         {
             userData.SetActive(!userData.activeSelf);
+
+            // 지현
+            // 기존의 플레이어 리스트를 clear
+            ClearUserList(AudienceTran);
+            ClearUserList(PresenterTran);
+
             foreach (KeyValuePair<string, string> userAuthority in SYA_SymposiumManager.Instance.playerAuthority)
             {
                 if (userAuthority.Value == "Audience")//청중일 경우
@@ -205,6 +218,37 @@ namespace SYA_UI
                     VideoPlayer.instance.NextVideo();*/
         }
 
-        //UserList
+        // UserList Clear
+        void ClearUserList(Transform tr)
+        {
+            for(int i=0; i< tr.childCount; i++)
+            {
+                Destroy(tr.GetChild(i).gameObject);
+            }
+        }
+
+        // 플레이어 나가면 player 정보 관련 리스트 및 딕셔너리 업데이트
+        // 방장이 나가면.... 다른 사람이 권한 받잖아? 그사람이 발표자 권한 가지고 있어야 함
+        // 이 경우에도 권한 딕셔너리를 초기화해야하는가?
+
+        // 애초에 플레이어 관련 정보를 받는 방법을 바꾸는 방법은 어떠한가
+        public override void OnPlayerLeftRoom(Player otherPlayer)
+        {
+            SYA_SymposiumManager.Instance.playerAuthority.Remove(otherPlayer.NickName);
+            //SYA_SymposiumManager.Instance.playerName.Remove(SYA_SymposiumManager.Instance.playerName.Find(x => x == otherPlayer.NickName));
+
+            // 나가는 사람이 마스터라면
+            if (otherPlayer.IsMasterClient)
+            {
+                // 권한 딕셔너리에서 제거하고 감
+                SYA_SymposiumManager.Instance.playerAuthority.Remove(otherPlayer.NickName);
+            }
+        }
+        
+        // 마스터가 변경된 후 호출되는 이벤트
+        public override void OnMasterClientSwitched(Player otherPlayer)
+        {
+            SYA_SymposiumManager.Instance.playerAuthority[otherPlayer.NickName] = "Presenter";
+        }
     }
 }
