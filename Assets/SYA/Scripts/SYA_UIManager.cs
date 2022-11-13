@@ -11,6 +11,9 @@ namespace SYA_UI
     {
         public static SYA_UIManager Instance;
 
+        public Transform btn_chat;
+        public Transform btn_mic;
+
         private void Awake()
         {
             //if (!photonView.IsMine) return;
@@ -36,6 +39,8 @@ namespace SYA_UI
         public void ChatOnOff()
         {
             chat.SetActive(!chat.activeSelf);
+            btn_chat.GetChild(0).gameObject.SetActive(!btn_chat.GetChild(0).gameObject.activeSelf);
+            btn_chat.GetChild(1).gameObject.SetActive(!btn_chat.GetChild(1).gameObject.activeSelf);
         }
 
         //마이크 온오프
@@ -45,10 +50,13 @@ namespace SYA_UI
         {
             micOn.SetActive(!micOn.activeSelf);
             micOff.SetActive(!micOff.activeSelf);
+
+            SYA_SymposiumManager.Instance.playerVoice[PhotonNetwork.NickName].enabled = micOn.activeSelf;
             // 마이크 키기
             // 본인의 닉네임의 오디오 소스를 끄고 켠다
             //SYA_SymposiumManager.Instance.playerVoice[PhotonNetwork.NickName].enabled = micOn.activeSelf;
-            photonView.RPC("RpcMicOnOff", RpcTarget.All, PhotonNetwork.NickName, micOn.activeSelf);
+            //SYA_SymposiumManager.Instance.player[PhotonNetwork.NickName].RPC("RpcMicOnOff", RpcTarget.All, PhotonNetwork.NickName, micOn.activeSelf);
+            //photonView.RPC("RpcMicOnOff", RpcTarget.All, PhotonNetwork.NickName, micOn.activeSelf);
         }
 
         [PunRPC]
@@ -59,9 +67,12 @@ namespace SYA_UI
 
         //설정창 온오프
         public GameObject option;
+        public Transform btn_option;
         public void OptionOnOff()
         {
             option.SetActive(!option.activeSelf);
+            btn_option.GetChild(0).gameObject.SetActive(!btn_option.GetChild(0).gameObject.activeSelf);
+            btn_option.GetChild(1).gameObject.SetActive(!btn_option.GetChild(1).gameObject.activeSelf);
         }
 
         //나가기 창 온오프
