@@ -74,7 +74,7 @@ public class OSW_LineDrawer : MonoBehaviourPun
             if (Physics.Raycast(ray, out hitInfo))
             {
                 print(hitInfo.collider.name);
-                if (hitInfo.collider.name == "Board" || hitInfo.collider.name == "uWC Window Object(Clone)")
+                if (hitInfo.collider.name == "TV" || hitInfo.collider.name == "uWC Window Object(Clone)")
                 {
                     // 라인을 생성한다.
                     newLine = new GameObject("Line" + lineList.Count);
@@ -118,7 +118,7 @@ public class OSW_LineDrawer : MonoBehaviourPun
                 RaycastHit hitInfo;
                 if (Physics.Raycast(ray, out hitInfo))
                 {
-                    if (hitInfo.collider.name == "Board" || hitInfo.collider.name == "uWC Window Object(Clone)")
+                    if (hitInfo.collider.name == "TV" || hitInfo.collider.name == "uWC Window Object(Clone)")
                     {
                         // 만약 생성될 때, 리스트에 active가 false인 것들은 삭제
                         for (int i = 0; i < lineList.Count; i++)
@@ -157,7 +157,7 @@ public class OSW_LineDrawer : MonoBehaviourPun
             RaycastHit hitInfo;
             if (Physics.Raycast(ray, out hitInfo))
             {
-                if (hitInfo.collider.name == "Board" || hitInfo.collider.name == "uWC Window Object(Clone)")
+                if (hitInfo.collider.name == "TV" || hitInfo.collider.name == "uWC Window Object(Clone)")
                 {
                     Debug.LogWarning($"View id : {pv.ViewID}");
 
@@ -216,7 +216,7 @@ public class OSW_LineDrawer : MonoBehaviourPun
         RaycastHit hitInfo;
         if (Physics.Raycast(ray, out hitInfo))
         {
-            if (hitInfo.collider.name == "Board" || hitInfo.collider.name == "uWC Window Object(Clone)")
+            if (hitInfo.collider.name == "TV" || hitInfo.collider.name == "uWC Window Object(Clone)")
             {
                 Debug.Log(hitInfo.collider.name);
             }
@@ -233,7 +233,7 @@ public class OSW_LineDrawer : MonoBehaviourPun
             RaycastHit hitInfo;
             if (Physics.Raycast(ray, out hitInfo))
             {
-                if (hitInfo.collider.name == "Board" || hitInfo.collider.name == "uWC Window Object(Clone)")
+                if (hitInfo.collider.name == "TV" || hitInfo.collider.name == "uWC Window Object(Clone)")
                 {
                     // 라인을 생성한다.
                     newLine = new GameObject("Line" + lineList.Count);
@@ -271,7 +271,7 @@ public class OSW_LineDrawer : MonoBehaviourPun
                 RaycastHit hitInfo;
                 if (Physics.Raycast(ray, out hitInfo))
                 {
-                    if (hitInfo.collider.name == "Board" || hitInfo.collider.name == "uWC Window Object(Clone)")
+                    if (hitInfo.collider.name == "TV" || hitInfo.collider.name == "uWC Window Object(Clone)")
                     {
                         // 만약 생성될 때, 리스트에 active가 false인 것들은 삭제
                         for (int i = 0; i < lineList.Count; i++)
@@ -308,7 +308,7 @@ public class OSW_LineDrawer : MonoBehaviourPun
             RaycastHit hitInfo;
             if (Physics.Raycast(ray, out hitInfo))
             {
-                if (hitInfo.collider.name == "Board" || hitInfo.collider.name == "uWC Window Object(Clone)")
+                if (hitInfo.collider.name == "TV" || hitInfo.collider.name == "uWC Window Object(Clone)")
                 {
                     Debug.LogWarning($"View id : {pv.ViewID}");
 
