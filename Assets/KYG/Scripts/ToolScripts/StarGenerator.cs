@@ -102,40 +102,57 @@ public class StarGenerator : MonoBehaviourPun
 
         if (Input.GetButtonDown("Fire1"))
         {
+            print("클릭은 됐어요");
             if (Physics.Raycast(starDrawRay, out starDrawInfo))
             {
+                print("레이도 쐈구요");
                 if (starDrawInfo.collider.name == "CelestialSphere")
                 {
+                    print("천구도 맞았어요");
                     Vector3 shoot = starDrawRay.direction;
                     shoot.y = 0;
-                    CreatedStarList createdStarList = starList.GetComponent<CreatedStarList>();
-                    GameObject star = Instantiate(starType);
-                    if (GameManager.instance.createdStarList.ContainsKey(starName))
-                    {
-                        starName += ( " ("+starNumber+")");
-                        starNumber++;
-                    }
-                    else
-                    {
-                        starNumber = 1;
-                    }
-                    GameManager.instance.createdStarList[starName] = star;
-                    dec = Mathf.Asin(starDrawInfo.point.y / GameManager.instance.celestialSphereRadius);
-                    ra = Mathf.Acos(starDrawInfo.point.z / (GameManager.instance.celestialSphereRadius * Mathf.Cos(dec)));
-                    if ((Vector3.Cross(Vector3.forward, shoot).normalized - Vector3.up).magnitude > 0.5f)
-                    {
-                        ra *= -1;
-                    }
-
-                    dec *= 180 / Mathf.PI;
-                    ra *= 180 / Mathf.PI;
-                    ra /= 15f;
-                    star.GetComponent<Star>().InfoSet(starName, ra, dec, starType, brightness, generateTypeNumber);
-                    //player.GetComponent<PlayerRot>().StarSet(star.transform.position);
-                    createdStarList.Init(starName, star);
+                    photonView.RPC("RPCDrawStar", RpcTarget.All,
+                        typeDropdown.value-1,
+                        starName,
+                        starDrawInfo.point,
+                        shoot,
+                        ra,
+                        dec,
+                        brightnessDropdown.value - 1,
+                        generateTypeNumber);
+                    
                 }
             }
         }
+    }
+    [PunRPC]
+    void RPCDrawStar(int starType,string starName, Vector3 starDrawInfo, Vector3 shoot, float ra, float dec, int brightness, int generateTypeNumber)
+    {
+        CreatedStarList createdStarList = starList.GetComponent<CreatedStarList>();
+        GameObject star = Instantiate(starTypeList[starType]);
+        if (GameManager.instance.createdStarList.ContainsKey(starName))
+        {
+            starName += (" (" + starNumber + ")");
+            starNumber++;
+        }
+        else
+        {
+            starNumber = 1;
+        }
+        GameManager.instance.createdStarList[starName] = star;
+        dec = Mathf.Asin(starDrawInfo.y / GameManager.instance.celestialSphereRadius);
+        ra = Mathf.Acos(starDrawInfo.z / (GameManager.instance.celestialSphereRadius * Mathf.Cos(dec)));
+        if ((Vector3.Cross(Vector3.forward, shoot).normalized - Vector3.up).magnitude > 0.5f)
+        {
+            ra *= -1;
+        }
+
+        dec *= 180 / Mathf.PI;
+        ra *= 180 / Mathf.PI;
+        ra /= 15f;
+        star.GetComponent<Star>().InfoSet(starName, ra, dec, starTypeList[starType], starBrightnessList[brightness], generateTypeNumber);
+        //player.GetComponent<PlayerRot>().StarSet(star.transform.position);
+        createdStarList.Init(starName, star);
     }
     public void typeDropdownSet()
     {

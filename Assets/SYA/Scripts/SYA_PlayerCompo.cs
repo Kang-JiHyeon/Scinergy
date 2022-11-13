@@ -6,6 +6,7 @@ using Photon.Pun;
 
 public class SYA_PlayerCompo : MonoBehaviourPun
 {
+    public static SYA_PlayerCompo Instance;
    PlayerMove SYA_PlayerMove;
    CharacterController CharacterController;
    PlayerRot PlayerRot;
@@ -13,8 +14,19 @@ public class SYA_PlayerCompo : MonoBehaviourPun
 
     private void Awake()
     {
-        /*SYA_DontDestroy = GetComponent<SYA_DontDestroy>();
-        if (!photonView.IsMine) Destroy(SYA_DontDestroy);*/
+        /*if (Instance == null)
+        {
+            //인스턴스에 나를 넣고
+            Instance = this;
+            //나를 씬이 전환이 되어도 파괴되지 않게 하겠다
+
+            DontDestroyOnLoad(gameObject);
+        }
+        //그렇지 않으면
+        else
+        {
+            Destroy(gameObject);
+        }*/
     }
 
     private void Start()

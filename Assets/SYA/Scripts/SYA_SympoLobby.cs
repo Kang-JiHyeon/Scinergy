@@ -158,7 +158,7 @@ public class SYA_SympoLobby : MonoBehaviourPunCallbacks
     {
         base.OnJoinedRoom();
         print("OnJoinedRoom");
-        PhotonNetwork.LoadLevel("SymposiumScene");
+        PhotonNetwork.LoadLevel("DontDestroy");
     }
 /*
     //방 참가가 실패 되었을 때 호출 되는 함수

@@ -11,13 +11,16 @@ public class OSW_RPC : MonoBehaviourPun
     // Start is called before the first frame update
     void Start()
     {
-        lineDrawer = FindObjectOfType<OSW_LineDrawer>();
+        //lineDrawer = FindObjectOfType<OSW_LineDrawer>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if(lineDrawer == null)
+        {
+            lineDrawer = FindObjectOfType<OSW_LineDrawer>();
+        }
     }
 
     [PunRPC]

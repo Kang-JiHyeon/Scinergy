@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Photon.Pun;
 
 public class PlayerControl : MonoBehaviour
 {
@@ -16,7 +17,7 @@ public class PlayerControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(SceneManager.GetActiveScene().name == "KYG_Scene")
+        if(GetComponent<PhotonView>().IsMine && SceneManager.GetActiveScene().name == "KYG_Scene")
         {
             if (Input.GetKeyDown(KeyCode.B))
             {
@@ -24,6 +25,10 @@ public class PlayerControl : MonoBehaviour
                 Cursor.visible = visible;
                 playerUI.SetActive(visible);
             }
+        }
+        else
+        {
+
         }
     }
 }

@@ -17,15 +17,15 @@ public class PlayerUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (GetComponentInParent<PhotonView>().IsMine)
-        {
-            if (SYA_SymposiumManager.Instance.playerAuthority[PhotonNetwork.NickName] == "Owner")
+        if (!SYA_SymposiumManager.Instance.player[PhotonNetwork.NickName].IsMine) gameObject.SetActive(false);
+
+            if (SYA_SymposiumManager.Instance.playerAuthority[PhotonNetwork.NickName] != "Owner")
             {
                 for (int i = 0; i < masterBtn.Count; i++)
                 {
@@ -33,11 +33,11 @@ public class PlayerUI : MonoBehaviour
                 }
 
             }
-        }
     }
     public void OnCompasBtn()
     {
         //compasActive = !compasActive;
+        
         if (compas.activeSelf)
         {
             compas.SetActive(false);
@@ -47,6 +47,7 @@ public class PlayerUI : MonoBehaviour
         {
             compas.SetActive(true);
         }
+        
     }
     public void OnStarGeneratorBtn()
     {
