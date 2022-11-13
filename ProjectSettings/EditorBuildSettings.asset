@@ -18,6 +18,9 @@ EditorBuildSettings:
     path: Assets/SYA/Scenes/DontDestroy.unity
     guid: d7ac618f2c2f8c44189480057d2cea03
   - enabled: 1
+    path: Assets/SYA/Scenes/AvatarSympo.unity
+    guid: e1b958fe2ffa69f428fed6697dd3c53e
+  - enabled: 1
     path: Assets/SYA/Scenes/SymposiumScene.unity
     guid: 168bc06e9c7c2d4428b16cba67bcbcb5
   - enabled: 1
