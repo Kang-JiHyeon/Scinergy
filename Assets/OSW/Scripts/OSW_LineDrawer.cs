@@ -82,6 +82,7 @@ public class OSW_LineDrawer : MonoBehaviourPun
                     // 만약 생성될 때, 리스트에 active가 false인 것들은 삭제
                     for (int i = 0; i < lineList.Count; i++)
                     {
+                        if (lineList[i] == null) continue;
                         if (lineList[i].activeSelf == false)
                         {
                             Destroy(lineList[i].gameObject);
@@ -123,8 +124,10 @@ public class OSW_LineDrawer : MonoBehaviourPun
                         // 만약 생성될 때, 리스트에 active가 false인 것들은 삭제
                         for (int i = 0; i < lineList.Count; i++)
                         {
+                            if (lineList[i] == null) continue;
                             if (lineList[i].activeSelf == false)
                             {
+                                
                                 Destroy(lineList[i].gameObject);
                                 lineList.RemoveAt(i); // RemoveAt을 해줘야 되돌리고 다시 선을 그었을때 뻑이 안남.
                                 i--;
