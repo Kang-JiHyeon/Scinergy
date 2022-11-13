@@ -23,9 +23,10 @@ public class PlayerUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GetComponentInParent<PhotonView>().IsMine)
-        {
-            if (SYA_SymposiumManager.Instance.playerAuthority[PhotonNetwork.NickName] == "Owner")
+        //if (GetComponentInParent<PhotonView>().IsMine)
+        //{
+            print(SYA_SymposiumManager.Instance.playerAuthority[PhotonNetwork.NickName] != "Owner");
+            if (SYA_SymposiumManager.Instance.playerAuthority[PhotonNetwork.NickName] != "Owner")
             {
                 for (int i = 0; i < masterBtn.Count; i++)
                 {
@@ -33,7 +34,7 @@ public class PlayerUI : MonoBehaviour
                 }
 
             }
-        }
+        //}
     }
     public void OnCompasBtn()
     {
