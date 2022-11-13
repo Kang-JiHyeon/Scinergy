@@ -25,7 +25,7 @@ public class PlayerUI : MonoBehaviour
     {
         if (GetComponentInParent<PhotonView>().IsMine)
         {
-            if (PhotonNetwork.MasterClient.UserId != GetComponentInParent<PhotonView>().Owner.UserId)
+            if (SYA_SymposiumManager.Instance.playerAuthority[PhotonNetwork.NickName] == "Owner")
             {
                 for (int i = 0; i < masterBtn.Count; i++)
                 {

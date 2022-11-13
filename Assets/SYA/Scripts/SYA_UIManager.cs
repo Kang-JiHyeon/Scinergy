@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
+using UnityEngine.SceneManagement;
 
 namespace SYA_UI
 {
@@ -67,7 +68,25 @@ namespace SYA_UI
         public GameObject quit;
         public void QuitOnOff()
         {
+            if(SceneManager.GetActiveScene().name.Contains("Sympo"))
+            {
             quit.SetActive(!quit.activeSelf);
+            }
+            else
+            {
+                lobbyOn();
+            }
+        }
+
+        public GameObject lobbyBack;
+        public void lobbyOn()
+        {
+            lobbyBack.SetActive(!lobbyBack.activeSelf);
+        }
+
+        public void lobbyBackScene()
+        {
+            GetComponentInChildren<SYA_SympoUI>().SymposiumChsnge();
         }
     }
 }

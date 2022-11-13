@@ -43,9 +43,20 @@ public class PlayerMove : MonoBehaviourPun
         SYA_SymposiumManager.Instance.PlayerNameAuthority(
     photonView.Owner.NickName,
     photonView,
-    photonView.Owner.UserId == PhotonNetwork.MasterClient.UserId,
     GetComponentInChildren<AudioSource>(),
     gameObject);
+
+        bool master;
+        if (!SYA_SymposiumManager.Instance.playerAuthority.ContainsKey(PhotonNetwork.NickName))
+        {
+            master = PhotonNetwork.MasterClient.UserId == SYA_SymposiumManager.Instance.player[PhotonNetwork.NickName].Owner.UserId;
+        }
+        else
+        {
+            master = SYA_SymposiumManager.Instance.playerAuthority[PhotonNetwork.NickName] == "Owner";
+        }
+        SYA_SymposiumManager.Instance.PlayerAuthority(PhotonNetwork.NickName,master);
+
         GetComponentInChildren<AudioSource>().enabled = false;
     }
 

@@ -25,7 +25,6 @@ public class SYA_PlayerMove : MonoBehaviourPun
         SYA_SymposiumManager.Instance.PlayerNameAuthority(
     photonView.Owner.NickName,
     photonView,
-    photonView.Owner.UserId == PhotonNetwork.MasterClient.UserId,
     GetComponentInChildren<AudioSource>(),
     gameObject);
         GetComponentInChildren<AudioSource>().enabled = false;

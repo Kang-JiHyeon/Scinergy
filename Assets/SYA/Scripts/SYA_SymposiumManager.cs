@@ -28,14 +28,27 @@ public class SYA_SymposiumManager : MonoBehaviourPun
 
     private void Awake()
     {
-        Instance = this;
+        if (Instance == null)
+        {
+            //인스턴스에 나를 넣고
+            Instance = this;
+            //나를 씬이 전환이 되어도 파괴되지 않게 하겠다
+
+            DontDestroyOnLoad(gameObject);
+        }
+        //그렇지 않으면
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        PhotonNetwork.Instantiate(SYA_UserInfoManager.Instance.Avatar, new Vector3(0, 5.5f, 1), Quaternion.identity);
-        PhotonNetwork.AutomaticallySyncScene = false;
+        roomName = PhotonNetwork.CurrentRoom.Name;
+        roomOwner = PhotonNetwork.CurrentRoom.CustomProperties["owner"].ToString();//Presenter
+        roomCode = PhotonNetwork.CurrentRoom.CustomProperties["password"].ToString();
     }
 
     public PhotonView GetMyPlayer()
@@ -50,25 +63,20 @@ public class SYA_SymposiumManager : MonoBehaviourPun
         return null;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        roomName = PhotonNetwork.CurrentRoom.Name;
-        roomOwner = PhotonNetwork.CurrentRoom.CustomProperties["owner"].ToString();
-        roomCode = PhotonNetwork.CurrentRoom.CustomProperties["password"].ToString();
-        
-    }
-
-    public void PlayerNameAuthority(string name, PhotonView photonView, bool master, AudioSource audioSource, GameObject gameObject)
+    public void PlayerNameAuthority(string name, PhotonView photonView, AudioSource audioSource, GameObject gameObject)
     {
         playerName.Add(name);
         player[name] = photonView;
-        if (master)//만약 마스터 클라이언트라면
-            playerAuthority[name] = "Presenter";
-        else //아니라면
-            playerAuthority[name] = "Audience";
         playerVoice[name] = audioSource;
         playerObj[name] = gameObject;
+    }
+
+    public void PlayerAuthority(string name, bool master)
+    {
+        if (master)//만약 마스터 클라이언트라면
+            playerAuthority[name] = "Owner";
+        else //아니라면
+            playerAuthority[name] = "Audience";
     }
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)

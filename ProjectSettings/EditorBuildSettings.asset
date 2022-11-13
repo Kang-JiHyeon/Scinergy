@@ -5,31 +5,31 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
+  - enabled: 1
     path: Assets/SYA/Scenes/TitleScene.unity
     guid: d4eae655b5f58474a9743e2a0983edb1
-  - enabled: 0
+  - enabled: 1
     path: Assets/SYA/Scenes/AvartaScene.unity
     guid: af6f714fdf401f54da56d6fe1c6123ab
-  - enabled: 0
+  - enabled: 1
     path: Assets/SYA/Scenes/SYA_SymposiumRoomList.unity
     guid: d374a6ca85d216d4e974d0df312f6112
   - enabled: 0
     path: Assets/OSW/Scenes/SymposiumScene.unity
     guid: eb7cf22e5da8d994d82f77a54a5e3ba4
-  - enabled: 0
+  - enabled: 1
     path: Assets/SYA/Scenes/SymposiumScene.unity
     guid: 168bc06e9c7c2d4428b16cba67bcbcb5
-  - enabled: 0
+  - enabled: 1
     path: Assets/KJH/Scenes/KJH_SolarSystemScene.unity
     guid: 1fe8e9ea401946e42af743a96a07231a
-  - enabled: 0
+  - enabled: 1
     path: Assets/KJH/Scenes/KJH_OrbitScene.unity
     guid: 05d63b5a46b6a414992d64d6dc998f64
-  - enabled: 1
+  - enabled: 0
     path: Assets/KYG/Scenes/ConnectionScene.unity
     guid: a5f71ff965b9f1140801bb9bc9c3c402
-  - enabled: 1
+  - enabled: 0
     path: Assets/KYG/Scenes/LobbyScene.unity
     guid: 0927ca355a0402b488622bbf9597721e
   - enabled: 1

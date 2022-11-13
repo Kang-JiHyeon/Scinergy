@@ -7,10 +7,12 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.Windows.WebCam;
 using Photon.Pun;
+using Photon.Realtime;
+
 
 namespace SYA_UI
 {
-    public class SYA_SympoUI : MonoBehaviourPun
+    public class SYA_SympoUI : MonoBehaviourPunCallbacks
     {
 
         public GameObject window;
@@ -43,7 +45,7 @@ namespace SYA_UI
             roomName.text = SYA_SymposiumManager.Instance.roomName;
             roomOwner.text = SYA_SymposiumManager.Instance.roomOwner;
             roomPassward.text = SYA_SymposiumManager.Instance.roomCode;
-           
+
 
         }
 
@@ -113,50 +115,161 @@ namespace SYA_UI
 
         public void SolarSystemChange()
         {
-            List<string> player = SYA_SymposiumManager.Instance.playerName;
+            /*List<string> player = SYA_SymposiumManager.Instance.playerName;
             for (int i = 0; i < player.Count; ++i)
             {
                 if (!SYA_SymposiumManager.Instance.player[player[i]].IsMine)
                 {
                     Destroy(SYA_SymposiumManager.Instance.playerObj[player[i]]);
                 }
-            }
-            SceneManager.LoadScene("KJH_SolarSystemScene");
-            if (PhotonNetwork.MasterClient.UserId != SYA_SymposiumManager.Instance.player[PhotonNetwork.NickName].Owner.UserId)
+            }*/
+            if (SceneManager.GetActiveScene().name.Contains("Sympo"))
             {
-                SYA_ChatManager.Instance.chatClient.Unsubscribe(new string[] { SYA_ChatManager.Instance.Constchannel, SYA_ChatManager.Instance.Lobbychannel });
-                SYA_ChatManager.Instance.chatClient.Subscribe(new string[] { SYA_ChatManager.Instance.Allchannel, SYA_ChatManager.Instance.Solarchannel });
+                SceneManager.LoadScene("KJH_SolarSystemScene");
+                if (PhotonNetwork.MasterClient.UserId != SYA_SymposiumManager.Instance.player[PhotonNetwork.NickName].Owner.UserId)
+                {
+                    SYA_ChatManager.Instance.chatClient.Unsubscribe(new string[] { SYA_ChatManager.Instance.Constchannel, SYA_ChatManager.Instance.Lobbychannel });
+                    SYA_ChatManager.Instance.chatClient.Subscribe(new string[] { SYA_ChatManager.Instance.Allchannel, SYA_ChatManager.Instance.Solarchannel });
+                }
+                SYA_ChatManager.Instance.currentChannel = SYA_ChatManager.Instance.Allchannel;
+                //OnOffChsnge();
+                solButton.SetActive(false);
+                print("솔라 시스템으로 이동");
             }
-            SYA_ChatManager.Instance.currentChannel = SYA_ChatManager.Instance.Allchannel;
-            //OnOffChsnge();
-            print("솔라 시스템으로 이동");
         }
+
+        bool goStar;
 
         public void ConstellationChange()
         {
-            List<string> player = SYA_SymposiumManager.Instance.playerName;
-            for (int i=0; i< player.Count; ++i)
+            /*            List<string> player = SYA_SymposiumManager.Instance.playerName;
+                        for (int i=0; i< player.Count; ++i)
+                        {
+                            if(!SYA_SymposiumManager.Instance.player[player[i]].IsMine)
+                            {
+                                SYA_SymposiumManager.Instance.playerObj[player[i]].*//*transform.GetChild(0).gameObject.*//*SetActive(false);
+                            }
+                        }*/
+            if (SceneManager.GetActiveScene().name.Contains("Sympo"))
             {
-                if(!SYA_SymposiumManager.Instance.player[player[i]].IsMine)
+                goStar = true;
+                currentRoomName = PhotonNetwork.CurrentRoom.Name;
+                PhotonNetwork.LeaveRoom();
+                if (PhotonNetwork.MasterClient.UserId != SYA_SymposiumManager.Instance.player[PhotonNetwork.NickName].Owner.UserId)
                 {
-                    SYA_SymposiumManager.Instance.playerObj[player[i]]./*transform.GetChild(0).gameObject.*/SetActive(false);
+                    SYA_ChatManager.Instance.chatClient.Unsubscribe(new string[] { SYA_ChatManager.Instance.Lobbychannel, SYA_ChatManager.Instance.Solarchannel });
+                    SYA_ChatManager.Instance.chatClient.Subscribe(new string[] { SYA_ChatManager.Instance.Allchannel, SYA_ChatManager.Instance.Constchannel });
                 }
+                SYA_ChatManager.Instance.currentChannel = SYA_ChatManager.Instance.Allchannel;
+                //OnOffChsnge();
+                conButton.SetActive(false);
+                print("별자리로 이동");
             }
-            PhotonNetwork.LoadLevel("KYG_Scene");
-            if (PhotonNetwork.MasterClient.UserId != SYA_SymposiumManager.Instance.player[PhotonNetwork.NickName].Owner.UserId)
+        }
+
+        string currentRoomName;
+
+        public override void OnConnectedToMaster()
+        {
+            base.OnConnectedToMaster();
+            if (goStar)
             {
-                SYA_ChatManager.Instance.chatClient.Unsubscribe(new string[] { SYA_ChatManager.Instance.Lobbychannel, SYA_ChatManager.Instance.Solarchannel });
-                SYA_ChatManager.Instance.chatClient.Subscribe(new string[] { SYA_ChatManager.Instance.Allchannel, SYA_ChatManager.Instance.Constchannel });
+                TypedLobby typed = new TypedLobby("C2", LobbyType.Default);
+                PhotonNetwork.JoinLobby(typed);
             }
-            SYA_ChatManager.Instance.currentChannel = SYA_ChatManager.Instance.Allchannel;
-            //OnOffChsnge();
-            print("별자리로 이동");
+            else
+            {
+                TypedLobby typed = new TypedLobby("C1", LobbyType.Default);
+                PhotonNetwork.JoinLobby(typed);
+            }
+        }
+
+        public override void OnJoinedLobby()
+        {
+            base.OnJoinedLobby();
+            if (goStar)
+            {
+                JoinRoom("star" + currentRoomName);
+            }
+            else
+            {
+                JoinRoom(currentRoomName);
+            }
+        }
+
+        void CreateRoom()
+        {
+            //방 옵션 세팅
+            RoomOptions roomOptions = new RoomOptions();
+
+            //최대 인원(0명이면 최대인원)
+            roomOptions.MaxPlayers = 10;
+            //룸 목록에 보이냐? 보이지 않느냐?
+            roomOptions.IsVisible = true;
+            //방을 만든다.
+            PhotonNetwork.CreateRoom("star" + currentRoomName, roomOptions, TypedLobby.Default);
+        }
+        //방 생성 완료
+        public override void OnCreatedRoom()
+        {
+            base.OnCreatedRoom();
+            print(System.Reflection.MethodBase.GetCurrentMethod().Name);
+        }
+        //방 생성 실패
+        public override void OnCreateRoomFailed(short returnCode, string message)
+        {
+            base.OnCreateRoomFailed(returnCode, message);
+            print("OnCreatedRoomFailed, " + returnCode + ", " + message);
+        }
+        //방입장 요청
+        public void JoinRoom(string roomName)
+        {
+
+            PhotonNetwork.JoinRoom(roomName);
+
+            //PhotonNetwork.JoinRoom : 선택한 방에 들어갈 때
+            //PhotonNetwork.JoinOrCreateRoom : 방이름 설정해서 들어가려고 할 때 해당이름으로 된 방이 없다면 그 이름으로 방 생성 후 입장
+            //PhotonNetwork.JoinRandomOrCreateRoom: 랜덤방을 들어가려고 할 때, 조건에 맞는 방이 없다면 내가 방을 생성후 입장
+            //PhotonNetwork.JoinRandomRoom : 랜덤한방 들어갈때
+        }
+
+        //방 입장이 성공했을 때
+        public override void OnJoinedRoom()
+        {
+            base.OnJoinedRoom();
+            print("OnJoinedRoom");
+            if (goStar)
+                PhotonNetwork.LoadLevel("KYG_Scene");
+            else
+                PhotonNetwork.LoadLevel("SymposiumScene");
+        }
+
+        public override void OnJoinRoomFailed(short returnCode, string message)
+        {
+            //base.OnJoinRoomFailed(returnCode, message);
+            //print("OnJoinRoomFailed, " + returnCode + ", " + message);
+            CreateRoom();
         }
 
         public void SymposiumChsnge()
         {
-            SceneManager.LoadScene("SymposiumScene");
-            //OnOffChsnge();
+            if (SceneManager.GetActiveScene().name.Contains("KYG"))
+            {
+                goStar = false;
+                PhotonNetwork.LeaveRoom();
+            }
+            else
+            {
+                SceneManager.LoadScene("SymposiumScene");
+            }
+
+            if (PhotonNetwork.MasterClient.UserId != SYA_SymposiumManager.Instance.player[PhotonNetwork.NickName].Owner.UserId)
+            {
+                SYA_ChatManager.Instance.chatClient.Unsubscribe(new string[] { SYA_ChatManager.Instance.Constchannel, SYA_ChatManager.Instance.Solarchannel });
+                SYA_ChatManager.Instance.chatClient.Subscribe(new string[] { SYA_ChatManager.Instance.Allchannel, SYA_ChatManager.Instance.Lobbychannel });
+            }
+            SYA_ChatManager.Instance.currentChannel = SYA_ChatManager.Instance.Allchannel;
+
         }
 
         void OnOffChsnge()

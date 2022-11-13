@@ -13,8 +13,8 @@ public class SYA_PlayerCompo : MonoBehaviourPun
 
     private void Awake()
     {
-        SYA_DontDestroy = GetComponent<SYA_DontDestroy>();
-        if (!photonView.IsMine) Destroy(SYA_DontDestroy);
+        /*SYA_DontDestroy = GetComponent<SYA_DontDestroy>();
+        if (!photonView.IsMine) Destroy(SYA_DontDestroy);*/
     }
 
     private void Start()

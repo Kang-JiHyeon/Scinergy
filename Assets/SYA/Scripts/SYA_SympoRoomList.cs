@@ -45,26 +45,29 @@ public class SYA_SympoRoomList : MonoBehaviourPunCallbacks
         //모든 방
         for (int i = 0; i < roomList.Count; i++)
         {
-            // 수정, 삭제
-            if (roomCache.ContainsKey(roomList[i].Name))
+            if (roomList[i].Name.Length<4 || roomList[i].Name.Substring(0, 4) != "Star")
             {
-                //만약에 해당 룸이 삭제된것이라면
-                if (roomList[i].RemovedFromList)
+                // 수정, 삭제
+                if (roomCache.ContainsKey(roomList[i].Name))
                 {
-                    //roomCache 에서 해당 정보를 삭제
-                    roomCache.Remove(roomList[i].Name);
+                    //만약에 해당 룸이 삭제된것이라면
+                    if (roomList[i].RemovedFromList)
+                    {
+                        //roomCache 에서 해당 정보를 삭제
+                        roomCache.Remove(roomList[i].Name);
+                    }
+                    //그렇지 않다면
+                    else
+                    {
+                        //정보 수정
+                        roomCache[roomList[i].Name] = roomList[i];
+                    }
                 }
-                //그렇지 않다면
+                //추가
                 else
                 {
-                    //정보 수정
                     roomCache[roomList[i].Name] = roomList[i];
                 }
-            }
-            //추가
-            else
-            {
-                roomCache[roomList[i].Name] = roomList[i];
             }
         }
         
