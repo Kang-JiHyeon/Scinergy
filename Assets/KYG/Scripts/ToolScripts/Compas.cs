@@ -1,14 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Photon.Pun;
 public class Compas : MonoBehaviour
 {
     Quaternion northDirectonRotation;
     // Start is called before the first frame update
+    private void Awake()
+    {
+        gameObject.name = "Compas" + PhotonNetwork.NickName;
+        
+    }
     void Start()
     {
-        
     }
 
     // Update is called once per frame
