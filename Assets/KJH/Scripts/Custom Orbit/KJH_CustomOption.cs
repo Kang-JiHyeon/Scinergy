@@ -19,7 +19,8 @@ public class KJH_CustomOption : MonoBehaviour
     public Transform celestials;
     public Transform tr_sun;
     public Transform tr_earth;
-    Transform pivot;
+    public Transform pivot;
+    Transform target;
 
     Rigidbody rb_sun;
     Rigidbody rb_earth;
@@ -48,6 +49,8 @@ public class KJH_CustomOption : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        target = pivot;
+
         btn_custom.image.sprite = btn_sprites[1];
 
         // 천체들의 초기 위치
@@ -81,6 +84,8 @@ public class KJH_CustomOption : MonoBehaviour
         if (isOrbitMove)
         {
             orbit.Gravity();
+
+            pivot.position = target.position;
             //pivot.position = pivotPos;
             //camara.pivot.position = pivotPos;
 
@@ -110,7 +115,7 @@ public class KJH_CustomOption : MonoBehaviour
         // 두 천체의 질량이 모두 입력됬을 때 실행
         if (input_sun.text.Length <= 0 || input_earth.text.Length <= 0) return;
 
-        isOrbitMove = true;
+        
 
         // rigidbody 추가
         rb_sun = tr_sun.gameObject.AddComponent<Rigidbody>();
@@ -124,13 +129,13 @@ public class KJH_CustomOption : MonoBehaviour
         // 질량 큰 행성 기준으로 카메라 회전
         if (sunMassValue > earthMassValue)
         {
-            pivot = tr_sun;
-            pivotPos = tr_sun.position;
+            target = tr_sun;
+            //pivotPos = tr_sun.position;
         }
         else
         {
-            pivot = tr_earth;
-            pivotPos = tr_earth.position;
+            target = tr_earth;
+            //pivotPos = tr_earth.position;
         }
 
         // 질량 변경
@@ -145,6 +150,8 @@ public class KJH_CustomOption : MonoBehaviour
         ChangeTrailTime(100f);
 
         orbit.InitialVelocity();
+
+        isOrbitMove = true;
     }
 
     public void OnClickStop()
@@ -164,6 +171,7 @@ public class KJH_CustomOption : MonoBehaviour
         // 위치 초기화
         tr_sun.position = originSunPos;
         tr_earth.position = originEarthPos;
+        pivot.position = tr_sun.position;
 
         // inputfield 값 초기화
         input_sun.text = "";

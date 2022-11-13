@@ -17,14 +17,14 @@ namespace SYA_UI
 
         public GameObject window;
         public GameObject windowList;
-        //move¹öÆ° On / Off
+        //moveï¿½ï¿½Æ° On / Off
         public Text moveOnOffstr;
         public GameObject moveOnOff;
 
         public GameObject spaceButton;
         public GameObject userData;
 
-        //¾À ÀÌµ¿ ¹öÆ°
+        //ï¿½ï¿½ ï¿½Ìµï¿½ ï¿½ï¿½Æ°
         public GameObject solButton;
         public GameObject conButton;
         public GameObject solSympoButton;
@@ -34,6 +34,10 @@ namespace SYA_UI
         public Text roomName;
         public Text roomOwner;
         public Text roomPassward;
+
+        // [ï¿½ï¿½ï¿½ï¿½]
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½Î¿ï¿½ / ï¿½Ö´ï¿½ ï¿½Î¿ï¿½
+        public Text text_user;
 
         private void Awake()
         {
@@ -46,6 +50,8 @@ namespace SYA_UI
             roomOwner.text = SYA_SymposiumManager.Instance.roomOwner;
             roomPassward.text = SYA_SymposiumManager.Instance.roomCode;
 
+            // ï¿½ï¿½ï¿½ï¿½
+            text_user.text = string.Format("{0:D2}", PhotonNetwork.PlayerList.Length) + "/20";
 
         }
 
@@ -62,15 +68,21 @@ namespace SYA_UI
             //moveOnOffstr.text = $"MOVE : {window.GetComponent<SYA_SympoWindowsMoving>().enabled}";
         }
 
-        //´©¸£¸é ÇÃ·¹ÀÌ¾îÀÇ ¸®½ºÆ®¸¦ ¾÷µ¥ÀÌÆ®
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®
         public Transform AudienceTran;
         public Transform PresenterTran;
         public void OnUserList()
         {
             userData.SetActive(!userData.activeSelf);
+
+            // ï¿½ï¿½ï¿½ï¿½
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ clear
+            ClearUserList(AudienceTran);
+            ClearUserList(PresenterTran);
+
             foreach (KeyValuePair<string, string> userAuthority in SYA_SymposiumManager.Instance.playerAuthority)
             {
-                if (userAuthority.Value == "Audience")//Ã»ÁßÀÏ °æ¿ì
+                if (userAuthority.Value == "Audience")//Ã»ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
                 {
                     GameObject go = PhotonNetwork.Instantiate("UserListItem", new Vector2(0, -15), Quaternion.identity);
                     go.transform.parent = AudienceTran;
@@ -134,7 +146,7 @@ namespace SYA_UI
                 SYA_ChatManager.Instance.currentChannel = SYA_ChatManager.Instance.Allchannel;
                 //OnOffChsnge();
                 solButton.SetActive(false);
-                print("¼Ö¶ó ½Ã½ºÅÛÀ¸·Î ÀÌµ¿");
+                print("ï¿½Ö¶ï¿½ ï¿½Ã½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½");
             }
         }
 
@@ -163,7 +175,7 @@ namespace SYA_UI
                 SYA_ChatManager.Instance.currentChannel = SYA_ChatManager.Instance.Allchannel;
                 //OnOffChsnge();
                 conButton.SetActive(false);
-                print("º°ÀÚ¸®·Î ÀÌµ¿");
+                print("ï¿½ï¿½ï¿½Ú¸ï¿½ï¿½ï¿½ ï¿½Ìµï¿½");
             }
         }
 
@@ -199,41 +211,41 @@ namespace SYA_UI
 
         void CreateRoom()
         {
-            //¹æ ¿É¼Ç ¼¼ÆÃ
+            //ï¿½ï¿½ ï¿½É¼ï¿½ ï¿½ï¿½ï¿½ï¿½
             RoomOptions roomOptions = new RoomOptions();
 
-            //ÃÖ´ë ÀÎ¿ø(0¸íÀÌ¸é ÃÖ´ëÀÎ¿ø)
+            //ï¿½Ö´ï¿½ ï¿½Î¿ï¿½(0ï¿½ï¿½ï¿½Ì¸ï¿½ ï¿½Ö´ï¿½ï¿½Î¿ï¿½)
             roomOptions.MaxPlayers = 10;
-            //·ë ¸ñ·Ï¿¡ º¸ÀÌ³Ä? º¸ÀÌÁö ¾Ê´À³Ä?
+            //ï¿½ï¿½ ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½Ì³ï¿½? ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´ï¿½ï¿½ï¿½?
             roomOptions.IsVisible = true;
-            //¹æÀ» ¸¸µç´Ù.
+            //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
             PhotonNetwork.CreateRoom("star" + currentRoomName, roomOptions, TypedLobby.Default);
         }
-        //¹æ »ý¼º ¿Ï·á
+        //ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ï·ï¿½
         public override void OnCreatedRoom()
         {
             base.OnCreatedRoom();
             print(System.Reflection.MethodBase.GetCurrentMethod().Name);
         }
-        //¹æ »ý¼º ½ÇÆÐ
+        //ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         public override void OnCreateRoomFailed(short returnCode, string message)
         {
             base.OnCreateRoomFailed(returnCode, message);
             print("OnCreatedRoomFailed, " + returnCode + ", " + message);
         }
-        //¹æÀÔÀå ¿äÃ»
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã»
         public void JoinRoom(string roomName)
         {
 
             PhotonNetwork.JoinRoom(roomName);
 
-            //PhotonNetwork.JoinRoom : ¼±ÅÃÇÑ ¹æ¿¡ µé¾î°¥ ¶§
-            //PhotonNetwork.JoinOrCreateRoom : ¹æÀÌ¸§ ¼³Á¤ÇØ¼­ µé¾î°¡·Á°í ÇÒ ¶§ ÇØ´çÀÌ¸§À¸·Î µÈ ¹æÀÌ ¾ø´Ù¸é ±× ÀÌ¸§À¸·Î ¹æ »ý¼º ÈÄ ÀÔÀå
-            //PhotonNetwork.JoinRandomOrCreateRoom: ·£´ý¹æÀ» µé¾î°¡·Á°í ÇÒ ¶§, Á¶°Ç¿¡ ¸Â´Â ¹æÀÌ ¾ø´Ù¸é ³»°¡ ¹æÀ» »ý¼ºÈÄ ÀÔÀå
-            //PhotonNetwork.JoinRandomRoom : ·£´ýÇÑ¹æ µé¾î°¥¶§
+            //PhotonNetwork.JoinRoom : ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½æ¿¡ ï¿½ï¿½ï¿½î°¥ ï¿½ï¿½
+            //PhotonNetwork.JoinOrCreateRoom : ï¿½ï¿½ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¼ï¿½ ï¿½ï¿½ï¿½î°¡ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½Ø´ï¿½ï¿½Ì¸ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ù¸ï¿½ ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+            //PhotonNetwork.JoinRandomOrCreateRoom: ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½î°¡ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½, ï¿½ï¿½ï¿½Ç¿ï¿½ ï¿½Â´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ù¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+            //PhotonNetwork.JoinRandomRoom : ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¹ï¿½ ï¿½ï¿½ï¿½î°¥ï¿½ï¿½
         }
 
-        //¹æ ÀÔÀåÀÌ ¼º°øÇßÀ» ¶§
+        //ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
         public override void OnJoinedRoom()
         {
             base.OnJoinedRoom();
@@ -279,45 +291,76 @@ namespace SYA_UI
 
         bool isRecording;
         public Text recordeOnOff;
-        //¹öÆ°À» ´­·¶À» ¶§,
+        //ï¿½ï¿½Æ°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½,
         public void Recording()
         {
-            //³ìÈ­ÁßÀÌ¶ó¸é 
+            //ï¿½ï¿½È­ï¿½ï¿½ï¿½Ì¶ï¿½ï¿½ï¿½
             if (isRecording)
             {
                 //VideoCapture.
-                //³ìÈ­¸¦ ³¡³»°í
+                //ï¿½ï¿½È­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                 VideoCaptureCtrl.instance.StopCapture();
                 recordeOnOff.text = "Off";
-                //ÀúÀåÇÑ´Ù
+                //ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½
                 isRecording = false;
             }
-            //³ìÈ­ÁßÀÌ ¾Æ´Ï¶ó¸é
+            //ï¿½ï¿½È­ï¿½ï¿½ï¿½ï¿½ ï¿½Æ´Ï¶ï¿½ï¿½ï¿½
             else
             {
-                //³ìÈ­¸¦ ½ÃÀÛÇÑ´Ù
+                //ï¿½ï¿½È­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½
                 VideoCaptureCtrl.instance.StartCapture();
                 recordeOnOff.text = "On";
                 isRecording = true;
             }
 
-            /*        //³ìÈ­ ½ÃÀÛ
+            /*        //ï¿½ï¿½È­ ï¿½ï¿½ï¿½ï¿½
                     VideoCaptureCtrl.instance.StartCapture();
 
-                    //³ìÈ­ Á¾·á
+                    //ï¿½ï¿½È­ ï¿½ï¿½ï¿½ï¿½
                     VideoCaptureCtrl.instance.StopCapture();
 
-                    //ÀÏ½Ã Á¤Áö ¹× ÀÌ¾î ½ÃÀÛ
+                    //ï¿½Ï½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½ï¿½
                     VideoCaptureCtrl.instance.ToggleCapture();
 
-                    //Àç»ý ÁØºñ
+                    //ï¿½ï¿½ï¿½ï¿½ ï¿½Øºï¿½
                     VideoPlayer.instance.SetRootFolder();
-                    //Àç»ý
+                    //ï¿½ï¿½ï¿½ï¿½
                     VideoPlayer.instance.PlayVideo();
 
                     VideoPlayer.instance.NextVideo();*/
         }
 
-        //UserList
+        // UserList Clear
+        void ClearUserList(Transform tr)
+        {
+            for(int i=0; i< tr.childCount; i++)
+            {
+                Destroy(tr.GetChild(i).gameObject);
+            }
+        }
+
+        // ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ player ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ ï¿½ï¿½ï¿½Å³Ê¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.... ï¿½Ù¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ý¾ï¿½? ï¿½×»ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ç¥ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¾ï¿½ï¿½ï¿½ ï¿½ï¿½
+        // ï¿½ï¿½ ï¿½ï¿½ï¿½ì¿¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Å³Ê¸ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­ï¿½Ø¾ï¿½ï¿½Ï´Â°ï¿½?
+
+        // ï¿½ï¿½ï¿½Ê¿ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Þ´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù²Ù´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½î¶°ï¿½Ñ°ï¿½
+        public override void OnPlayerLeftRoom(Player otherPlayer)
+        {
+            SYA_SymposiumManager.Instance.playerAuthority.Remove(otherPlayer.NickName);
+            //SYA_SymposiumManager.Instance.playerName.Remove(SYA_SymposiumManager.Instance.playerName.Find(x => x == otherPlayer.NickName));
+
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¶ï¿½ï¿½ï¿½
+            if (otherPlayer.IsMasterClient)
+            {
+                // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Å³Ê¸ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½
+                SYA_SymposiumManager.Instance.playerAuthority.Remove(otherPlayer.NickName);
+            }
+        }
+
+        // ï¿½ï¿½ï¿½ï¿½ï¿½Í°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ È£ï¿½ï¿½ï¿½Ç´ï¿½ ï¿½Ìºï¿½Æ®
+        public override void OnMasterClientSwitched(Player otherPlayer)
+        {
+            SYA_SymposiumManager.Instance.playerAuthority[otherPlayer.NickName] = "Presenter";
+        }
     }
 }

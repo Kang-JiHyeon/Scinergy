@@ -2338,6 +2338,7 @@ MonoBehaviour:
   celestials: {fileID: 1309588628}
   tr_sun: {fileID: 1859760162}
   tr_earth: {fileID: 245996521}
+  pivot: {fileID: 1579167372}
   input_sun: {fileID: 1572905686}
   input_earth: {fileID: 1937408841}
   orbit: {fileID: 1329986217}
