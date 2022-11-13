@@ -11,6 +11,8 @@ public class SYA_SympoPresentstion : MonoBehaviour
     private void Update()
     {
         if (pre == null) Destroy(gameObject);
+        GetComponent<Collider>().enabled = SceneManager.GetActiveScene().name.Contains("Sympo");
+
     }
 
     private void OnTriggerEnter(Collider other)

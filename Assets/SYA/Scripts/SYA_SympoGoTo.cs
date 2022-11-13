@@ -10,7 +10,8 @@ public class SYA_SympoGoTo : MonoBehaviourPun
 
     private void Update()
     {
-        if (space == null)Destroy(gameObject)  ;
+        if (space == null)Destroy(gameObject);
+        GetComponent<Collider>().enabled = SceneManager.GetActiveScene().name.Contains("Sympo");
     }
 
     private void OnTriggerEnter(Collider other)

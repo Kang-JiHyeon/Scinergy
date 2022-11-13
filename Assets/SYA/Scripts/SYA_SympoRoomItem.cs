@@ -75,7 +75,7 @@ public class SYA_SympoRoomItem : MonoBehaviour
 
     public void passwordJoin()
     {
-        string inputPassword =$"{one.text}{two.text}{three.text}{four.text}";
+        string inputPassword =$"{one.text}";
         if(inputPassword==roomPassword)
         {
             PhotonNetwork.JoinRoom(name);
