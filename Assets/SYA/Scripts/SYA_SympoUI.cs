@@ -35,8 +35,8 @@ namespace SYA_UI
         public Text roomOwner;
         public Text roomPassward;
 
-        // [����]
-        // ���� �ο� / �ִ� �ο�
+        // [지현]
+        // 현재인원/최대인원
         public Text text_user;
 
         private void Awake()
@@ -71,9 +71,15 @@ namespace SYA_UI
         //������ �÷��̾��� ����Ʈ�� ������Ʈ
         public Transform AudienceTran;
         public Transform PresenterTran;
+        public Transform btn_user;
+
         public void OnUserList()
         {
             userData.SetActive(!userData.activeSelf);
+
+            btn_user.GetChild(0).gameObject.SetActive(!btn_user.GetChild(0).gameObject.activeSelf);
+            btn_user.GetChild(1).gameObject.SetActive(!btn_user.GetChild(1).gameObject.activeSelf);
+
 
             // ����
             // ������ �÷��̾� ����Ʈ�� clear
@@ -291,6 +297,7 @@ namespace SYA_UI
 
         bool isRecording;
         public Text recordeOnOff;
+        public Transform btn_rec;
         //��ư�� ������ ��,
         public void Recording()
         {
@@ -300,19 +307,23 @@ namespace SYA_UI
                 //VideoCapture.
                 //��ȭ�� ������
                 VideoCaptureCtrl.instance.StopCapture();
-                recordeOnOff.text = "Off";
+                //recordeOnOff.text = "Off";
                 //�����Ѵ�
                 isRecording = false;
+
+                // 버튼 레코드 텍스처 바꾸기
             }
             //��ȭ���� �ƴ϶���
             else
             {
                 //��ȭ�� �����Ѵ�
                 VideoCaptureCtrl.instance.StartCapture();
-                recordeOnOff.text = "On";
+                //recordeOnOff.text = "On";ㅇ
                 isRecording = true;
+                //btn_rec.GetChild(0).gameObject.SetActive(!btn_rec.GetChild(0).gameObject.activeSelf);
             }
-
+            btn_rec.GetChild(0).gameObject.SetActive(!btn_rec.GetChild(0).gameObject.activeSelf);
+            btn_rec.GetChild(1).gameObject.SetActive(!btn_rec.GetChild(1).gameObject.activeSelf);
             /*        //��ȭ ����
                     VideoCaptureCtrl.instance.StartCapture();
 
@@ -343,9 +354,17 @@ namespace SYA_UI
         // ������ ������.... �ٸ� ������ ���� ���ݾ�? �׻����� ��ǥ�� ���� ������ �־��� ��
         // �� ���쿡�� ���� ���ųʸ��� �ʱ�ȭ�ؾ��ϴ°�?
 
-        // ���ʿ� �÷��̾� ���� ������ �޴� ������ �ٲٴ� ������ ��Ѱ�
+        // 플레이어 들어왔을 때 실행되는 이벤트 함수
+        public override void OnPlayerEnteredRoom(Player newPlayer)
+        {
+            text_user.text = string.Format("{0:D2}", PhotonNetwork.PlayerList.Length) + "/20";
+        }
+
+        // 플레이어 나갈 때 실행되는 이벤트 함수
         public override void OnPlayerLeftRoom(Player otherPlayer)
         {
+            text_user.text = string.Format("{0:D2}", PhotonNetwork.PlayerList.Length) + "/20";
+
             SYA_SymposiumManager.Instance.playerAuthority.Remove(otherPlayer.NickName);
             //SYA_SymposiumManager.Instance.playerName.Remove(SYA_SymposiumManager.Instance.playerName.Find(x => x == otherPlayer.NickName));
 
