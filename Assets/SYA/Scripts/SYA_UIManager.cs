@@ -99,5 +99,67 @@ namespace SYA_UI
         {
             GetComponentInChildren<SYA_SympoUI>().SymposiumChsnge();
         }
+
+        public GameObject micOption;
+        public Image button;
+        public Sprite micopOn;
+        public Sprite audiioopOn;
+        public Scrollbar BG;
+        public Scrollbar ef;
+        public Scrollbar mic;
+        bool audio;
+        public void OnOpttionAudio()
+        {
+            if (!audio)
+            {
+                //버튼을 누르면 마이크로 바뀐다
+                button.sprite = micopOn;
+                //마이크 설정 이미지가 뜬다
+                micOption.SetActive(!audio);
+                audio = true;
+            }
+            else
+            {
+                //다시 누르면 오디오로 바뀐다
+                button.sprite = audiioopOn;
+                //오디오 설정 이미지가 뜬다
+                micOption.SetActive(audio);
+                audio = false;
+            }
+            exBG = BG.value;
+            exEF = ef.value;
+            exMic = mic.value;
+        }
+
+        float exBG;
+        float exEF;
+        float exMic;
+        public void OnSaveOption()
+        {
+            print($"배경의 음량을 {exBG}저장합니다 ");
+            print($"효과의 음량을 {exEF}저장합니다 ");
+            print($"마이크의 음량을 {exMic}저장합니다 ");
+        }
+
+        //완료버튼 누른 결루
+        public void OnNewSave()
+        {
+            exBG = BG.value;
+            exEF = ef.value;
+            exMic = mic.value;
+            OnSaveOption();
+        }
+
+        //취소
+        public void Cancle()
+        {
+            BG.value=exBG;
+            ef.value=exEF;
+            mic.value=exMic;
+            OnSaveOption();
+        }
+
+        //완료를 누르면 반영된다
+        //취소를 누르면 창이 닫힌다(오디오 설정과 그전 밸류값으로)
     }
 }
