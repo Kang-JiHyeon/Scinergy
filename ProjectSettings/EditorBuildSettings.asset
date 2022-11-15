@@ -24,6 +24,9 @@ EditorBuildSettings:
     path: Assets/OSW/Scenes/SymposiumScene.unity
     guid: eb7cf22e5da8d994d82f77a54a5e3ba4
   - enabled: 0
+    path: Assets/OSW/Scenes/_SymposiumScene.unity
+    guid: 5b205df595fd4214696dbd13eab6bbe1
+  - enabled: 0
     path: Assets/SYA/Scenes/SymposiumScene.unity
     guid: 168bc06e9c7c2d4428b16cba67bcbcb5
   - enabled: 1
