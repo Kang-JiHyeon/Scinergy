@@ -36,6 +36,7 @@ public class KJH_OrbitCamera : MonoBehaviour
     {
         cam = Camera.main.transform;
         pivot.position = target.position;
+        pivot.forward = target.forward;
     }
 
     // Update is called once per frame
