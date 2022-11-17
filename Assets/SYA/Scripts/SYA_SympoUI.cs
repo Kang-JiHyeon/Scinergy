@@ -71,14 +71,23 @@ namespace SYA_UI
         //������ �÷��̾��� ����Ʈ�� ������Ʈ
         public Transform AudienceTran;
         public Transform PresenterTran;
-        public Transform btn_user;
+        public Image btn_user;
+        public Sprite userOn;
+        public Sprite userOff;
 
         public void OnUserList()
         {
-            userData.SetActive(!userData.activeSelf);
 
-            btn_user.GetChild(0).gameObject.SetActive(!btn_user.GetChild(0).gameObject.activeSelf);
-            btn_user.GetChild(1).gameObject.SetActive(!btn_user.GetChild(1).gameObject.activeSelf);
+            if (!userData.activeSelf)
+            {
+                userData.SetActive(true);
+                btn_user.sprite = userOn;
+            }
+            else
+            {
+                userData.SetActive(false);
+                btn_user.sprite = userOff;
+            }
 
 
             // ����
@@ -295,56 +304,12 @@ namespace SYA_UI
             spaceButton.SetActive(!spaceButton.activeSelf);
         }
 
-        bool isRecording;
-        public Text recordeOnOff;
-        public Transform btn_rec;
-        //��ư�� ������ ��,
-        public void Recording()
-        {
-            //��ȭ���̶���
-            if (isRecording)
-            {
-                //VideoCapture.
-                //��ȭ�� ������
-                VideoCaptureCtrl.instance.StopCapture();
-                //recordeOnOff.text = "Off";
-                //�����Ѵ�
-                isRecording = false;
 
-                // 버튼 레코드 텍스처 바꾸기
-            }
-            //��ȭ���� �ƴ϶���
-            else
-            {
-                //��ȭ�� �����Ѵ�
-                VideoCaptureCtrl.instance.StartCapture();
-                //recordeOnOff.text = "On";ㅇ
-                isRecording = true;
-                //btn_rec.GetChild(0).gameObject.SetActive(!btn_rec.GetChild(0).gameObject.activeSelf);
-            }
-            btn_rec.GetChild(0).gameObject.SetActive(!btn_rec.GetChild(0).gameObject.activeSelf);
-            btn_rec.GetChild(1).gameObject.SetActive(!btn_rec.GetChild(1).gameObject.activeSelf);
-            /*        //��ȭ ����
-                    VideoCaptureCtrl.instance.StartCapture();
-
-                    //��ȭ ����
-                    VideoCaptureCtrl.instance.StopCapture();
-
-                    //�Ͻ� ���� �� �̾� ����
-                    VideoCaptureCtrl.instance.ToggleCapture();
-
-                    //���� �غ�
-                    VideoPlayer.instance.SetRootFolder();
-                    //����
-                    VideoPlayer.instance.PlayVideo();
-
-                    VideoPlayer.instance.NextVideo();*/
-        }
 
         // UserList Clear
         void ClearUserList(Transform tr)
         {
-            for(int i=0; i< tr.childCount; i++)
+            for (int i = 0; i < tr.childCount; i++)
             {
                 Destroy(tr.GetChild(i).gameObject);
             }

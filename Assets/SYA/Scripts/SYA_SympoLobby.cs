@@ -47,10 +47,16 @@ public class SYA_SympoLobby : MonoBehaviourPunCallbacks
         btnCreate.interactable = s.Length > 0;
     }
 
+    public Image btn_creat;
+    public Sprite createOff;
     public void offroomCo()
     {
         roomCompletion.SetActive(false);
+
+        btn_creat.sprite = createOff;
+
     }
+
 
     //생성을 누를 경우
     public void OnClickCreate()
@@ -66,6 +72,7 @@ public class SYA_SympoLobby : MonoBehaviourPunCallbacks
     public void offRoommake()
     {
         roomCreate.SetActive(false);
+        btn_creat.sprite = createOff;
     }
 
     public GameObject publ;

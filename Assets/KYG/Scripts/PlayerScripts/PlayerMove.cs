@@ -56,7 +56,7 @@ public class PlayerMove : MonoBehaviourPun
         {
             master = SYA_SymposiumManager.Instance.playerAuthority[PhotonNetwork.NickName] == "Owner";
         }
-        SYA_SymposiumManager.Instance.PlayerAuthority(PhotonNetwork.NickName,master);
+        SYA_SymposiumManager.Instance.PlayerAuthority(PhotonNetwork.NickName, master);
         //anim = GetComponentInChildren<Animator>();
         GetComponentInChildren<AudioSource>().enabled = false;
     }
@@ -71,27 +71,25 @@ public class PlayerMove : MonoBehaviourPun
     // Update is called once per frame
     void Update()
     {
-        //if (!photonView.IsMine) return;
+        if (!photonView.IsMine) return;
 
         float h = SYA_InputManager.GetAxis("Horizontal");
         float v = SYA_InputManager.GetAxis("Vertical");
-        anim.SetFloat("Speed", v);
-        anim.SetFloat("Direction", h);
+        photonView.RPC("RPCanimMove", RpcTarget.All, v, h);
+        /*anim.SetFloat("Speed", v);
+        anim.SetFloat("Direction", h);*/
         dir = Vector3.forward * v + Vector3.right * h;
 
         if (cc.isGrounded)
         {
             yVelocity = 0;
             jumpCount = 0;
+            photonView.RPC("RPCanimJump", RpcTarget.All, false);
+            //anim.SetBool("Jump", false);
         }
         if (SYA_InputManager.GetButtonDown("Jump"))
         {
             GetJump();
-        }
-        if(Input.GetButtonUp("Jump"))
-        {
-
-        anim.SetBool("Jump", false);
         }
 
         dir = Camera.main.transform.TransformDirection(dir);
@@ -106,8 +104,23 @@ public class PlayerMove : MonoBehaviourPun
     public void GetJump()
     {
         if (jumpCount == 0)
+        {
             jumpCount++;
-        yVelocity = jumpPower;
-        anim.SetBool("Jump", true);
+            yVelocity = jumpPower;
+            photonView.RPC("RPCanimJump", RpcTarget.All, true);
+            //anim.SetBool("Jump", true);
+        }
+    }
+
+    [PunRPC]
+    void RPCanimMove(float speed, float direction)
+    {
+        anim.SetFloat("Speed", speed);
+        anim.SetFloat("Direction", direction);
+    }
+    [PunRPC]
+    void RPCanimJump(bool jump)
+    {
+        anim.SetBool("Jump", jump);
     }
 }

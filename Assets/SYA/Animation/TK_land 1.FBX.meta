@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: beb406724fbe92047b1dfc5fe41e4455
+guid: 9c5a3e35ca3ec1140b1ef60fabc3a8ba
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable:
@@ -344,7 +344,7 @@ ModelImporter:
     second: HEAD
   - first:
       74: 7400000
-    second: TK_jump
+    second: TK_land
   - first:
       95: 9500000
     second: //RootNode
@@ -399,18 +399,18 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: TK_jump
+      name: TK_land
       takeName: Take 001
       internalID: 0
       firstFrame: 0
-      lastFrame: 11.6
+      lastFrame: 15
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0

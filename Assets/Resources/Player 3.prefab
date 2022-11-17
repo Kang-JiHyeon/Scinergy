@@ -10256,13 +10256,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4f922f4891cd1a47bcc5a54b11cf8ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
-  jumpPower: 3
+  speed: 6
+  jumpPower: 2.5
   jumpCount: 0
   yVelocity: 0
   gravity: -9.81
   cc: {fileID: 0}
   nickName: {fileID: 2660803169950827906}
+  anim: {fileID: 1863406531344142753}
 --- !u!114 &2836529994268691292
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19745,10 +19746,23 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 95176800845141928, guid: 44fd72e8facd7d249a01c0194b926326, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 95176800845141928, guid: 44fd72e8facd7d249a01c0194b926326, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: df9f54368171079419b587a70b81b840, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 44fd72e8facd7d249a01c0194b926326, type: 3}
 --- !u!4 &1765941843950636253 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4475381549599444, guid: 44fd72e8facd7d249a01c0194b926326, type: 3}
+  m_PrefabInstance: {fileID: 1769356745254274569}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1863406531344142753 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 95176800845141928, guid: 44fd72e8facd7d249a01c0194b926326, type: 3}
   m_PrefabInstance: {fileID: 1769356745254274569}
   m_PrefabAsset: {fileID: 0}

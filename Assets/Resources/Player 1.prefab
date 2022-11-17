@@ -10257,7 +10257,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 6
-  jumpPower: 3
+  jumpPower: 2.5
   jumpCount: 0
   yVelocity: 0
   gravity: -9.81

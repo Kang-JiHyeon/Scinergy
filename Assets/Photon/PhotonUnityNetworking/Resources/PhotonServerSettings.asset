@@ -67,6 +67,8 @@ MonoBehaviour:
   - RPCNormalGenerate
   - RPCRandomGenerate
   - RPCDrawStar
+  - RPCanimMove
+  - RPCanimJump
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
