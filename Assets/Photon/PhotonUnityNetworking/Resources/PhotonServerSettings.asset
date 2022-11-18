@@ -68,6 +68,14 @@ MonoBehaviour:
   - RPCRandomGenerate
   - RPCDrawStar
   - RPCStarDelete
+  - RPCDrawEnd
+  - RPCDrawStart
+  - RPCOnBtn
+  - RPCOnBtnDown
+  - RPCOnBtnUp
+  - RcpTest
+  - RPCOnConstellationDelete
+  - RPCConstellationRemove
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
