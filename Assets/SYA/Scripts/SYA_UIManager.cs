@@ -258,6 +258,7 @@ namespace SYA_UI
         {
             print($"배경의 음량을 {exBG}저장합니다 ");
             print($"효과의 음량을 {exEF}저장합니다 ");
+            SYA_SymposiumManager.Instance.playerVoice[PhotonNetwork.NickName].volume = exMic;
             print($"마이크의 음량을 {exMic}저장합니다 ");
         }
 

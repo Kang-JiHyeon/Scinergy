@@ -118,9 +118,21 @@ public class PlayerMove : MonoBehaviourPun
         anim.SetFloat("Speed", speed);
         anim.SetFloat("Direction", direction);
     }
+
     [PunRPC]
     void RPCanimJump(bool jump)
     {
         anim.SetBool("Jump", jump);
+    }
+
+    [PunRPC]
+    void RPCSit(bool sit_)
+    {
+        anim.SetBool("Sit", sit_);
+    }
+
+    public void Sit(bool sit_)
+    {
+        anim.SetBool("Sit", sit_);
     }
 }
