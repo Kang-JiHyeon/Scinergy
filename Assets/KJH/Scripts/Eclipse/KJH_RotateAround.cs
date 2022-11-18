@@ -9,19 +9,30 @@ public class KJH_RotateAround : MonoBehaviour
     public float speed = 1f;
     public float radius = 5f;
     public int segment = 20;
-    
+    public bool isStop = false;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        lr = GetComponent<LineRenderer>();
+        lr = transform.GetComponent<LineRenderer>();
         radius = Vector3.Distance(transform.position, earth.position);
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.RotateAround(earth.position, -earth.up, speed * Time.deltaTime);
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            isStop = !isStop;
+        }
+
+        
+        if(isStop == false)
+        {
+            transform.RotateAround(earth.position, -earth.up, speed * Time.deltaTime);
+        }
+
         DrawOrbit();
     }
 

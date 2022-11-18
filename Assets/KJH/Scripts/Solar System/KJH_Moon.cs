@@ -35,6 +35,9 @@ public class KJH_Moon : MonoBehaviour
         points[segment] = points[0];
         lr.positionCount = segment + 1;
         lr.SetPositions(points);
+
+        lr.startWidth = 0.1f;
+        lr.endWidth = 0.1f;
     }
     Vector3 preDir;
     // Update is called once per frame
