@@ -49,24 +49,27 @@ public class StarPainter : MonoBehaviourPun
     void StarRay()
     {
         Ray starRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+        
         RaycastHit starInfo;
         if (Input.GetButtonDown("Fire1"))
         {
-            if (Physics.Raycast(starRay, out starInfo))
-            {
-                if (starInfo.transform.gameObject.GetComponent<Star>())
-                {
-                    star1 = starInfo.transform.gameObject;
-                    star1.transform.parent = Constellation.transform;
-                    temporaryStar = Instantiate(temporaryStarFactory, Constellation.transform);
-                    temporaryStar.transform.position = starInfo.transform.position;
-                    line = Instantiate(lineFactory);
-                    starLine = line.GetComponent<StarLine>();
-                    line.transform.parent = Constellation.transform;
-                    starLine.star1 = star1;
-                    starLine.star2 = temporaryStar;
-                }
-            }
+            photonView.RPC(nameof(RPCOnBtnDown), RpcTarget.All, starRay.origin, starRay.direction);
+
+            //if (Physics.Raycast(starRay, out starInfo))
+            //{
+            //    if (starInfo.transform.gameObject.GetComponent<Star>())
+            //    {
+            //        star1 = starInfo.transform.gameObject;
+            //        star1.transform.parent = Constellation.transform;
+            //        temporaryStar = Instantiate(temporaryStarFactory, Constellation.transform);
+            //        temporaryStar.transform.position = starInfo.transform.position;
+            //        line = Instantiate(lineFactory);
+            //        starLine = line.GetComponent<StarLine>();
+            //        line.transform.parent = Constellation.transform;
+            //        starLine.star1 = star1;
+            //        starLine.star2 = temporaryStar;
+            //    }
+            //}
         }
         if (Input.GetButton("Fire1"))
         {
@@ -77,24 +80,71 @@ public class StarPainter : MonoBehaviourPun
             RaycastHit starDrawInfo;
             if (Physics.Raycast(starDrawRay, out starDrawInfo))
             {
-                temporaryStar.transform.position = starDrawInfo.point;
+                photonView.RPC(nameof(RPCOnBtn), RpcTarget.All, starDrawInfo.point);
             }
             //temporaryStar.transform.position =Camera.main.ScreenToWorldPoint( new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.farClipPlane));
         }
         if (Input.GetButtonUp("Fire1"))
         {
-            if (Physics.Raycast(starRay, out starInfo))
-            {
-                if (starInfo.transform.gameObject.GetComponent<Star>())
-                {
-                    star2 = starInfo.transform.gameObject;
-                    star2.transform.parent = Constellation.transform;
-                    starLine.star2 = star2;                    
-                }
-            }
-            Destroy(temporaryStar);
+            photonView.RPC(nameof(RPCOnBtnUp), RpcTarget.All, starRay.origin, starRay.direction);
+            //if (Physics.Raycast(starRay, out starInfo))
+            //{
+            //    if (starInfo.transform.gameObject.GetComponent<Star>())
+            //    {
+            //        star2 = starInfo.transform.gameObject;
+            //        star2.transform.parent = Constellation.transform;
+            //        starLine.star2 = star2;                    
+            //    }
+            //}
+            //Destroy(temporaryStar);
         }
     }
+
+    [PunRPC]
+    void RPCOnBtnDown(Vector3 origin, Vector3 forward)
+    {
+        Ray starRay = new Ray(origin, forward);
+        RaycastHit starInfo; 
+        if (Physics.Raycast(starRay, out starInfo))
+        {
+            if (starInfo.transform.gameObject.GetComponent<Star>())
+            {
+                star1 = starInfo.transform.gameObject;
+                star1.transform.parent = Constellation.transform;
+                temporaryStar = Instantiate(temporaryStarFactory, Constellation.transform);
+                temporaryStar.transform.position = starInfo.transform.position;
+                line = Instantiate(lineFactory);
+                starLine = line.GetComponent<StarLine>();
+                line.transform.parent = Constellation.transform;
+                starLine.star1 = star1;
+                starLine.star2 = temporaryStar;
+            }
+        }
+    }
+
+    [PunRPC]
+    void RPCOnBtn(Vector3 starDrawInfo)
+    {
+        temporaryStar.transform.position = starDrawInfo;
+    }
+
+    [PunRPC]
+    void RPCOnBtnUp(Vector3 origin, Vector3 forward)
+    {
+        Ray starRay = new Ray(origin, forward);
+        RaycastHit starInfo;
+        if (Physics.Raycast(starRay, out starInfo))
+        {
+            if (starInfo.transform.gameObject.GetComponent<Star>())
+            {
+                star2 = starInfo.transform.gameObject;
+                star2.transform.parent = Constellation.transform;
+                starLine.star2 = star2;
+            }
+        }
+        Destroy(temporaryStar);
+    }
+
     public void OnDrawStartBtn()
     {
         isDrawing = true;

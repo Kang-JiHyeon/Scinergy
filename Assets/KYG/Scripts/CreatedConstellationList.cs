@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Photon.Pun;
 
-public class CreatedConstellationList : MonoBehaviour
+public class CreatedConstellationList : MonoBehaviourPun
 {
     public Transform CreatedConstellationListContent;
     public GameObject CreatedConstellationItemFactory;
@@ -56,15 +57,18 @@ public class CreatedConstellationList : MonoBehaviour
 
     public void OnConstellationDeleteBtn()
     {
-        GameManager.instance.createdConstellationList.Remove(SelectedConstellation.name);
-        for(int i = 0; i<SelectedConstellation.transform.childCount; i++)
+        photonView.RPC(nameof(RPCConstellationRemove), RpcTarget.All, SelectedConstellation.name);
+        for (int i = 0; i < SelectedConstellation.transform.childCount; i++)
         {
             Star childStar = SelectedConstellation.transform.GetChild(i).GetComponent<Star>();
             if (childStar)
             {
-                GameManager.instance.createdStarList.Remove(childStar.starName);
-                childStar.StarState = Star.State.shootingStar;
-                for(int j = 0; j<CreatedStarList.transform.childCount; j++)
+                childStar.randX = UnityEngine.Random.Range(-90f, 90f);
+                childStar.randY = UnityEngine.Random.Range(-20f, -30f);
+                photonView.RPC(nameof(RPCOnConstellationDelete),RpcTarget.All, childStar.starName, childStar.randX, childStar.randY);
+                //GameManager.instance.createdStarList.Remove(childStar.starName);
+                //childStar.StarState = Star.State.shootingStar;
+                for (int j = 0; j < CreatedStarList.transform.childCount; j++)
                 {
                     if (CreatedStarList.transform.GetChild(j).GetComponent<CreatedStarItem>().star == childStar.gameObject)
                     {
@@ -73,10 +77,22 @@ public class CreatedConstellationList : MonoBehaviour
                 }
             }
             Destroy(SelectedConstellationItem);
-            SelectedConstellationItem = null;
         }
+        SelectedConstellationItem = null;
     }
-
+    [PunRPC]
+    void RPCOnConstellationDelete(string starName, float randX, float randY)
+    {
+        GameManager.instance.createdStarList[starName].GetComponent<Star>().randX = randX;
+        GameManager.instance.createdStarList[starName].GetComponent<Star>().randY = randY;
+        GameManager.instance.createdStarList[starName].GetComponent<Star>().StarState = Star.State.shootingStar;
+        GameManager.instance.createdStarList.Remove(starName);
+    }
+    [PunRPC]
+    void RPCConstellationRemove(string SelectedName)
+    {
+        GameManager.instance.createdConstellationList.Remove(SelectedName);
+    }
     public void OnDeleteAllConstellation()
     {
         foreach (KeyValuePair<string, GameObject> constellation in GameManager.instance.createdConstellationList)
@@ -86,7 +102,7 @@ public class CreatedConstellationList : MonoBehaviour
                 Star childStar = constellation.Value.transform.GetChild(i).GetComponent<Star>();
                 if (childStar)
                 {
-                    GameManager.instance.createdStarList.Remove(childStar.starName);
+                    GameManager.instance.createdStarList.Remove(childStar.starName);                   
                     childStar.StarState = Star.State.shootingStar;
                     for (int j = 0; j < CreatedStarList.transform.childCount; j++)
                     {

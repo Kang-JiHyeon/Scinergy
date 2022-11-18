@@ -15400,7 +15400,6 @@ MonoBehaviour:
   starLine: {fileID: 0}
   player: {fileID: 2836529994268691361}
   constellationName: 
-  starName: []
 --- !u!114 &7520638487569878787
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18970,6 +18969,7 @@ GameObject:
   - component: {fileID: 8088902310080487734}
   - component: {fileID: 5537425052223885026}
   - component: {fileID: 7732360376151840648}
+  - component: {fileID: 6671314153595793502}
   m_Layer: 5
   m_Name: CreatedConstellationList
   m_TagString: Untagged
@@ -19088,6 +19088,28 @@ MonoBehaviour:
   Player: {fileID: 2836529994268691361}
   CreatedConstellationListUI: {fileID: 3480175199253437390}
   CreatedStarList: {fileID: 2836529994806683588}
+--- !u!114 &6671314153595793502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7301561596998372735}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &7879319436378364551
 GameObject:
   m_ObjectHideFlags: 0
