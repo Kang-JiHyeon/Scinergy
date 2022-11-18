@@ -26,7 +26,7 @@ public class Star : MonoBehaviourPun
     public float removeTime = 3f;
     float currentTime = 0f;
     Vector3 fallDir;
-    float randX, randY;
+    public float randX, randY;
     #endregion
     public enum State
     {
@@ -38,8 +38,7 @@ public class Star : MonoBehaviourPun
     // Start is called before the first frame update
     void Start()
     {
-        randX = Random.Range(-90f, 90f);
-        randY = Random.Range(-20f, -30f);
+        
     }
 
     // Update is called once per frame
