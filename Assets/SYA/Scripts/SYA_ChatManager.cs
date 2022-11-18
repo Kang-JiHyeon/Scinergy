@@ -29,6 +29,16 @@ public class SYA_ChatManager : MonoBehaviourPun, IChatClientListener
     public string Constchannel = "Constchannel";
     public string Solarchannel = "Solarchannel";
 
+    Color allColor;
+    Color lobbyColor;
+    Color constColor;
+    Color solarColor;
+
+    string allColor_code = "#58FA58";
+    string lobbyColor_code = "#2E64FE";
+    string constColor_code = "#9A2EFE";
+    string solarColor_code = "#FE642E";
+
     private void Awake()
     {
         Instance = this;
@@ -54,7 +64,7 @@ public class SYA_ChatManager : MonoBehaviourPun, IChatClientListener
         chatClient.Connect(appId, appVersion, new AuthenticationValues(SYA_UserInfoManager.Instance.NicName));
 
         currentChannel = Allchannel;
-/*        chatClient.Subscribe(new string[] { Allchannel });*/
+        /*        chatClient.Subscribe(new string[] { Allchannel });*/
 
         //인풋필드에서 엔터쳣을 때 호출되는 함수 등록
         inputField.onSubmit.AddListener(OnSubmit);
@@ -78,18 +88,18 @@ public class SYA_ChatManager : MonoBehaviourPun, IChatClientListener
 
     private void Update()
     {
-/*        if(pv==null)
-        {
-            pv = SYA_SymposiumManager.Instance.player[PhotonNetwork.NickName];
-            if (PhotonNetwork.MasterClient.UserId == pv.Owner.UserId)//방장이라면
-            {
-                chatClient.Subscribe(new string[] { Allchannel, Lobbychannel, Constchannel, Solarchannel });
-            }
-            else
-            {
-                chatClient.Subscribe(new string[] { Allchannel, Lobbychannel });
-            }
-        }*/
+        /*        if(pv==null)
+                {
+                    pv = SYA_SymposiumManager.Instance.player[PhotonNetwork.NickName];
+                    if (PhotonNetwork.MasterClient.UserId == pv.Owner.UserId)//방장이라면
+                    {
+                        chatClient.Subscribe(new string[] { Allchannel, Lobbychannel, Constchannel, Solarchannel });
+                    }
+                    else
+                    {
+                        chatClient.Subscribe(new string[] { Allchannel, Lobbychannel });
+                    }
+                }*/
         chatClient.Service();
         if (inputField.isFocused && Input.GetKeyDown(KeyCode.Tab))
         {
@@ -135,7 +145,7 @@ public class SYA_ChatManager : MonoBehaviourPun, IChatClientListener
             {
                 currentChannel = Allchannel;
             }
-            else if (currentChannel==Allchannel)
+            else if (currentChannel == Allchannel)
             {
                 currentChannel = Lobbychannel;
             }
@@ -168,11 +178,11 @@ public class SYA_ChatManager : MonoBehaviourPun, IChatClientListener
             pv = SYA_SymposiumManager.Instance.player[PhotonNetwork.NickName];
             if (PhotonNetwork.MasterClient.UserId == pv.Owner.UserId)//방장이라면
             {
-                chatClient.Subscribe(new string[] { Allchannel,Lobbychannel, Constchannel, Solarchannel });
+                chatClient.Subscribe(new string[] { Allchannel, Lobbychannel, Constchannel, Solarchannel });
             }
             else
             {
-                chatClient.Subscribe(new string[] { Allchannel,Lobbychannel });
+                chatClient.Subscribe(new string[] { Allchannel, Lobbychannel });
             }
         }
         chatClient.SetOnlineStatus(ChatUserStatus.Online);
@@ -189,26 +199,52 @@ public class SYA_ChatManager : MonoBehaviourPun, IChatClientListener
     //스크롤뷰 높이
     public RectTransform trScrollView;
 
+
+
+
+    //Allchannel, Lobbychannel, Constchannel, Solarchannel
+
     //채널에 메세지가 새로 올라오면 불리는 함수
     public void OnGetMessages(string channelName, string[] senders, object[] messages)
     {
         /*if (channelName.Equals(currentChannel))
         {*/
-            //바뀌기 전 h값 넣기
-            prevContentH = trContent.sizeDelta.y;
+        //바뀌기 전 h값 넣기
+        prevContentH = trContent.sizeDelta.y;
 
-            //1 챗아이템을 만든다 (부모를 스크롤뷰의 컨텐츠)
-            GameObject item = Instantiate(chatFactory, trContent);
-            //2 만든 챗아이템에서 챗아이템 컴포넌트 가져오기
-            SYA_ChatItem chat = item.GetComponent<SYA_ChatItem>();
-            
-            /*Vector2 y = trContent.;
-            y.y += item.transform.localScale.y;
-            trContent.localScale = y;*/
-            //3 가져온 컴포넌트에 s셋팅
-            string mess = $" {messages[0].ToString()}";
-            chat.SetText(mess);
-            StartCoroutine(AutoScrollBottom());
+        //1 챗아이템을 만든다 (부모를 스크롤뷰의 컨텐츠)
+        GameObject item = Instantiate(chatFactory, trContent);
+        //2 만든 챗아이템에서 챗아이템 컴포넌트 가져오기
+        SYA_ChatItem chat = item.GetComponent<SYA_ChatItem>();
+
+        /*Vector2 y = trContent.;
+        y.y += item.transform.localScale.y;
+        trContent.localScale = y;*/
+        //3 가져온 컴포넌트에 s셋팅
+        Color chanColor = new Color();
+        if (channelName == Allchannel)
+        {
+            if (ColorUtility.TryParseHtmlString(allColor_code, out allColor))
+                chanColor = allColor;
+        }
+        else if (channelName == Lobbychannel)
+        {
+            if (ColorUtility.TryParseHtmlString(lobbyColor_code, out lobbyColor))
+                chanColor = lobbyColor;
+        }
+        else if (channelName == Constchannel)
+        {
+            if (ColorUtility.TryParseHtmlString(constColor_code, out constColor))
+                chanColor = constColor;
+        }
+        else
+        {
+            if (ColorUtility.TryParseHtmlString(solarColor_code, out solarColor))
+                chanColor = solarColor;
+        }
+        string mess = $"<color=#{ColorUtility.ToHtmlStringRGB(chanColor)}> {messages[0].ToString()}</color>";
+        chat.SetText(mess);
+        StartCoroutine(AutoScrollBottom());
         //}
     }
 
@@ -228,7 +264,7 @@ public class SYA_ChatManager : MonoBehaviourPun, IChatClientListener
 
     public void OnPrivateMessage(string sender, object message, string channelName)
     {
-     
+
     }
 
     public void OnSubscribed(string[] channels, bool[] results)
@@ -245,17 +281,17 @@ public class SYA_ChatManager : MonoBehaviourPun, IChatClientListener
 
     public void OnUserSubscribed(string channel, string user)
     {
-       
+
     }
 
     public void OnUserUnsubscribed(string channel, string user)
     {
-        
+
     }
 
     public void OnChatStateChange(ChatState state)
     {
-       
+
     }
 }
 

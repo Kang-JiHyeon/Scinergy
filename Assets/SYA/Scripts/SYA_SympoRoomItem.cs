@@ -19,26 +19,10 @@ public class SYA_SympoRoomItem : MonoBehaviour
     //text
     public GameObject password;
     public InputField one;
-    public InputField two;
-    public InputField three;
-    public InputField four;
     public string roomPassword;
 
 
     //»çÁø
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
 
     public void SetInfo(RoomInfo info)
     {
@@ -57,8 +41,12 @@ public class SYA_SympoRoomItem : MonoBehaviour
     public void OffPassward()
     {
         password.SetActive(false);
+        btn_Join.sprite = joinOff;
     }
 
+    public Image btn_Join;
+    public Sprite joinOn;
+    public Sprite joinOff;
     public void JoinRoom()
     {
         if(!unpubl.activeSelf)
@@ -71,6 +59,7 @@ public class SYA_SympoRoomItem : MonoBehaviour
             password.transform.parent = GameObject.Find("Canvas").transform;
             password.transform.localPosition = Vector2.zero;
         }
+        btn_Join.sprite = joinOn;
     }
 
     public void passwordJoin()

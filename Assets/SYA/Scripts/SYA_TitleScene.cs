@@ -63,6 +63,7 @@ public class SYA_TitleScene : MonoBehaviour
         {
             if (Input.anyKeyDown)
             {
+                if (Input.GetKeyDown(KeyCode.LeftAlt) || Input.GetKeyDown(KeyCode.Return)) return;
                 SYA_SceneChange.Instance.AvartaScene();
 
             }
