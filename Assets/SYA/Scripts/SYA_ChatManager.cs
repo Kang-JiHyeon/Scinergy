@@ -73,6 +73,8 @@ public class SYA_ChatManager : MonoBehaviourPun, IChatClientListener
     //인풋필드에서 엔터쳣을 때 호출되는 함수
     public void OnSubmit(string s)
     {
+        //아무것도 필드에 안 적혀있다면 리턴
+        if (s == "") return;
         //< color =#FFFFF>닉네임</color>
         string chatText = $"[{cannel[currentChannel]}] {PhotonNetwork.NickName} : {s}";
         //photonView.RPC("RpcAddChat", RpcTarget.All, chatText);

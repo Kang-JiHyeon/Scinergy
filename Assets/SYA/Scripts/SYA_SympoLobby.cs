@@ -4,6 +4,7 @@ using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class SYA_SympoLobby : MonoBehaviourPunCallbacks
 {
@@ -61,6 +62,7 @@ public class SYA_SympoLobby : MonoBehaviourPunCallbacks
     //생성을 누를 경우
     public void OnClickCreate()
     {
+        if (inputRoomName.text == "") return;
         //→넘을 경우 안내 문구 등장
         characterlimit.SetActive(inputRoomName.text.Length > 20);
         //→안 념을 경우 확인 창On
@@ -165,7 +167,7 @@ public class SYA_SympoLobby : MonoBehaviourPunCallbacks
     {
         base.OnJoinedRoom();
         print("OnJoinedRoom");
-        PhotonNetwork.LoadLevel("DontDestroy");
+        SceneManager.LoadScene("AvatarSympo");
     }
 /*
     //방 참가가 실패 되었을 때 호출 되는 함수

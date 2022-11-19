@@ -12,9 +12,9 @@ public class SYA_PlayerCompo : MonoBehaviourPun
    PlayerRot PlayerRot;
     SYA_DontDestroy SYA_DontDestroy;
 
-    private void Awake()
+    /*private void Awake()
     {
-        /*if (Instance == null)
+        *//*if (Instance == null)
         {
             //인스턴스에 나를 넣고
             Instance = this;
@@ -26,8 +26,8 @@ public class SYA_PlayerCompo : MonoBehaviourPun
         else
         {
             Destroy(gameObject);
-        }*/
-    }
+        }*//*
+    }*/
 
     private void Start()
     {
