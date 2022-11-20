@@ -7,7 +7,7 @@ using Photon.Pun;
 public class SYA_PlayerCompo : MonoBehaviourPun
 {
     public static SYA_PlayerCompo Instance;
-   PlayerMove SYA_PlayerMove;
+   PlayerMove PlayerMove;
    CharacterController CharacterController;
    PlayerRot PlayerRot;
     SYA_DontDestroy SYA_DontDestroy;
@@ -31,7 +31,7 @@ public class SYA_PlayerCompo : MonoBehaviourPun
 
     private void Start()
     {
-        SYA_PlayerMove = GetComponent<PlayerMove>();
+        PlayerMove = GetComponent<PlayerMove>();
         CharacterController = GetComponent<CharacterController>();
         PlayerRot=GetComponent<PlayerRot>();
     }
@@ -40,8 +40,8 @@ public class SYA_PlayerCompo : MonoBehaviourPun
         bool kjh = SceneManager.GetActiveScene().name.Contains("KJH");
         transform.GetChild(0).gameObject.SetActive(!kjh);
         transform.GetChild(1).gameObject.SetActive(!kjh);
-        SYA_PlayerMove.enabled = !kjh;
+        PlayerMove.enabled = !kjh;
         CharacterController.enabled= !kjh;
-        PlayerRot.enabled= !kjh;
+        PlayerRot.enabled= !(kjh|| PlayerMove.fullScreenMode);
     }
 }

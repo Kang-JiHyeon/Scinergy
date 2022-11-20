@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,6 +15,8 @@ public class PlayerMove : MonoBehaviourPun
     public CharacterController cc;
     public TextMeshProUGUI nickName;
     public Animator anim;
+
+    public Action<bool> FullScreen;
 
     Vector3 dir;
     ////도착위치
@@ -72,34 +75,52 @@ public class PlayerMove : MonoBehaviourPun
     void Update()
     {
         if (!photonView.IsMine) return;
-
-        float h = SYA_InputManager.GetAxis("Horizontal");
-        float v = SYA_InputManager.GetAxis("Vertical");
-        photonView.RPC("RPCanimMove", RpcTarget.All, v, h);
-        /*anim.SetFloat("Speed", v);
-        anim.SetFloat("Direction", h);*/
-        dir = Vector3.forward * v + Vector3.right * h;
-
-        if (cc.isGrounded)
+        //전체화면모드가 되면 이동막기
+        if (!fullScreenMode)
         {
-            yVelocity = 0;
-            jumpCount = 0;
-            photonView.RPC("RPCanimJump", RpcTarget.All, false);
-            //anim.SetBool("Jump", false);
+            float h = SYA_InputManager.GetAxis("Horizontal");
+            float v = SYA_InputManager.GetAxis("Vertical");
+            photonView.RPC("RPCanimMove", RpcTarget.All, v, h);
+            /*anim.SetFloat("Speed", v);
+            anim.SetFloat("Direction", h);*/
+            dir = Vector3.forward * v + Vector3.right * h;
+
+            if (cc.isGrounded)
+            {
+                yVelocity = 0;
+                jumpCount = 0;
+                photonView.RPC("RPCanimJump", RpcTarget.All, false);
+                //anim.SetBool("Jump", false);
+            }
+            if (SYA_InputManager.GetButtonDown("Jump"))
+            {
+                GetJump();
+            }
+
+            dir = Camera.main.transform.TransformDirection(dir);
+            dir.Normalize();
+
+            //jumpButton.onClick.AddListener(GetJump);
+            yVelocity += gravity * Time.deltaTime;
+            dir.y = yVelocity;
+            cc.Move(dir * speed * Time.deltaTime);
         }
-        if (SYA_InputManager.GetButtonDown("Jump"))
+
+        //TV 더블 클릭시 모드 실행
+        if (Input.GetKeyDown(KeyCode.M))
         {
-            GetJump();
+            //GetComponentInChildren<Camera>().enabled = false;
+
+            //펄스는 트루 / 트루는 펄스
+            fullScreenMode = !fullScreenMode;
+            //TV의 카메라를 끄고 키는 액션 함수 실행
+            FullScreen(fullScreenMode);
+
+            //카메라 회전 막기
+            GetComponent<PlayerRot>().enabled = !fullScreenMode;
         }
-
-        dir = Camera.main.transform.TransformDirection(dir);
-        dir.Normalize();
-
-        //jumpButton.onClick.AddListener(GetJump);
-        yVelocity += gravity * Time.deltaTime;
-        dir.y = yVelocity;
-        cc.Move(dir * speed * Time.deltaTime);
     }
+    public bool fullScreenMode;
 
     public void GetJump()
     {
@@ -125,11 +146,7 @@ public class PlayerMove : MonoBehaviourPun
         anim.SetBool("Jump", jump);
     }
 
-    [PunRPC]
-    void RPCSit(bool sit_)
-    {
-        anim.SetBool("Sit", sit_);
-    }
+
 
     public void Sit(bool sit_)
     {

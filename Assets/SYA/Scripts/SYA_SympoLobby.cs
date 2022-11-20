@@ -33,6 +33,7 @@ public class SYA_SympoLobby : MonoBehaviourPunCallbacks
 
     //방 만들기 전 정보 확인
     public Text title;
+    public Text title_count;
     public Text owner;
     public Text password;
 
@@ -40,6 +41,10 @@ public class SYA_SympoLobby : MonoBehaviourPunCallbacks
     {
         // 방이름(InputField)이 변경될때 호출되는 함수 등록
         inputRoomName.onValueChanged.AddListener(OnRoomNameValueChanged);
+    }
+    private void Update()
+    {
+        title_count.text = $"{inputRoomName.text.Length} / 20";
     }
 
     public void OnRoomNameValueChanged(string s)
