@@ -8,18 +8,35 @@ using UnityEngine;
 // - 월식 : y축 90
 
 // 카메라 위치 표시
-public class KJH_EclipseUI : MonoBehaviour
+public class KJH_EclipseState : MonoBehaviour
 {
     public Light eclipseLight; 
     public Transform insideCamera;
-    float camRotY = -90f;
-    float targetY = 0f;
+    float camRotY = 270f;
+    float targetY = 270f;
     bool isRot = false;
 
+    public List<Material> skyBoxs = new List<Material>();
+    public enum EclipseState
+    {
+        Sun,
+        Moon
+    }
+    public static KJH_EclipseState instance; 
+
+    public EclipseState state = EclipseState.Sun;
+
+    private void Awake()
+    {
+        if(instance == null)
+        {
+            instance = this;
+        }
+    }
     // Start is called before the first frame update
     void Start()
     {
-        insideCamera.localRotation = Quaternion.Euler(0, -90f, 0);
+        insideCamera.localRotation = Quaternion.Euler(0, 270f, 0);
     }
 
     // Update is called once per frame
@@ -33,16 +50,27 @@ public class KJH_EclipseUI : MonoBehaviour
     // 일식 버튼
     public void OnClick_SunEclipse()
     {
-        eclipseLight.intensity = 1f;
-        isRot = true;
+        state = EclipseState.Sun;
+        RenderSettings.skybox = skyBoxs[0];
+        //eclipseLight.intensity = 1f;
+
+        if (!targetY.Equals(270))
+            isRot = true;
+
         targetY = 270f;
     }
 
     // 월식 버튼
     public void OnClick_MoonEclipse()
     {
-        eclipseLight.intensity = 0f;
-        isRot = true;
+        state = EclipseState.Moon;
+        RenderSettings.skybox = skyBoxs[1];
+
+        //eclipseLight.intensity = 0f;
+
+        if (!targetY.Equals(90f))
+            isRot = true;
+
         targetY = 90f;
     }
 

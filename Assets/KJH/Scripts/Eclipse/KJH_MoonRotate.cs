@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class KJH_RotateAround : MonoBehaviour
+public class KJH_MoonRotate : MonoBehaviour
 {
     LineRenderer lr;
+    KJH_EclipsDrag drag;
     public Transform earth;
     public float speed = 1f;
     public float radius = 5f;
@@ -17,6 +18,7 @@ public class KJH_RotateAround : MonoBehaviour
     {
         lr = transform.GetComponent<LineRenderer>();
         radius = Vector3.Distance(transform.position, earth.position);
+        drag = GetComponent<KJH_EclipsDrag>();
     }
 
     // Update is called once per frame
@@ -27,8 +29,7 @@ public class KJH_RotateAround : MonoBehaviour
             isStop = !isStop;
         }
 
-        
-        if(isStop == false)
+        if(isStop == false && drag.isStop == false)
         {
             transform.RotateAround(earth.position, -earth.up, speed * Time.deltaTime);
         }
@@ -39,7 +40,6 @@ public class KJH_RotateAround : MonoBehaviour
     void DrawOrbit()
     {
         Vector3[] points = new Vector3[segment + 1];
-        //float angle = 360f / segment;
 
         for (int i = 0; i < points.Length; i++)
         {
