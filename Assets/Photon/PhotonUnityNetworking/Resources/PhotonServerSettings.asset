@@ -70,6 +70,14 @@ MonoBehaviour:
   - RPCanimMove
   - RPCanimJump
   - RPCSit
+  - RPCConstellationRemove
+  - RPCDrawEnd
+  - RPCDrawStart
+  - RPCOnBtn
+  - RPCOnBtnDown
+  - RPCOnBtnUp
+  - RPCOnConstellationDelete
+  - RPCStarDelete
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
