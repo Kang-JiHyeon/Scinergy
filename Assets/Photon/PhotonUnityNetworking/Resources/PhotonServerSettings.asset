@@ -70,6 +70,8 @@ MonoBehaviour:
   - RPCanimMove
   - RPCanimJump
   - RPCSit
+  - RPCAllMute
+  - RPCPlayerAuthority
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

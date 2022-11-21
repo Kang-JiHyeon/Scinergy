@@ -167,6 +167,8 @@ namespace SYA_UI
         }
 
         bool goStar;
+        bool goSympo;//영아
+
 
         public void ConstellationChange()
         {
@@ -181,6 +183,7 @@ namespace SYA_UI
             if (SceneManager.GetActiveScene().name.Contains("Sympo"))
             {
                 goStar = true;
+                goSympo = false;//영아
                 currentRoomName = PhotonNetwork.CurrentRoom.Name;
                 PhotonNetwork.LeaveRoom();
                 if (PhotonNetwork.MasterClient.UserId != SYA_SymposiumManager.Instance.player[PhotonNetwork.NickName].Owner.UserId)
@@ -205,7 +208,7 @@ namespace SYA_UI
                 TypedLobby typed = new TypedLobby("C2", LobbyType.Default);
                 PhotonNetwork.JoinLobby(typed);
             }
-            else
+            else if(goSympo)//영아
             {
                 TypedLobby typed = new TypedLobby("C1", LobbyType.Default);
                 PhotonNetwork.JoinLobby(typed);
@@ -219,7 +222,7 @@ namespace SYA_UI
             {
                 JoinRoom("star" + currentRoomName);
             }
-            else
+            else if (goSympo)//영아
             {
                 JoinRoom(currentRoomName);
             }
@@ -268,7 +271,7 @@ namespace SYA_UI
             print("OnJoinedRoom");
             if (goStar)
                 PhotonNetwork.LoadLevel("KYG_Scene");
-            else
+            else if (goSympo)//영아
                 PhotonNetwork.LoadLevel("AvatarSympo");
         }
 
@@ -284,6 +287,7 @@ namespace SYA_UI
             if (SceneManager.GetActiveScene().name.Contains("KYG"))
             {
                 goStar = false;
+                goSympo = true;
                 PhotonNetwork.LeaveRoom();
             }
             else
