@@ -12,6 +12,9 @@ public class KJH_EclipseState : MonoBehaviour
 {
     public Light eclipseLight; 
     public Transform insideCamera;
+    public float earthScale = 3f;
+    public bool isChangeEarthScale = false; 
+
     float camRotY = 270f;
     float targetY = 270f;
     bool isRot = false;
@@ -58,6 +61,9 @@ public class KJH_EclipseState : MonoBehaviour
             isRot = true;
 
         targetY = 270f;
+
+        earthScale = 5f;
+        isChangeEarthScale = true;
     }
 
     // 월식 버튼
@@ -72,6 +78,9 @@ public class KJH_EclipseState : MonoBehaviour
             isRot = true;
 
         targetY = 90f;
+
+        earthScale = 3f;
+        isChangeEarthScale = true;
     }
 
     void CameraRotate()

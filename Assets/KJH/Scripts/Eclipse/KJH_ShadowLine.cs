@@ -5,7 +5,6 @@ using UnityEngine;
 // 태양의 경계 좌표
 // 달의 경계 좌표
 
-
 // 태양->달 방향, 그 방향으로 ray를 쏴서 지구가 hit되면 line을 그림
 // 태양 위 -> 달 위
 // 태양 위 -> 달 아래
@@ -28,11 +27,12 @@ public class KJH_ShadowLine : MonoBehaviour
     public bool isPenumbralShadow = false;
     int index = 0;
 
+
     // Start is called before the first frame update
     void Start()
     {
         earth = GameObject.Find("Earth_Space").transform;
-        moon = GameObject.Find("Moon").transform;
+        moon = GameObject.Find("Moon_Space").transform;
         lrs = transform.GetComponentsInChildren<LineRenderer>();
     }
 
@@ -57,8 +57,21 @@ public class KJH_ShadowLine : MonoBehaviour
                 Cross();
                 break;
         }
-    }
 
+        // 일식 월식에 따른 지구 크기 변경
+        if (KJH_EclipseState.instance.isChangeEarthScale)
+        {
+            Vector3 targetScale = Vector3.one * KJH_EclipseState.instance.earthScale;
+            earth.localScale = Vector3.Lerp(earth.localScale, targetScale, Time.deltaTime * 2f);
+
+            if(Vector3.Distance(targetScale, earth.localScale) < 0.1f)
+            {
+                earth.localScale = targetScale;
+                KJH_EclipseState.instance.isChangeEarthScale = false;
+            }
+        }
+
+    }
 
     // 일식
     void DrawSolarEclipseLine()
@@ -146,5 +159,4 @@ public class KJH_ShadowLine : MonoBehaviour
             }
         }
     }
-
 }
