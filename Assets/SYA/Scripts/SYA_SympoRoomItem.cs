@@ -15,12 +15,14 @@ public class SYA_SympoRoomItem : MonoBehaviourPunCallbacks
     public Text playerCount;
     //공개 및 비공개 여부
     public GameObject unpubl;
+    //썸네일
+    public Image thumbnail;
 
     //text
     public GameObject password;
     public InputField one;
     public string roomPassword;
-
+    public Sprite sp;
 
     //사진
     RoomInfo roomInfo;
@@ -36,6 +38,8 @@ public class SYA_SympoRoomItem : MonoBehaviourPunCallbacks
         ownerName.text = info.CustomProperties["owner"].ToString();
         roomPassword = info.CustomProperties["password"].ToString(); ;
         unpubl.SetActive(info.CustomProperties["public"].ToString() == "False");
+        sp = Resources.Load(info.CustomProperties["Thumbnail"].ToString(),typeof(Sprite)) as Sprite;
+        thumbnail.sprite = sp;
     }
 
 

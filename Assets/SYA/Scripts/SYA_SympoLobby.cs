@@ -31,13 +31,20 @@ public class SYA_SympoLobby : MonoBehaviourPunCallbacks
     public GameObject characterlimit;
 
     //Thumbnail
-    public GameObject[] Thumbnails;
+    public Image Thumbnails;
+    //썸네일 소스 정보
+    public Image Thumbnails_;
+    public Sprite Thumbnails_sp;
 
     //방 만들기 전 정보 확인
     public Text title;
     public Text title_count;
     public Text owner;
     public Text password;
+
+    //썸네일 선택창
+    public GameObject thumbnail;
+
     private void Awake()
     {
         Instance = this;
@@ -59,6 +66,12 @@ public class SYA_SympoLobby : MonoBehaviourPunCallbacks
         btnCreate.interactable = s.Length > 0;
     }
 
+    //썸네일 누르면 목록 열림
+    public void OntTumbnailList()
+    {
+        thumbnail.SetActive(!thumbnail.activeSelf);
+    }
+
     public Image btn_creat;
     public Sprite createOff;
     public void offroomCo()
@@ -74,6 +87,7 @@ public class SYA_SympoLobby : MonoBehaviourPunCallbacks
     public void OnClickCreate()
     {
         if (inputRoomName.text == "") return;
+        Thumbnails_sp = Thumbnails_.sprite;
         //→넘을 경우 안내 문구 등장
         characterlimit.SetActive(inputRoomName.text.Length > 20);
         //→안 념을 경우 확인 창On
@@ -155,9 +169,11 @@ public class SYA_SympoLobby : MonoBehaviourPunCallbacks
         hash["password"] = $"{Random.Range(0,10)}{Random.Range(0, 10)}{Random.Range(0, 10)}{Random.Range(0, 10)}";
         //유저목록
         hash["UserList"] = UserList;
+        //썸네일 파일 위치와 이름 
+        hash["Thumbnail"] = $"Thumbnails/{Thumbnails_sp.name}";
         roomOptions.CustomRoomProperties = hash;
         //커스텀 정보 공개 설정
-        roomOptions.CustomRoomPropertiesForLobby = new string[] { "room_name", "owner", "public", "password", "UserList" };
+        roomOptions.CustomRoomPropertiesForLobby = new string[] { "room_name", "owner", "public", "password", "UserList", "Thumbnail" };
 
         //방 정보 창에 띄우기
         OnRoomInfo();
@@ -171,6 +187,7 @@ public class SYA_SympoLobby : MonoBehaviourPunCallbacks
         title.text = roomOptions.CustomRoomProperties["room_name"].ToString();
         owner.text= roomOptions.CustomRoomProperties["owner"].ToString();
         password.text= roomOptions.CustomRoomProperties["password"].ToString();
+        Thumbnails.sprite = Thumbnails_sp;
     }
 
     public void OnJoint()
