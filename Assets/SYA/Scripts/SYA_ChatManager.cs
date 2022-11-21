@@ -9,6 +9,7 @@ using AuthenticationValues = Photon.Chat.AuthenticationValues;
 using ExitGames.Client.Photon;
 using UnityEngine.SceneManagement;
 using SYA_UserInfoManagerSaveLoad;
+using SYA_UI;
 
 public class SYA_ChatManager : MonoBehaviourPun, IChatClientListener
 {
@@ -73,6 +74,8 @@ public class SYA_ChatManager : MonoBehaviourPun, IChatClientListener
     //인풋필드에서 엔터쳣을 때 호출되는 함수
     public void OnSubmit(string s)
     {
+        //아무것도 필드에 안 적혀있다면 리턴
+        if (s == "") return;
         //< color =#FFFFF>닉네임</color>
         string chatText = $"[{cannel[currentChannel]}] {PhotonNetwork.NickName} : {s}";
         //photonView.RPC("RpcAddChat", RpcTarget.All, chatText);
@@ -100,7 +103,25 @@ public class SYA_ChatManager : MonoBehaviourPun, IChatClientListener
                         chatClient.Subscribe(new string[] { Allchannel, Lobbychannel });
                     }
                 }*/
+        if(inputField.isFocused)
+        {
+            SYA_SymposiumManager.Instance.playerObj[PhotonNetwork.NickName].GetComponent<PlayerMove>().enabled = false;
+        }
+        else
+        {
+            SYA_SymposiumManager.Instance.playerObj[PhotonNetwork.NickName].GetComponent<PlayerMove>().enabled = true;
+        }
+        channelName.text = $"<color=#{ColorUtility.ToHtmlStringRGB(ColorChat(currentChannel))}>[{cannel[currentChannel]}]</color>";
         chatClient.Service();
+        if (SYA_UIManager.Instance.chat.activeSelf)
+        {
+            if(messagess.Count!=0)
+            foreach (string mess in messagess)
+            {
+                MakeChat(mess);
+                messagess.Remove(mess);
+            }
+        }
         if (inputField.isFocused && Input.GetKeyDown(KeyCode.Tab))
         {
             OnClickTab();
@@ -152,6 +173,7 @@ public class SYA_ChatManager : MonoBehaviourPun, IChatClientListener
         }
     }
 
+    public Text channelName;
     //전송버튼을 누른다
     public void OnClickChat()
     {
@@ -204,35 +226,44 @@ public class SYA_ChatManager : MonoBehaviourPun, IChatClientListener
 
     //Allchannel, Lobbychannel, Constchannel, Solarchannel
 
+    public List<string> messagess = new List<string>();
+
     //채널에 메세지가 새로 올라오면 불리는 함수
     public void OnGetMessages(string channelName, string[] senders, object[] messages)
     {
-        /*if (channelName.Equals(currentChannel))
-        {*/
-        //바뀌기 전 h값 넣기
-        prevContentH = trContent.sizeDelta.y;
+        //채팅창이 꺼져 있다면 
 
-        //1 챗아이템을 만든다 (부모를 스크롤뷰의 컨텐츠)
-        GameObject item = Instantiate(chatFactory, trContent);
-        //2 만든 챗아이템에서 챗아이템 컴포넌트 가져오기
-        SYA_ChatItem chat = item.GetComponent<SYA_ChatItem>();
+            /*if (channelName.Equals(currentChannel))
+            {*/
 
-        /*Vector2 y = trContent.;
-        y.y += item.transform.localScale.y;
-        trContent.localScale = y;*/
-        //3 가져온 컴포넌트에 s셋팅
+
+            /*Vector2 y = trContent.;
+            y.y += item.transform.localScale.y;
+            trContent.localScale = y;*/
+            //3 가져온 컴포넌트에 s셋팅
+
+            //받은 메세지 모두 저장해두기
+            
+            messagess.Add($"<color=#{ColorUtility.ToHtmlStringRGB(ColorChat(channelName))}> {messages[0].ToString()}</color>");
+        
+        
+        //}
+    }
+
+    Color ColorChat(string cannel)
+    {
         Color chanColor = new Color();
-        if (channelName == Allchannel)
+        if (cannel == Allchannel)
         {
             if (ColorUtility.TryParseHtmlString(allColor_code, out allColor))
                 chanColor = allColor;
         }
-        else if (channelName == Lobbychannel)
+        else if (cannel == Lobbychannel)
         {
             if (ColorUtility.TryParseHtmlString(lobbyColor_code, out lobbyColor))
                 chanColor = lobbyColor;
         }
-        else if (channelName == Constchannel)
+        else if (cannel == Constchannel)
         {
             if (ColorUtility.TryParseHtmlString(constColor_code, out constColor))
                 chanColor = constColor;
@@ -242,10 +273,20 @@ public class SYA_ChatManager : MonoBehaviourPun, IChatClientListener
             if (ColorUtility.TryParseHtmlString(solarColor_code, out solarColor))
                 chanColor = solarColor;
         }
-        string mess = $"<color=#{ColorUtility.ToHtmlStringRGB(chanColor)}> {messages[0].ToString()}</color>";
+        return chanColor;
+    }
+
+    void MakeChat(string mess)
+    {
+        //바뀌기 전 h값 넣기
+        prevContentH = trContent.sizeDelta.y;
+
+        //1 챗아이템을 만든다 (부모를 스크롤뷰의 컨텐츠)
+        GameObject item = Instantiate(chatFactory, trContent);
+        //2 만든 챗아이템에서 챗아이템 컴포넌트 가져오기
+        SYA_ChatItem chat = item.GetComponent<SYA_ChatItem>();
         chat.SetText(mess);
         StartCoroutine(AutoScrollBottom());
-        //}
     }
 
     IEnumerator AutoScrollBottom()

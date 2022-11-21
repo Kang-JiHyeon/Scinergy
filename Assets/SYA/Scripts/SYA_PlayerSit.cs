@@ -4,7 +4,7 @@ using UnityEngine;
 using Photon.Pun;
 using UnityEngine.UI;
 
-public class SYA_SympoSit : MonoBehaviourPun
+public class SYA_PlayerSit : MonoBehaviourPun
 {
     bool sit;
     public Transform TV;
@@ -16,7 +16,7 @@ public class SYA_SympoSit : MonoBehaviourPun
     }
     public State sitState = State.Down;
     public float currentTime = 0;
-     public bool anim_false;
+    public bool anim_false;
 
     public Text updownText;
     public string downStr = "X를 눌러 앉기";
@@ -24,7 +24,7 @@ public class SYA_SympoSit : MonoBehaviourPun
 
     private void Update()
     {
-        if (!SYA_SymposiumManager.Instance.player[PhotonNetwork.NickName].IsMine) return;
+        if (!photonView.IsMine) return;
         //트리거 영역 안에 들어가면
         if (ontriger)
         {
@@ -37,21 +37,25 @@ public class SYA_SympoSit : MonoBehaviourPun
                     if (Input.GetKeyDown(KeyCode.X))
                     {
                         //플레이어의 캐릭터 컨트롤이 꺼진다
-                        targetGameobject.GetComponent<CharacterController>().enabled = false;
+                        GetComponent<CharacterController>().enabled = false;
                         //앉는 애니메이션이 재생된다
-                        targetGameobject.GetPhotonView().RPC("RPCSit", RpcTarget.All, true);
+                        photonView.RPC("RPCSit", RpcTarget.All, true);
                         //위치를 조정해준다
+                        transform.position = targetGameobject.transform.position;
                         SitUpDown(targetGameobject, 0, true, 0);
+                        print(transform.position.ToString());
                         //targetGameobject.GetComponent<PlayerMove>().Sit(true);
                     }
                     break;
                 case State.up:
                     updownText.text = upStr;
-                    targetGameobject.transform.eulerAngles = transform.eulerAngles;
+                    transform.eulerAngles = targetGameobject.transform.eulerAngles;
                     if (Input.GetKeyDown(KeyCode.X))
                     {
+                        print("out");
                         //targetGameobject.GetComponent<PlayerMove>().Sit(false);
-                        targetGameobject.GetPhotonView().RPC("RPCSit", RpcTarget.All, false);
+                        photonView.RPC("RPCSit", RpcTarget.All, false);
+                        //GetComponentInChildren<Animator>().
                         //Vector3 target = targetGameobject.transform.position;
                         //iTween.MoveTo(targetGameobject, target + new Vector3(0, 0.2f, -0.5f), 2);
 
@@ -82,19 +86,19 @@ public class SYA_SympoSit : MonoBehaviourPun
                 currentTime = 0;
                 //후 고정
                 SitUpDown(targetGameobject, 6, false, 2.5f);
-                targetGameobject.GetComponent<PlayerMove>().cc.enabled = true;
+                GetComponent<PlayerMove>().cc.enabled = true;
             }
         }
     }
 
-    public  GameObject targetGameobject;
-    public  bool ontriger;
+    public GameObject targetGameobject;
+    public bool ontriger;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.name.Contains("Player"))
+        if (other.gameObject.transform.parent.name.Contains("Sit"))
         {
-            if (!other.GetComponent<PhotonView>().IsMine) return;
+            if (!photonView.IsMine) return;
             updownText.enabled = true;
             targetGameobject = other.gameObject;
             ontriger = true;
@@ -102,26 +106,27 @@ public class SYA_SympoSit : MonoBehaviourPun
     }
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.name.Contains("Player"))
+        if (other.gameObject.transform.parent.name.Contains("Sit"))
         {
-            if (!other.GetComponent<PhotonView>().IsMine) return;
+            if (!photonView.IsMine) return;
             updownText.enabled = false;
             anim_false = false;
+            targetGameobject = null;
             ontriger = false;
         }
     }
 
     void SitUpDown(GameObject targameObject, int speed, bool sit_, float jump)
     {
-        PlayerMove playerMove = targetGameobject.GetComponent<PlayerMove>();
+        PlayerMove playerMove = GetComponent<PlayerMove>();
         //playerMove.cc.enabled = !sit_;
 
         //후 고정
         playerMove.speed = speed;
         playerMove.jumpPower = jump;
         //해당 위치에 플레이어가 이동
-        if (sit_)
-            targameObject.transform.position = transform.position;
+        /*if (sit_)*/
+            
         //targameObject.transform.rotation = transform.rotation;
         print("앉았습니다");
 
@@ -134,5 +139,11 @@ public class SYA_SympoSit : MonoBehaviourPun
         anim_false = false;
 
 
+    }
+
+    [PunRPC]
+    void RPCSit(bool sit_)
+    {
+        GetComponentInChildren<Animator>().SetBool("Sit", sit_);
     }
 }

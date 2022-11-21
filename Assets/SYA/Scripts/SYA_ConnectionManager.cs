@@ -10,16 +10,18 @@ public class SYA_ConnectionManager : MonoBehaviourPunCallbacks
 {
     public InputField nameField;
     public Text nameCount;
+    string count;
 
     private void Update()
     {
         string count = nameField.text.Length.ToString();
-        nameCount.text = $"{count} / 10";
+        nameCount.text = $"{int.Parse(count)} / 10";
     }
 
     //서버접속
     public void OnClickConnect()//현재 네임세팅씬 완료버튼과 연결됨
     {
+        if (nameField.text == "") return;
         PhotonNetwork.AutomaticallySyncScene = true; 
         //서버 접속 요청
         PhotonNetwork.ConnectUsingSettings();

@@ -65,7 +65,7 @@ public class SYA_AvartaSceneManager : MonoBehaviourPun
     //아바타의 순서
     public GameObject[] avatarGo = new GameObject[5];
 
-    bool LayerChange;
+    //bool LayerChange;
     //������Ʈ ������ ������ �Լ� ����
     bool buttonOn;
     //��ư�� ������ ȸ���������� ��Ÿ���� �Ұ�
@@ -84,7 +84,7 @@ public class SYA_AvartaSceneManager : MonoBehaviourPun
         {
             //avatar[num].transform.position = pos[num].transform.position;
             avatar[num].transform.localScale = sca[num];
-            LayerChange = true;
+            //LayerChange = true;
                 rotateIng = false;
             //����� �ִ��� �к��ϴ� �ڵ�
             if (1.2f - avatar[num].transform.localScale.x < 0.3f)
@@ -222,14 +222,15 @@ public class SYA_AvartaSceneManager : MonoBehaviourPun
         zeroOff();
     }
 
-    public InputField name;
+    public InputField nameField;
 
     //�ƹ�Ÿ ���� ��ư�� ������ ��
     //���ʿ� ����� �ƹ�Ÿ ������ ������ ����
     public void AvatarSellect()
     {
+        if (nameField.text == "") return;
         SYA_UserInfoSave.Instance.AvatarSave($"Player {avatarP.name}");
-        SYA_UserInfoSave.Instance.NicNameSave(name.text);
+        SYA_UserInfoSave.Instance.NicNameSave(nameField.text);
         //SYA_SceneChange.Instance.SymposiumRoomList();
     }
 

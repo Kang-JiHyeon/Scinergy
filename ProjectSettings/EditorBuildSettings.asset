@@ -15,9 +15,6 @@ EditorBuildSettings:
     path: Assets/SYA/Scenes/SYA_SymposiumRoomList.unity
     guid: d374a6ca85d216d4e974d0df312f6112
   - enabled: 1
-    path: Assets/SYA/Scenes/DontDestroy.unity
-    guid: d7ac618f2c2f8c44189480057d2cea03
-  - enabled: 1
     path: Assets/SYA/Scenes/AvatarSympo.unity
     guid: e1b958fe2ffa69f428fed6697dd3c53e
   - enabled: 0
