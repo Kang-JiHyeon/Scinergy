@@ -98,12 +98,12 @@ public class SYA_AvartaSceneManager : MonoBehaviourPun
     }
 
     List<GameObject> avatarList = new List<GameObject>();
-    GameObject avatarP;
+    public int avatarP;
 
     //��� �ִ� �ƹ�Ÿ �����ؼ� ���ʿ� ����
     public void CreatAvatar(GameObject avatar)
     {
-        if (avatarList.Count > 0)
+        /*if (avatarList.Count > 0)
         {
             Destroy(GameObject.Find(avatarList[0].name).gameObject);
             avatarList.Clear();
@@ -111,7 +111,7 @@ public class SYA_AvartaSceneManager : MonoBehaviourPun
         avatarP = Instantiate(avatar);
         avatarList.Add(avatarP);
         avatarP.transform.localScale = avatarSca;
-        avatarP.transform.position = avatarPos.position;
+        avatarP.transform.position = avatarPos.position;*/
     }
     public GameObject[] head = new GameObject[5];
     int exnum = 0;
@@ -121,7 +121,7 @@ public class SYA_AvartaSceneManager : MonoBehaviourPun
         head[exnum].SetActive(false);
         exnum = name;
         head[name].SetActive(true);
-        avatarP = avatarGo[2];
+        avatarP = name;
     }
 
     //�ƹ�Ÿ ���� ����
@@ -232,7 +232,7 @@ public class SYA_AvartaSceneManager : MonoBehaviourPun
     public void AvatarSellect()
     {
         if (nameField.text == "") return;
-        SYA_UserInfoSave.Instance.AvatarSave($"Player {avatarP.name}");
+        SYA_UserInfoSave.Instance.AvatarSave($"Player {avatarP}");
         SYA_UserInfoSave.Instance.NicNameSave(nameField.text);
         //SYA_SceneChange.Instance.SymposiumRoomList();
     }
