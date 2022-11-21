@@ -26,12 +26,13 @@ public class OSW_GameManager : MonoBehaviourPun
 
     private void Start()
     {
-        //// 방장일 경우에 모두 음소거 버튼이 활성화 되고, 아니면 활성화 안되게?
-        //if (SYA_SymposiumManager.Instance.player[PhotonNetwork.NickName].IsMine);
-        //{
-        //    Debug.LogWarning("방장 들어왔다!!");
-        //    mute.SetActive(true);
-        //}
+        // 방장일 경우에 모두 음소거 버튼이 활성화 되고, 아니면 활성화 안되게?
+        if (PhotonNetwork.MasterClient.UserId == SYA_SymposiumManager.Instance.player[PhotonNetwork.NickName].Owner.UserId)
+        {
+
+            Debug.LogWarning("방장 들어왔다!!");
+            mute.SetActive(true);
+        }
     }
 
     public GameObject mute; // 음소거

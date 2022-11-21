@@ -13,6 +13,7 @@ public class PlayerMove : MonoBehaviourPun
     public float gravity = -9.81f;
     public CharacterController cc;
     public TextMeshProUGUI nickName;
+    public Animator anim;
 
     Vector3 dir;
     ////µµÂøÀ§Ä¡
@@ -55,8 +56,8 @@ public class PlayerMove : MonoBehaviourPun
         {
             master = SYA_SymposiumManager.Instance.playerAuthority[PhotonNetwork.NickName] == "Owner";
         }
-        SYA_SymposiumManager.Instance.PlayerAuthority(PhotonNetwork.NickName,master);
-
+        SYA_SymposiumManager.Instance.PlayerAuthority(PhotonNetwork.NickName, master);
+        //anim = GetComponentInChildren<Animator>();
         GetComponentInChildren<AudioSource>().enabled = false;
     }
 
@@ -74,13 +75,17 @@ public class PlayerMove : MonoBehaviourPun
 
         float h = SYA_InputManager.GetAxis("Horizontal");
         float v = SYA_InputManager.GetAxis("Vertical");
-
+        photonView.RPC("RPCanimMove", RpcTarget.All, v, h);
+        /*anim.SetFloat("Speed", v);
+        anim.SetFloat("Direction", h);*/
         dir = Vector3.forward * v + Vector3.right * h;
 
         if (cc.isGrounded)
         {
             yVelocity = 0;
             jumpCount = 0;
+            photonView.RPC("RPCanimJump", RpcTarget.All, false);
+            //anim.SetBool("Jump", false);
         }
         if (SYA_InputManager.GetButtonDown("Jump"))
         {
@@ -99,7 +104,35 @@ public class PlayerMove : MonoBehaviourPun
     public void GetJump()
     {
         if (jumpCount == 0)
+        {
             jumpCount++;
-        yVelocity = jumpPower;
+            yVelocity = jumpPower;
+            photonView.RPC("RPCanimJump", RpcTarget.All, true);
+            //anim.SetBool("Jump", true);
+        }
+    }
+
+    [PunRPC]
+    void RPCanimMove(float speed, float direction)
+    {
+        anim.SetFloat("Speed", speed);
+        anim.SetFloat("Direction", direction);
+    }
+
+    [PunRPC]
+    void RPCanimJump(bool jump)
+    {
+        anim.SetBool("Jump", jump);
+    }
+
+    [PunRPC]
+    void RPCSit(bool sit_)
+    {
+        anim.SetBool("Sit", sit_);
+    }
+
+    public void Sit(bool sit_)
+    {
+        anim.SetBool("Sit", sit_);
     }
 }

@@ -76,16 +76,6 @@ public class OSW_ButtonUI : MonoBehaviourPun
     // 실행취소 버튼 클릭 시 호출
     public void CtrlZ()
     {
-        //for(int i = osw_lineDrawer.lineList.Count - 1; i >= 0; i--)
-        //{
-        //    if (osw_lineDrawer.lineList[i].activeSelf == true)
-        //    {
-        //        print("실행취소");
-        //        osw_lineDrawer.lineList[i].SetActive(false);
-        //        break;
-        //    }
-        //}
-
         // 네트워크 동기화
         PhotonView mine = SYA_SymposiumManager.Instance.GetMyPlayer();
         if (mine)
@@ -97,15 +87,6 @@ public class OSW_ButtonUI : MonoBehaviourPun
     // 되돌리기 버튼 클릭 시 호출
     public void CtrlY()
     {
-        //for(int i = 0; i < osw_lineDrawer.lineList.Count; i++)
-        //{
-        //    if (osw_lineDrawer.lineList[i].activeSelf == false)
-        //    {
-        //        print("되돌리기");
-        //        osw_lineDrawer.lineList[i].SetActive(true);
-        //        break;
-        //    }
-        //}
         // 네트워크 동기화
         PhotonView mine = SYA_SymposiumManager.Instance.GetMyPlayer();
         if(mine)

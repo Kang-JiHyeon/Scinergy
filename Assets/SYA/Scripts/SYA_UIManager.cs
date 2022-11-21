@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
 using UnityEngine.SceneManagement;
+using RockVR.Video;
 
 namespace SYA_UI
 {
@@ -11,8 +12,6 @@ namespace SYA_UI
     {
         public static SYA_UIManager Instance;
 
-        public Transform btn_chat;
-        public Transform btn_mic;
 
         private void Awake()
         {
@@ -32,26 +31,50 @@ namespace SYA_UI
             }
         }
 
+        public Image btn_chat;
+        public Sprite chatOn;
+        public Sprite chatOff;
         //채팅창 온오프
         public GameObject chat;
+        bool chating;
         //글쓰는 인풋필드
         //전송 버튼
         public void ChatOnOff()
         {
-            chat.SetActive(!chat.activeSelf);
-            btn_chat.GetChild(0).gameObject.SetActive(!btn_chat.GetChild(0).gameObject.activeSelf);
-            btn_chat.GetChild(1).gameObject.SetActive(!btn_chat.GetChild(1).gameObject.activeSelf);
+            if (!chating)
+            {
+                btn_chat.sprite = chatOn;
+                chating = true;
+            }
+            else
+            {
+                btn_chat.sprite = chatOff;
+                chating = false;
+            }
+            chat.SetActive(chating);
         }
 
         //마이크 온오프
-        public GameObject micOn;
+
         public GameObject micOff;
+        public GameObject micOn;
+        public Image btn_mic;
+        public Sprite micOnS;
+        public Sprite micOffS;
+        bool micing;
         public void MicOnOff()
         {
-            micOn.SetActive(!micOn.activeSelf);
-            micOff.SetActive(!micOff.activeSelf);
-
-            SYA_SymposiumManager.Instance.playerVoice[PhotonNetwork.NickName].enabled = micOn.activeSelf;
+            if (!micing)
+            {
+                btn_mic.sprite = micOnS;
+                micing = true;
+            }
+            else
+            {
+                btn_mic.sprite = micOffS;
+                micing = false;
+            }
+            SYA_SymposiumManager.Instance.playerVoice[PhotonNetwork.NickName].enabled = micing;
             // 마이크 키기
             // 본인의 닉네임의 오디오 소스를 끄고 켠다
             //SYA_SymposiumManager.Instance.playerVoice[PhotonNetwork.NickName].enabled = micOn.activeSelf;
@@ -59,29 +82,32 @@ namespace SYA_UI
             //photonView.RPC("RpcMicOnOff", RpcTarget.All, PhotonNetwork.NickName, micOn.activeSelf);
         }
 
-        [PunRPC]
-        public void RpcMicOnOff(string name, bool micOn)
-        {
-            SYA_SymposiumManager.Instance.playerVoice[name].enabled = micOn;
-        }
+        /*        [PunRPC]
+                public void RpcMicOnOff(string name, bool micOn)
+                {
+                    SYA_SymposiumManager.Instance.playerVoice[name].enabled = micOn;
+                }*/
 
-        //설정창 온오프
-        public GameObject option;
-        public Transform btn_option;
-        public void OptionOnOff()
-        {
-            option.SetActive(!option.activeSelf);
-            btn_option.GetChild(0).gameObject.SetActive(!btn_option.GetChild(0).gameObject.activeSelf);
-            btn_option.GetChild(1).gameObject.SetActive(!btn_option.GetChild(1).gameObject.activeSelf);
-        }
 
         //나가기 창 온오프
         public GameObject quit;
+        //버튼
+        public Image btn_quit;
+        public Sprite quitOn;
+        public Sprite quitOff;
         public void QuitOnOff()
         {
-            if(SceneManager.GetActiveScene().name.Contains("Sympo"))
+            if (btn_quit.sprite != quitOn)
             {
-            quit.SetActive(!quit.activeSelf);
+                btn_quit.sprite = quitOn;
+            }
+            else
+            {
+                btn_quit.sprite = quitOff;
+            }
+            if (SceneManager.GetActiveScene().name.Contains("Sympo"))
+            {
+                quit.SetActive(!quit.activeSelf);
             }
             else
             {
@@ -98,6 +124,160 @@ namespace SYA_UI
         public void lobbyBackScene()
         {
             GetComponentInChildren<SYA_SympoUI>().SymposiumChsnge();
+        }
+
+        bool isRecording;
+        public Image btn_rec;
+        public Sprite recordOn;
+        public Sprite recordOff;
+
+        public GameObject recodStart;
+        public GameObject recodEnd;
+        //영상찍기 창 온오프
+        //영상아이콘을 누르면
+        public void Record()
+        {
+            //s녹화중이었다면
+            if (isRecording)
+            {
+                if (recodEnd.activeSelf)
+                    recodEnd.SetActive(false);
+                else
+                    //종료하겠냐는 문구가 뜬다
+                    recodEnd.SetActive(true);
+            }
+            //녹화중이 아니었다면
+            else
+            {
+                if (recodStart.activeSelf)
+                    recodStart.SetActive(false);
+                else
+                    //시작하겠냐는 문구가 뜬다
+                    recodStart.SetActive(true);
+            }
+
+        }
+
+        //예를 누르면 
+        public void RecordOn()
+        {
+            if (!isRecording)
+            {
+                //녹확가 시작되고
+                VideoCaptureCtrl.instance.StartCapture();
+                //녹화중 상태가 되며
+                isRecording = true;
+                //창이 닫힌다
+                recodStart.SetActive(false);
+                //영상아이콘이 주황색으로 변한다
+                btn_rec.sprite = recordOn;
+            }
+            else
+            {
+                //녹확가 끝나게 되고
+                VideoCaptureCtrl.instance.StopCapture();
+                //녹화중 상태가 아니 되며
+                isRecording = false;
+                //창이 닫힌다
+                recodEnd.SetActive(false);
+                //영상아이콘이 회색으로 변한다
+                btn_rec.sprite = recordOff;
+            }
+        }
+
+        //아니요를 누르면 
+        public void RecordOff()
+        {
+            if (isRecording)
+            {
+                //창이 닫힌다
+                recodEnd.SetActive(false);
+            }
+            else
+            {
+                recodStart.SetActive(false);
+            }
+        }
+
+        //설정창 온오프
+        public GameObject option;
+        public Image btn_option;
+        public Sprite optionOn;
+        public Sprite optionOff;
+        public void OptionOnOff()
+        {
+            if (!option.activeSelf)
+            {
+                btn_option.sprite = optionOn;
+                option.SetActive(true);
+            }
+            else
+            {
+                btn_option.sprite = optionOff;
+                option.SetActive(false);
+            }
+        }
+
+        public GameObject micOption;
+        public Image button;
+        public Sprite micopOn;
+        public Sprite audiioopOn;
+        public Scrollbar BG;
+        public Scrollbar ef;
+        public Scrollbar mic;
+        new bool audio;
+        public void OnOpttionAudio()
+        {
+            if (!audio)
+            {
+                //버튼을 누르면 마이크로 바뀐다
+                button.sprite = micopOn;
+                //마이크 설정 이미지가 뜬다
+                micOption.SetActive(true);
+                audio = true;
+            }
+            else
+            {
+                //다시 누르면 오디오로 바뀐다
+                button.sprite = audiioopOn;
+                //오디오 설정 이미지가 뜬다
+                micOption.SetActive(false);
+                audio = false;
+            }
+            exBG = BG.value;
+            exEF = ef.value;
+            exMic = mic.value;
+        }
+
+        float exBG;
+        float exEF;
+        float exMic;
+        //완료를 누르면 반영된다
+        //취소를 누르면 창이 닫힌다(오디오 설정과 그전 밸류값으로)
+        public void OnSaveOption()
+        {
+            print($"배경의 음량을 {exBG}저장합니다 ");
+            print($"효과의 음량을 {exEF}저장합니다 ");
+            SYA_SymposiumManager.Instance.playerVoice[PhotonNetwork.NickName].volume = exMic;
+            print($"마이크의 음량을 {exMic}저장합니다 ");
+        }
+
+        //완료버튼 누른 결루
+        public void OnNewSave()
+        {
+            exBG = BG.value;
+            exEF = ef.value;
+            exMic = mic.value;
+            OnSaveOption();
+        }
+
+        //취소
+        public void Cancle()
+        {
+            BG.value = exBG;
+            ef.value = exEF;
+            mic.value = exMic;
+            OnSaveOption();
         }
     }
 }

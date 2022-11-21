@@ -123,8 +123,19 @@ public class SYA_SympoRoomList : MonoBehaviourPunCallbacks
     }
 
     public GameObject creatRoom;
+    public Image btn_creat;
+    public Sprite createOn;
+    public Sprite createOff;
     public void OnCreateRoom()
     {
         creatRoom.SetActive(true);
+        if(btn_creat.sprite == createOff)
+        {
+            btn_creat.sprite = createOn;
+        }
+        else
+        {
+            btn_creat.sprite = createOff;
+        }
     }
 }
