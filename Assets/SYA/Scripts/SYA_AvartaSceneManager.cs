@@ -98,7 +98,7 @@ public class SYA_AvartaSceneManager : MonoBehaviourPun
     }
 
     List<GameObject> avatarList = new List<GameObject>();
-    public int avatarP;
+     int avatarP= 3;
 
     //��� �ִ� �ƹ�Ÿ �����ؼ� ���ʿ� ����
     public void CreatAvatar(GameObject avatar)
@@ -114,14 +114,14 @@ public class SYA_AvartaSceneManager : MonoBehaviourPun
         avatarP.transform.position = avatarPos.position;*/
     }
     public GameObject[] head = new GameObject[5];
-    int exnum = 0;
+    int exnum = 3;
     public void CreatAvatar(int name)
     {
         exnum = (name - 1) <= 0 ? 4 : (name - 1);
         head[exnum].SetActive(false);
         exnum = name;
         head[name].SetActive(true);
-        avatarP = name;
+        avatarP = (name + 1) >= 5 ? 1 : (name + 1);
     }
 
     //�ƹ�Ÿ ���� ����
