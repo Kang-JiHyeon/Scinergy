@@ -8,6 +8,8 @@ using UnityEngine.SceneManagement;
 
 public class SYA_SympoLobby : MonoBehaviourPunCallbacks
 {
+    public static SYA_SympoLobby Instance;
+
     //방 만들기
     //방생성 페이지
     public GameObject roomCreate;
@@ -36,6 +38,10 @@ public class SYA_SympoLobby : MonoBehaviourPunCallbacks
     public Text title_count;
     public Text owner;
     public Text password;
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     void Start()
     {
@@ -73,6 +79,7 @@ public class SYA_SympoLobby : MonoBehaviourPunCallbacks
         //→안 념을 경우 확인 창On
         roomCreate.SetActive(inputRoomName.text.Length > 20);
         roomCompletion.SetActive(!(inputRoomName.text.Length > 20));
+        UserList[0]=PhotonNetwork.NickName;
         CreateRoom();
     }
 
@@ -110,8 +117,29 @@ public class SYA_SympoLobby : MonoBehaviourPunCallbacks
         falseC.GetComponent<Image>().color = Fc;*/
     }
 
-        // 방 옵션을 설정
-        RoomOptions roomOptions = new RoomOptions();
+/*    void OverlapName(int nameNum)
+    {
+        int num = 0;
+        //같은 닉네임이 있는지 검사
+        foreach (string name in UserList)
+        {
+            //만약 있다면
+            if (name == PhotonNetwork.NickName)
+            {
+                //번호를 붙인다
+                num++;
+                //원래 내 닉네임 + 원래 닉네임과 같은 사람의 수만큼
+                PhotonNetwork.NickName = name.Substring(0, nameNum) + $"({num})";
+            }
+        }
+        print(PhotonNetwork.NickName);
+        UserList.Add(PhotonNetwork.NickName);*/
+
+        
+    //}
+
+    // 방 옵션을 설정
+    RoomOptions roomOptions = new RoomOptions();
     //방 생성
     public void CreateRoom()
     {
@@ -125,15 +153,19 @@ public class SYA_SympoLobby : MonoBehaviourPunCallbacks
         hash["owner"] = PhotonNetwork.NickName;
         hash["public"] = public_;
         hash["password"] = $"{Random.Range(0,10)}{Random.Range(0, 10)}{Random.Range(0, 10)}{Random.Range(0, 10)}";
+        //유저목록
+        hash["UserList"] = UserList;
         roomOptions.CustomRoomProperties = hash;
         //커스텀 정보 공개 설정
-        roomOptions.CustomRoomPropertiesForLobby = new string[] { "room_name", "owner", "public", "password" };
+        roomOptions.CustomRoomPropertiesForLobby = new string[] { "room_name", "owner", "public", "password", "UserList" };
 
         //방 정보 창에 띄우기
         OnRoomInfo();
     }
 
-        //방 정보 창에 띄우기
+    public string[] UserList =new string[1];
+
+    //방 정보 창에 띄우기
     public void OnRoomInfo()
     {
         title.text = roomOptions.CustomRoomProperties["room_name"].ToString();
@@ -172,7 +204,7 @@ public class SYA_SympoLobby : MonoBehaviourPunCallbacks
     {
         base.OnJoinedRoom();
         print("OnJoinedRoom");
-        SceneManager.LoadScene("AvatarSympo");
+        PhotonNetwork.LoadLevel("AvatarSympo");
     }
 /*
     //방 참가가 실패 되었을 때 호출 되는 함수

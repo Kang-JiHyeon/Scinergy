@@ -37,13 +37,13 @@ public class SYA_AvartaSceneManager : MonoBehaviourPun
     void Start()
     {
         ScaSet();
-        Camera.main.cullingMask = ~(1<< 18);
+        Camera.main.cullingMask = ~(1 << 18);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(buttonOn)
+        if (buttonOn)
         {
             AvatarPosSca(0);
             AvatarPosSca(1);
@@ -52,14 +52,14 @@ public class SYA_AvartaSceneManager : MonoBehaviourPun
             AvatarPosSca(4);
         }
         //���̾� �ٲ��ְ�
-/*        if (LayerChange)
-        {
-            for (int i = 0; i < pos.Count; ++i)
-            {
-                //AvatarLayerChange(avatar[i].transform.position.z, avatar[i].transform);
-            }
-            LayerChange = false;
-        }*/
+        /*        if (LayerChange)
+                {
+                    for (int i = 0; i < pos.Count; ++i)
+                    {
+                        //AvatarLayerChange(avatar[i].transform.position.z, avatar[i].transform);
+                    }
+                    LayerChange = false;
+                }*/
         //�ø�����ũ ���
     }
     //아바타의 순서
@@ -79,31 +79,31 @@ public class SYA_AvartaSceneManager : MonoBehaviourPun
         iTween.ScaleTo(avatar[num], sca[num], 2f);
         iTween.MoveTo(avatar[num], pos[num].transform.position, 2f);
         avatar[num].transform.localScale = avartaSca;
-        if (Vector3.Distance(avatar[num].transform.position, pos[num].transform.position) < 0.3f
+        rotateIng = false;
+        buttonOn = false;
+        /*if (Vector3.Distance(avatar[num].transform.position, pos[num].transform.position) < 0.3f
             && Vector3.Distance(avatar[num].transform.localScale, sca[num]) < 0.3f)
         {
             //avatar[num].transform.position = pos[num].transform.position;
             avatar[num].transform.localScale = sca[num];
             //LayerChange = true;
-                rotateIng = false;
-            //����� �ִ��� �к��ϴ� �ڵ�
-            if (1.2f - avatar[num].transform.localScale.x < 0.3f)
+            //가운데에 있는 캐릭터인가?
+            *//*if (1.2f - avatar[num].transform.localScale.x <= 0.35f)
             {
-                buttonOn = false;
                 WhiteClircle(num);
                 //print(2222222);
                 CreatAvatar(int.Parse(avatarGo[2].gameObject.name));
-            }
-        }
+            }*//*
+        }*/
     }
 
     List<GameObject> avatarList = new List<GameObject>();
-    GameObject avatarP;
+    public int avatarP;
 
     //��� �ִ� �ƹ�Ÿ �����ؼ� ���ʿ� ����
     public void CreatAvatar(GameObject avatar)
     {
-        if(avatarList.Count>0)
+        /*if (avatarList.Count > 0)
         {
             Destroy(GameObject.Find(avatarList[0].name).gameObject);
             avatarList.Clear();
@@ -111,16 +111,17 @@ public class SYA_AvartaSceneManager : MonoBehaviourPun
         avatarP = Instantiate(avatar);
         avatarList.Add(avatarP);
         avatarP.transform.localScale = avatarSca;
-        avatarP.transform.position = avatarPos.position;
+        avatarP.transform.position = avatarPos.position;*/
     }
     public GameObject[] head = new GameObject[5];
     int exnum = 0;
     public void CreatAvatar(int name)
     {
+        exnum = (name - 1) <= 0 ? 4 : (name - 1);
         head[exnum].SetActive(false);
-        exnum = name - 1;
-        head[name - 1].SetActive(true);
-        avatarP = avatarGo[2];
+        exnum = name;
+        head[name].SetActive(true);
+        avatarP = name;
     }
 
     //�ƹ�Ÿ ���� ����
@@ -162,9 +163,9 @@ public class SYA_AvartaSceneManager : MonoBehaviourPun
 
     public void zeroOff()
     {
-        for(int i=0; i< avatarGo.Length; ++i)
+        for (int i = 0; i < avatarGo.Length; ++i)
         {
-            if(i==0||i==4)
+            if (i == 0 || i == 4)
             {
                 avatarGo[i].gameObject.GetComponent<Image>().enabled = false;
                 avatarGo[i].gameObject.GetComponentInChildren<SYA_ChilImage>().Image.enabled = false;
@@ -174,9 +175,11 @@ public class SYA_AvartaSceneManager : MonoBehaviourPun
             {
                 avatarGo[i].gameObject.GetComponent<Image>().enabled = true;
                 avatarGo[i].gameObject.GetComponentInChildren<SYA_ChilImage>().Image.enabled = true;
-                if(i==2)
+                if (i == 2)
                 {
                     avatarGo[i].gameObject.GetComponentInChildren<SYA_ChilImage>().fade.enabled = false;
+                    WhiteClircle(int.Parse(avatarGo[2].gameObject.name));
+                    CreatAvatar(int.Parse(avatarGo[2].gameObject.name) - 1);
                 }
                 else
                 {
@@ -229,29 +232,29 @@ public class SYA_AvartaSceneManager : MonoBehaviourPun
     public void AvatarSellect()
     {
         if (nameField.text == "") return;
-        SYA_UserInfoSave.Instance.AvatarSave($"Player {avatarP.name}");
+        SYA_UserInfoSave.Instance.AvatarSave($"Player {avatarP}");
         SYA_UserInfoSave.Instance.NicNameSave(nameField.text);
         //SYA_SceneChange.Instance.SymposiumRoomList();
     }
 
-   /* public void AvatarLayerChange(float z, Transform avatar)
-    {
-        if(z>=-2)
-        {
-            avatar.gameObject.layer = 18;
-            foreach(Transform child in avatar.transform)
-            {
-                AvatarLayerChange(avatar.transform.position.z, child);
-            }
-        }
-        else
-        {
-            avatar.gameObject.layer = 17;
-            foreach (Transform child in avatar.transform)
-            {
-                AvatarLayerChange(avatar.transform.position.z, child);
-            }
-        }
-    }*/
+    /* public void AvatarLayerChange(float z, Transform avatar)
+     {
+         if(z>=-2)
+         {
+             avatar.gameObject.layer = 18;
+             foreach(Transform child in avatar.transform)
+             {
+                 AvatarLayerChange(avatar.transform.position.z, child);
+             }
+         }
+         else
+         {
+             avatar.gameObject.layer = 17;
+             foreach (Transform child in avatar.transform)
+             {
+                 AvatarLayerChange(avatar.transform.position.z, child);
+             }
+         }
+     }*/
 }
 

@@ -22,7 +22,7 @@ public class SYA_SymposiumManager : MonoBehaviourPun
     //포톤보이스
     public Dictionary<string, AudioSource> playerVoice = new Dictionary<string, AudioSource>();
     //유저의 플레이어 몸체
-    public Dictionary<string, GameObject> playerObj = new Dictionary<string, GameObject>();
+    //public Dictionary<string, GameObject> playerObj = new Dictionary<string, GameObject>();
     //방이름 방장 입장코드
     public string roomName, roomOwner, roomCode;
 
@@ -63,12 +63,12 @@ public class SYA_SymposiumManager : MonoBehaviourPun
         return null;
     }
 
-    public void PlayerNameAuthority(string name, PhotonView photonView, AudioSource audioSource, GameObject gameObject)
+    public void PlayerNameAuthority(string name,PhotonView photonView, AudioSource audioSource)
     {
-        playerName.Add(name);
+        //playerName.Add(name);
         player[name] = photonView;
         playerVoice[name] = audioSource;
-        playerObj[name] = gameObject;
+        //playerObj[name] = gameObject;
     }
 
     public void PlayerAuthority(string name, bool master)
