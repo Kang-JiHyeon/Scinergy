@@ -10,9 +10,9 @@ public class CSV : MonoBehaviour
     public static CSV instance;
     private void Awake()
     {
-        if(instance == null)
+        if (instance == null)
         {
-            instance = this; 
+            instance = this;
         }
     }
     public List<T> Parsing<T>(string fileName) where T : new()
@@ -41,7 +41,7 @@ public class CSV : MonoBehaviour
             string[] value = lines[i].Split(",");
             //정보 만들기
             T data = new();
-            for(int j = 0; j<variable.Length; j++)
+            for (int j = 0; j < variable.Length; j++)
             {
                 //variable[0] = "name", variable[1] = "phone", variable [2] = "age"
                 //해당 이름으로 되어있는 변수의 정보를 얻어오자
@@ -54,6 +54,6 @@ public class CSV : MonoBehaviour
             //정보 추가
             list.Add(data);
         }
-            return list;
+        return list;
     }
 }

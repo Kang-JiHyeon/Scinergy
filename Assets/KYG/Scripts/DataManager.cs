@@ -6,6 +6,7 @@ using UnityEngine;
 public class ZodiacInfo
 {
     public string name;
+    public string krName;
 }
 public class StarInfo
 {
@@ -17,7 +18,7 @@ public class DataManager : MonoBehaviour
 {
     public static DataManager instance;
 
-    public List<ZodiacInfo> zodiacInfos;
+    public List<ZodiacInfo> zodiacInfo;
 
     private void Awake()
     {
@@ -34,7 +35,7 @@ public class DataManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        zodiacInfos = CSV.instance.Parsing<ZodiacInfo>("Zodiac");
+        zodiacInfo = CSV.instance.Parsing<ZodiacInfo>("Zodiac");
     }
 
     // Update is called once per frame
