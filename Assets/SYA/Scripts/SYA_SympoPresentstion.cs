@@ -21,7 +21,7 @@ public class SYA_SympoPresentstion : MonoBehaviour
 
         print(PhotonNetwork.NickName);
         //if (SYA_SymposiumManager.Instance.playerAuthority[PhotonNetwork.NickName].Contains("Presenter")
-       if( SYA_SymposiumManager.Instance.playerAuthority[PhotonNetwork.NickName].Contains("Owner"))
+       if(SYA_SymposiumManager.Instance.playerAuthority[PhotonNetwork.NickName] == "Presenter" || SYA_SymposiumManager.Instance.playerAuthority[PhotonNetwork.NickName].Contains("Owner"))
         {
             if (other.gameObject.name.Contains("Player"))
             {

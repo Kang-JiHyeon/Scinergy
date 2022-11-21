@@ -227,6 +227,7 @@ public class OSW_LineDrawer : MonoBehaviourPun
         return hitInfo.point;
     }
 
+    // 지우개 이제 안씀!
     void Eraser()
     {
         // 마우스 왼쪽 버튼을 누르는 순간

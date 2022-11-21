@@ -53,6 +53,8 @@ public class OSW_ButtonUI : MonoBehaviourPun
             osw_cursor.CursorChange();
         }
     }
+    
+    // 지우개 이제 안씀
     public void Eraser()
     {
         osw_lineDrawer.isDrawing = false;

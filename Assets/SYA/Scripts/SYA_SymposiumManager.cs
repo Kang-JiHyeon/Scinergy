@@ -73,11 +73,14 @@ public class SYA_SymposiumManager : MonoBehaviourPun
 
     public void PlayerAuthority(string name, bool master)
     {
-        if (master)//만약 마스터 클라이언트라면
-            playerAuthority[name] = "Owner";
-        else //아니라면
-            playerAuthority[name] = "Audience";
+        //if (master)//만약 마스터 클라이언트라면
+        //    playerAuthority[name] = "Owner";
+        //else //아니라면
+        //    playerAuthority[name] = "Audience";
+        player[PhotonNetwork.NickName].RPC("RPCPlayerAuthority", RpcTarget.All, name, master);
+
     }
+
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
