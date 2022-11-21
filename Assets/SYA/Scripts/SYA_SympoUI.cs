@@ -90,7 +90,8 @@ namespace SYA_UI
             {
                 if (userAuthority.Value == "Audience")//û���� ����
                 {
-                    GameObject go = PhotonNetwork.Instantiate("UserListItem", new Vector2(0, -15), Quaternion.identity);
+                    //GameObject go = PhotonNetwork.Instantiate("UserListItem", new Vector2(0, -15), Quaternion.identity);
+                    GameObject go = PhotonNetwork.Instantiate("UserListItem 1", new Vector2(0, -15), Quaternion.identity);
                     go.transform.parent = AudienceTran;
                     go.transform.localPosition = new Vector2(180, -15);
                     go.GetComponentInChildren<Text>().text = userAuthority.Key;

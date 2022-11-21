@@ -68,6 +68,8 @@ MonoBehaviour:
   - RPCRandomGenerate
   - RPCDrawStar
   - RPCAllMute
+  - RPCMuteOnOff
+  - RPCPlayerAuthority
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
