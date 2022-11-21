@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using Photon.Realtime;
 using Photon.Pun;
 
-public class SYA_SympoRoomItem : MonoBehaviour
+public class SYA_SympoRoomItem : MonoBehaviourPunCallbacks
 {
     //방 이름
     public Text roomName;
@@ -23,9 +23,10 @@ public class SYA_SympoRoomItem : MonoBehaviour
 
 
     //사진
-
+    RoomInfo roomInfo;
     public void SetInfo(RoomInfo info)
     {
+        roomInfo = info;
         string roomName_ = info.CustomProperties["room_name"].ToString();
         name = roomName_;
 
@@ -33,11 +34,11 @@ public class SYA_SympoRoomItem : MonoBehaviour
         roomName.text = roomName_;
         playerCount.text = $"{info.PlayerCount}명 참여 중";
         ownerName.text = info.CustomProperties["owner"].ToString();
-        roomPassword= info.CustomProperties["password"].ToString(); ;
+        roomPassword = info.CustomProperties["password"].ToString(); ;
         unpubl.SetActive(info.CustomProperties["public"].ToString() == "False");
     }
 
- 
+
     public void OffPassward()
     {
         password.SetActive(false);
@@ -49,7 +50,7 @@ public class SYA_SympoRoomItem : MonoBehaviour
     public Sprite joinOff;
     public void JoinRoom()
     {
-        if(!unpubl.activeSelf)
+        if (!unpubl.activeSelf)
         {
             PhotonNetwork.JoinRoom(name);
         }
@@ -64,8 +65,8 @@ public class SYA_SympoRoomItem : MonoBehaviour
 
     public void passwordJoin()
     {
-        string inputPassword =$"{one.text}";
-        if(inputPassword==roomPassword)
+        string inputPassword = $"{one.text}";
+        if (inputPassword == roomPassword)
         {
             PhotonNetwork.JoinRoom(name);
         }

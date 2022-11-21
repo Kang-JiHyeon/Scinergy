@@ -20,7 +20,7 @@ public class SYA_AvatarSceneClircleUI : MonoBehaviour
 
     public void WhiteClircleChange(int num)
     {
-        if (num == 0)
+        if (num == 1)
         {
             ClicleW(clircle01, false);
             ClicleW(clircle02, true);
@@ -28,7 +28,7 @@ public class SYA_AvatarSceneClircleUI : MonoBehaviour
             ClicleW(clircle04, true);
             ClicleW(clircle05, true);
         }
-        else if (num == 1)
+        else if (num == 2)
         {
             ClicleW(clircle01, true);
             ClicleW(clircle02, false);
@@ -36,7 +36,7 @@ public class SYA_AvatarSceneClircleUI : MonoBehaviour
             ClicleW(clircle04, true);
             ClicleW(clircle05, true);
         }
-        else if (num == 2)
+        else if (num == 3)
         {
             ClicleW(clircle01, true);
             ClicleW(clircle02, true);
@@ -44,7 +44,7 @@ public class SYA_AvatarSceneClircleUI : MonoBehaviour
             ClicleW(clircle04, true);
             ClicleW(clircle05, true);
         }
-        else if (num == 3)
+        else if (num == 4)
         {
             ClicleW(clircle01, true);
             ClicleW(clircle02, true);
@@ -52,7 +52,7 @@ public class SYA_AvatarSceneClircleUI : MonoBehaviour
             ClicleW(clircle04, false);
             ClicleW(clircle05, true);
         }
-        else if (num == 4)
+        else if (num == 5)
         {
             ClicleW(clircle01, true);
             ClicleW(clircle02, true);

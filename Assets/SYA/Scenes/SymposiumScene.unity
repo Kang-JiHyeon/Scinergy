@@ -8840,7 +8840,6 @@ GameObject:
   m_Component:
   - component: {fileID: 693400912}
   - component: {fileID: 693400915}
-  - component: {fileID: 693400914}
   - component: {fileID: 693400913}
   - component: {fileID: 693400916}
   m_Layer: 0
@@ -8898,14 +8897,6 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
---- !u!81 &693400914
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 693400911}
-  m_Enabled: 1
 --- !u!20 &693400915
 Camera:
   m_ObjectHideFlags: 0
@@ -8961,7 +8952,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79f89411692841948b58744ad014adae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 693400915}
+  camera_: {fileID: 693400915}
 --- !u!1 &697926882
 GameObject:
   m_ObjectHideFlags: 0
@@ -19461,7 +19452,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cff5ebea102d2ec4fa66b62e5dc9570e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mute: {fileID: 0}
+  mute: {fileID: 924128995}
 --- !u!1 &1704980133
 GameObject:
   m_ObjectHideFlags: 0
@@ -21571,6 +21562,7 @@ MonoBehaviour:
   Lobbychannel: Lobbychannel
   Constchannel: Constchannel
   Solarchannel: Solarchannel
+  inputFocused: 0
   channelName: {fileID: 1712061187}
   trScrollView: {fileID: 238351093}
   messagess: []

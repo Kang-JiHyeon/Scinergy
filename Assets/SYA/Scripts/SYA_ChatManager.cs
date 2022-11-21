@@ -40,6 +40,8 @@ public class SYA_ChatManager : MonoBehaviourPun, IChatClientListener
     string constColor_code = "#9A2EFE";
     string solarColor_code = "#FE642E";
 
+    public bool inputFocused;
+
     private void Awake()
     {
         Instance = this;
@@ -103,24 +105,19 @@ public class SYA_ChatManager : MonoBehaviourPun, IChatClientListener
                         chatClient.Subscribe(new string[] { Allchannel, Lobbychannel });
                     }
                 }*/
-        if(inputField.isFocused)
-        {
-            SYA_SymposiumManager.Instance.playerObj[PhotonNetwork.NickName].GetComponent<PlayerMove>().enabled = false;
-        }
-        else
-        {
-            SYA_SymposiumManager.Instance.playerObj[PhotonNetwork.NickName].GetComponent<PlayerMove>().enabled = true;
-        }
+
+        inputFocused = inputField.isFocused;
+
         channelName.text = $"<color=#{ColorUtility.ToHtmlStringRGB(ColorChat(currentChannel))}>[{cannel[currentChannel]}]</color>";
         chatClient.Service();
         if (SYA_UIManager.Instance.chat.activeSelf)
         {
-            if(messagess.Count!=0)
-            foreach (string mess in messagess)
-            {
-                MakeChat(mess);
-                messagess.Remove(mess);
-            }
+            if (messagess.Count != 0)
+                foreach (string mess in messagess)
+                {
+                    MakeChat(mess);
+                    messagess.Remove(mess);
+                }
         }
         if (inputField.isFocused && Input.GetKeyDown(KeyCode.Tab))
         {
@@ -233,20 +230,20 @@ public class SYA_ChatManager : MonoBehaviourPun, IChatClientListener
     {
         //채팅창이 꺼져 있다면 
 
-            /*if (channelName.Equals(currentChannel))
-            {*/
+        /*if (channelName.Equals(currentChannel))
+        {*/
 
 
-            /*Vector2 y = trContent.;
-            y.y += item.transform.localScale.y;
-            trContent.localScale = y;*/
-            //3 가져온 컴포넌트에 s셋팅
+        /*Vector2 y = trContent.;
+        y.y += item.transform.localScale.y;
+        trContent.localScale = y;*/
+        //3 가져온 컴포넌트에 s셋팅
 
-            //받은 메세지 모두 저장해두기
-            
-            messagess.Add($"<color=#{ColorUtility.ToHtmlStringRGB(ColorChat(channelName))}> {messages[0].ToString()}</color>");
-        
-        
+        //받은 메세지 모두 저장해두기
+
+        messagess.Add($"<color=#{ColorUtility.ToHtmlStringRGB(ColorChat(channelName))}> {messages[0].ToString()}</color>");
+
+
         //}
     }
 
