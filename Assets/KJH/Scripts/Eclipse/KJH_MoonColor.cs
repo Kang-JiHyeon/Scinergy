@@ -4,48 +4,65 @@ using UnityEngine;
 
 public class KJH_MoonColor : MonoBehaviour
 {
-    public KJH_ShadowLine shadow;
-    public Material moonMat;
+    public KJH_ShadowLine shadowLine;
     public Transform earth;
-    public Transform moon;
+    public Material mat_moon;
+    public Material mat_shadow;
+
+    Color targetMoonColor;
+    Color targetShadowColor;
+    float changeSpeed = 1.5f;
+
     // Start is called before the first frame update
     void Start()
     {
-        //moon = transform.parent;
         earth = transform.parent.parent;
+        targetMoonColor = Color.white;
+        targetShadowColor = Color.white;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(KJH_EclipseState.instance.state == KJH_EclipseState.EclipseState.Moon)
+        // 월식
+        if(KJH_EclipseState.instance.state == KJH_EclipseState.EclipseState.Lunar)
         {
-            if (shadow.isRootShadow)
+            if (shadowLine.isRootShadow)
             {
                 // 달이 지구 본그림자에 완전히 들어가는 현상
-                if (Mathf.Abs(earth.position.z - transform.position.z) < 1f)
+                if (Mathf.Abs(earth.position.z - transform.position.z) < 1.5f)
                 {
-                    moonMat.color = Color.red;
+                    targetMoonColor = new Color(0.6f, 0.3f, 0.3f, 1);
+                    targetShadowColor.a = 0f;
+
                 }
                 // 달이 지구 본그림자에 일부만 들어가는 현상
                 else
                 {
-                    moonMat.color = Color.gray;
+                    targetMoonColor = new Color(0.6f, 0.5f, 0.5f, 1);
+                    targetShadowColor.a = 1f;
                 }
             }
             // 지구 반그림자 -> 살짝 어두워지게
-            else if (shadow.isPenumbralShadow)
+            else if (shadowLine.isPenumbralShadow)
             {
-                moonMat.color = new Color(0.6f, 0.6f, 0.4f, 1);
+                targetMoonColor = new Color(0.6f, 0.6f, 0.6f, 1);
+                targetShadowColor.a = 0f;
             }
             else
             {
-                moonMat.color = Color.yellow;
+                targetMoonColor = Color.white;
+                targetShadowColor.a = 0f;
             }
         }
+        // 일식
         else
         {
-            moonMat.color = Color.black;
+            targetMoonColor = Color.black;
+            targetShadowColor.a = 0f;
         }
+
+        mat_moon.color = Color.Lerp(mat_moon.color, targetMoonColor, Time.deltaTime * changeSpeed);
+        mat_shadow.color = Color.Lerp(mat_shadow.color, targetShadowColor, Time.deltaTime * 3);
     }
 }

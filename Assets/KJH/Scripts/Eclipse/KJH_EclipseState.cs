@@ -19,12 +19,12 @@ public class KJH_EclipseState : MonoBehaviour
     public List<Material> skyBoxs = new List<Material>();
     public enum EclipseState
     {
-        Sun,
-        Moon
+        Solar,
+        Lunar
     }
     public static KJH_EclipseState instance; 
 
-    public EclipseState state = EclipseState.Sun;
+    public EclipseState state = EclipseState.Solar;
 
     private void Awake()
     {
@@ -48,9 +48,9 @@ public class KJH_EclipseState : MonoBehaviour
         }
     }
     // 일식 버튼
-    public void OnClick_SunEclipse()
+    public void OnClick_SolarEclipse()
     {
-        state = EclipseState.Sun;
+        state = EclipseState.Solar;
         RenderSettings.skybox = skyBoxs[0];
         //eclipseLight.intensity = 1f;
 
@@ -61,9 +61,9 @@ public class KJH_EclipseState : MonoBehaviour
     }
 
     // 월식 버튼
-    public void OnClick_MoonEclipse()
+    public void OnClick_LunarEclipse()
     {
-        state = EclipseState.Moon;
+        state = EclipseState.Lunar;
         RenderSettings.skybox = skyBoxs[1];
 
         //eclipseLight.intensity = 0f;

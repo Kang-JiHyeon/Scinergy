@@ -15,7 +15,6 @@ using UnityEngine;
 
 public class KJH_ShadowLine : MonoBehaviour
 {
-    public KJH_EclipseState eclipseState;
     public Transform earth;
     public Transform moon;
 
@@ -34,7 +33,6 @@ public class KJH_ShadowLine : MonoBehaviour
     {
         earth = GameObject.Find("Earth_Space").transform;
         moon = GameObject.Find("Moon").transform;
-
         lrs = transform.GetComponentsInChildren<LineRenderer>();
     }
 
@@ -49,12 +47,12 @@ public class KJH_ShadowLine : MonoBehaviour
         earthPoss[0] = earth.position + new Vector3(0, 0, earth.localScale.x);
         earthPoss[1] = earth.position + new Vector3(0, 0, -earth.localScale.x);
 
-        switch (eclipseState.state)
+        switch (KJH_EclipseState.instance.state)
         {
-            case KJH_EclipseState.EclipseState.Sun:
+            case KJH_EclipseState.EclipseState.Solar:
                 DrawSolarEclipseLine();
                 break;
-            case KJH_EclipseState.EclipseState.Moon:
+            case KJH_EclipseState.EclipseState.Lunar:
                 DrawLunarEclipseLine();
                 Cross();
                 break;
