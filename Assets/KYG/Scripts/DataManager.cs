@@ -7,6 +7,11 @@ public class ZodiacInfo
 {
     public string name;
 }
+public class StarInfo
+{
+
+}
+
 
 public class DataManager : MonoBehaviour
 {
