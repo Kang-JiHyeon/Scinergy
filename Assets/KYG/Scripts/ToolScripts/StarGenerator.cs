@@ -66,6 +66,22 @@ public class StarGenerator : MonoBehaviourPun
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            starNameInput.text = "TestStar";
+            generateTypeDropdown.value = 2;
+            typeDropdown.value = 1;
+            brightnessDropdown.value = 7;
+            if (GameManager.instance.createdStarList.ContainsKey(starName))
+            {
+                starName += (" (" + starNumber + ")");
+                starNumber++;
+            }
+            else
+            {
+                starNumber = 1;
+            }
+        }
         if (starNameInput.GetComponent<TMP_InputField>().isFocused)
         {
             player.GetComponent<PlayerMove>().enabled = false;

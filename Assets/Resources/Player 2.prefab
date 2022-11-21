@@ -12093,6 +12093,7 @@ GameObject:
   - component: {fileID: 2836529994524074329}
   - component: {fileID: 2836529994524074330}
   - component: {fileID: 2836529994524074327}
+  - component: {fileID: 3208207532744238876}
   m_Layer: 5
   m_Name: CreatedStarList
   m_TagString: Untagged
@@ -12211,6 +12212,28 @@ MonoBehaviour:
   Player: {fileID: 2836529994268691361}
   CreatedStarListUI: {fileID: 6655743558778287354}
   createdConstellationList: {fileID: 6445736697378757930}
+--- !u!114 &3208207532744238876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2836529994524074332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &2836529994525413128
 GameObject:
   m_ObjectHideFlags: 0
@@ -15353,6 +15376,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2836529995028217878}
   - component: {fileID: 2836529995028217877}
+  - component: {fileID: 8793437523949558724}
   m_Layer: 0
   m_Name: StarPainter
   m_TagString: Untagged
@@ -15389,6 +15413,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lineFactory: {fileID: 1165502114755997006, guid: f148066725fc8b34ea64bc8e79a9ac1d, type: 3}
+  temporaryStarFactory: {fileID: 2206519989413121883, guid: 73d47aab48873434884b87994f3bfede, type: 3}
   ConstellationFactory: {fileID: 2910400192313477546, guid: 293d590ff690e2841870c84a6c6d4bfd, type: 3}
   ConstellationNameInput: {fileID: 2836529993922686909}
   StarDrawStartBtn: {fileID: 2836529994254188586}
@@ -15399,7 +15424,28 @@ MonoBehaviour:
   starLine: {fileID: 0}
   player: {fileID: 2836529994268691361}
   constellationName: 
-  starName: []
+--- !u!114 &8793437523949558724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2836529995028217879}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &2836529995034815097
 GameObject:
   m_ObjectHideFlags: 0
@@ -18467,7 +18513,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6579060262499664316}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
   m_Name: 
@@ -19061,6 +19107,7 @@ GameObject:
   - component: {fileID: 8088902310080487734}
   - component: {fileID: 5537425052223885026}
   - component: {fileID: 7732360376151840648}
+  - component: {fileID: 5692673493091175651}
   m_Layer: 5
   m_Name: CreatedConstellationList
   m_TagString: Untagged
@@ -19179,6 +19226,28 @@ MonoBehaviour:
   Player: {fileID: 2836529994268691361}
   CreatedConstellationListUI: {fileID: 3480175199253437390}
   CreatedStarList: {fileID: 2836529994806683588}
+--- !u!114 &5692673493091175651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7301561596998372735}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &7879319436378364551
 GameObject:
   m_ObjectHideFlags: 0
