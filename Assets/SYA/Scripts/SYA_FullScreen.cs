@@ -2,16 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using System;
 
 public class SYA_FullScreen : MonoBehaviour
 {
-    public Camera camera;
+    public static SYA_FullScreen instance;
+
+    public Action<bool> FullScreen;
+
+    public Camera camera_;
     private void Awake()
     {
-        SYA_SymposiumManager.Instance.playerObj[PhotonNetwork.NickName].GetComponent<PlayerMove>().FullScreen += FullScreen;
+        instance = this;
+        FullScreen += FullScreenCam;
     }
-    void FullScreen(bool fullMode)
+    void FullScreenCam(bool fullMode)
     {
-        camera.enabled=fullMode;
+        camera_.enabled=fullMode;
     }
 }

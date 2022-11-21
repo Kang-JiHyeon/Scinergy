@@ -1,4 +1,4 @@
-using Photon.Pun;
+/*using Photon.Pun;
 using Photon.Voice.PUN;
 using System.Collections;
 using System.Collections.Generic;
@@ -23,10 +23,23 @@ public class SYA_PlayerMove : MonoBehaviourPun
     private void Awake()
     {
         SYA_SymposiumManager.Instance.PlayerNameAuthority(
-    photonView.Owner.NickName,
-    photonView,
-    GetComponentInChildren<AudioSource>(),
-    gameObject);
+            PhotonNetwork.NickName,
+        photonView,
+        GetComponentInChildren<AudioSource>());
+
+        photonView.RPC("RPCPlayerNameAuthority", RpcTarget.All, PhotonNetwork.NickName);
+
+        bool master;
+        if (!SYA_SymposiumManager.Instance.playerAuthority.ContainsKey(PhotonNetwork.NickName))
+        {
+            master = PhotonNetwork.MasterClient.UserId == SYA_SymposiumManager.Instance.player[PhotonNetwork.NickName].Owner.UserId;
+        }
+        else
+        {
+            master = SYA_SymposiumManager.Instance.playerAuthority[PhotonNetwork.NickName] == "Owner";
+        }
+        SYA_SymposiumManager.Instance.PlayerAuthority(PhotonNetwork.NickName, master);
+        //anim = GetComponentInChildren<Animator>();
         GetComponentInChildren<AudioSource>().enabled = false;
     }
 
@@ -76,3 +89,4 @@ public class SYA_PlayerMove : MonoBehaviourPun
     }
 }
 
+*/
