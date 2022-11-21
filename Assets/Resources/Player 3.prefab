@@ -10412,6 +10412,7 @@ MonoBehaviour:
   updownText: {fileID: 5980233548391039761}
   downStr: "X\uB97C \uB20C\uB7EC \uC549\uAE30"
   upStr: "X\uB97C \uB20C\uB7EC \uC77C\uC5B4\uB098\uAE30"
+  isSit: 0
   targetGameobject: {fileID: 0}
   ontriger: 0
 --- !u!1 &2836529994272077557

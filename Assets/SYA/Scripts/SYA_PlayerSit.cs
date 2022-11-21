@@ -22,6 +22,9 @@ public class SYA_PlayerSit : MonoBehaviourPun
     public string downStr = "X를 눌러 앉기";
     public string upStr = "X를 눌러 일어나기";
 
+    //앉기를 시작할 때
+    public bool isSit = false;
+
     private void Update()
     {
         if (!photonView.IsMine) return;
@@ -38,13 +41,15 @@ public class SYA_PlayerSit : MonoBehaviourPun
                     {
                         //플레이어의 캐릭터 컨트롤이 꺼진다
                         GetComponent<CharacterController>().enabled = false;
+                        isSit = true;
                         //앉는 애니메이션이 재생된다
+                        //GetComponent<PlayerMove>().Sit(true);
                         photonView.RPC("RPCSit", RpcTarget.All, true);
                         //위치를 조정해준다
                         transform.position = targetGameobject.transform.position;
                         SitUpDown(targetGameobject, 0, true, 0);
-                        print(transform.position.ToString());
-                        //targetGameobject.GetComponent<PlayerMove>().Sit(true);
+                        print("Player Position : " + transform.position.ToString());
+                        print("Sit Position : " + targetGameobject.transform.position.ToString());
                     }
                     break;
                 case State.up:
@@ -53,7 +58,8 @@ public class SYA_PlayerSit : MonoBehaviourPun
                     if (Input.GetKeyDown(KeyCode.X))
                     {
                         print("out");
-                        //targetGameobject.GetComponent<PlayerMove>().Sit(false);
+                        //GetComponent<PlayerMove>().Sit(false);
+                        isSit = false;
                         photonView.RPC("RPCSit", RpcTarget.All, false);
                         //GetComponentInChildren<Animator>().
                         //Vector3 target = targetGameobject.transform.position;
@@ -96,7 +102,7 @@ public class SYA_PlayerSit : MonoBehaviourPun
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.transform.parent.name.Contains("Sit"))
+        if (other.transform.parent.name.Contains("Sit"))
         {
             if (!photonView.IsMine) return;
             updownText.enabled = true;
@@ -106,7 +112,7 @@ public class SYA_PlayerSit : MonoBehaviourPun
     }
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.transform.parent.name.Contains("Sit"))
+        if (other.transform.parent.name.Contains("Sit"))
         {
             if (!photonView.IsMine) return;
             updownText.enabled = false;

@@ -115,13 +115,24 @@ public class SYA_AvartaSceneManager : MonoBehaviourPun
     }
     public GameObject[] head = new GameObject[5];
     int exnum = 3;
-    public void CreatAvatar(int name)
+    public void CreatAvatar(int name, bool reft)
     {
-        exnum = (name - 1) <= 0 ? 4 : (name - 1);
+        if (reft)
+        {
+            exnum = (name+1) > 4 ? 0 : (name+1);
+
+        }
+        else
+        {
+            
+            exnum = (name - 1) < 0 ? 4 : (name - 1);
+
+        }
+        print(exnum);
         head[exnum].SetActive(false);
         exnum = name;
         head[name].SetActive(true);
-        avatarP = (name + 1) >= 5 ? 1 : (name + 1);
+            avatarP = int.Parse(head[name].gameObject.name);
     }
 
     //�ƹ�Ÿ ���� ����
@@ -161,7 +172,7 @@ public class SYA_AvartaSceneManager : MonoBehaviourPun
         rotateIng = true;
     }
 
-    public void zeroOff()
+    public void zeroOff(bool left)
     {
         for (int i = 0; i < avatarGo.Length; ++i)
         {
@@ -179,7 +190,8 @@ public class SYA_AvartaSceneManager : MonoBehaviourPun
                 {
                     avatarGo[i].gameObject.GetComponentInChildren<SYA_ChilImage>().fade.enabled = false;
                     WhiteClircle(int.Parse(avatarGo[2].gameObject.name));
-                    CreatAvatar(int.Parse(avatarGo[2].gameObject.name) - 1);
+                    CreatAvatar(int.Parse(avatarGo[2].gameObject.name)-1, left);
+                    print(int.Parse(avatarGo[2].gameObject.name)-1);
                 }
                 else
                 {
@@ -222,18 +234,24 @@ public class SYA_AvartaSceneManager : MonoBehaviourPun
             avatarGo[4] = av;
         }
         AvatarSet();
-        zeroOff();
+        zeroOff(left);
     }
 
     public InputField nameField;
 
     //�ƹ�Ÿ ���� ��ư�� ������ ��
     //���ʿ� ����� �ƹ�Ÿ ������ ������ ����
+
+    //로딩을 준비하기 위해 동작할 수 있는 오브젝트 다 끄기
+    public GameObject avatarBg;
+    public GameObject Go;
     public void AvatarSellect()
     {
         if (nameField.text == "") return;
         SYA_UserInfoSave.Instance.AvatarSave($"Player {avatarP}");
         SYA_UserInfoSave.Instance.NicNameSave(nameField.text);
+        avatarBg.SetActive(false);
+        Go.SetActive(false);
         //SYA_SceneChange.Instance.SymposiumRoomList();
     }
 
