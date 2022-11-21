@@ -39,7 +39,6 @@ public class KJH_Revolution : MonoBehaviour
         //transform.RotateAround(orbitAxis.position, -planet.up, period * rotSpeed);
     }
 
-
     void DrawOrbit()
     {
         Vector3[] points = new Vector3[segment+1];

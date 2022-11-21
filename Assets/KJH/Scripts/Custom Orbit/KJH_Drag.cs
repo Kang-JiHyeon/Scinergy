@@ -8,6 +8,7 @@ public class KJH_Drag : MonoBehaviour
 
     private void Start()
     {
+
         custom = GameObject.Find("OrbitManager").GetComponent<KJH_CustomOption>();
     }
 

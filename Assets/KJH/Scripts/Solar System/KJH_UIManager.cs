@@ -133,7 +133,6 @@ public class KJH_UIManager : MonoBehaviour
             {
                 SetObsDate();
             }
-
         }
     }
 
@@ -434,6 +433,21 @@ public class KJH_UIManager : MonoBehaviour
     public void OnClick_SolarSystem()
     {
         SS_UI.SetActive(!SS_UI.activeSelf);
+
+        SpriteState spriteState = new SpriteState();
+        spriteState = button_defaluts[0].spriteState;
+
+        if (SS_UI.activeSelf)
+        {
+            spriteState.selectedSprite = buttonSprite_clicks[0];
+        }
+        else
+        {
+            spriteState.selectedSprite = null;
+        }
+        button_defaluts[0].spriteState = spriteState;
+
+
         ChangeSprite(SS_UI, 0);
 
         GameObject go_list = dict_UI["UI_CelestialList"];
@@ -451,17 +465,18 @@ public class KJH_UIManager : MonoBehaviour
             if (go_list.activeSelf)
             {
                 go_list.SetActive(false);
-                ChangeSprite(go_list, 3);
+                //ChangeSprite(go_list, 3);
             }
 
             go_time.SetActive(false);
-            ChangeSprite(go_time, 4);
+            //ChangeSprite(go_time, 4);
 
             SetActiveModel(true);
         }
     }
     void ChangeSprite(GameObject go, int index)
     {
+        //return;
         if (go.activeSelf)
         {
             // ÁÖÈ²»ö
@@ -472,4 +487,5 @@ public class KJH_UIManager : MonoBehaviour
             button_defaluts[index].image.sprite = buttonSprite_defaluts[index];
         }
     }
+
 }
