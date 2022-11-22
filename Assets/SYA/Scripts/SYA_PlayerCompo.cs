@@ -37,11 +37,18 @@ public class SYA_PlayerCompo : MonoBehaviourPun
     }
     private void Update()
     {
-        bool kjh = SceneManager.GetActiveScene().name.Contains("KJH");
-        transform.GetChild(0).gameObject.SetActive(!kjh);
-        transform.GetChild(1).gameObject.SetActive(!kjh);
-        PlayerMove.enabled = !(kjh|| (SYA_ChatManager.Instance.gameObject!=null ? SYA_ChatManager.Instance.inputFocused : false));
-        CharacterController.enabled= !kjh;
-        PlayerRot.enabled= !(kjh|| PlayerMove.fullScreenMode);
+        if (!SceneManager.GetActiveScene().name.Contains("Sympo"))
+        {
+            bool kjh = SceneManager.GetActiveScene().name.Contains("KJH");
+            transform.GetChild(0).gameObject.SetActive(!kjh);
+            transform.GetChild(1).gameObject.SetActive(!kjh);
+            PlayerMove.enabled = !kjh;
+            CharacterController.enabled = !kjh;
+            PlayerRot.enabled = !(kjh || PlayerMove.fullScreenMode);
+        }
+        else
+        {
+            PlayerMove.enabled = !(SYA_ChatManager.Instance.gameObject != null ? SYA_ChatManager.Instance.inputFocused : false);
+        }
     }
 }

@@ -1665,6 +1665,7 @@ MonoBehaviour:
   ownerName: {fileID: 8284508872006178257}
   playerCount: {fileID: 8284508872184159607}
   unpubl: {fileID: 8284508872513427505}
+  thumbnail: {fileID: 6709238808253094313}
   password: {fileID: 4864131022476677170}
   one: {fileID: 154224366725143459}
   roomPassword: 
