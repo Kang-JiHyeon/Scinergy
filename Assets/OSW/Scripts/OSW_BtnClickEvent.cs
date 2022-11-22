@@ -42,15 +42,6 @@ public class OSW_BtnClickEvent : MonoBehaviour//, IPointerClickHandler
                 List<RaycastResult> results = new List<RaycastResult>();
                 m_gr.Raycast(m_ped, results);
 
-                //foreach (RaycastResult res in results)
-                //{
-                //    print(res.gameObject.name);
-                //}
-                //print("res Count: " + results.Count);
-                //print("canvas: " + m_canvas.name);
-                //print("gr: " + m_gr != null);
-                //print("ped: " + m_ped != null);
-
                 // 전환 버튼이 같이 생김
                 if (results[0].gameObject.transform.parent.parent.parent.parent.name == " PresenterBG")
                 {
@@ -85,18 +76,4 @@ public class OSW_BtnClickEvent : MonoBehaviour//, IPointerClickHandler
         sYA_SympoPresentstion.pre.SetActive(false);
     }
 
-    //public void OnPointerClick(PointerEventData eventData)
-    //{
-    //    Debug.Log($"Clicked {eventData}");
-
-    //    // get the click button from eventData
-    //    var button = eventData.button;
-
-
-    //}
-
-    public void TestFunc(bool isRight)
-    {
-        print($"클릭 결과: {isRight}");
-    }
 }

@@ -11875,6 +11875,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b9a305e18de0c04dbd257a21cd47087, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sharedProfile: {fileID: 0}
+  isGlobal: 0
+  blendDistance: 0
+  weight: 1
+  priority: 0
 --- !u!4 &862943086
 Transform:
   m_ObjectHideFlags: 0
@@ -12489,7 +12494,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1921615720}
         m_TargetAssemblyTypeName: SYA_UI.SYA_UIManager, Assembly-CSharp
-        m_MethodName: lobbyOn
+        m_MethodName: QuitOnOff
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -17091,6 +17096,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1921615720}
         m_TargetAssemblyTypeName: SYA_UI.SYA_UIManager, Assembly-CSharp
         m_MethodName: lobbyBackScene
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1921615720}
+        m_TargetAssemblyTypeName: SYA_UI.SYA_UIManager, Assembly-CSharp
+        m_MethodName: QuitOnOff
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -21829,7 +21846,7 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
---- !u!114 &1941342683
+--- !u!114 &1941342676
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -21838,10 +21855,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1620322835}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35fa938aab1fd474e9839b92bdbf47c8, type: 3}
+  m_Script: {fileID: 11500000, guid: 31ed0fe3691f2004896859ffa89bba1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  setActive: 1
 --- !u!1 &1942664102
 GameObject:
   m_ObjectHideFlags: 0
