@@ -39,6 +39,7 @@ public class SYA_PlayerCompo : MonoBehaviourPun
     {
         if (SceneManager.GetActiveScene().name.Contains("KJH"))
         {
+            PlayerRot.camPos.gameObject.SetActive(false);
             transform.GetChild(0).gameObject.SetActive(false);
             transform.GetChild(1).gameObject.SetActive(false);
             PlayerMove.enabled = false;
@@ -47,14 +48,15 @@ public class SYA_PlayerCompo : MonoBehaviourPun
         }
         else
         {
+            PlayerRot.camPos.gameObject.SetActive(true);
             transform.GetChild(0).gameObject.SetActive(true);
             transform.GetChild(1).gameObject.SetActive(true);
             CharacterController.enabled = true;
             //채팅을 치는 중이거나 전체화면일 때는 이동 및 카메라 회전이 불가능하다
             PlayerMove.enabled = !(PlayerMove.fullScreenMode ||
-                (SYA_ChatManager.Instance.gameObject != null ? SYA_ChatManager.Instance.inputFocused : false));
+                SYA_ChatManager.Instance.inputFocused);
             PlayerRot.enabled = !(PlayerMove.fullScreenMode ||
-                (SYA_ChatManager.Instance.gameObject != null ? SYA_ChatManager.Instance.inputFocused : false));
+                SYA_ChatManager.Instance.inputFocused);
         }
     }
 }
