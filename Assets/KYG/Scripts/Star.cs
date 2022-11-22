@@ -38,7 +38,7 @@ public class Star : MonoBehaviourPun
     // Start is called before the first frame update
     void Start()
     {
-        
+        InfoSet(starName, ra, dec, starType, brightness, 1);
     }
 
     // Update is called once per frame
@@ -77,7 +77,7 @@ public class Star : MonoBehaviourPun
             fallDir.y = randY;
             transform.position += fallDir.normalized * fallSpeed * Time.deltaTime;
     }
-    int starNumber = 1;
+    //int starNumber = 1;
     internal void InfoSet(string starNameInfo, float raInfo, float decInfo, GameObject starTypeInfo, GameObject brightnessInfo, int generateTypeNumber)
     {
         name = starNameInfo;

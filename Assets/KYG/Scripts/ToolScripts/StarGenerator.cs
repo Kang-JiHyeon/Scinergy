@@ -66,7 +66,7 @@ public class StarGenerator : MonoBehaviourPun
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha2))
+        if (Input.GetKeyDown(KeyCode.G))
         {
             starNameInput.text = "TestStar";
             generateTypeDropdown.value = 2;
