@@ -10,23 +10,23 @@ using UnityEngine;
 // 카메라 위치 표시
 public class KJH_EclipseState : MonoBehaviour
 {
+    public List<Material> skyBoxs = new List<Material>();
     public Light eclipseLight; 
     public Transform insideCamera;
     public float earthScale = 3f;
-    public bool isChangeEarthScale = false; 
+    //public float skyboxStartAngle = 30f;
+    public bool isChangeEarthScale = false;
 
     float camRotY = 270f;
     float targetY = 270f;
     bool isRot = false;
 
-    public List<Material> skyBoxs = new List<Material>();
     public enum EclipseState
     {
         Solar,
         Lunar
     }
     public static KJH_EclipseState instance; 
-
     public EclipseState state = EclipseState.Solar;
 
     private void Awake()
@@ -45,6 +45,7 @@ public class KJH_EclipseState : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //RenderSettings.skybox.SetFloat("_Rotation", skyboxStartAngle);
         if (isRot)
         {
             CameraRotate();

@@ -6,8 +6,10 @@ using UnityEngine.UI;
 public class KJH_MoonColor : MonoBehaviour
 {
     public KJH_ShadowLine shadowLine;
+    public GameObject particle_sun;
     public Transform sun;
     public Transform earth;
+    public Material mat_sun;
     public Material mat_moon;
     public Material mat_shadow;
     public Image image_solarLight;
@@ -15,6 +17,7 @@ public class KJH_MoonColor : MonoBehaviour
     Color color_targetMoon;
     Color color_targetShadow;
     Color color_solarLight;
+    Color color_sun;
 
     float changeSpeed = 1.5f;
 
@@ -26,6 +29,12 @@ public class KJH_MoonColor : MonoBehaviour
         color_targetShadow = Color.white;
         color_solarLight = new Color(1, 1, 1, 0f);
         image_solarLight.color = color_solarLight;
+        particle_sun.SetActive(false);
+        mat_sun = sun.GetComponent<SpriteRenderer>().material;
+
+        //color_sun = mat_sun.color;
+
+        mat_sun.SetColor("_EmissionColor", mat_sun.color * 10f);
     }
 
     // Update is called once per frame
@@ -71,16 +80,36 @@ public class KJH_MoonColor : MonoBehaviour
             color_targetShadow.a = 0f;
 
             float z = Mathf.Abs(transform.position.z);
-            if (z < 3f && transform.position.x < earth.position.x)
+
+            // 태양-지구 사이에 있을 때
+            if(transform.position.x < earth.position.x)
             {
-                color_solarLight.a = (1 - z / 3) * 0.8f;
-            }
-            else
-            {
-                color_solarLight.a = 0f;
+                // 개기일식일 때 sun 크기증가, 파티클 오브젝트 활성화
+                if(z < 0.2f)
+                {
+                    sun.localScale = Vector3.one * 0.13f;
+                    particle_sun.SetActive(true);
+                }
+                else
+                {
+                    sun.localScale = Vector3.one * 0.1f;
+                    particle_sun.SetActive(false);
+                }
+            
+
+                // 일식이 진행될수록 텍스쳐의 alpha값을 증가시켜서 어두워보이게 함
+                if (z < 3f)
+                {
+                    color_solarLight.a = (1 - z / 3) * 0.8f;
+                }
+                else
+                {
+                    color_solarLight.a = 0f;
+                }
+
+                image_solarLight.color = color_solarLight;
             }
 
-            image_solarLight.color = color_solarLight;
         }
 
         mat_moon.color = Color.Lerp(mat_moon.color, color_targetMoon, Time.deltaTime * changeSpeed);
