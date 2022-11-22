@@ -38,7 +38,10 @@ public class Star : MonoBehaviourPun
     // Start is called before the first frame update
     void Start()
     {
-        InfoSet(starName, ra, dec, starType, brightness, 1);
+        if (generatedType == 0) 
+        { 
+            InfoSet(starName, ra, dec, starType, brightness, 1);
+        }
     }
 
     // Update is called once per frame
