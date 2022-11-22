@@ -70,7 +70,7 @@ public class Telescope : MonoBehaviour
             foreach(KeyValuePair<string,GameObject> star in GameManager.instance.createdStarList)
             {
                 Vector3 screenPos = Camera.main.WorldToScreenPoint(star.Value.transform.position);
-                if(Vector2.Distance(screenPos, new Vector2(Camera.main.pixelWidth / 2, Camera.main.pixelHeight / 2))<500)
+                if(Vector2.Distance(screenPos, new Vector2(Camera.main.pixelWidth / 2, Camera.main.pixelHeight / 2))<50)
                 {
                     star.Value.GetComponent<Star>().starInfo.SetActive(true);
                 }

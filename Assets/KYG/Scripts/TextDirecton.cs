@@ -24,8 +24,8 @@ public class TextDirecton : MonoBehaviour
         //float ras = float.Parse(star.ra.ToString().Split(".")[1].Substring(2,2));
         //float rap = float.Parse(star.ra.ToString().Split(".")[1].Substring(4));
 
-        ra.text = "利版 : " + star.ra.ToString() + "h";
-        dec.text = "利困 : "+ star.dec.ToString() + "∑";
+        //ra.text = "利版 : " + star.ra.ToString() + "h";
+        //dec.text = "利困 : "+ star.dec.ToString() + "∑";
     }
 
     // Update is called once per frame

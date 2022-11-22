@@ -393,6 +393,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   zodiacInfo: []
+  starInfo: []
+  ConstellationFactory: {fileID: 2910400192313477546, guid: 293d590ff690e2841870c84a6c6d4bfd, type: 3}
+  starFactory: {fileID: 7177477379725082803, guid: 7d58099d2227d914796728ed385405d6, type: 3}
+  brightness: {fileID: 1607489160101874, guid: 75065dff70603024bbf2f4a71c8819cd, type: 3}
 --- !u!4 &480496732
 Transform:
   m_ObjectHideFlags: 0
