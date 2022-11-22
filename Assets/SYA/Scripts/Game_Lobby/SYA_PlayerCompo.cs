@@ -48,7 +48,7 @@ public class SYA_PlayerCompo : MonoBehaviourPun
         }
         else
         {
-            PlayerRot.camPos.gameObject.SetActive(true);
+            //PlayerRot.camPos.gameObject.SetActive(true);
             transform.GetChild(0).gameObject.SetActive(true);
             transform.GetChild(1).gameObject.SetActive(true);
             CharacterController.enabled = true;

@@ -5,6 +5,7 @@ using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.IO;
 
 public class SYA_SympoLobby : MonoBehaviourPunCallbacks
 {
@@ -33,8 +34,8 @@ public class SYA_SympoLobby : MonoBehaviourPunCallbacks
     //Thumbnail
     public Image Thumbnails;
     //썸네일 소스 정보
-    public Image Thumbnails_;
-    public Sprite Thumbnails_sp;
+    public RawImage Thumbnails_;
+    public Texture2D Thumbnails_sp;
 
     //방 만들기 전 정보 확인
     public Text title;
@@ -82,12 +83,23 @@ public class SYA_SympoLobby : MonoBehaviourPunCallbacks
 
     }
 
+    public bool custom;
+    public string path;
+    byte[] byteTexture;
 
     //생성을 누를 경우
     public void OnClickCreate()
     {
         if (inputRoomName.text == "") return;
-        Thumbnails_sp = Thumbnails_.sprite;
+        //Thumbnails_sp = Thumbnails_.sprite;
+        if (!custom)
+        {
+            byteTexture = File.ReadAllBytes($"Assets\\Resources\\Thumbnails\\{Thumbnails_.texture.name}.jpg");
+        }
+        else
+        {
+            byteTexture = File.ReadAllBytes(path);
+        }
         //→넘을 경우 안내 문구 등장
         characterlimit.SetActive(inputRoomName.text.Length > 20);
         //→안 념을 경우 확인 창On
@@ -157,6 +169,7 @@ public class SYA_SympoLobby : MonoBehaviourPunCallbacks
     //방 생성
     public void CreateRoom()
     {
+        custom = false;
         // 최대 인원 (0이면 최대인원)
         roomOptions.MaxPlayers = 20;
         // 룸 리스트에 보이지 않게? 보이게?
@@ -170,7 +183,7 @@ public class SYA_SympoLobby : MonoBehaviourPunCallbacks
         //유저목록
         hash["UserList"] = UserList;
         //썸네일 파일 위치와 이름 
-        hash["Thumbnail"] = $"Thumbnails/{Thumbnails_sp.name}";
+        hash["Thumbnail"] = byteTexture;
         roomOptions.CustomRoomProperties = hash;
         //커스텀 정보 공개 설정
         roomOptions.CustomRoomPropertiesForLobby = new string[] { "room_name", "owner", "public", "password", "UserList", "Thumbnail" };
@@ -187,7 +200,12 @@ public class SYA_SympoLobby : MonoBehaviourPunCallbacks
         title.text = roomOptions.CustomRoomProperties["room_name"].ToString();
         owner.text= roomOptions.CustomRoomProperties["owner"].ToString();
         password.text= roomOptions.CustomRoomProperties["password"].ToString();
-        Thumbnails.sprite = Thumbnails_sp;
+        Texture2D texture2D = new Texture2D(0, 0);
+        if (((byte[])roomOptions.CustomRoomProperties["Thumbnail"]).Length > 0)//정보가 있으면->받아온 값이 있으면
+        {
+            texture2D.LoadImage((byte[])roomOptions.CustomRoomProperties["Thumbnail"]);
+        }
+        Thumbnails.sprite = Sprite.Create(texture2D, new Rect(0, 0, texture2D.width, texture2D.height), new Vector2(0, 0));
     }
 
     public void OnJoint()
