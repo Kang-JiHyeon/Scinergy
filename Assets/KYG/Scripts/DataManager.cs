@@ -15,6 +15,7 @@ public class StarInfo
     public string starName;
     public float ra;
     public float dec;
+    public string brightness;
 }
 
 
@@ -30,7 +31,7 @@ public class DataManager : MonoBehaviour
 
     public GameObject starFactory;
 
-    public GameObject brightness;
+    public List<GameObject> brightnessList = new();
     private void Awake()
     {
         if(instance == null)
@@ -48,23 +49,30 @@ public class DataManager : MonoBehaviour
     {
         zodiacInfo = CSV.instance.Parsing<ZodiacInfo>("Zodiac");
         starInfo = CSV.instance.Parsing<StarInfo>("starInfo");
-        for(int i = 0; i<starInfo.Count; i++)
-        {
-            GameObject star = Instantiate(starFactory);
-            GameManager.instance.createdStarList[starInfo[i].starName] = star;
-            star.GetComponent<Star>().InfoSet(starInfo[i].starName, starInfo[i].ra, starInfo[i].dec,starFactory, brightness, 1);
-        }
+        int starIndex = 0;
         for(int i = 0; i<zodiacInfo.Count; i++)
         {
             GameObject constellation = Instantiate(ConstellationFactory);
             constellation.transform.parent = GameManager.instance.CelestialSphere.transform;
             constellation.name = zodiacInfo[i].name;
             GameManager.instance.createdConstellationList[name] = constellation;
-            //for(int j=0; j<zodiacInfo[i].starCount; j++)
-            //{
-
-            //}
+            for (int j = starIndex; j < zodiacInfo[i].starCount + starIndex; j++)
+            {
+                GameObject star = Instantiate(starFactory);
+                GameManager.instance.createdStarList[starInfo[j].starName] = star;
+                GameObject brightness = brightnessList.Find(x => x.name == starInfo[j].brightness);
+                star.GetComponent<Star>().InfoSet(starInfo[j].starName, starInfo[j].ra, starInfo[j].dec, starFactory, brightness,3, 1);
+                star.transform.parent = constellation.transform;
+            }
+            starIndex+= zodiacInfo[i].starCount;
+            
         }
+        //for(int i = 0; i<starInfo.Count; i++)
+        //{
+        //    GameObject star = Instantiate(starFactory);
+        //    GameManager.instance.createdStarList[starInfo[i].starName] = star;
+        //    star.GetComponent<Star>().InfoSet(starInfo[i].starName, starInfo[i].ra, starInfo[i].dec,starFactory, brightness, 1);
+        //}
     }
 
     // Update is called once per frame
