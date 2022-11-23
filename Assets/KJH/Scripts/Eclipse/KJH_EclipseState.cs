@@ -13,13 +13,18 @@ public class KJH_EclipseState : MonoBehaviour
     public List<Material> skyBoxs = new List<Material>();
     public Light eclipseLight; 
     public Transform insideCamera;
+    public KJH_MoonColor moonColor;
     public float earthScale = 3f;
-    //public float skyboxStartAngle = 30f;
     public bool isChangeEarthScale = false;
+
 
     float camRotY = 270f;
     float targetY = 270f;
     bool isRot = false;
+
+    [Header("Button")]
+    public List<Sprite> sprite_nomals;
+    public List<Sprite> sprite_clicks;
 
     public enum EclipseState
     {
@@ -45,7 +50,6 @@ public class KJH_EclipseState : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //RenderSettings.skybox.SetFloat("_Rotation", skyboxStartAngle);
         if (isRot)
         {
             CameraRotate();
@@ -56,7 +60,6 @@ public class KJH_EclipseState : MonoBehaviour
     {
         state = EclipseState.Solar;
         RenderSettings.skybox = skyBoxs[0];
-        //eclipseLight.intensity = 1f;
 
         if (!targetY.Equals(270))
             isRot = true;
@@ -65,6 +68,8 @@ public class KJH_EclipseState : MonoBehaviour
 
         earthScale = 5f;
         isChangeEarthScale = true;
+        moonColor.earthShadow.SetActive(false);
+        moonColor.colorChangeSpeed = 0.3f;
     }
 
     // 월식 버튼
@@ -82,6 +87,8 @@ public class KJH_EclipseState : MonoBehaviour
 
         earthScale = 3f;
         isChangeEarthScale = true;
+        moonColor.earthShadow.SetActive(true);
+        moonColor.colorChangeSpeed = 1f;
     }
 
     void CameraRotate()

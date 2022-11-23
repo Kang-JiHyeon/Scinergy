@@ -9,6 +9,8 @@ public class KJH_SpaceSceneManager : MonoBehaviour
     public bool isSolar = false;
     public bool isTime = false;
 
+    public Dictionary<int, string> dic_SceneNames = new Dictionary<int, string>();
+
     private void Awake()
     {
         if(instance == null)
@@ -20,7 +22,10 @@ public class KJH_SpaceSceneManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        dic_SceneNames.Add(0, "KJH_SolarSystemScene");
+        dic_SceneNames.Add(1, "KJH_OrbitScene");
+        dic_SceneNames.Add(2, "KJH_EclipseScene");
+
     }
 
     // Update is called once per frame
@@ -44,6 +49,22 @@ public class KJH_SpaceSceneManager : MonoBehaviour
         if (SceneManager.GetActiveScene().name != "KJH_OrbitScene")
         {
             SceneManager.LoadScene("KJH_OrbitScene");
+        }
+    }
+
+    public void Load_EclipseScene()
+    {
+        if (SceneManager.GetActiveScene().name != "KJH_EclipseScene")
+        {
+            SceneManager.LoadScene("KJH_EclipseScene");
+        }
+    }
+
+    public void LoadScene(string )
+    {
+        if (SceneManager.GetActiveScene().name != "KJH_EclipseScene")
+        {
+            SceneManager.LoadScene("KJH_EclipseScene");
         }
     }
 }
