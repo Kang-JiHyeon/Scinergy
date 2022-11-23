@@ -35,6 +35,11 @@ namespace SYA_UI
         public Text roomOwner;
         public Text roomPassward;
 
+        // [승원] 11.23 버튼 pressed 상태 표현을 위한 코드
+        public Image btn;
+        public Sprite ChangeImg; // 바꿀 이미지
+        public Sprite OriginImg; // 원래 이미지
+
         // [지현]
         // 현재인원/최대인원
         public Text text_user;
@@ -55,11 +60,26 @@ namespace SYA_UI
 
         }
 
+        // [승원] 11.23 버튼 클릭 시 버튼 preesed 상태 유지하기 위한 변수 선언
+        bool isUwcOnOff = false;
         public void UwcOnOff()
         {
+            isUwcOnOff = !isUwcOnOff; // 추가
+
             window.SetActive(!window.activeSelf);
             windowList.SetActive(!windowList.activeSelf);
             //moveOnOff.SetActive(!moveOnOff.activeSelf);
+
+            // 추가
+            if (isUwcOnOff)
+            {
+                btn.sprite = ChangeImg;
+
+            }
+            else if (!isUwcOnOff)
+            {
+                btn.sprite = OriginImg;
+            }
         }
 
         public void UwcMoveOnOff()

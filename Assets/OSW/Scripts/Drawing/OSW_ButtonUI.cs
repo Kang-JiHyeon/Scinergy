@@ -8,10 +8,15 @@ public class OSW_ButtonUI : MonoBehaviourPun
 {
     public GameObject drawOnOff;
     public GameObject drawingTool;
-    public GameObject lineDrawer;
+    //public GameObject lineDrawer;
     public GameObject colorPicker;
     public Color selectedColor;
     public List<GameObject> colors;
+
+    // 11.23 버튼 pressed 상태 표현을 위한 코드
+    public List<Button> btn;
+    public List<Sprite> ChangeImg; // 바꿀 이미지
+    public List<Sprite> OriginImg; // 원래 이미지
 
     // 스크립트 동적
     public OSW_LineDrawer osw_lineDrawer;
@@ -31,7 +36,17 @@ public class OSW_ButtonUI : MonoBehaviourPun
 
     public void DrawOnOff()
     {
-        drawingTool.SetActive(!drawingTool.activeSelf);
+        //drawingTool.SetActive(!drawingTool.activeSelf);
+        if (!drawingTool.activeSelf)
+        {
+            drawingTool.SetActive(true);
+            drawOnOff.GetComponent<Image>().sprite = ChangeImg[1];
+        }
+        else
+        {
+            drawingTool.SetActive(false);
+            drawOnOff.GetComponent<Image>().sprite = OriginImg[1];
+        }
     }
 
     public void Drawing()
@@ -43,14 +58,18 @@ public class OSW_ButtonUI : MonoBehaviourPun
 
     public void ColorPicker(Button button)
     {
-        osw_lineDrawer.isDrawing = true;
-        osw_lineDrawer.isEraser = false;
+        osw_lineDrawer.isDrawing = !osw_lineDrawer.isDrawing;
 
         if (osw_lineDrawer.isDrawing)
         {
             osw_lineDrawer.color = button.colors.normalColor;
             colorPicker.SetActive(!colorPicker.activeSelf);
             osw_cursor.CursorChange();
+            btn[0].transform.GetChild(0).GetComponent<Image>().sprite = ChangeImg[0];
+        }
+        else if (!osw_lineDrawer.isDrawing)
+        {
+            btn[0].transform.GetChild(0).GetComponent<Image>().sprite = OriginImg[0];
         }
     }
     
