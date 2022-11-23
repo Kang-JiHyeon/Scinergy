@@ -34,11 +34,11 @@ public class SYA_PlayerCompo : MonoBehaviourPun
     private void Start()
     {
         PlayerMove = GetComponent<PlayerMove>();
-        PlayerMove.enabled = false;
+        //PlayerMove.enabled = false;
         CharacterController = GetComponent<CharacterController>();
-        CharacterController.enabled = false;
+        //CharacterController.enabled = false;
         PlayerRot = GetComponent<PlayerRot>();
-        PlayerRot.enabled=false;
+        //PlayerRot.enabled=false;
         //캐릭터 모델링
         playerBody = transform.GetChild(0).gameObject;
         //캐릭터 닉네임
