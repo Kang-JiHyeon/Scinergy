@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using UnityEngine.SceneManagement;
+using SYA_UI;
 
 public class SYA_SympoGoTo : MonoBehaviourPun
 {
@@ -28,6 +29,12 @@ public class SYA_SympoGoTo : MonoBehaviourPun
             //플레이어의 이동과 화면 움직임 막기
             playerMove = other.GetComponent<PlayerMove>();
             playerRot = other.GetComponent<PlayerRot>();
+            playerMove.cc.enabled = false;
+            if (gameObject.name.Contains("Sola"))
+                other.gameObject.transform.position += new Vector3(0.5f, 0, 0.5f);
+            else
+                other.gameObject.transform.position += new Vector3(-0.5f, 0, -0.5f);
+
 
             playerMove.enabled = false;
             playerRot.enabled = false;
@@ -64,7 +71,8 @@ public class SYA_SympoGoTo : MonoBehaviourPun
     public void OffGameObject()
     {
         space.SetActive(false);
-        playerMove.enabled = true;
+        playerMove.enabled = true;  
         playerRot.enabled = true;
+        playerMove.cc.enabled = true;
     }
 }

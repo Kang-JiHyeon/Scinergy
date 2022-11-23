@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,8 @@ using Photon.Pun;
 public class SYA_PlayerCompo : MonoBehaviourPun
 {
     public static SYA_PlayerCompo Instance;
+
+    public Action ChangeScene;
 
     PlayerMove PlayerMove;
     CharacterController CharacterController;
@@ -59,6 +62,7 @@ public class SYA_PlayerCompo : MonoBehaviourPun
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        if (!photonView.IsMine) return;
         ChangeComponent(scene.name);
     }
 

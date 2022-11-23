@@ -7,6 +7,8 @@ using UnityEngine.UI;
 
 public class SYA_AudioManager : MonoBehaviour
 {
+    public static SYA_AudioManager instance;
+
     public AudioSource bgSource;
     public AudioSource clickSource;
     public AudioSource nextSource;
@@ -16,6 +18,11 @@ public class SYA_AudioManager : MonoBehaviour
     PointerEventData m_ped;
 
     string sceneName;
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     private void Start()
     {
@@ -40,6 +47,7 @@ public class SYA_AudioManager : MonoBehaviour
 
             if (Input.GetMouseButtonDown(0))
             {
+                if (sceneName.Contains("Sympo")&&!sceneName.Contains("Room")) return;
                 m_ped.position = Input.mousePosition;
                 List<RaycastResult> results = new List<RaycastResult>();
                 m_gr.Raycast(m_ped, results);
