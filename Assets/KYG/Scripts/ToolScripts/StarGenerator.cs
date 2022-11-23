@@ -251,6 +251,7 @@ public class StarGenerator : MonoBehaviourPun
                 decInput.transform.gameObject.SetActive(false);
                 raInput.transform.gameObject.SetActive(false);
                 starAmount.transform.gameObject.SetActive(true);
+                apparentMagnitudeInput.transform.gameObject.SetActive(false);
                 starNameInput.interactable = false;
                 typeDropdown.interactable = false;
                 brightnessDropdown.interactable = false;
