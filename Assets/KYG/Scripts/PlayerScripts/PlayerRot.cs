@@ -33,6 +33,7 @@ public class PlayerRot : MonoBehaviourPun
     private void Start()
     {
         playerSit = GetComponent<SYA_PlayerSit>();
+            camPos.gameObject.SetActive(photonView.IsMine);
     }
 
     // Start is called before the first frame update
@@ -41,7 +42,6 @@ public class PlayerRot : MonoBehaviourPun
             //카메라에 켜주기 (컴포넌트로 관리자로 관리)
             //포톤이 이즈 마인일때
             //씬이 로비거나(심포지엄) 별자리일 떄
-            camPos.gameObject.SetActive(photonView.IsMine);
         }*/
 
     // Update is called once per frame

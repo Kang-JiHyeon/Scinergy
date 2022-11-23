@@ -5489,6 +5489,7 @@ MonoBehaviour:
   generateTypeDropdown: {fileID: 2836529994615880713}
   decInput: {fileID: 2836529993989516354}
   raInput: {fileID: 2836529993423350619}
+  apparentMagnitudeInput: {fileID: 0}
   starAmount: {fileID: 2836529994775521840}
   typeDropdown: {fileID: 2836529994451314579}
   brightnessDropdown: {fileID: 2836529993250006443}
@@ -5508,6 +5509,7 @@ MonoBehaviour:
   dec: 0
   starType: {fileID: 0}
   brightness: {fileID: 0}
+  apparentMagnitude: 0
   player: {fileID: 2836529994268691361}
   starList: {fileID: 2836529994524074332}
   createdStarListUI: {fileID: 6655743558778287354}
@@ -10432,7 +10434,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2836529994268691361}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8a1895635dcba36448a30a5d9b6fa155, type: 3}
   m_Name: 
@@ -10470,7 +10472,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2836529994268691361}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2962a134fb95e4340b2f3252949ff5f6, type: 3}
   m_Name: 
@@ -16513,7 +16515,7 @@ SpriteRenderer:
   m_Size: {x: 2.4, y: 0.43}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &3679914724652394234

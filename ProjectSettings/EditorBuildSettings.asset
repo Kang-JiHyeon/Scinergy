@@ -29,4 +29,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/KYG/Scenes/KYG_Scene.unity
     guid: c134351f9f0681b489029bacabb0b6dc
+  - enabled: 1
+    path: Assets/SYA/Scenes/TestScene.unity
+    guid: fb69d5fd5ec60404cb7bc01dab799494
   m_configObjects: {}

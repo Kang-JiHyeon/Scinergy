@@ -270,7 +270,7 @@ namespace SYA_UI
             base.OnJoinedRoom();
             print("OnJoinedRoom");
             if (goStar)
-                PhotonNetwork.LoadLevel("KYG_Scene");
+                PhotonNetwork.LoadLevel("TestScene");//윤구씬
             else if (goSympo)//영아
                 PhotonNetwork.LoadLevel("AvatarSympo");
         }
