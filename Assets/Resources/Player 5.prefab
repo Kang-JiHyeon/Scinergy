@@ -10238,13 +10238,15 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2836529994268691361}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8a1895635dcba36448a30a5d9b6fa155, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rotSpeed: 205
   camPos: {fileID: 2836529994667130487}
+  xRot: 1
+  yRot: 1
   state: 0
 --- !u!114 &2836529994268691360
 MonoBehaviour:
@@ -10266,6 +10268,7 @@ MonoBehaviour:
   cc: {fileID: 0}
   nickName: {fileID: 2660803169950827906}
   anim: {fileID: 2002196506709704328}
+  fullScreenMode: 0
 --- !u!114 &2836529994268691292
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10273,7 +10276,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2836529994268691361}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2962a134fb95e4340b2f3252949ff5f6, type: 3}
   m_Name: 
@@ -10404,13 +10407,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d514cb14b5cdfb44092455191045330e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TV: {fileID: 0}
-  sitState: 1
+  sitState: 0
   currentTime: 0
   anim_false: 0
   updownText: {fileID: 4395140003067015792}
   downStr: "X\uB97C \uB20C\uB7EC \uC549\uAE30"
   upStr: "X\uB97C \uB20C\uB7EC \uC77C\uC5B4\uB098\uAE30"
+  isSit: 0
   targetGameobject: {fileID: 0}
   ontriger: 0
 --- !u!1 &2836529994272077557
@@ -17470,7 +17473,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3156585552838915835
 RectTransform:
   m_ObjectHideFlags: 0
@@ -18439,7 +18442,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3530435727929195672
 RectTransform:
   m_ObjectHideFlags: 0
@@ -18475,7 +18478,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6520684374017245099}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
   m_Name: 
@@ -19971,6 +19974,10 @@ PrefabInstance:
     - target: {fileID: 1461259190424260, guid: 44182da469bf3fb409c70b81c1dae2b4, type: 3}
       propertyPath: m_Name
       value: TPFemale 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1461259190424260, guid: 44182da469bf3fb409c70b81c1dae2b4, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4071721433831704, guid: 44182da469bf3fb409c70b81c1dae2b4, type: 3}
       propertyPath: m_RootOrder

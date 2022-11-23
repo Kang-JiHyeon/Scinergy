@@ -53,7 +53,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 58694764735698831}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
   m_Name: 
@@ -1900,7 +1900,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7479068380528658448
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10432,13 +10432,15 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2836529994268691361}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8a1895635dcba36448a30a5d9b6fa155, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rotSpeed: 205
   camPos: {fileID: 2836529994667130487}
+  xRot: 1
+  yRot: 1
   state: 0
 --- !u!114 &2836529994268691360
 MonoBehaviour:
@@ -10460,6 +10462,7 @@ MonoBehaviour:
   cc: {fileID: 0}
   nickName: {fileID: 2660803169950827906}
   anim: {fileID: 4399010397631735824}
+  fullScreenMode: 0
 --- !u!114 &2836529994268691292
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10467,7 +10470,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2836529994268691361}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2962a134fb95e4340b2f3252949ff5f6, type: 3}
   m_Name: 
@@ -10598,13 +10601,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d514cb14b5cdfb44092455191045330e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TV: {fileID: 0}
-  sitState: 1
+  sitState: 0
   currentTime: 0
   anim_false: 0
   updownText: {fileID: 6430078800184048126}
   downStr: "X\uB97C \uB20C\uB7EC \uC549\uAE30"
   upStr: "X\uB97C \uB20C\uB7EC \uC77C\uC5B4\uB098\uAE30"
+  isSit: 0
   targetGameobject: {fileID: 0}
   ontriger: 0
 --- !u!1 &2836529994272077557
@@ -19971,6 +19974,10 @@ PrefabInstance:
     - target: {fileID: 1713657937925260, guid: a338315a79ee9d24a900916eceacccd2, type: 3}
       propertyPath: m_Name
       value: TPMale 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1713657937925260, guid: a338315a79ee9d24a900916eceacccd2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4674660881275732, guid: a338315a79ee9d24a900916eceacccd2, type: 3}
       propertyPath: m_RootOrder

@@ -92,20 +92,24 @@ public class SYA_SympoLobby : MonoBehaviourPunCallbacks
     {
         if (inputRoomName.text == "") return;
         //Thumbnails_sp = Thumbnails_.sprite;
-        if (!custom)
+        //만약 썸네일의 텍스쳐정보가 있다면
+        if (Thumbnails_.texture != null)
         {
-            byteTexture = File.ReadAllBytes($"Assets\\Resources\\Thumbnails\\{Thumbnails_.texture.name}.jpg");
-        }
-        else
-        {
-            byteTexture = File.ReadAllBytes(path);
+            if (!custom)
+            {
+                byteTexture = File.ReadAllBytes($"Assets\\Resources\\Thumbnails\\{Thumbnails_.texture.name}.jpg");
+            }
+            else
+            {
+                byteTexture = File.ReadAllBytes(path);
+            }
         }
         //→넘을 경우 안내 문구 등장
         characterlimit.SetActive(inputRoomName.text.Length > 20);
         //→안 념을 경우 확인 창On
         roomCreate.SetActive(inputRoomName.text.Length > 20);
         roomCompletion.SetActive(!(inputRoomName.text.Length > 20));
-        UserList[0]=PhotonNetwork.NickName;
+        UserList[0] = PhotonNetwork.NickName;
         CreateRoom();
     }
 
@@ -121,48 +125,10 @@ public class SYA_SympoLobby : MonoBehaviourPunCallbacks
     public void OnClickPublic()
     {
         public_ = !public_;
-        /*Vector2 pos = falseC.transform.position;
-        falseC.transform.position = trueC.transform.position;
-        trueC.transform.position = pos;*/
         publ.SetActive(!public_);
         Unpubl.SetActive(public_);
         publicText.SetActive(!public_);
-        /*Color Fc = falseC.GetComponent<Image>().color;
-        if (public_)
-        {
-            Fc.b = 255;
-            Fc.r = 0;
-            Fc.g = 0;
-        }
-        else
-        {
-            Fc.b = 255;
-            Fc.r = 255;
-            Fc.g = 255;
-        }
-        falseC.GetComponent<Image>().color = Fc;*/
     }
-
-/*    void OverlapName(int nameNum)
-    {
-        int num = 0;
-        //같은 닉네임이 있는지 검사
-        foreach (string name in UserList)
-        {
-            //만약 있다면
-            if (name == PhotonNetwork.NickName)
-            {
-                //번호를 붙인다
-                num++;
-                //원래 내 닉네임 + 원래 닉네임과 같은 사람의 수만큼
-                PhotonNetwork.NickName = name.Substring(0, nameNum) + $"({num})";
-            }
-        }
-        print(PhotonNetwork.NickName);
-        UserList.Add(PhotonNetwork.NickName);*/
-
-        
-    //}
 
     // 방 옵션을 설정
     RoomOptions roomOptions = new RoomOptions();
@@ -179,7 +145,7 @@ public class SYA_SympoLobby : MonoBehaviourPunCallbacks
         hash["room_name"] = inputRoomName.text;
         hash["owner"] = PhotonNetwork.NickName;
         hash["public"] = public_;
-        hash["password"] = $"{Random.Range(0,10)}{Random.Range(0, 10)}{Random.Range(0, 10)}{Random.Range(0, 10)}";
+        hash["password"] = $"{Random.Range(0, 10)}{Random.Range(0, 10)}{Random.Range(0, 10)}{Random.Range(0, 10)}";
         //유저목록
         hash["UserList"] = UserList;
         //썸네일 파일 위치와 이름 
@@ -192,20 +158,24 @@ public class SYA_SympoLobby : MonoBehaviourPunCallbacks
         OnRoomInfo();
     }
 
-    public string[] UserList =new string[1];
+    public string[] UserList = new string[1];
 
     //방 정보 창에 띄우기
     public void OnRoomInfo()
     {
         title.text = roomOptions.CustomRoomProperties["room_name"].ToString();
-        owner.text= roomOptions.CustomRoomProperties["owner"].ToString();
-        password.text= roomOptions.CustomRoomProperties["password"].ToString();
-        Texture2D texture2D = new Texture2D(0, 0);
-        if (((byte[])roomOptions.CustomRoomProperties["Thumbnail"]).Length > 0)//정보가 있으면->받아온 값이 있으면
+        owner.text = roomOptions.CustomRoomProperties["owner"].ToString();
+        password.text = roomOptions.CustomRoomProperties["password"].ToString();
+        //만약 썸네일의 텍스쳐정보가 있다면
+        if (Thumbnails_.texture != null)
         {
-            texture2D.LoadImage((byte[])roomOptions.CustomRoomProperties["Thumbnail"]);
+            Texture2D texture2D = new Texture2D(0, 0);
+            if (((byte[])roomOptions.CustomRoomProperties["Thumbnail"]).Length > 0)//정보가 있으면->받아온 값이 있으면
+            {
+                texture2D.LoadImage((byte[])roomOptions.CustomRoomProperties["Thumbnail"]);
+            }
+            Thumbnails.sprite = Sprite.Create(texture2D, new Rect(0, 0, texture2D.width, texture2D.height), new Vector2(0, 0));
         }
-        Thumbnails.sprite = Sprite.Create(texture2D, new Rect(0, 0, texture2D.width, texture2D.height), new Vector2(0, 0));
     }
 
     public void OnJoint()
@@ -228,12 +198,6 @@ public class SYA_SympoLobby : MonoBehaviourPunCallbacks
         print("OnCreateRoomFailed , " + returnCode + ", " + message);
     }
 
-/*    //방 참가 요청
-    public void JoinRoom()
-    {
-        PhotonNetwork.JoinRoom(inputRoomName.text + inputPassword.text);
-    }*/
-
     //방 참가가 완료 되었을 때 호출 되는 함수
     public override void OnJoinedRoom()
     {
@@ -241,118 +205,4 @@ public class SYA_SympoLobby : MonoBehaviourPunCallbacks
         print("OnJoinedRoom");
         PhotonNetwork.LoadLevel("AvatarSympo");
     }
-/*
-    //방 참가가 실패 되었을 때 호출 되는 함수
-    public override void OnJoinRoomFailed(short returnCode, string message)
-    {
-        base.OnJoinRoomFailed(returnCode, message);
-        print("OnJoinRoomFailed, " + returnCode + ", " + message);
-    }
-
-    //방에 대한 정보가 변경되면 호출 되는 함수(추가/삭제/수정)
-    public override void OnRoomListUpdate(List<RoomInfo> roomList)
-    {
-        base.OnRoomListUpdate(roomList);
-
-        //룸리스트 UI 를 전체삭제
-        DeleteRoomListUI();
-        //룸리스트 정보를 업데이트
-        UpdateRoomCache(roomList);
-        //룸리스트 UI 전체 생성
-        CreateRoomListUI();
-    }
-
-    void DeleteRoomListUI()
-    {
-        foreach (Transform tr in trListContent)
-        {
-            Destroy(tr.gameObject);
-        }
-    }
-
-    void UpdateRoomCache(List<RoomInfo> roomList)
-    {
-
-        for (int i = 0; i < roomList.Count; i++)
-        {
-            // 수정, 삭제
-            if (roomCache.ContainsKey(roomList[i].Name))
-            {
-                //만약에 해당 룸이 삭제된것이라면
-                if (roomList[i].RemovedFromList)
-                {
-                    //roomCache 에서 해당 정보를 삭제
-                    roomCache.Remove(roomList[i].Name);
-                }
-                //그렇지 않다면
-                else
-                {
-                    //정보 수정
-                    roomCache[roomList[i].Name] = roomList[i];
-                }
-            }
-            //추가
-            else
-            {
-                roomCache[roomList[i].Name] = roomList[i];
-            }
-        }
-
-        //for (int i = 0; i < roomList.Count; i++)
-        //{
-        //    // 수정, 삭제
-        //    if (roomCache.ContainsKey(roomList[i].Name))
-        //    {
-        //        //만약에 해당 룸이 삭제된것이라면
-        //        if (roomList[i].RemovedFromList)
-        //        {
-        //            //roomCache 에서 해당 정보를 삭제
-        //            roomCache.Remove(roomList[i].Name);
-        //            continue;
-        //        }                
-        //    }
-        //    roomCache[roomList[i].Name] = roomList[i];            
-        //}
-    }
-
-    public GameObject roomItemFactory;
-    void CreateRoomListUI()
-    {
-        foreach (RoomInfo info in roomCache.Values)
-        {
-            //룸아이템 만든다.
-            GameObject go = Instantiate(roomItemFactory, trListContent);
-            //룸아이템 정보를 셋팅(방제목(0/0))
-            RoomItem item = go.GetComponent<RoomItem>();
-            item.SetInfo(info);
-
-            //버튼 눌리면 호출되는 함수
-            //람다식
-            //item.onClickAction = (room) => { inputRoomName.text = room; };
-            item.onClickAction = SetRoomName;
-
-            string desc = (string)info.CustomProperties["desc"];
-            int map_id = (int)info.CustomProperties["map_id"];
-            print(desc + map_id);
-        }
-    }
-
-    //이전 썸네일 id
-    int prevmapId = -1;
-    void SetRoomName(string room, int map_id)
-    {
-        //룸이름설정
-        inputRoomName.text = room;
-        //이전맵 썸네일이 활성화 되어있다면
-        if (prevmapId > -1)
-        {
-            //이전맵 썸네일 비활성화
-            mapThumbnails[prevmapId].SetActive(false);
-        }
-        //맵 섬네일 설정
-        mapThumbnails[map_id].SetActive(true);
-        //이전 맵 아이디 저장
-        prevmapId = map_id;
-    }*/
-
 }
