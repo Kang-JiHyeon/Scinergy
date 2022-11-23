@@ -1,141 +1,141 @@
-starName,ra,dec,brightness
-Albali,20.4854,-9.2443,B
-Sadalsuud,21.3245,-5.2814,G
-Sadalmelik,22.0657,-0.1231,G
-Sadachbia,22.225,-1.162,A
-Sadaltager,22.3,0.0549,F
-EtaAquarii,22.3631,0,B
-LambdaAquarii,22.5348,-7.2729,M
-Psi1Aquarii,23.1705,-8.5748,K
-b1Aquarii,23.241,-19.5832,K
-c2Aquarii,23.1039,-21.0254,K
-Skat,22.5551,-15.4157,A
-TauAquarii,22.5048,-13.2819,M
-SigmaAquarii,22.3151,-10.334,A
-Ancha,22.1802,-7.401,G
-lotaAquarii,22.074,-13.4532,B
-AlphaCapricorni,20.1854,-12.2614,G
-Dabih,20.2203,-14.4246,G
-PsiCapricorni,20.4726,-25.1121,F
-OmegaCapricorni,20.531,-26.5003,M
-ThetaCapricorni,21.0713,-17.0832,A
-ZetaCapricorni,21.2758,-22.1846,G
-lotaCapricorni,21.233,-16.4414,G
-GammaCapricorni,21.4121,-16.3333,F
-DeltaCapricorni,21.4817,-16.0125,K
-3Sagittarii,17.4858,-27.5022,F
-Alnasl,18.0715,-30.2526,K
-EpsilonSagittarii,18.254,-34.2228,B
-EtaSagittarii,18.1909,-36.452,M
-Ascella,19.0403,-29.5052,A
-PhiSagittarii,18.4704,-26.5803,B
-KausMedia,18.2226,-29.4907,K
-KausBorealis,18.2922,-25.2433,K
-MuSagittarii,18.1506,-21.0309,B
-SigmaSagittarii,18.564,-26.1607,B
-TauSagittarii,19.0821,-27.3815,K
-h1Sagittarii,19.3724,-24.4009,A
-62Sagittarii,20.0403,-27.3849,M
-Theta1Sagittarii,20.0112,-35.1256,B
-lotaSagittarii,19.5649,-41.4834,K
-Beta2Sagittarii,19.2451,-44.4529,F
-Rukbat,19.2527,-40.3427,B
-Xi2Sagittarii,18.5904,-21.0435,G
-OmicronSagittarii,19.0602,-21.4229,G
-43Sagittarii,19.1857,-18.5443,G
-RhoSagittarii,19.2259,-17.4814,A
-Acrab,16.0644,-19.5159,B
-DeltaScorpii,16.0139,-22.4108,B
-Antares,16.3047,-26.2855,M
-PiScorpii,16.0012,-26.1044,B
-TauScorpii,16.0012,-26.1044,B
-EpsilonScorpii,16.5137,-34.2005,K
-MuScorpii,16.5323,-38.0513,B
-ZetaScorpii,16.561,-42.2404,B
-EtaScorpii,16.561,-42.2404,F
-Sargas,17.3856,-43.0048,F
-lotaScorpii,17.4909,-40.0812,F
-KappaScorpii,17.4402,-39.0233,B
-LambdaScorpii,17.3508,-37.0716,B
-Theta Librae,15.5506,-16.474,G
-GammaLibrae,15.3646,-14.5149,G
-Zubeneschamali,15.1812,-9.2752,B
-ZubenelgenubiII,14.5206,-16.0803,K
-Sigma Librae,15.0522,-25.2212,M
-109 Virginis,14.4722,1.4801,A
-Tau Virginis,14.0246,1.2617,A
-Heze,13.3549,-0.423,A
-Delta Virginis,12.5643,3.164,M
-Vindemiatrix,13.0316,10.5028,G
-Polimar,12.4246,-1.3412,F
-Spica,13.2621,-11.1637,B
-KappaVirginis,14.1404,-10.2236,K
-Syrma,14.171,-6.0621,F
-Mu Virginis,14.4414,-5.4515,F
-13 Virginis,12.1839,-0.4709,A
-Nu Virginis,11.4659,6.2421,M
-Epsilon Leonis,9.4706,23.4021,G
-Rasalas,9.54,25.541,K
-Adhafera,10.1754,23.1826,F
-Algieba,10.2111,19.4347,K
-Eta Leonis,10.0831,16.3918,A
-Regulus,10.0932,11.5134,B
-Chertan,11.1523,15.1833,A
-Denebola,11.5011,14.2656,A
-Zosma,11.1516,20.2411,A
-Iota Cancri,8.4801,28.4042,G
-Chi Cancri,8.2124,27.0843,F
-Gamma Cancri,8.4433,21.232,A
-Delta Cancri,8.4556,18.0423,K
-Alpha Cancri,8.5941,11.4621,K
-Beta Cancri,8.1742,9.0705,K
-Pollux,7.464,27.5819,K
-Upsilon Geminorum,7.3717,26.5045,M
-Kappa Geminorum,7.4547,24.204,G
-Delta Geminorum,7.2126,21.5629,F
-Lambda Geminorum,7.1922,16.3002,A
-Xi Geminorum,6.4632,12.522,F
-Mekbuda,7.0525,20.3216,G
-Gamma Geminorum,6.3859,16.225,A
-Iota Geminorum,7.2706,27.4512,G
-Castor,7.36,31.5018,A
-Tau Geminorum,7.1233,30.1228,K
-Theta Geminorum,6.5415,33.5559,A
-Epsilon Geminorum,6.4517,25.0631,G
-Tejat,6.2418,22.3007,M
-Nu Geminorum,6.3017,20.1153,B
-Eta Geminorum,6.1613,22.3,M
-1 Geminorum,6.0528,23.1542,G
-Beta Tauri,5.2742,28.3731,B
-Tau Tauri,4.4335,22.5958,B
-Ain,4.2955,19.1349,G
-Zeta Tauri,5.3858,21.0922,B
-Aldebaran,4.3712,16.3317,K
-Theta Tauri,4.2956,15.5516,A
-Delta3 Tauri A,4.2647,17.5846,A
-Delta Tauri,4.2413,17.3543,G
-Gamma Tauri,4.2104,15.4056,G
-Lambda Tauri,4.0155,12.3316,B
-Omicron Tauri,3.2601,9.0632,G
-41 Arietis,2.5119,27.2109,B
-Hamal,2.0827,23.3407,K
-Sheratan,1.5553,20.5505,K
-Gamma1 Arietis,1.5446,19.2416,A
-Sigma Piscium,1.0404,31.5529,B
-Upsilon Piscium,1.2043,27.2255,A
-Phi Piscium,1.1459,24.421,K
-Eta Piscium,1.3242,15.2744,G
-Omicron Piscium,1.4635,9.1619,O
-Alrisha,2.0313,2.5226,K
-Xi Piscium,1.5443,3.18,G
-Nu Piscium,1.4236,5.361,K
-Mu Piscium,1.3122,6.154,K
-Epsilon Piscium,1.0407,8.0045,G
-Delta Piscium,0.4951,7.4231,K
-41 Piscium,0.2146,8.1859,K
-Omega Piscium,0.0029,6.5921,F
-Iota Piscium,23.4107,5.4459,F
-Theta Piscium,23.2907,6.3014,K
-Gamma Piscium,23.182,3.2424,G
-Kappa piscium,23.2806,1.2249,A
-Lambda Piscium,23.4312,1.5419,A
+starName,ra,dec
+Albali,20.4854,-9.2443
+Sadalsuud,21.3245,-5.2814
+Sadalmelik,22.0657,-0.1231
+Sadachbia,22.225,-1.162
+Sadaltager,22.3,0.0549
+EtaAquarii,22.3631,0
+LambdaAquarii,22.5348,-7.2729
+Psi1Aquarii,23.1705,-8.5748
+b1Aquarii,23.241,-19.5832
+c2Aquarii,23.1039,-21.0254
+Skat,22.5551,-15.4157
+TauAquarii,22.5048,-13.2819
+SigmaAquarii,22.3151,-10.334
+Ancha,22.1802,-7.401
+lotaAquarii,22.074,-13.4532
+AlphaCapricorni,20.1854,-12.2614
+Beta2Capricorni,20.2203,-14.4246
+PsiCapricorni,20.4726,-25.1121
+OmegaCapricorni,20.531,-26.5003
+ThetaCapricorni,21.0713,-17.0832
+ZetaCapricorni,21.2758,-22.1846
+lotaCapricorni,21.233,-16.4414
+GammaCapricorni,21.4121,-16.3333
+DeltaCapricorni,21.4817,-16.0125
+3Sagittarii,17.4858,-27.5022
+Alnasl,18.0715,-30.2526
+EpsilonSagittarii,18.254,-34.2228
+EtaSagittarii,18.1909,-36.452
+Ascella,19.0403,-29.5052
+PhiSagittarii,18.4704,-26.5803
+KausMedia,18.2226,-29.4907
+KausBorealis,18.2922,-25.2433
+MuSagittarii,18.1506,-21.0309
+SigmaSagittarii,18.564,-26.1607
+TauSagittarii,19.0821,-27.3815
+h1Sagittarii,19.3724,-24.4009
+62Sagittarii,20.0403,-27.3849
+Theta1Sagittarii,20.0112,-35.1256
+lotaSagittarii,19.5649,-41.4834
+Beta2Sagittarii,19.2451,-44.4529
+Rukbat,19.2527,-40.3427
+Xi2Sagittarii,18.5904,-21.0435
+OmicronSagittarii,19.0602,-21.4229
+43Sagittarii,19.1857,-18.5443
+RhoSagittarii,19.2259,-17.4814
+Acrab,16.0644,-19.5159
+DeltaScorpii,16.0139,-22.4108
+Antares,16.3047,-26.2855
+PiScorpii,16.0012,-26.1044
+TauScorpii,16.0012,-26.1044
+EpsilonScorpii,16.5137,-34.2005
+MuScorpii,16.5323,-38.0513
+ZetaScorpii,16.561,-42.2404
+EtaScorpii,16.561,-42.2404
+Sargas,17.3856,-43.0048
+lotaScorpii,17.4909,-40.0812
+KappaScorpii,17.4402,-39.0233
+LambdaScorpii,17.3508,-37.0716
+Theta Librae,15.5506,-16.474
+GammaLibrae,15.3646,-14.5149
+Zubeneschamali,15.1812,-9.2752
+ZubenelgenubiII,14.5206,-16.0803
+Sigma Librae,15.0522,-25.2212
+109 Virginis,14.4722,1.4801
+Tau Virginis,14.0246,1.2617
+Heze,13.3549,-0.423
+Delta Virginis,12.5643,3.164
+Vindemiatrix,13.0316,10.5028
+Polimar,12.4246,-1.3412
+Spica,13.2621,-11.1637
+KappaVirginis,14.1404,-10.2236
+Syrma,14.171,-6.0621
+Mu Virginis,14.4414,-5.4515
+Zaniah,12.2102,-0.4722
+Nu Virginis,11.4659,6.2421
+Epsilon Leonis,9.4706,23.4021
+Rasalas,9.54,25.541
+Adhaera,10.1754,23.1826
+Algieba,10.2111,19.4347
+Eta Leonis,10.0831,16.3918
+Regulus,10.0932,11.5134
+Chertan,11.1523,15.1833
+Denebola,11.5011,14.2656
+Zosma,11.1516,20.2411
+Iota Cancri,8.4801,28.4042
+Chi Cancri,8.2124,27.0843
+Gamma Cancri,8.4433,21.232
+Delta Cancri,8.4556,18.0423
+Alpha Cancri,8.5941,11.4621
+Beta Cancri,8.1742,9.0705
+Pollux,7.464,27.5819
+Upsilon Geminorum,7.3717,26.5045
+Kappa Geminorum,7.4547,24.204
+Delta Geminorum,7.2126,21.5629
+Lambda Geminorum,7.1922,16.3002
+Xi Geminorum,6.4632,12.522
+Mekbuda,7.0525,20.3216
+Gamma Geminorum,6.3859,16.225
+Iota Geminorum,7.2706,27.4512
+Castor,7.36,31.5018
+Tau Geminorum,7.1233,30.1228
+Theta Geminorum,6.5415,33.5559
+Epsilon Geminorum,6.4517,25.0631
+Tejat,6.2418,22.3007
+Nu Geminorum,6.3017,20.1153
+Eta Geminorum,6.1613,22.3
+1 Geminorum,6.0528,23.1542
+Beta Tauri,5.2742,28.3731
+Tau Tauri,4.4335,22.5958
+Ain,4.2955,19.1349
+Zeta Tauri,5.3858,21.0922
+Aldebaran,4.3712,16.3317
+Theta Tauri,4.2956,15.5516
+Delta3 Tauri A,4.2647,17.5846
+Delta Tauri,4.2413,17.3543
+Gamma Tauri,4.2104,15.4056
+Lambda Tauri,4.0155,12.3316
+Omicron Tauri,3.2601,9.0632
+41 Arietis,2.5119,27.2109
+Hamal,2.0827,23.3407
+Sheratan,1.5553,20.5505
+Gamma1 Arietis,1.5446,19.2416
+Sigma Piscium,1.0404,31.5529
+Upsilon Piscium,1.2043,27.2255
+Phi Piscium,1.1459,24.421
+Eta Piscium,1.3242,15.2744
+Omicron Piscium,1.4635,9.1619
+Alrisha,2.0313,2.5226
+Xi Piscium,1.5443,3.18
+Nu Piscium,1.4236,5.361
+Mu Piscium,1.3122,6.154
+Epsilon Piscium,1.0407,8.0045
+Delta Piscium,0.4951,7.4231
+41 Piscium,0.2146,8.1859
+Omega Piscium,0.0029,6.5921
+Iota Piscium,23.4107,5.4459
+Theta Piscium,23.2907,6.3014
+Gamma Piscium,23.182,3.2424
+Kappa piscium,23.2806,1.2249
+Lambda Piscium,23.4312,1.5419
