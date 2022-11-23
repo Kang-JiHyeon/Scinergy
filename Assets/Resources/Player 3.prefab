@@ -10268,6 +10268,7 @@ MonoBehaviour:
   cc: {fileID: 0}
   nickName: {fileID: 2660803169950827906}
   anim: {fileID: 1863406531344142753}
+  currentScene: 
   fullScreenMode: 0
 --- !u!114 &2836529994268691292
 MonoBehaviour:

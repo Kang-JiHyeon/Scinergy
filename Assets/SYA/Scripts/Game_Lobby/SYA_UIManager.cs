@@ -281,9 +281,9 @@ namespace SYA_UI
             exMic = mic.value;
         }
 
-        float exBG;
-        float exEF;
-        float exMic;
+        public float exBG;
+        public float exEF;
+        public float exMic;
         //완료를 누르면 반영된다
         //취소를 누르면 창이 닫힌다(오디오 설정과 그전 밸류값으로)
         public void OnSaveOption()

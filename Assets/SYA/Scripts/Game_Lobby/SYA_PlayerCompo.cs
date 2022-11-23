@@ -43,11 +43,11 @@ public class SYA_PlayerCompo : MonoBehaviourPun
         playerName = transform.GetChild(1).gameObject;
     }
 
-/*    private void Update()
-    {
-        
-        
-    }*/
+    /*    private void Update()
+        {
+
+
+        }*/
 
     void OnEnable()
     {
@@ -68,6 +68,7 @@ public class SYA_PlayerCompo : MonoBehaviourPun
     //컴포넌트 변경
     void ChangeComponent(string sceneName)
     {
+        PlayerMove.currentScene = sceneName;
         if (sceneName.Contains("KJH"))
         {
             PlayerRot.camPos.gameObject.SetActive(false);
@@ -77,13 +78,13 @@ public class SYA_PlayerCompo : MonoBehaviourPun
             CharacterController.enabled = false;
             PlayerRot.enabled = false;
         }
-        else if(sceneName.Contains("Sympo") || sceneName.Contains("KYG"))
+        else if (sceneName.Contains("Sympo") || sceneName.Contains("KYG"))
         {
             //채팅을 치는 중이거나 전체화면일 때는 이동 및 카메라 회전이 불가능하다
             PlayerMove.enabled = !(PlayerMove.fullScreenMode ||
                 SYA_ChatManager.Instance.inputFocused);
             PlayerRot.enabled = !(PlayerMove.fullScreenMode ||
-                SYA_ChatManager.Instance.inputFocused );
+                SYA_ChatManager.Instance.inputFocused);
             //포톤뷰 이즈마인이고
             //씬이 로비거나(심포지엄) 별자리일 때
             PlayerRot.camPos.gameObject.SetActive(photonView.IsMine);
