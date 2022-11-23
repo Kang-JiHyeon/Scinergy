@@ -36,7 +36,9 @@ public class SYA_PlayerCompo : MonoBehaviourPun
         PlayerMove = GetComponent<PlayerMove>();
         PlayerMove.enabled = false;
         CharacterController = GetComponent<CharacterController>();
+        CharacterController.enabled = false;
         PlayerRot = GetComponent<PlayerRot>();
+        PlayerRot.enabled=false;
         //캐릭터 모델링
         playerBody = transform.GetChild(0).gameObject;
         //캐릭터 닉네임
@@ -60,11 +62,6 @@ public class SYA_PlayerCompo : MonoBehaviourPun
         ChangeComponent(scene.name);
     }
 
-    void OnDisable()
-    {
-        SceneManager.sceneLoaded -= OnSceneLoaded;
-    }
-
     //컴포넌트 변경
     void ChangeComponent(string sceneName)
     {
@@ -77,7 +74,7 @@ public class SYA_PlayerCompo : MonoBehaviourPun
             CharacterController.enabled = false;
             PlayerRot.enabled = false;
         }
-        else if(sceneName.Contains("Sympo") || sceneName.Contains("KYG"))
+        else if(sceneName.Contains("Sympo"))
         {
             //채팅을 치는 중이거나 전체화면일 때는 이동 및 카메라 회전이 불가능하다
             PlayerMove.enabled = !(PlayerMove.fullScreenMode ||
@@ -91,6 +88,20 @@ public class SYA_PlayerCompo : MonoBehaviourPun
             playerName.SetActive(true);
             //의자에 앉은 상태가 트루라면 CC를 꺼준다
             CharacterController.enabled = true;
+        }
+        else if(sceneName.Contains("KYG"))
+        {
+            //채팅을 치는 중이거나 전체화면일 때는 이동 및 카메라 회전이 불가능하다
+            PlayerMove.enabled = !SYA_ChatManager.Instance.inputFocused;
+            PlayerRot.enabled = !SYA_ChatManager.Instance.inputFocused;
+            //포톤뷰 이즈마인이고
+            //씬이 로비거나(심포지엄) 별자리일 때
+            PlayerRot.camPos.gameObject.SetActive(true);
+            playerBody.SetActive(true);
+            playerName.SetActive(true);
+            //의자에 앉은 상태가 트루라면 CC를 꺼준다
+            CharacterController.enabled = true;
+            print(sceneName);
         }
     }
 }

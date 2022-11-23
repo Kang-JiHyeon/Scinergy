@@ -217,7 +217,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   thumbnail: {fileID: 381616656}
   thumbnails:
-  - {fileID: 2800000, guid: fbf18e0665d436641b1aff3ed3f3e014, type: 3}
+  - {fileID: 2800000, guid: 81b53223f94cf804a8c7f54b506f5148, type: 3}
   - {fileID: 2800000, guid: 2b536d34bb607e24b9f430452dddb1e2, type: 3}
   - {fileID: 2800000, guid: 73404bf994545e94eb72ff1747dcbe6c, type: 3}
   - {fileID: 2800000, guid: 9f2990b93db7bdc41a689f4f68687afc, type: 3}
