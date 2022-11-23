@@ -16,8 +16,6 @@ public class Star : MonoBehaviourPun
     public GameObject starType;
     //º° ¹à±â
     public GameObject brightness;
-    //°Ñº¸±â µî±Þ
-    public float apparentMagnitude;
 
     public GameObject starInfo;
 
@@ -40,10 +38,7 @@ public class Star : MonoBehaviourPun
     // Start is called before the first frame update
     void Start()
     {
-        if (generatedType == 0) 
-        { 
-            InfoSet(starName, ra, dec, starType, brightness, apparentMagnitude, 1);
-        }
+        InfoSet(starName, ra, dec, starType, brightness, 1);
     }
 
     // Update is called once per frame
@@ -83,7 +78,7 @@ public class Star : MonoBehaviourPun
             transform.position += fallDir.normalized * fallSpeed * Time.deltaTime;
     }
     //int starNumber = 1;
-    internal void InfoSet(string starNameInfo, float raInfo, float decInfo, GameObject starTypeInfo, GameObject brightnessInfo,float apparentMag, int generateTypeNumber)
+    internal void InfoSet(string starNameInfo, float raInfo, float decInfo, GameObject starTypeInfo, GameObject brightnessInfo, int generateTypeNumber)
     {
         name = starNameInfo;
         starName = starNameInfo;
@@ -100,9 +95,8 @@ public class Star : MonoBehaviourPun
         starType = starTypeInfo;
         brightness = brightnessInfo;
         generatedType = generateTypeNumber;
-        apparentMagnitude = apparentMag;
         TransformSet();
-        BrightnessSet(apparentMagnitude);
+        BrightnessSet();
     }
 
 
@@ -126,12 +120,11 @@ public class Star : MonoBehaviourPun
             transform.position = new Vector3(x, y, z);
         }
     }
-    public virtual void BrightnessSet(float apparentMag)
+    public virtual void BrightnessSet()
     {
         //GameObject starBrightness = Instantiate(brightness);
         GameObject starBrightness = Instantiate(brightness);
         starBrightness.transform.parent = gameObject.transform;
         starBrightness.transform.position = transform.position;
-        starBrightness.transform.localScale = (8-apparentMag) * Vector3.one;
     }
 }
