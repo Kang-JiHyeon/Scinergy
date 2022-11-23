@@ -969,19 +969,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4929702008875146834, guid: 30658431de9f5f14c850cea1092aed8f, type: 3}
       propertyPath: m_LocalScale.x
-      value: 980
+      value: 899.2143
       objectReference: {fileID: 0}
     - target: {fileID: 4929702008875146834, guid: 30658431de9f5f14c850cea1092aed8f, type: 3}
       propertyPath: m_LocalScale.y
-      value: 980
+      value: 899.2143
       objectReference: {fileID: 0}
     - target: {fileID: 4929702008875146834, guid: 30658431de9f5f14c850cea1092aed8f, type: 3}
       propertyPath: m_LocalScale.z
-      value: 980
+      value: 349.7314
       objectReference: {fileID: 0}
     - target: {fileID: 4929702008875146834, guid: 30658431de9f5f14c850cea1092aed8f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4929702008875146834, guid: 30658431de9f5f14c850cea1092aed8f, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1021,7 +1021,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4929702008875146834, guid: 30658431de9f5f14c850cea1092aed8f, type: 3}
       propertyPath: m_ConstrainProportionsScale
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5702121689441633512, guid: 30658431de9f5f14c850cea1092aed8f, type: 3}
       propertyPath: m_Name
@@ -1046,7 +1046,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!108 &1722424417
 Light:
   m_ObjectHideFlags: 0
