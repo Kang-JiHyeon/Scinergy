@@ -61,7 +61,7 @@ public class DataManager : MonoBehaviour
                 GameObject star = Instantiate(starFactory);
                 GameManager.instance.createdStarList[starInfo[j].starName] = star;
                 GameObject brightness = brightnessList.Find(x => x.name == starInfo[j].brightness);
-                star.GetComponent<Star>().InfoSet(starInfo[j].starName, starInfo[j].ra, starInfo[j].dec, starFactory, brightness, 1);
+                star.GetComponent<Star>().InfoSet(starInfo[j].starName, starInfo[j].ra, starInfo[j].dec, starFactory, brightness,3, 1);
                 star.transform.parent = constellation.transform;
             }
             starIndex+= zodiacInfo[i].starCount;

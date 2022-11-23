@@ -50,7 +50,7 @@ public class StarPainter : MonoBehaviourPun
     {
         Ray starRay = Camera.main.ScreenPointToRay(Input.mousePosition);
         
-        RaycastHit starInfo;
+        //RaycastHit starInfo;
         if (Input.GetButtonDown("Fire1"))
         {
             photonView.RPC(nameof(RPCOnBtnDown), RpcTarget.All, starRay.origin, starRay.direction);
