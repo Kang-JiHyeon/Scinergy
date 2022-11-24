@@ -9,7 +9,7 @@ public class SYA_SympoGoTo : MonoBehaviourPun
 {
     public GameObject space;
     PlayerMove playerMove;
-    PlayerRot playerRot;
+    SYA_PlayerCompo compo;
 
     private void Update()
     {
@@ -28,7 +28,7 @@ public class SYA_SympoGoTo : MonoBehaviourPun
             print("in");
             //플레이어의 이동과 화면 움직임 막기
             playerMove = other.GetComponent<PlayerMove>();
-            playerRot = other.GetComponent<PlayerRot>();
+            compo = other.GetComponent<SYA_PlayerCompo>();
             playerMove.cc.enabled = false;
             if (gameObject.name.Contains("Sola"))
                 other.gameObject.transform.position += new Vector3(0.5f, 0, 0.5f);
@@ -36,8 +36,8 @@ public class SYA_SympoGoTo : MonoBehaviourPun
                 other.gameObject.transform.position += new Vector3(-0.5f, 0, -0.5f);
 
 
-            playerMove.enabled = false;
-            playerRot.enabled = false;
+            //playerMove.enabled = false;
+            compo.isTrigger = true;
 
             //공간 이동 버튼 띄우기
             space.SetActive(true);
@@ -71,8 +71,8 @@ public class SYA_SympoGoTo : MonoBehaviourPun
     public void OffGameObject()
     {
         space.SetActive(false);
-        playerMove.enabled = true;  
-        playerRot.enabled = true;
+        //playerMove.enabled = true;
+        compo.isTrigger = false;
         playerMove.cc.enabled = true;
     }
 }
