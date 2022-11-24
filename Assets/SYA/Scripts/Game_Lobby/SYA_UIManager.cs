@@ -38,9 +38,12 @@ namespace SYA_UI
 
         float recodingTimeNum;
         int min;
+        public GameObject TV;
 
         private void Update()
         {
+            if (TV != null)
+                TV.SetActive(SceneManager.GetActiveScene().name.Contains("Sympo"));
             if (recoding_time)
             {
                 recodingTimeNum += Time.deltaTime;
@@ -53,21 +56,28 @@ namespace SYA_UI
             }
 
             //오디오매니저에게 캔버스 설정
-            if(SceneManager.GetActiveScene().name.Contains("Sympo"))
-            if (Input.GetMouseButtonDown(0))
-            {
-                m_ped.position = Input.mousePosition;
-                List<RaycastResult> results = new List<RaycastResult>();
-                m_gr.Raycast(m_ped, results);
-                foreach (RaycastResult ray in results)
+            if (SceneManager.GetActiveScene().name.Contains("Sympo"))
+                if (Input.GetMouseButtonDown(0))
                 {
-                    if (ray.gameObject.transform.GetComponent<Button>())
+                    m_ped.position = Input.mousePosition;
+                    List<RaycastResult> results = new List<RaycastResult>();
+                    m_gr.Raycast(m_ped, results);
+                    foreach (RaycastResult ray in results)
                     {
-                        SYA_AudioManager.instance.clickSource.Play();
+                        if (ray.gameObject.transform.GetComponent<Button>())
+                        {
+                            SYA_AudioManager.instance.clickSource.Play();
+                        }
                     }
                 }
-            }
 
+        }
+
+        //가이드 그림 X와 연결, TAB 눌러서 껏다켰다
+        public GameObject guid;
+        public void OnGuid()
+        {
+            guid.SetActive(!guid.activeSelf);
         }
 
         public Image btn_chat;
@@ -334,6 +344,6 @@ namespace SYA_UI
             OnSaveOption();
         }
 
-        
+
     }
 }

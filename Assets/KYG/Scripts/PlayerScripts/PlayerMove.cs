@@ -127,6 +127,11 @@ public class PlayerMove : MonoBehaviourPun
             yVelocity += gravity * Time.deltaTime;
             dir.y = yVelocity;
             cc.Move(dir * speed * Time.deltaTime);
+
+            //ÅÇÀ» ´­·¶°í, ÀÎÇ²ÇÊµå Æ÷Ä¿½ÌÀÌ ¾Æ´Ò¶§
+            //Á¶ÀÛ¹ý °¡ÀÌµå ¶ç¿ì±â
+            if (Input.GetKeyDown(KeyCode.Tab) && !SYA_ChatManager.Instance.inputFocused)
+                SYA_UI.SYA_UIManager.Instance.OnGuid();
         }
 
 
@@ -220,4 +225,6 @@ public class PlayerMove : MonoBehaviourPun
     {
         anim.SetBool("Sit", sit_);
     }
+
+    
 }

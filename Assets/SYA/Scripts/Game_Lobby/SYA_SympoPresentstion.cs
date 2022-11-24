@@ -7,6 +7,7 @@ using Photon.Pun;
 public class SYA_SympoPresentstion : MonoBehaviour
 {
     public GameObject pre;
+    public GameObject Tv;
 
     private void Update()
     {
