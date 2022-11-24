@@ -474,7 +474,7 @@ MonoBehaviour:
   starTests: []
   ConstellationFactory: {fileID: 2910400192313477546, guid: 293d590ff690e2841870c84a6c6d4bfd, type: 3}
   starFactory: {fileID: 7177477379725082803, guid: 7d58099d2227d914796728ed385405d6, type: 3}
-  starLine: {fileID: 1165502114755997006, guid: f148066725fc8b34ea64bc8e79a9ac1d, type: 3}
+  starLineFactory: {fileID: 1165502114755997006, guid: f148066725fc8b34ea64bc8e79a9ac1d, type: 3}
   brightnessList:
   - {fileID: 1607489160101874, guid: d452d4d6c323c0d4d98f8831c90d0f57, type: 3}
   - {fileID: 1607489160101874, guid: 6af603338e51dfe49b798a0385bf519d, type: 3}

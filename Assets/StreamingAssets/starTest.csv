@@ -1,11 +1,11 @@
 name,apparentMagnitude,distance,ra,dec,brightness,starLine
-Denebola,2.16,35.88,11.5012,14.2643,A,Zosma
-Zosma,2.58,58.43,11.1518,20.2355,A,Algieba
-Algieba,2.16,130,10.2113,19.4333,K,Adhafera
-Adhafera,3.5,274.08,10.1756,23.1811,F,Rasalas
-Rasalas,4.03,124.11,9.5403,25.5355,K,Epsilon Leonis
-Epsilon Leonis,3.11,246.72,9.4708,23.4007,G,Eta Leonis
-Eta Leonis,3.5,1269.1,10.0833,16.3906,A,Regulus
-Regulus,1.32,79.3,10.0934,11.5123,B,Subra
-Subra,3.63,130.31,9.4221,9.4722,F,Chertan
-Chertan,3.33,165.06,11.1525,15.1819,A,Denebola
+Denebola,2.16,35.88,11.5012,14.2643,A,Zosma:Algieba
+Zosma,2.58,58.43,11.1518,20.2355,A,Algieba:Adhafera
+Algieba,2.16,130,10.2113,19.4333,K,Adhafera:Rasalas:Regulus
+Adhafera,3.5,274.08,10.1756,23.1811,F,Rasalas:Subra
+Rasalas,4.03,124.11,9.5403,25.5355,K,Epsilon Leonis:Subra
+Epsilon Leonis,3.11,246.72,9.4708,23.4007,G,Eta Leonis:Regulus
+Eta Leonis,3.5,1269.1,10.0833,16.3906,A,Regulus:Subra
+Regulus,1.32,79.3,10.0934,11.5123,B,Subra:Regulus
+Subra,3.63,130.31,9.4221,9.4722,F,Chertan:Regulus
+Chertan,3.33,165.06,11.1525,15.1819,A,Denebola:Subra
