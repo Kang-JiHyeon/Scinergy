@@ -49,27 +49,29 @@ public class PlayerMove : MonoBehaviourPun
 
     private void Awake()
     {
-        playerSit=GetComponent<SYA_PlayerSit>();
-        playerRot = GetComponent<PlayerRot>();
-        SYA_SymposiumManager.Instance.PlayerNameAuthority(PhotonNetwork.NickName,
-        photonView,
-        GetComponentInChildren<AudioSource>());
-
-        photonView.RPC("RPCPlayerNameAuthority", RpcTarget.All, PhotonNetwork.NickName);
-
-        bool master;
-        if (!SYA_SymposiumManager.Instance.playerAuthority.ContainsKey(PhotonNetwork.NickName))
-        {
-            master = PhotonNetwork.MasterClient.UserId == SYA_SymposiumManager.Instance.player[PhotonNetwork.NickName].Owner.UserId;
-        }
-        else
-        {
-            master = SYA_SymposiumManager.Instance.playerAuthority[PhotonNetwork.NickName] == "Owner";
-        }
-        SYA_SymposiumManager.Instance.PlayerAuthority(PhotonNetwork.NickName, master);
-        //anim = GetComponentInChildren<Animator>();
-        GetComponentInChildren<AudioSource>().enabled = false;
         nickName.text = photonView.Owner.NickName;
+        GetComponentInChildren<AudioSource>().enabled = false;
+        playerSit = GetComponent<SYA_PlayerSit>();
+        playerRot = GetComponent<PlayerRot>();
+
+        if (photonView.IsMine)
+        {
+            SYA_SymposiumManager.Instance.PlayerNameAuthority(PhotonNetwork.NickName,
+            photonView,
+            GetComponentInChildren<AudioSource>());
+            photonView.RPC("RPCPlayerNameAuthority", RpcTarget.All, PhotonNetwork.NickName);
+            bool master;
+            if (!SYA_SymposiumManager.Instance.playerAuthority.ContainsKey(PhotonNetwork.NickName))
+            {
+                master = PhotonNetwork.MasterClient.UserId == SYA_SymposiumManager.Instance.player[PhotonNetwork.NickName].Owner.UserId;
+            }
+            else
+            {
+                master = SYA_SymposiumManager.Instance.playerAuthority[PhotonNetwork.NickName] == "Owner";
+            }
+            SYA_SymposiumManager.Instance.PlayerAuthority(PhotonNetwork.NickName, master);
+        }
+        //anim = GetComponentInChildren<Animator>();
     }
 
     [PunRPC]
@@ -94,8 +96,11 @@ public class PlayerMove : MonoBehaviourPun
 
         }*/
         //전체화면모드가 되면 이동막기
-        if (!(fullScreenMode|| playerSit.isSit||SYA_ChatManager.Instance.inputFocused))
+        if (!(fullScreenMode || playerSit.isSit))
         {
+            if (SYA_ChatManager.Instance != null)
+                if (SYA_ChatManager.Instance.inputFocused) return;
+
             float h = SYA_InputManager.GetAxis("Horizontal");
             float v = SYA_InputManager.GetAxis("Vertical");
             photonView.RPC("RPCanimMove", RpcTarget.All, v, h);
@@ -124,13 +129,13 @@ public class PlayerMove : MonoBehaviourPun
             cc.Move(dir * speed * Time.deltaTime);
         }
 
-        
+
         //TV 더블 클릭시 모드 실행
         if (Input.GetMouseButtonDown(0))
         {
             if (!currentScene.Contains("Sympo")) return;
             //클릭한 곳에서 ray를 쏠 때,
-            if(fullScreenMode)
+            if (fullScreenMode)
             {
                 _cam = Tv.GetComponentInChildren<SYA_FullScreen>().camera_;
             }
@@ -149,12 +154,12 @@ public class PlayerMove : MonoBehaviourPun
                 buttonOn++;
             }
         }
-        if(buttonOn>=1)
-        { 
+        if (buttonOn >= 1)
+        {
             //클릭 후 시간이 흐른다
             currentTime += Time.deltaTime;
             //제한 시간이 되면 버튼을 누른 횟수와 시간이 0이 된다
-            if(currentTime>=clickTime)
+            if (currentTime >= clickTime)
             {
                 currentTime = 0;
                 buttonOn = 0;

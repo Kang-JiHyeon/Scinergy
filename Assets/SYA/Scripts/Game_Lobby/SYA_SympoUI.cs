@@ -202,6 +202,7 @@ namespace SYA_UI
                 goStar = true;
                 goSympo = false;//영아
                 currentRoomName = PhotonNetwork.CurrentRoom.Name;
+                SYA_SymposiumManager.Instance.roomUserList= (string[])PhotonNetwork.CurrentRoom.CustomProperties["UserList"];
                 PhotonNetwork.LeaveRoom();
                 if (PhotonNetwork.MasterClient.UserId != SYA_SymposiumManager.Instance.player[PhotonNetwork.NickName].Owner.UserId)
                 {
@@ -247,15 +248,41 @@ namespace SYA_UI
 
         void CreateRoom()
         {
-            //�� �ɼ� ����
-            RoomOptions roomOptions = new RoomOptions();
+            if (goStar)
+            {
+                //�� �ɼ� ����
+                RoomOptions roomOptions = new RoomOptions();
 
-            //�ִ� �ο�(0���̸� �ִ��ο�)
-            roomOptions.MaxPlayers = 10;
-            //�� ���Ͽ� ���̳�? ������ �ʴ���?
-            roomOptions.IsVisible = true;
-            //���� ������.
-            PhotonNetwork.CreateRoom("star" + currentRoomName, roomOptions, TypedLobby.Default);
+                //�ִ� �ο�(0���̸� �ִ��ο�)
+                roomOptions.MaxPlayers = 10;
+                //�� ���Ͽ� ���̳�? ������ �ʴ���?
+                roomOptions.IsVisible = true;
+                //���� ������.
+                PhotonNetwork.CreateRoom("star" + currentRoomName, roomOptions, TypedLobby.Default);
+            }
+            else if (goSympo)
+            {
+                // 방 옵션을 설정
+                RoomOptions roomOptions = new RoomOptions();
+                // 최대 인원 (0이면 최대인원)
+                roomOptions.MaxPlayers = 20;
+                // 룸 리스트에 보이지 않게? 보이게?
+                roomOptions.IsVisible = true;
+                // custom 정보를 셋팅
+                ExitGames.Client.Photon.Hashtable hash = new ExitGames.Client.Photon.Hashtable();
+                hash["room_name"] = SYA_SymposiumManager.Instance.roomName;
+                hash["owner"] = SYA_SymposiumManager.Instance.roomOwner;
+                hash["public"] = SYA_SymposiumManager.Instance.roomPublic;
+                hash["password"] = SYA_SymposiumManager.Instance.roomCode;
+                //유저목록
+                hash["UserList"] = SYA_SymposiumManager.Instance.roomUserList;
+                //썸네일 파일 위치와 이름 
+                hash["Thumbnail"] = SYA_SymposiumManager.Instance.roomThumbnail;
+                roomOptions.CustomRoomProperties = hash;
+                //커스텀 정보 공개 설정
+                roomOptions.CustomRoomPropertiesForLobby = new string[] { "room_name", "owner", "public", "password", "UserList", "Thumbnail" };
+                PhotonNetwork.CreateRoom(currentRoomName, roomOptions);
+            }
         }
         //�� ���� �Ϸ�
         public override void OnCreatedRoom()

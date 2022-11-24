@@ -13,7 +13,7 @@ public class Bilboard : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Camera.main.enabled == true)
+        if (Camera.main!=null)
             transform.forward = Camera.main.transform.forward;
     }
 }

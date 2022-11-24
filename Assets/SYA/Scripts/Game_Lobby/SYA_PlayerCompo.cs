@@ -66,10 +66,10 @@ public class SYA_PlayerCompo : MonoBehaviourPun
             //채팅을 치는 중이거나 전체화면일 때는 이동 및 카메라 회전이 불가능하다
             PlayerMove.enabled = !isTrigger;
             PlayerMove.currentScene = currentScene;
-            PlayerRot.enabled = !isTrigger; ;
+            PlayerRot.enabled = !isTrigger|| !playerSit.isSit;
             //포톤뷰 이즈마인이고
             //씬이 로비거나(심포지엄) 별자리일 때
-            PlayerRot.camPos.gameObject.SetActive(!playerSit.isSit&&photonView.IsMine);
+            PlayerRot.camPos.gameObject.SetActive(photonView.IsMine);
             playerBody.SetActive(true);
             playerName.SetActive(true);
             PlayerMove.cc.enabled = !playerSit.isSit;

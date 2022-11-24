@@ -37,12 +37,12 @@ public class SYA_SympoRoomItem : MonoBehaviourPunCallbacks
         ownerName.text = info.CustomProperties["owner"].ToString();
         roomPassword = info.CustomProperties["password"].ToString(); ;
         unpubl.SetActive(info.CustomProperties["public"].ToString() == "False");
-        /*Texture2D texture2D = new Texture2D(0, 0);
+        Texture2D texture2D = new Texture2D(0, 0);
         if (((byte[])info.CustomProperties["Thumbnail"]).Length > 0)//정보가 있으면->받아온 값이 있으면
         {
             texture2D.LoadImage((byte[])info.CustomProperties["Thumbnail"]);
         }
-        thumbnail.sprite = Sprite.Create(texture2D, new Rect(0, 0, texture2D.width, texture2D.height), new Vector2(0, 0));*/
+        thumbnail.sprite = Sprite.Create(texture2D, new Rect(0, 0, texture2D.width, texture2D.height), new Vector2(0, 0));
 
     }
 

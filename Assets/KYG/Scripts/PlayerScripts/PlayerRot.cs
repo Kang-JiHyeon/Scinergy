@@ -48,7 +48,8 @@ public class PlayerRot : MonoBehaviourPun
     void Update()
     {
         if (!photonView.IsMine) return;
-        if (SYA_ChatManager.Instance.inputFocused) return;
+        if (SYA_ChatManager.Instance != null)
+            if (SYA_ChatManager.Instance.inputFocused) return;
 
         StateMachine();
     }
