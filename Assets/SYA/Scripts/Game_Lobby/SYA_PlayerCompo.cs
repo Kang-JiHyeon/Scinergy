@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,8 @@ using Photon.Pun;
 public class SYA_PlayerCompo : MonoBehaviourPun
 {
     public static SYA_PlayerCompo Instance;
+
+    public Action ChangeScene;
 
     PlayerMove PlayerMove;
     CharacterController CharacterController;
@@ -30,7 +33,7 @@ public class SYA_PlayerCompo : MonoBehaviourPun
             Destroy(gameObject);
         }*//*
     }*/
-
+    SYA_PlayerSit playerSit;
     private void Start()
     {
         PlayerMove = GetComponent<PlayerMove>();
@@ -43,13 +46,36 @@ public class SYA_PlayerCompo : MonoBehaviourPun
         playerBody = transform.GetChild(0).gameObject;
         //캐릭터 닉네임
         playerName = transform.GetChild(1).gameObject;
+        playerSit = GetComponent<SYA_PlayerSit>();
     }
 
-/*    private void Update()
+    private void Update()
     {
-        
-        
-    }*/
+        currentScene = SceneManager.GetActiveScene().name;
+        if (currentScene.Contains("KJH"))
+        {
+            PlayerRot.camPos.gameObject.SetActive(false);
+            playerBody.SetActive(false);
+            playerName.SetActive(false);
+            PlayerMove.enabled = false;
+            CharacterController.enabled = false;
+            PlayerRot.enabled = false;
+        }
+        else if (currentScene.Contains("Sympo") || currentScene.Contains("KYG"))
+        {
+            //채팅을 치는 중이거나 전체화면일 때는 이동 및 카메라 회전이 불가능하다
+            PlayerMove.enabled = true;
+            PlayerMove.currentScene = currentScene;
+            PlayerRot.enabled = true; ;
+            //포톤뷰 이즈마인이고
+            //씬이 로비거나(심포지엄) 별자리일 때
+            PlayerRot.camPos.gameObject.SetActive(!playerSit.isSit&&photonView.IsMine);
+            playerBody.SetActive(true);
+            playerName.SetActive(true);
+            PlayerMove.cc.enabled = !playerSit.isSit;
+        }
+
+    }
 
     void OnEnable()
     {
@@ -61,12 +87,14 @@ public class SYA_PlayerCompo : MonoBehaviourPun
     {
         ChangeComponent(scene.name);
     }
-
+    string currentScene;
     //컴포넌트 변경
     void ChangeComponent(string sceneName)
     {
+        if (!photonView.IsMine) return;
         if (sceneName.Contains("KJH"))
         {
+            print(sceneName);
             PlayerRot.camPos.gameObject.SetActive(false);
             playerBody.SetActive(false);
             playerName.SetActive(false);
@@ -74,26 +102,12 @@ public class SYA_PlayerCompo : MonoBehaviourPun
             CharacterController.enabled = false;
             PlayerRot.enabled = false;
         }
-        else if(sceneName.Contains("Sympo"))
+        else if (sceneName.Contains("Sympo") || sceneName.Contains("KYG"))
         {
             //채팅을 치는 중이거나 전체화면일 때는 이동 및 카메라 회전이 불가능하다
-            PlayerMove.enabled = !(PlayerMove.fullScreenMode ||
-                SYA_ChatManager.Instance.inputFocused);
-            PlayerRot.enabled = !(PlayerMove.fullScreenMode ||
-                SYA_ChatManager.Instance.inputFocused );
-            //포톤뷰 이즈마인이고
-            //씬이 로비거나(심포지엄) 별자리일 때
-            PlayerRot.camPos.gameObject.SetActive(photonView.IsMine);
-            playerBody.SetActive(true);
-            playerName.SetActive(true);
-            //의자에 앉은 상태가 트루라면 CC를 꺼준다
-            CharacterController.enabled = true;
-        }
-        else if(sceneName.Contains("KYG"))
-        {
-            //채팅을 치는 중이거나 전체화면일 때는 이동 및 카메라 회전이 불가능하다
-            PlayerMove.enabled = !SYA_ChatManager.Instance.inputFocused;
-            PlayerRot.enabled = !SYA_ChatManager.Instance.inputFocused;
+            PlayerMove.enabled = true;
+            PlayerMove.currentScene = sceneName;
+            PlayerRot.enabled = true; ;
             //포톤뷰 이즈마인이고
             //씬이 로비거나(심포지엄) 별자리일 때
             PlayerRot.camPos.gameObject.SetActive(true);
@@ -101,7 +115,6 @@ public class SYA_PlayerCompo : MonoBehaviourPun
             playerName.SetActive(true);
             //의자에 앉은 상태가 트루라면 CC를 꺼준다
             CharacterController.enabled = true;
-            print(sceneName);
         }
     }
 }

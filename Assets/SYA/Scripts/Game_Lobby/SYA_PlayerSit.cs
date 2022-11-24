@@ -53,8 +53,8 @@ public class SYA_PlayerSit : MonoBehaviourPun
                     if (Input.GetKeyDown(KeyCode.X))
                     {
                         //플레이어의 캐릭터 컨트롤이 꺼진다
-                        playerMove.cc.enabled = false;
-                        playerRot.enabled = false;
+                        //playerMove.cc.enabled = false;
+                        //playerRot.enabled = false;
                         //앉아 있는 상태를 트루로 바꿔준다
                         isSit = true;
 
@@ -110,8 +110,8 @@ public class SYA_PlayerSit : MonoBehaviourPun
                 currentTime = 0;
                 //애니메이션이 끝난 상태고,
                 //원래 상태로 조정해준다
-                playerMove.cc.enabled = true;
-                playerRot.enabled = true;
+                //playerMove.cc.enabled = true;
+                //playerRot.enabled = true;
                 isSit = false;
                 SitUpDown(speed, jump);
             }
