@@ -21,6 +21,8 @@ public class PlayerMove : MonoBehaviourPun
     SYA_PlayerSit playerSit;
     PlayerRot playerRot;
 
+    public string currentScene;
+
     Vector3 dir;
     ////도착위치
     //Vector3 receivePos;
@@ -92,7 +94,7 @@ public class PlayerMove : MonoBehaviourPun
 
         }*/
         //전체화면모드가 되면 이동막기
-        if (!(fullScreenMode|| playerSit.isSit))
+        if (!(fullScreenMode|| playerSit.isSit||SYA_ChatManager.Instance.inputFocused))
         {
             float h = SYA_InputManager.GetAxis("Horizontal");
             float v = SYA_InputManager.GetAxis("Vertical");
@@ -126,6 +128,7 @@ public class PlayerMove : MonoBehaviourPun
         //TV 더블 클릭시 모드 실행
         if (Input.GetMouseButtonDown(0))
         {
+            if (!currentScene.Contains("Sympo")) return;
             //클릭한 곳에서 ray를 쏠 때,
             if(fullScreenMode)
             {

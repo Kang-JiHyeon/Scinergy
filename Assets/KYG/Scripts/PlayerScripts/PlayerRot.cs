@@ -33,7 +33,7 @@ public class PlayerRot : MonoBehaviourPun
     private void Start()
     {
         playerSit = GetComponent<SYA_PlayerSit>();
-            camPos.gameObject.SetActive(photonView.IsMine);
+        camPos.gameObject.SetActive(photonView.IsMine);
     }
 
     // Start is called before the first frame update
@@ -48,6 +48,8 @@ public class PlayerRot : MonoBehaviourPun
     void Update()
     {
         if (!photonView.IsMine) return;
+        if (SYA_ChatManager.Instance.inputFocused) return;
+
         StateMachine();
     }
     public void StarSet(Vector3 starDirection)
