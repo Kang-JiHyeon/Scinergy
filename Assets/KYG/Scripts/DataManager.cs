@@ -18,6 +18,17 @@ public class StarInfo
     public string brightness;
 }
 
+[System.Serializable]
+public class StarTest
+{
+    public string name;
+    public float apparentMagnitude;
+    public float distance;
+    public float ra;
+    public float dec;
+    public string brightness;
+    public string starLine;
+}
 
 public class DataManager : MonoBehaviour
 {
@@ -27,9 +38,13 @@ public class DataManager : MonoBehaviour
 
     public List<StarInfo> starInfo;
 
+    public List<StarTest> starTests;
+
     public GameObject ConstellationFactory;
 
     public GameObject starFactory;
+
+    public GameObject starLine;
 
     public List<GameObject> brightnessList = new();
     private void Awake()
@@ -49,6 +64,7 @@ public class DataManager : MonoBehaviour
     {
         zodiacInfo = CSV.instance.Parsing<ZodiacInfo>("Zodiac");
         starInfo = CSV.instance.Parsing<StarInfo>("starInfo");
+        starTests = CSV.instance.Parsing<StarTest>("starTest");
         int starIndex = 0;
         for(int i = 0; i<zodiacInfo.Count; i++)
         {
