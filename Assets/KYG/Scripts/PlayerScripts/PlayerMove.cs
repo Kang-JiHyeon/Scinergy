@@ -94,7 +94,7 @@ public class PlayerMove : MonoBehaviourPun
 
         }*/
         //전체화면모드가 되면 이동막기
-        if (!(fullScreenMode|| playerSit.isSit))
+        if (!(fullScreenMode|| playerSit.isSit||SYA_ChatManager.Instance.inputFocused))
         {
             float h = SYA_InputManager.GetAxis("Horizontal");
             float v = SYA_InputManager.GetAxis("Vertical");
