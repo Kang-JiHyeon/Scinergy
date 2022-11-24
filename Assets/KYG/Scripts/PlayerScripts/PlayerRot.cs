@@ -14,7 +14,14 @@ public class PlayerRot : MonoBehaviourPun
     float rotX;
     float rotY;
     private Vector3 starLookDirection;
-    public enum CamState 
+
+    SYA_PlayerSit playerSit;
+    //x의 변화를 줄 것인지 관할
+    //y의 변화를 줄 것인지 관할
+    public bool xRot = true;
+    public bool yRot = true;
+
+    public enum CamState
     {
         normal,
         starLook,
@@ -22,16 +29,24 @@ public class PlayerRot : MonoBehaviourPun
     }
 
     public CamState state = CamState.normal;
-    // Start is called before the first frame update
-    void Start()
+
+    private void Start()
     {
-        camPos.gameObject.SetActive(photonView.IsMine);
+        playerSit = GetComponent<SYA_PlayerSit>();
+            camPos.gameObject.SetActive(photonView.IsMine);
     }
+
+    // Start is called before the first frame update
+    /*    void Start()
+        {
+            //카메라에 켜주기 (컴포넌트로 관리자로 관리)
+            //포톤이 이즈 마인일때
+            //씬이 로비거나(심포지엄) 별자리일 떄
+        }*/
 
     // Update is called once per frame
     void Update()
     {
-        camPos.GetChild(0).gameObject.SetActive(SceneManager.GetActiveScene().name != "KJH_SolarSystemScene");
         if (!photonView.IsMine) return;
         StateMachine();
     }
@@ -42,7 +57,7 @@ public class PlayerRot : MonoBehaviourPun
     }
     void StateMachine()
     {
-        switch(state)
+        switch (state)
         {
             case CamState.starLook:
                 CamStarLook();
@@ -59,12 +74,12 @@ public class PlayerRot : MonoBehaviourPun
 
     private void CamOnUI()
     {
-        
+
         if (SceneManager.GetActiveScene().name == "KYG_Scene" && !GetComponent<PlayerControl>().playerUI.activeSelf)
         {
             state = CamState.normal;
         }
-        else if(Input.GetKeyDown(KeyCode.B) && SceneManager.GetActiveScene().name != "KYG_Scene")
+        else if (Input.GetKeyDown(KeyCode.B) && SceneManager.GetActiveScene().name != "KYG_Scene")
         {
             state = CamState.normal;
         }
@@ -74,17 +89,24 @@ public class PlayerRot : MonoBehaviourPun
     {
         float originX = transform.rotation.y;
         float originY = camPos.rotation.x;
-        float mx = Input.GetAxis("Mouse X");
-        float my = Input.GetAxis("Mouse Y");
-        rotX += mx * rotSpeed * Time.deltaTime;
-        rotY += -my * rotSpeed * Time.deltaTime;
-        rotY = Mathf.Clamp(rotY, -60f, 60f);
+        if (xRot)
+        {
+            mx = Input.GetAxis("Mouse X");
+            rotX += mx * rotSpeed * Time.deltaTime;
+        }
+        if (yRot)
+        {
+            my = Input.GetAxis("Mouse Y");
+            rotY += -my * rotSpeed * Time.deltaTime;
+        }
+        rotY = Mathf.Clamp(rotY, -60f, 40f);
         transform.localEulerAngles = new Vector3(0, rotX + originX, 0);
         camPos.localEulerAngles = new Vector3(rotY + originY, 0, 0);
         if (Input.GetKeyDown(KeyCode.B) && SceneManager.GetActiveScene().name != "KYG_Scene")
         {
             state = CamState.onUI;
-        }else if(SceneManager.GetActiveScene().name == "KYG_Scene" && GetComponent<PlayerControl>().playerUI.activeSelf)
+        }
+        else if (SceneManager.GetActiveScene().name == "KYG_Scene" && GetComponent<PlayerControl>().playerUI.activeSelf)
         {
             state = CamState.onUI;
         }

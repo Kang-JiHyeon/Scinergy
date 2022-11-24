@@ -31,6 +31,23 @@ namespace SYA_UI
             }
         }
 
+        float recodingTimeNum;
+        int min;
+
+        private void Update()
+        {
+            if(recoding_time)
+            {
+                recodingTimeNum += Time.deltaTime;
+                recodingTime.text = string.Format("{0:D2}:{1:D2}", min, (int)recodingTimeNum);
+                if((int)recodingTimeNum>59)
+                {
+                    recodingTimeNum = 0;
+                    min++;
+                }
+            }
+        }
+
         public Image btn_chat;
         public Sprite chatOn;
         public Sprite chatOff;
@@ -133,6 +150,11 @@ namespace SYA_UI
 
         public GameObject recodStart;
         public GameObject recodEnd;
+
+        //기록중인 시간
+        public Text recodingTime;
+        bool recoding_time;
+
         //영상찍기 창 온오프
         //영상아이콘을 누르면
         public void Record()
@@ -167,6 +189,10 @@ namespace SYA_UI
                 VideoCaptureCtrl.instance.StartCapture();
                 //녹화중 상태가 되며
                 isRecording = true;
+                //시간표시 텍스트가 켜지고
+                recodingTime.enabled = true;
+                //시간이 흐른다
+                recoding_time = true;
                 //창이 닫힌다
                 recodStart.SetActive(false);
                 //영상아이콘이 주황색으로 변한다
@@ -178,6 +204,12 @@ namespace SYA_UI
                 VideoCaptureCtrl.instance.StopCapture();
                 //녹화중 상태가 아니 되며
                 isRecording = false;
+                //시간이 멈추고
+                recodingTimeNum = 0;
+                //시간표시 텍스트가 꺼지고
+                recodingTime.enabled = false;
+                //시간이 멈춘다
+                recoding_time = false;
                 //창이 닫힌다
                 recodEnd.SetActive(false);
                 //영상아이콘이 회색으로 변한다
