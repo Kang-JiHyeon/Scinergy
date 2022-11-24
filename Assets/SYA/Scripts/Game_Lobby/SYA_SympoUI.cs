@@ -8,12 +8,14 @@ using UnityEngine.UI;
 using UnityEngine.Windows.WebCam;
 using Photon.Pun;
 using Photon.Realtime;
-
+using UnityEngine.EventSystems;
 
 namespace SYA_UI
 {
     public class SYA_SympoUI : MonoBehaviourPunCallbacks
     {
+        GraphicRaycaster m_gr;
+        PointerEventData m_ped;
 
         public GameObject window;
         public GameObject windowList;
@@ -46,7 +48,8 @@ namespace SYA_UI
 
         private void Awake()
         {
-            //transform.parent = GameObject.Find("Canvas_DontDestroy").transform.GetChild(0).transform;
+            m_gr = GetComponent<GraphicRaycaster>();
+            m_ped = new PointerEventData(null);
         }
 
         private void Update()
@@ -57,6 +60,20 @@ namespace SYA_UI
 
             // ����
             text_user.text = string.Format("{0:D2}", PhotonNetwork.PlayerList.Length) + "/20";
+
+            if (Input.GetMouseButtonDown(0))
+            {
+                m_ped.position = Input.mousePosition;
+                List<RaycastResult> results = new List<RaycastResult>();
+                m_gr.Raycast(m_ped, results);
+                foreach (RaycastResult ray in results)
+                {
+                    if (ray.gameObject.transform.GetComponent<Button>())
+                    {
+                        SYA_AudioManager.instance.clickSource.Play();
+                    }
+                }
+            }
 
         }
 

@@ -23,7 +23,7 @@ public class PlayerUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!SYA_SymposiumManager.Instance.player[PhotonNetwork.NickName].IsMine) gameObject.SetActive(false);
+        //if (!SYA_SymposiumManager.Instance.player[PhotonNetwork.NickName].IsMine) gameObject.SetActive(false);
 
             if (SYA_SymposiumManager.Instance.playerAuthority[PhotonNetwork.NickName] != "Owner")
             {

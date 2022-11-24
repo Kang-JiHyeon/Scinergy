@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using Photon.Pun;
 using UnityEngine.SceneManagement;
 using RockVR.Video;
+using UnityEngine.EventSystems;
 
 namespace SYA_UI
 {
@@ -12,6 +13,8 @@ namespace SYA_UI
     {
         public static SYA_UIManager Instance;
 
+        GraphicRaycaster m_gr;
+        PointerEventData m_ped;
 
         private void Awake()
         {
@@ -29,6 +32,8 @@ namespace SYA_UI
             {
                 Destroy(gameObject);
             }
+            m_gr = GetComponent<GraphicRaycaster>();
+            m_ped = new PointerEventData(null);
         }
 
         float recodingTimeNum;
@@ -36,16 +41,33 @@ namespace SYA_UI
 
         private void Update()
         {
-            if(recoding_time)
+            if (recoding_time)
             {
                 recodingTimeNum += Time.deltaTime;
                 recodingTime.text = string.Format("{0:D2}:{1:D2}", min, (int)recodingTimeNum);
-                if((int)recodingTimeNum>59)
+                if ((int)recodingTimeNum > 59)
                 {
                     recodingTimeNum = 0;
                     min++;
                 }
             }
+
+            //오디오매니저에게 캔버스 설정
+            if(SceneManager.GetActiveScene().name.Contains("Sympo"))
+            if (Input.GetMouseButtonDown(0))
+            {
+                m_ped.position = Input.mousePosition;
+                List<RaycastResult> results = new List<RaycastResult>();
+                m_gr.Raycast(m_ped, results);
+                foreach (RaycastResult ray in results)
+                {
+                    if (ray.gameObject.transform.GetComponent<Button>())
+                    {
+                        SYA_AudioManager.instance.clickSource.Play();
+                    }
+                }
+            }
+
         }
 
         public Image btn_chat;
@@ -281,9 +303,9 @@ namespace SYA_UI
             exMic = mic.value;
         }
 
-        float exBG;
-        float exEF;
-        float exMic;
+        public float exBG;
+        public float exEF;
+        public float exMic;
         //완료를 누르면 반영된다
         //취소를 누르면 창이 닫힌다(오디오 설정과 그전 밸류값으로)
         public void OnSaveOption()
@@ -311,5 +333,7 @@ namespace SYA_UI
             mic.value = exMic;
             OnSaveOption();
         }
+
+        
     }
 }
