@@ -69,7 +69,7 @@ public class SYA_PlayerCompo : MonoBehaviourPun
             PlayerRot.enabled = true; ;
             //포톤뷰 이즈마인이고
             //씬이 로비거나(심포지엄) 별자리일 때
-            PlayerRot.camPos.gameObject.SetActive(!playerSit.isSit);
+            PlayerRot.camPos.gameObject.SetActive(!playerSit.isSit&&photonView.IsMine);
             playerBody.SetActive(true);
             playerName.SetActive(true);
             PlayerMove.cc.enabled = !playerSit.isSit;
