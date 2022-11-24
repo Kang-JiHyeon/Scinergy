@@ -1,14 +1,20 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing.Imaging;
+using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
+//using UnityEngine.UI;
 
 public class SYA_Thumbnail : MonoBehaviour
 {
     // 이미지 적용할 곳
-    public Image thumbnail;
+    public RawImage thumbnail;
+    //이미지 배열 저장하는 곳
+    byte[] byteTexture;
     //이미지 스프라이트 소스, 목록
-    public List<Sprite> thumbnails = new List<Sprite>();
+    public List<Texture2D> thumbnails = new List<Texture2D>();
     //생성되는 곳 부모
     public Transform content;
     //생성할 아이템
@@ -32,13 +38,20 @@ public class SYA_Thumbnail : MonoBehaviour
         for(int i=0; i<thumbnails.Count; ++i)
         {
             GameObject go = Instantiate(item, content);
-            go.GetComponent<Image>().sprite = thumbnails[i];
+            go.GetComponent<RawImage>().texture = thumbnails[i];
         }
     }
 
-/*    // Update is called once per frame
-    void Update()
+    public GameObject fileGo;
+    //버튼을 누르면 폴더 창이 열린다
+    public void OnClickFile()
     {
-        
-    }*/
+        fileGo.SetActive(!fileGo.activeSelf);
+    }
+
+    /*    // Update is called once per frame
+        void Update()
+        {
+
+        }*/
 }

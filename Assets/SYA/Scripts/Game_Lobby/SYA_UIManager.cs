@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using Photon.Pun;
 using UnityEngine.SceneManagement;
 using RockVR.Video;
+using UnityEngine.EventSystems;
 
 namespace SYA_UI
 {
@@ -12,6 +13,8 @@ namespace SYA_UI
     {
         public static SYA_UIManager Instance;
 
+        GraphicRaycaster m_gr;
+        PointerEventData m_ped;
 
         private void Awake()
         {
@@ -29,6 +32,42 @@ namespace SYA_UI
             {
                 Destroy(gameObject);
             }
+            m_gr = GetComponent<GraphicRaycaster>();
+            m_ped = new PointerEventData(null);
+        }
+
+        float recodingTimeNum;
+        int min;
+
+        private void Update()
+        {
+            if (recoding_time)
+            {
+                recodingTimeNum += Time.deltaTime;
+                recodingTime.text = string.Format("{0:D2}:{1:D2}", min, (int)recodingTimeNum);
+                if ((int)recodingTimeNum > 59)
+                {
+                    recodingTimeNum = 0;
+                    min++;
+                }
+            }
+
+            //오디오매니저에게 캔버스 설정
+            if(SceneManager.GetActiveScene().name.Contains("Sympo"))
+            if (Input.GetMouseButtonDown(0))
+            {
+                m_ped.position = Input.mousePosition;
+                List<RaycastResult> results = new List<RaycastResult>();
+                m_gr.Raycast(m_ped, results);
+                foreach (RaycastResult ray in results)
+                {
+                    if (ray.gameObject.transform.GetComponent<Button>())
+                    {
+                        SYA_AudioManager.instance.clickSource.Play();
+                    }
+                }
+            }
+
         }
 
         public Image btn_chat;
@@ -133,6 +172,11 @@ namespace SYA_UI
 
         public GameObject recodStart;
         public GameObject recodEnd;
+
+        //기록중인 시간
+        public Text recodingTime;
+        bool recoding_time;
+
         //영상찍기 창 온오프
         //영상아이콘을 누르면
         public void Record()
@@ -167,6 +211,10 @@ namespace SYA_UI
                 VideoCaptureCtrl.instance.StartCapture();
                 //녹화중 상태가 되며
                 isRecording = true;
+                //시간표시 텍스트가 켜지고
+                recodingTime.enabled = true;
+                //시간이 흐른다
+                recoding_time = true;
                 //창이 닫힌다
                 recodStart.SetActive(false);
                 //영상아이콘이 주황색으로 변한다
@@ -178,6 +226,12 @@ namespace SYA_UI
                 VideoCaptureCtrl.instance.StopCapture();
                 //녹화중 상태가 아니 되며
                 isRecording = false;
+                //시간이 멈추고
+                recodingTimeNum = 0;
+                //시간표시 텍스트가 꺼지고
+                recodingTime.enabled = false;
+                //시간이 멈춘다
+                recoding_time = false;
                 //창이 닫힌다
                 recodEnd.SetActive(false);
                 //영상아이콘이 회색으로 변한다
@@ -249,9 +303,9 @@ namespace SYA_UI
             exMic = mic.value;
         }
 
-        float exBG;
-        float exEF;
-        float exMic;
+        public float exBG;
+        public float exEF;
+        public float exMic;
         //완료를 누르면 반영된다
         //취소를 누르면 창이 닫힌다(오디오 설정과 그전 밸류값으로)
         public void OnSaveOption()
@@ -279,5 +333,7 @@ namespace SYA_UI
             mic.value = exMic;
             OnSaveOption();
         }
+
+        
     }
 }

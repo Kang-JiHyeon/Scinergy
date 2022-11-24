@@ -7,8 +7,8 @@ using UnityEngine.UI;
 public class SYA_ImageLoader : MonoBehaviour
 {
     //이미지 정보를 출력하는 Panel
-    [SerializeField]
-    private GameObject panelLmageViewer;
+    //[SerializeField]
+    public GameObject panelLmageViewer;
 
     //파일이 나타내는 이미지 출력
     [SerializeField]
@@ -21,15 +21,19 @@ public class SYA_ImageLoader : MonoBehaviour
     private float maxwidth = 670;
     private float maxHeight = 385;
 
+    Texture2D texture2D;
+    string path_;
+
     //해당 파일내의 이미지 정보를 불러오는 곳
     public void OnLoad(FileInfo file)
     {
         //이미지 정보를 출력하는 Panel 활설화
         panelLmageViewer.SetActive(true);
+        path_ = file.FullName;
         //파일로부터 bytes 데이터를 불러온다
         byte[] byteTexture = File.ReadAllBytes(file.FullName);
         //위의 텍스쳐에서 바이트 배열 정보를 바탕으로 Texture2D 이미지 파일 데이터 생성
-        Texture2D texture2D = new Texture2D(0, 0);
+        texture2D = new Texture2D(0, 0);
         if(byteTexture.Length>0)//정보가 있으면->받아온 값이 있으면
         {
             texture2D.LoadImage(byteTexture);
@@ -63,6 +67,17 @@ public class SYA_ImageLoader : MonoBehaviour
 
     public void OffLoad()
     {
-        panelLmageViewer.SetActive(false);
+        panelLmageViewer.transform.parent.gameObject.SetActive(false);
+    }
+
+    public SYA_SympoLobby SympoLobby;
+    public SYA_Thumbnail Thumbnail;
+    //확인을 누르,면
+    //스프라이트 소스모음에 내 소스를 보낸다
+    public void OnClickAddSpriteList()
+    {
+        Thumbnail.thumbnail.texture = texture2D;
+        SympoLobby.custom = true;
+        SympoLobby.path = path_;
     }
 }
