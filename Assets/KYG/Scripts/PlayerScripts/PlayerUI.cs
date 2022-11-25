@@ -13,6 +13,7 @@ public class PlayerUI : MonoBehaviour
     public GameObject compas;
     public GameObject Clock;
     public GameObject Map;
+    public GameObject manual;
     public List<Button> masterBtn = new();
     // Start is called before the first frame update
     void Start()
@@ -118,6 +119,17 @@ public class PlayerUI : MonoBehaviour
         else
         {
             Map.SetActive(true);
+        }
+    }
+    public void OnManualBtn()
+    {
+        if (manual.activeSelf)
+        {
+            manual.SetActive(false);
+        }
+        else
+        {
+            manual.SetActive(true);
         }
     }
 }

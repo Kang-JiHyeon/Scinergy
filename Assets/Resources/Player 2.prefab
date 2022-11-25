@@ -5591,6 +5591,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: dc5c9dfdc3f914743b03a31d9b5a1060, type: 3}
   - {fileID: 21300000, guid: a4e654b9b77b65744b987fecd009de10, type: 3}
   targetObject: {fileID: 2836529993686819985}
+  clickSound: {fileID: 0}
 --- !u!1 &2836529993686819985
 GameObject:
   m_ObjectHideFlags: 0
@@ -5939,6 +5940,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 9de05f05ea190e54bb43a5b7315e7433, type: 3}
   - {fileID: 21300000, guid: a4fd4b11df678d74f84eafccdc78a05e, type: 3}
   targetObject: {fileID: 2836529995028217879}
+  clickSound: {fileID: 0}
 --- !u!1 &2836529993737916916
 GameObject:
   m_ObjectHideFlags: 0
@@ -6583,6 +6585,7 @@ MonoBehaviour:
   compas: {fileID: 2836529993318380562}
   Clock: {fileID: 2836529994485386911}
   Map: {fileID: 2836529993686819985}
+  manual: {fileID: 7233451529275480978}
   masterBtn:
   - {fileID: 2836529993845135188}
   - {fileID: 2836529993683431824}
@@ -6945,6 +6948,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 8944628993b3aee47b0f1cb2105ab6dd, type: 3}
   - {fileID: 21300000, guid: 58cecc1c54bbc4b42beddf00bf340708, type: 3}
   targetObject: {fileID: 2836529994485386911}
+  clickSound: {fileID: 0}
 --- !u!1 &2836529993852873223
 GameObject:
   m_ObjectHideFlags: 0
@@ -9471,6 +9475,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 57ed8b5e5f259844d83c53eed409f19e, type: 3}
   - {fileID: 21300000, guid: 86d19328d7a085248946d1e63d2f3475, type: 3}
   targetObject: {fileID: 2836529994072095448}
+  clickSound: {fileID: 0}
 --- !u!1 &2836529994220238895
 GameObject:
   m_ObjectHideFlags: 0
@@ -10270,6 +10275,7 @@ MonoBehaviour:
   cc: {fileID: 0}
   nickName: {fileID: 2660803169950827906}
   anim: {fileID: 7679119818033273268}
+  currentScene: 
   fullScreenMode: 0
 --- !u!114 &2836529994268691292
 MonoBehaviour:
@@ -10397,6 +10403,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f387dddbeff30194d903d2c1f77b463e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isTrigger: 0
 --- !u!114 &2778251782718013339
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11993,6 +12000,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 4d327d3238785b5479860445a2fef657, type: 3}
   - {fileID: 21300000, guid: 36937e156d17e444cb9450695b798361, type: 3}
   targetObject: {fileID: 2836529993570609020}
+  clickSound: {fileID: 0}
 --- !u!1 &2836529994485386911
 GameObject:
   m_ObjectHideFlags: 0
@@ -15098,6 +15106,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 7cb9f3bd173530a429b2474e66fb4ccc, type: 3}
   - {fileID: 21300000, guid: 96aecfa332c23404fb43f6e1a69375ef, type: 3}
   targetObject: {fileID: 2836529993318380562}
+  clickSound: {fileID: 0}
 --- !u!1 &2836529995010000892
 GameObject:
   m_ObjectHideFlags: 0
@@ -15848,7 +15857,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 508, y: 324}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2386444784703489113
 CanvasRenderer:
@@ -15878,7 +15887,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 8b6cfa8da12c23b408c55f33a58b3511, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -18208,6 +18217,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: edd75154e90c1ad42958745d9f6172af, type: 3}
   - {fileID: 21300000, guid: 99cfaff12bc67074187ee787edc56e70, type: 3}
   targetObject: {fileID: 7233451529275480978}
+  clickSound: {fileID: 0}
 --- !u!1 &6193950165514661647
 GameObject:
   m_ObjectHideFlags: 0

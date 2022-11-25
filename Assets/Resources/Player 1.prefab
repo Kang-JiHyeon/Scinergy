@@ -5920,6 +5920,7 @@ GameObject:
   - component: {fileID: 2836529993683431823}
   - component: {fileID: 2836529993683431824}
   - component: {fileID: 5734946991462429315}
+  - component: {fileID: 6894512194139069137}
   m_Layer: 0
   m_Name: MapBtn
   m_TagString: Untagged
@@ -6069,6 +6070,20 @@ MonoBehaviour:
   - {fileID: 21300000, guid: dc5c9dfdc3f914743b03a31d9b5a1060, type: 3}
   - {fileID: 21300000, guid: a4e654b9b77b65744b987fecd009de10, type: 3}
   targetObject: {fileID: 2836529993686819985}
+  clickSound: {fileID: 8452067042264462937, guid: 825b90e74a5db4343ae05512cb7b62d1, type: 3}
+--- !u!114 &6894512194139069137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2836529993683431826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates: []
 --- !u!1 &2836529993686819985
 GameObject:
   m_ObjectHideFlags: 0
@@ -6268,6 +6283,7 @@ GameObject:
   - component: {fileID: 2836529993718810511}
   - component: {fileID: 2836529993718810512}
   - component: {fileID: 5376020992539775911}
+  - component: {fileID: 6472944722582446759}
   m_Layer: 0
   m_Name: ' ConstellationBtn'
   m_TagString: Untagged
@@ -6417,6 +6433,20 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 9de05f05ea190e54bb43a5b7315e7433, type: 3}
   - {fileID: 21300000, guid: a4fd4b11df678d74f84eafccdc78a05e, type: 3}
   targetObject: {fileID: 2836529995028217879}
+  clickSound: {fileID: 8452067042264462937, guid: 825b90e74a5db4343ae05512cb7b62d1, type: 3}
+--- !u!114 &6472944722582446759
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2836529993718810514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates: []
 --- !u!1 &2836529993737916916
 GameObject:
   m_ObjectHideFlags: 0
@@ -7061,6 +7091,7 @@ MonoBehaviour:
   compas: {fileID: 2836529993318380562}
   Clock: {fileID: 2836529994485386911}
   Map: {fileID: 2836529993686819985}
+  manual: {fileID: 7233451529275480978}
   masterBtn:
   - {fileID: 2836529993845135188}
   - {fileID: 2836529993683431824}
@@ -7274,6 +7305,7 @@ GameObject:
   - component: {fileID: 2836529993845135187}
   - component: {fileID: 2836529993845135188}
   - component: {fileID: 3089111821567949859}
+  - component: {fileID: 5949883314049783685}
   m_Layer: 0
   m_Name: ClockBtn
   m_TagString: Untagged
@@ -7423,6 +7455,20 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 8944628993b3aee47b0f1cb2105ab6dd, type: 3}
   - {fileID: 21300000, guid: 58cecc1c54bbc4b42beddf00bf340708, type: 3}
   targetObject: {fileID: 2836529994485386911}
+  clickSound: {fileID: 8452067042264462937, guid: 825b90e74a5db4343ae05512cb7b62d1, type: 3}
+--- !u!114 &5949883314049783685
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2836529993845135190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates: []
 --- !u!1 &2836529993852873223
 GameObject:
   m_ObjectHideFlags: 0
@@ -9800,6 +9846,7 @@ GameObject:
   - component: {fileID: 2836529994168100358}
   - component: {fileID: 2836529994168100359}
   - component: {fileID: 5859741167200079794}
+  - component: {fileID: 6172330935388683426}
   m_Layer: 0
   m_Name: telescopeBtn
   m_TagString: Untagged
@@ -9949,6 +9996,20 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 57ed8b5e5f259844d83c53eed409f19e, type: 3}
   - {fileID: 21300000, guid: 86d19328d7a085248946d1e63d2f3475, type: 3}
   targetObject: {fileID: 2836529994072095448}
+  clickSound: {fileID: 8452067042264462937, guid: 825b90e74a5db4343ae05512cb7b62d1, type: 3}
+--- !u!114 &6172330935388683426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2836529994168100361}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates: []
 --- !u!1 &2836529994220238895
 GameObject:
   m_ObjectHideFlags: 0
@@ -10748,6 +10809,7 @@ MonoBehaviour:
   cc: {fileID: 0}
   nickName: {fileID: 2660803169950827906}
   anim: {fileID: 1581230872046504260}
+  currentScene: 
   fullScreenMode: 0
 --- !u!114 &2836529994268691292
 MonoBehaviour:
@@ -10875,6 +10937,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f387dddbeff30194d903d2c1f77b463e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isTrigger: 0
 --- !u!114 &5478002372043922208
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12472,6 +12535,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 4d327d3238785b5479860445a2fef657, type: 3}
   - {fileID: 21300000, guid: 36937e156d17e444cb9450695b798361, type: 3}
   targetObject: {fileID: 2836529993570609020}
+  clickSound: {fileID: 8452067042264462937, guid: 825b90e74a5db4343ae05512cb7b62d1, type: 3}
 --- !u!1 &2836529994485386911
 GameObject:
   m_ObjectHideFlags: 0
@@ -15428,6 +15492,7 @@ GameObject:
   - component: {fileID: 2836529995006168284}
   - component: {fileID: 2836529995006168285}
   - component: {fileID: 832917241527638636}
+  - component: {fileID: 8822880732211412916}
   m_Layer: 0
   m_Name: CompasBtn
   m_TagString: Untagged
@@ -15577,6 +15642,20 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 7cb9f3bd173530a429b2474e66fb4ccc, type: 3}
   - {fileID: 21300000, guid: 96aecfa332c23404fb43f6e1a69375ef, type: 3}
   targetObject: {fileID: 2836529993318380562}
+  clickSound: {fileID: 8452067042264462937, guid: 825b90e74a5db4343ae05512cb7b62d1, type: 3}
+--- !u!114 &8822880732211412916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2836529995006168287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates: []
 --- !u!1 &2836529995010000892
 GameObject:
   m_ObjectHideFlags: 0
@@ -16327,7 +16406,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 508, y: 324}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2386444784703489113
 CanvasRenderer:
@@ -16357,7 +16436,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 8b6cfa8da12c23b408c55f33a58b3511, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -18432,6 +18511,7 @@ GameObject:
   - component: {fileID: 952750569553232880}
   - component: {fileID: 6322192946323818283}
   - component: {fileID: 614498076148474601}
+  - component: {fileID: 1461905796376812704}
   m_Layer: 0
   m_Name: ManualBtn
   m_TagString: Untagged
@@ -18541,13 +18621,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
+      - m_Target: {fileID: 2836529993814389700}
+        m_TargetAssemblyTypeName: PlayerUI, Assembly-CSharp
+        m_MethodName: OnManualBtn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -18569,6 +18649,20 @@ MonoBehaviour:
   - {fileID: 21300000, guid: edd75154e90c1ad42958745d9f6172af, type: 3}
   - {fileID: 21300000, guid: 99cfaff12bc67074187ee787edc56e70, type: 3}
   targetObject: {fileID: 7233451529275480978}
+  clickSound: {fileID: 8452067042264462937, guid: 825b90e74a5db4343ae05512cb7b62d1, type: 3}
+--- !u!114 &1461905796376812704
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5932161191388786456}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates: []
 --- !u!1 &6036469637440205242
 GameObject:
   m_ObjectHideFlags: 0
