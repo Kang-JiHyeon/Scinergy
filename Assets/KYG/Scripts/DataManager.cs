@@ -98,15 +98,6 @@ public class DataManager : MonoBehaviour
                 line.transform.parent = starLine.star1.transform.parent.transform;
             }
         }
-        //for(int i = 0; i< starTests.Count; i++)
-        //{
-        //    GameObject star = Instantiate(starFactory);
-        //    GameManager.instance.createdStarList[starTests[i].starName] = star;
-        //    GameObject brightness = brightnessList.Find(x => x.name == starTests[i].brightness);
-        //    star.GetComponent<Star>().InfoSet(starTests[i].starName, starTests[i].ra, starTests[i].dec, starFactory, brightness, starTests[i].apparentMagnitude, 1);
-        //    star.transform.parent = GameManager.instance.CelestialSphere.transform;
-        //}
-
     }   
 
     // Update is called once per frame

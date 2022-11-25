@@ -43,6 +43,7 @@ public class Star : MonoBehaviourPun
         if (generatedType == 0) 
         { 
             InfoSet(starName, ra, dec, starType, brightness, apparentMagnitude, 1);
+            GameManager.instance.createdStarList[starName] = gameObject;
         }
     }
 

@@ -16,12 +16,6 @@ public class Telescope : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            Camera.main.fieldOfView = zoomRate*2;
-            Cursor.visible = false;
-            gameObject.SetActive(false);
-        }
         if (gameObject.activeSelf)
         {
             float scrollWheel = Input.GetAxis("Mouse ScrollWheel");
@@ -87,5 +81,15 @@ public class Telescope : MonoBehaviour
                 star.Value.GetComponent<Star>().starInfo.SetActive(false);
             }
         }
+    }
+    public void TelescopeOff()
+    {
+        foreach (KeyValuePair<string, GameObject> star in GameManager.instance.createdStarList)
+        {
+            star.Value.GetComponent<Star>().starInfo.SetActive(false);
+        }
+        Camera.main.fieldOfView = zoomRate * 2;
+        Cursor.visible = false;
+        gameObject.SetActive(false);
     }
 }

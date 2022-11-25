@@ -77,12 +77,10 @@ public class PlayerUI : MonoBehaviour
     {
         if (telescope.activeSelf)
         {
-            telescope.SetActive(false);
+            telescope.GetComponent<Telescope>().TelescopeOff();
         }
         else
         {
-            gameObject.SetActive(false);
-            //Camera.main.fieldOfView = 30;
             Cursor.visible = false;
             telescope.SetActive(true);
         }
