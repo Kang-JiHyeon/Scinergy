@@ -6,7 +6,7 @@ using UnityEngine.Timeline;
 
 public class SYA_Timeline : MonoBehaviour
 {
-    
+
 
     public TimelineAsset timelineAsset;
     public PlayableDirector playableDirector;
@@ -14,7 +14,7 @@ public class SYA_Timeline : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
     //마우스 클릭시 흐르는 시간
     float currentTime = 0;
@@ -59,16 +59,16 @@ public class SYA_Timeline : MonoBehaviour
                 currentTime = 0;
                 glassButtonOn = 0;
                 animationPlay = true;
-
-                //만약 플레이어무브에서 신호를 보내면
-                playableDirector.Play(timelineAsset);
-                if (playableDirector.time >= playableDirector.duration)
-                {
-                    playableDirector.Stop();
-                    animationPlay = false;
-                    //플레이어에게 종료되었다는 신호 보내기
-                }
+        //만약 플레이어무브에서 신호를 보내면
+        playableDirector.Play(timelineAsset);
             }
+        }
+
+        if (playableDirector.time >= playableDirector.duration)
+        {
+            playableDirector.Stop();
+            animationPlay = false;
+            //플레이어에게 종료되었다는 신호 보내기
         }
     }
 }
