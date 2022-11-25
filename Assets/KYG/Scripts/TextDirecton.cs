@@ -31,7 +31,7 @@ public class TextDirecton : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Camera.main.enabled == true)
+        if (Camera.main != null)
         {
             transform.forward = Camera.main.transform.forward;
             transform.position = star.transform.position + new Vector3(0, -50, 0);

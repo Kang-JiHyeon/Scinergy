@@ -23,6 +23,7 @@ public class SYA_ImageLoader : MonoBehaviour
 
     Texture2D texture2D;
     string path_;
+    long size;
 
     //해당 파일내의 이미지 정보를 불러오는 곳
     public void OnLoad(FileInfo file)
@@ -30,6 +31,7 @@ public class SYA_ImageLoader : MonoBehaviour
         //이미지 정보를 출력하는 Panel 활설화
         panelLmageViewer.SetActive(true);
         path_ = file.FullName;
+        size = file.Length;
         //파일로부터 bytes 데이터를 불러온다
         byte[] byteTexture = File.ReadAllBytes(file.FullName);
         //위의 텍스쳐에서 바이트 배열 정보를 바탕으로 Texture2D 이미지 파일 데이터 생성
@@ -62,22 +64,35 @@ public class SYA_ImageLoader : MonoBehaviour
         imageDrawTexture.sprite = sprite;
 
         //이미지 파일 정보 출력
-        textFileData.text = $"{file.Name} ({texture2D.width} * {texture2D.height})";
+        textFileData.text = $"{file.Name} ({texture2D.width} * {texture2D.height}) / {size}bytes";
     }
 
     public void OffLoad()
     {
         panelLmageViewer.transform.parent.gameObject.SetActive(false);
+            sizeOverText.SetActive(false);
     }
 
     public SYA_SympoLobby SympoLobby;
     public SYA_Thumbnail Thumbnail;
+    //용량이 너무 크다는 문구
+    public GameObject sizeOverText;
     //확인을 누르,면
     //스프라이트 소스모음에 내 소스를 보낸다
     public void OnClickAddSpriteList()
     {
-        Thumbnail.thumbnail.texture = texture2D;
-        SympoLobby.custom = true;
-        SympoLobby.path = path_;
+        //용량 확인
+        if (texture2D.width <= 1000 && texture2D.height <= 1000)
+        {
+            Thumbnail.thumbnail.texture = texture2D;
+            SympoLobby.custom = true;
+            SympoLobby.path = path_;
+            OffLoad();
+        }
+        //사이즈 넘으면 문구 출력
+        else
+        {
+            sizeOverText.SetActive(true);
+        }
     }
 }
