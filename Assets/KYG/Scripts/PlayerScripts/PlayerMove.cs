@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Playables;
+using UnityEngine.Timeline;
 using UnityEngine.UI;
 using Photon.Pun;
 using TMPro;
@@ -157,9 +159,17 @@ public class PlayerMove : MonoBehaviourPun
                 Tv = raycastHit.collider.gameObject;
                 //횟수를 ++해준다
                 buttonOn++;
-            }
+            }/*
+            else if(raycastHit.collider.transform.name == "Glass_01")
+            {
+                if(!animationPlay)
+                {
+                    glassButtonOn++;
+                }
+
+            }*/
         }
-        if (buttonOn >= 1)
+        if (buttonOn >= 1)//|| glassButtonOn >= 1)
         {
             //클릭 후 시간이 흐른다
             currentTime += Time.deltaTime;
@@ -168,6 +178,7 @@ public class PlayerMove : MonoBehaviourPun
             {
                 currentTime = 0;
                 buttonOn = 0;
+                //glassButtonOn = 0;
             }
             //GetComponentInChildren<Camera>().enabled = false;
             if (buttonOn >= 2)
@@ -183,8 +194,16 @@ public class PlayerMove : MonoBehaviourPun
                 if (!playerSit.isSit)
                     playerRot.enabled = !fullScreenMode;
             }
+            //else if (glassButtonOn>=2)
+            //{
+            //    currentTime = 0;
+            //    glassButtonOn = 0;
+            //    animationPlay = true;
+            //}
         }
     }
+
+
     public bool fullScreenMode;
     //마우스 클릭시 흐르는 시간
     float currentTime = 0;
@@ -192,6 +211,11 @@ public class PlayerMove : MonoBehaviourPun
     float clickTime = 0.5f;
     //클릭 횟수
     int buttonOn = 0;
+    ////클릭 횟수
+    //int glassButtonOn = 0;
+    ////시네머신 플레이
+    //bool animationPlay;
+
     GameObject Tv;
     Camera _cam;
 
