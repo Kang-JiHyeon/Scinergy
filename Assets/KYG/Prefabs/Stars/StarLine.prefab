@@ -149,6 +149,10 @@ MonoBehaviour:
   starLine: {fileID: 0}
   star1: {fileID: 0}
   star2: {fileID: 0}
+  starLines:
+  - {fileID: 2100000, guid: 98f6439d9cf04894db6ebb7e5a5e88d9, type: 2}
+  - {fileID: 2100000, guid: b8e19a76e93fcf147894ea1e9b5fed0f, type: 2}
+  isSelected: 0
 --- !u!114 &8041196191949388106
 MonoBehaviour:
   m_ObjectHideFlags: 0

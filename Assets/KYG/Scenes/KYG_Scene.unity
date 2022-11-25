@@ -304,11 +304,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6927864550069903325, guid: 7d58099d2227d914796728ed385405d6, type: 3}
       propertyPath: ra
-      value: 3
+      value: 3.0223
       objectReference: {fileID: 0}
     - target: {fileID: 6927864550069903325, guid: 7d58099d2227d914796728ed385405d6, type: 3}
       propertyPath: dec
-      value: 89
+      value: 89.2141
       objectReference: {fileID: 0}
     - target: {fileID: 6927864550069903325, guid: 7d58099d2227d914796728ed385405d6, type: 3}
       propertyPath: starName
@@ -321,7 +321,11 @@ PrefabInstance:
     - target: {fileID: 6927864550069903325, guid: 7d58099d2227d914796728ed385405d6, type: 3}
       propertyPath: brightness
       value: 
-      objectReference: {fileID: 1607489160101874, guid: 6af603338e51dfe49b798a0385bf519d, type: 3}
+      objectReference: {fileID: 1607489160101874, guid: 6949d19b072db1c45ab3d44fec09a1a0, type: 3}
+    - target: {fileID: 6927864550069903325, guid: 7d58099d2227d914796728ed385405d6, type: 3}
+      propertyPath: apparentMagnitude
+      value: 2.09
+      objectReference: {fileID: 0}
     - target: {fileID: 7177477379725082803, guid: 7d58099d2227d914796728ed385405d6, type: 3}
       propertyPath: m_Name
       value: Stars

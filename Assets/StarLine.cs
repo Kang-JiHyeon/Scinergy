@@ -7,6 +7,8 @@ public class StarLine : MonoBehaviour
     public LineRenderer starLine;
     public GameObject star1;
     public GameObject star2;
+    public Material[] starLines;
+    public bool isSelected;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,6 +20,14 @@ public class StarLine : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (isSelected)
+        {
+            starLine.material = starLines[1];
+        }
+        else
+        {
+            starLine.material = starLines[0];
+        }
         if(star1 && star2)
         {
             starLine.SetPosition(0, star1.transform.position);

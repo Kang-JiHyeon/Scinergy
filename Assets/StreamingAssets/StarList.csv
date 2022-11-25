@@ -44,7 +44,7 @@ constellationName,starName,apparentMagnitude,distance,ra,dec,brightness,starLine
 처녀,Kappa Virginis,4.31,254.81,14.1405,-10.2238,K,Spica
 처녀,Spica,0.89,249.74,13.2622,-11.1639,B,Forima
 처녀,Delta Virginis,3.44,198.39,12.5643,3.1631,M,Heze
-처녀,Vindemiatrix,2.98,109.6,13.0317,10.5015,G,Delta Virginis
+처녀,Vindemiatrix,2.98,109.6,13.0317,10.5015,G,Delta Virginis:Delta Virginis
 처녀,Forima,2.81,38.11,12.4247,-1.3419,F,Zaniah
 처녀,Zaniah,3.89,265.39,12.2103,-0.4729,A,Nu Virginis
 처녀,Nu Virginis,4.13,293.84,11.47,6.2411,M,Zaniah
@@ -369,7 +369,7 @@ constellationName,starName,apparentMagnitude,distance,ra,dec,brightness,starLine
 에리다누스,Upsilon3 Eridani,4.09,296.24,4.2455,-33.5746,K,Upsilon2 Eridani
 에리다누스,Upsilon2 Eridani,3.97,213.87,4.3628,-30.3052,G,Tau6 Eridani
 에리다누스,Tau6 Eridani,4.31,57.49,3.4751,-23.1055,F,Tau5 Eridani
-에리다누스,Tau5 Eridani,4.22,293.31,3.3449,21.3322,B,Tau4 Eridani
+에리다누스,Tau5 Eridani,4.22,293.31,3.3449,-21.3322,B,Tau4 Eridani
 에리다누스,Tau4 Eridani,3.72,304.54,3.2033,-21.4029,M,Tau3 Eridani
 에리다누스,Tau3 Eridani,4.13,88.63,3.0325,-23.3207,A,Tau1 Eridani
 에리다누스,Tau1 Eridani,4.56,46.38,2.4611,-18.2835,F,Eta Eridani
@@ -392,7 +392,7 @@ constellationName,starName,apparentMagnitude,distance,ra,dec,brightness,starLine
 황소,Gamma Tauri,3.8,161.55,4.2106,15.4059,G,Theta2 Tauri
 황소,Lambda Tauri,3.38,483.91,4.0158,12.3319,B,Gamma Tauri
 황소,Omicron Tauri,3.77,290.95,3.2603,9.0635,G,Lambda Tauri
-황소,Delta3 Tauri A,4.31,148.52,4.265,17.585,A,Ain
+황소,Delta3 Tauri A,4.31,148.52,4.265,17.585,A,Ain:Delta Tauri
 황소,Delta Tauri,3.92,155.61,4.2416,17.3547,G,Gamma Tauri
 황소,Alcyone,2.84,403.17,3.4852,24.1034,B,Delta Tauri
 쌍둥이,Pollux,1.29,33.79,7.4643,27.5812,K,Upsilon Geminorum
@@ -429,3 +429,15 @@ constellationName,starName,apparentMagnitude,distance,ra,dec,brightness,starLine
 게,Delta Cancri,4.09,130.57,8.4559,18.0413,K,Alpha Cancri
 게,Alpha Cancri,4.28,188.32,8.5944,11.4612,K,Delta Cancri
 게,Beta Cancri,3.66,303.41,8.1745,9.0658,K,Delta Cancri
+북두칠성,Alkaid,1.8,103.94,13.4824,49.1152,B,Mizar
+북두칠성,Mizar,2.25,85.81,13.2448,54.4815,A,Alioth
+북두칠성,Alioth,1.75,82.55,12.55,55.5001,A,Megrez
+북두칠성,Megrez,3.33,80.51,12.1631,56.5411,A,Dubhe
+북두칠성,Dubhe,1.95,122.89,11.0506,61.3727,G,Merak
+북두칠성,Merak,2.34,79.75,11.0311,56.1524,A,Phekda
+북두칠성,Phekda,2.42,83.18,11.55,53.33,A,Megrez
+카시오페이아,Caph,2.34,54.74,0.1024,59.1646,F,Schedir
+카시오페이아,Schedir,2.41,228.24,0.4149,56.3957,K,Gamma Cassiopeiae
+카시오페이아,Gamma Cassiopeiae,2.13,549.09,0.5806,60.5036,B,Rucbar
+카시오페이아,Rucbar,2.7,99.41,1.272,60.2123,A,Segin
+카시오페이아,Segin,3.3,411.82,1.5604,63.4705,B,Rucbar
