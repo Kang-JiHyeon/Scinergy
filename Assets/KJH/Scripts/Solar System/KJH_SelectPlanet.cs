@@ -189,6 +189,9 @@ public class KJH_SelectPlanet : MonoBehaviour
             mouseTarget = hit.transform;
             outlineScript = mouseTarget.GetComponent<Outline>();
 
+            GameObject targetName = mouseTarget.transform.parent.parent.Find("Name").gameObject;
+            if(targetName) targetName.SetActive(true);
+
             // hit 한 대상의 outline.cs 를 가져와서 활성화한다.
             if (outlineScript != null)
                 outlineScript.enabled = true;
@@ -211,6 +214,11 @@ public class KJH_SelectPlanet : MonoBehaviour
             if (focusScript)
             {
                 focusScript.ChangeFocusScale(0.3f);
+            }
+
+            if (mouseTarget != null)
+            {
+                mouseTarget.transform.parent.parent.Find("Name").gameObject.SetActive(false);
             }
         }
     }

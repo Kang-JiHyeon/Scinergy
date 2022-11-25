@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class KJH_SpaceSceneManager : MonoBehaviour
@@ -9,11 +10,19 @@ public class KJH_SpaceSceneManager : MonoBehaviour
     public bool isSolar = false;
     public bool isTime = false;
 
-    public Dictionary<int, string> dic_SceneNames = new Dictionary<int, string>();
+    public List<GameObject> go_options;
+    string loadSceneName = "";
+    [SerializeField]
+    public int loadSceneIndex = -1;
+
+    [Header("Button")]
+    public List<Image> image_mainBtns;
+    public List<Sprite> sprite_nomals;
+    public List<Sprite> sprite_clicks;
 
     private void Awake()
     {
-        if(instance == null)
+        if (instance == null)
         {
             instance = this;
         }
@@ -22,18 +31,90 @@ public class KJH_SpaceSceneManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        dic_SceneNames.Add(0, "KJH_SolarSystemScene");
-        dic_SceneNames.Add(1, "KJH_OrbitScene");
-        dic_SceneNames.Add(2, "KJH_EclipseScene");
+        // 옵션 리스트
+        Transform option = transform.Find("UI_Option");
 
+        //if (!option) return;
+
+        for(int i = 0; i<option.childCount; i++)
+        {
+            go_options.Add(option.GetChild(i).gameObject);
+        }
+
+        // 메인 버튼
+        Transform mainBtn = transform.Find("UI_Main");
+
+        //if (!mainBtn) return;
+
+        for (int i = 0; i < mainBtn.childCount; i++)
+        {
+            image_mainBtns.Add(mainBtn.GetChild(i).GetComponent<Image>());
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
+    public void OnClick_SolarSystemScene()
+    {
+        loadSceneName = "KJH_SolarSystemScene";
+        loadSceneIndex = 0;
+        //go_options[0].SetActive(!go_options[0].activeSelf);
+        //go_options[1].SetActive(false);
+        ChangeButtonSprite();
+
+    }
+
+    public void OnClick_CustomScene()
+    {
+        loadSceneName = "KJH_OrbitScene";
+        loadSceneIndex = 1;
+        //go_options[0].SetActive(false);
+        //go_options[1].SetActive(!go_options[1].activeSelf);
+
+        print(go_options);
+        ChangeButtonSprite();
+    }
+
+    public void OnClick_EclipseScene()
+    {
+        loadSceneName = "KJH_EclipseScene";
+        loadSceneIndex = 2;
+        //go_options[2].SetActive(!go_options[2].activeSelf);
+
+        ChangeButtonSprite();
+    }
+
+    public void OnClick_Guide()
+    {
+        loadSceneIndex = 3;
+        ChangeButtonSprite();
+
+    }
+
+
+    public void OnClick_LoadScene_Yes()
+    {
+        if (SceneManager.GetActiveScene().name != loadSceneName)
+        {
+            SceneManager.LoadScene(loadSceneName);
+        }
+    }
+    
+    public void OnClick_LoadScene_No()
+    {
+        //go_options[loadSceneIndex].transform.gameObject.SetActive(false);
+        ChangeButtonSprite();
+    }
+
+    public void OnClick_Close()
+    {
+        go_options[loadSceneIndex].SetActive(false);
+        image_mainBtns[loadSceneIndex].sprite = sprite_nomals[loadSceneIndex];
+    }
 
     public void Load_SolarSystemScene()
     {
@@ -60,11 +141,30 @@ public class KJH_SpaceSceneManager : MonoBehaviour
         }
     }
 
-    public void LoadScene(string )
+    public void LoadScene(string sceneName)
     {
-        if (SceneManager.GetActiveScene().name != "KJH_EclipseScene")
+        if (SceneManager.GetActiveScene().name != sceneName)
         {
-            SceneManager.LoadScene("KJH_EclipseScene");
+            SceneManager.LoadScene(sceneName);
+        }
+    }
+
+    public void ChangeButtonSprite()
+    {
+        // 옵션의 활성화 상태 변경
+        for(int i=0; i<go_options.Count; i++)
+        {
+            if(i == loadSceneIndex) go_options[loadSceneIndex].SetActive(!go_options[loadSceneIndex].activeSelf);
+            else go_options[i].SetActive(false);
+        }
+
+        // loadSceneIndex 이외의 버튼의 sprite는 normal로 설정
+        for(int i=0; i<image_mainBtns.Count; i++)
+        {
+            if (i == loadSceneIndex && go_options[loadSceneIndex].activeSelf)
+                image_mainBtns[loadSceneIndex].sprite = sprite_clicks[loadSceneIndex];
+            else 
+                image_mainBtns[i].sprite = sprite_nomals[i]; 
         }
     }
 }

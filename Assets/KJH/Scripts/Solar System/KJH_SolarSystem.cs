@@ -84,8 +84,8 @@ public class KJH_SolarSystem : MonoBehaviour
             lr = planets[i].GetChild(0).GetComponent<LineRenderer>();
             radius = Vector3.Distance(planets[i].GetChild(0).position, planets[i].position);
 
-            lr.startWidth = 0.1f;
-            lr.endWidth = 0.1f;
+            //lr.startWidth = 0.1f;
+            //lr.endWidth = 0.1f;
             DrawOrbit(planets[i].GetChild(0), radius);
         }
     }
