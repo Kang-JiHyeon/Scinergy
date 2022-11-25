@@ -1,435 +1,435 @@
-constellationName,starName,apparentMagnitude,distance,ra,dec,brightness
-사자,Denebola,2.16,35.88,11.5012,14.2643,A
-사자,Zosma,2.58,58.43,11.1518,20.2355,A
-사자,Algieba,2.16,130,10.2113,19.4333,K
-사자,Adhafera,3.5,274.08,10.1756,23.1811,F
-사자,Rasalas,4.03,124.11,9.543,25.5355,K
-사자,Epsilon Leonis,3.11,246.72,9.478,23.4007,G
-사자,Eta Leonis,3.5,1269.1,10.0833,16.3906,A
-사자,Regulus,1.32,79.3,10.0934,11.5123,B
-사자,Subra,3.63,130.31,9.421,9.4722,F
-사자,Chertan,3.33,165.06,11.1525,15.1819,A
-작은사자,46 Leonis Minoris,3.94,94.87,10.5434,34.0525,K
-작은사자,Beta Leonis Minoris,4.34,153.92,10.2911,36.3519,G
-작은사자,21 Leonis Minoris,4.53,92.11,10.0845,35.0754,A
-작은사자,10 Leonis Minoris,4.69,185,9.3536,36.174,G
-살쾡이,Alpha Lyncis,3.25,203.09,9.2226,34.174,K
-살쾡이,38 Lyncis,3.83,124.82,9.2015,36.4215,A
-살쾡이,HD77912,4.72,817.45,9.0758,38.2132,G
-살쾡이,10Ursae Majoris,4.03,52.41,9.0206,41.4126,F
-살쾡이,31Lyncis,4.34,382.37,8.2423,43.0644,K
-살쾡이,21 Lyncis,4.59,273.62,7.2826,49.0948,A
-살쾡이,15 Lyncis,4.5,178.33,6.5915,58.2322,G
-살쾡이,2 Lyncis,4.44,156.58,6.2139,58.5958,A
-목동,Zeta Bo?tes,3.8,175.73,14.4212,13.3754,A
-목동,15 Bo?tes,5.44,264.96,14.1556,9.594,K
-목동,Upsilon Bo?tes,4.16,263.46,13.5033,15.4108,K
-목동,Muphrid,2.78,37.17,13.5544,18.1703,G
-목동,Arcturus,0.11,36.72,14.164,19.0351,K
-목동,Epsilon Bo?tes A,1.94,263.8,14.4557,26.5842,K
-목동,Delta Bo?tes,3.63,121.79,15.1623,33.1348,G
-목동,Alkalurops,4.38,113.13,15.2519,37.175,F
-목동,Nekkar,3.64,225.25,15.0246,40.1802,G
-목동,Seginus,3.09,86.79,14.3258,38.1229,A
-목동,Rho Bo?tes,3.72,160.12,14.3247,30.1617,K
-목동,Xuange,4.18,99.05,14.1623,46.0517,A
-목동,Asellus Primus,4.46,47.39,14.2511,51.5102,F
-사냥개,Cor Caroli,2.84,114.8,12.5704,38.1139,A
-사냥개,Chara,4.34,27.53,12.3448,41.1356,G
-처녀,109Virgins,3.73,134.5,14.4722,1.4754,A
-처녀,Tau Virginis,4.25,224.94,14.0246,1.2609,A
-처녀,Heze,3.41,74.08,13.3549,-0.4237,A
-처녀,Mu Virginis,3.95,59.59,14.4414,-5.4519,F
-처녀,Syrma,4.16,72.53,14.1711,-6.0625,F
-처녀,Kappa Virginis,4.31,254.81,14.1405,-10.2238,K
-처녀,Spica,0.89,249.74,13.2622,-11.1639,B
-처녀,Delta Virginis,3.44,198.39,12.5643,3.1631,M
-처녀,Vindemiatrix,2.98,109.6,13.0317,10.5015,G
-처녀,Forima,2.81,38.11,12.4247,-1.3419,F
-처녀,Zaniah,3.89,265.39,12.2103,-0.4729,A
-처녀,Nu Virginis,4.13,293.84,11.47,6.2411,M
-까마귀,Algorab,2.94,86.86,12.3101,-16.382,A
-까마귀,Gienah,2.55,153.63,12.1657,-17.3954,B
-까마귀,Kraz,2.8,145.67,12.3533,-23.3108,G
-까마귀,Epsilon Corvi,3.17,317.9,12.1116,-22.4433,K
-까마귀,Alchiba,4.09,48.72,12.0934,-24.5107,F
-머리털,Alpha Comae Berenices,4.41,58.14,13.1104,17.2434,F
-머리털,Beta Comae Berenices,4.34,29.78,13.1254,27.4545,F
-머리털,Gamma Comae Berenices,4.5,167.26,12.2803,28.0828,K
-천칭,Theta Librae,4.28,168.47,15.5505,-16.4739,G
-천칭,Gamma Librae,4.06,163.16,15.3646,-14.5149,G
-천칭,Zubeneschamali,2.56,185.11,15.1812,-8.2754,B
-천칭,ZubenelgenubiII,2.78,75.8,15.5206,-16.0803,K
-천칭,Sigma Librae,3.3,288.38,15.0522,-25.2208,M
-천칭,Upsilon Librae,3.73,223.7,15.3822,-28.123,K
-천칭,Tau Librae,3.59,366.88,15.4001,-29.5102,B
-큰물뱀,Gamma Hydrae,3.14,133.84,13.2008,-23.1718,G
-큰물뱀,Psi Hydrae,5.09,231.48,13.1015,-23.1511,K
-큰물뱀,Beta Hydrae,4.25,309.74,11.5402,-34.0149,B
-큰물뱀,Xi Hydrae,3.69,129.63,11.3406,-31.5844,G
-큰물뱀,Nu Hydrae,3.27,143.75,10.5044,-16.1834,K
-큰물뱀,Mu Hydrae,3.95,234.14,10.2711,-16.5656,K
-큰물뱀,Lambda Hydrae,3.77,112.55,10.1141,-12.2749,K
-큰물뱀,Upsilon1 Hydrae,4.25,263.88,9.5234,-14.57,G
-큰물뱀,Alfard,2.13,180.3,9.2842,-8.4516,K
-큰물뱀,Tau1 Hydrae,4.69,56.54,9.3018,-2.5159,F
-큰물뱀,Tau2 Hydrae,4.56,517.71,9.3308,-1.1659,A
-큰물뱀,ThetaHydrae,3.86,113.49,9.1532,2.131,B
-큰물뱀,Zeta Hydrae,3.27,167.18,8.5635,5.5135,G
-큰물뱀,Rho Hydrae,4.34,354.14,8.4938,5.4517,A
-큰물뱀,Epsilon Hydrae,3.5,129.27,8.4758,6.201,G
-큰물뱀,Delta Hydrae,4.13,160.35,8.3851,5.3731,A
-큰물뱀,Sigma Hydrae,4.59,372.75,8.3956,3.1546,K
-큰물뱀,Eta Hydrae,4.22,586.62,8.4424,3.1905,B
-육분의,Beta Sextantis,5.03,404.66,10.3126,-0.4506,B
-육분의,Alpha Sextantis,4.47,283.37,10.0905,-0.2851,A
-육분의,Gamma Sextantis,5.06,277.58,9.5337,-8.1234,A
-컵,Eta Crateris,5.16,251.47,11.5709,-17.1627,A
-컵,Zeta Crateris,4.88,352.99,11.4554,-18.2825,G
-컵,Gamma Crateris,4.13,82.32,11.26,-17.482,A
-컵,Beta Crateris,4.47,340.1,11.1245,-22.5646,A
-컵,Alkes,4.22,159.18,11.0052,-18.2459,K
-컵,Delta Crateris,3.7,185.74,11.2027,-14.5354,G
-컵,Epsilon Crateris,4.91,376.2,11.2544,-10.5852,K
-컵,Theta Crateris,4.66,280.45,11.3749,-9.5531,B
-거문고,13 Lyrae,3.92,298.14,18.5559,43.5842,M
-거문고,Eta Lyrae,4.34,1387.92,19.143,39.1115,B
-거문고,Theta Lyrae,4.5,832.04,19.1707,38.1036,K
-거문고,Epsilon2 Lyrae,4.63,155.54,18.4506,39.3819,A
-거문고,Epsilon1 Lyrae,6,159.82,18.4503,39.4148,F
-거문고,Vega,0.09,25.04,18.374,38.4825,A
-거문고,Kappa Lyrae,4.47,251.66,18.2037,36.0436,K
-거문고,Mu Lyrae,5.13,438.97,18.2457,39.3118,A
-거문고,Zeta1 Lyrae,4.38,156.13,18.4531,37.3752,A
-거문고,Delta2 Lyrae,4.19,736.26,18.5516,36.5547,M
-거문고,Delta1 Lyrae,5.53,991.36,18.5429,37.0009,B
-거문고,Sulafat,3.22,620.07,18.5946,32.4322,B
-거문고,Sheliak,3.55,962.13,18.5053,33.2328,B
-독수리,Altair,0.82,16.73,19.5152,8.5547,A
-독수리,Alshain,3.86,44.68,19.5624,6.2753,G
-독수리,Tarazad,2.86,394.87,19.4719,10.4012,K
-독수리,Delta Aquilae,3.44,50.64,19.2637,3.094,F
-독수리,Eta Aquilae,4.03,1382.03,19.5336,1.0353,F
-독수리,Theta Aquilae,3.22,286.35,20.1227,-0.4512,B
-독수리,Zeta Aquilae,2.98,83.03,19.0625,13.5356,A
-독수리,Epsilon Aquilae,4.16,154.94,19.0037,15.0603,K
-독수리,Lambda Aquilae,3.39,123.69,19.0725,-4.5052,B
-백조,Deneb,1.29,1411.95,20.4211,45.2154,A
-백조,Sadir,2.34,1300,20.2301,40.1957,F
-백조,Epsilon Cygni,2.64,72.71,20.4706,34.0331,K
-백조,Zeta Cygni,3.36,143.11,21.1353,30.1923,G
-백조,Mu Cygni,4.59,72.53,21.4509,28.5054,F
-백조,DeltaCygni,2.86,164.98,19.4539,45.1121,A
-백조,Iota Cygni,3.81,121.34,19.3014,51.4652,A
-백조,Kappa Cygni,3.94,124.16,19.1735,53.2447,G
-백조,Eta Cygni,4.03,134.94,19.5708,35.0848,K
-백조,Albireo Cygni,3.2,434.3,19.3136,28.0035,K
-화살,Eta Sagittae,5.25,160.35,20.0608,20.033,K
-화살,Gamma Sagittae,3.6,258.44,19.5944,19.3321,M
-화살,Delta Sagittae,3.83,594.1,19.4822,18.3532,M
-화살,Beta Sagittae,4.53,439.57,19.4203,17.315,G
-화살,sham,4.5,425.24,19.4105,18.0405,G
-작은 여우,15 Vulpeculae,4.69,236.35,20.0201,27.4908,A
-작은 여우,Anser,4.53,297.32,19.2937,24.4247,M
-방패,Beta Scuti,4.38,916.18,18.4821,-4.4322,G
-방패,Alpha Scuti,4,199.12,18.3625,-8.1339,K
-방패,Gamma Scuti,4.69,319.45,18.3028,-14.3303,A
-방패,HD175156,5.13,1399.85,18.5559,-15.3428,B
-방패,R Scuti,5.5,4000,18.484,-5.4047,K
-돌고래,Gamma2 Delphini,4.41,126.32,20.4741,16.1229,K
-돌고래,Delta Delphini,4.5,223.24,20.443,15.0928,A
-돌고래,Sualocin,3.75,253.82,20.404,15.5939,B
-돌고래,Rotanev,3.72,100.88,20.3836,15.5033,F
-돌고래,Epsilon Delphini,3.95,359.23,20.3417,11.2255,B
-헤라클레스,Iota Herculis,3.73,454.89,17.4004,45.5944,B
-헤라클레스,Theta herculis,4,753.26,17.57,37.1457,K
-헤라클레스,Rho Herculis A,4.13,393.44,17.2426,37.0735,B
-헤라클레스,69 Herculis,4.63,175.45,17.1825,37.1608,A
-헤라클레스,Pi Herculis,3.3,376.63,17.1548,36.4705,K
-헤라클레스,Chi Herculis,4.72,51.84,15.5325,42.2317,F
-헤라클레스,Phi Herculis,4.22,203.98,16.0927,44.5232,B
-헤라클레스,Tau Herculis,3.84,307.41,16.2023,46.1534,B
-헤라클레스,Sigma Herculis,4.19,314.83,16.3448,42.2327,B
-헤라클레스,Eta Herculis,3.64,108.65,16.4338,38.5247,G
-헤라클레스,Omicron Herculis,3.83,337.99,18.0824,28.4602,B
-헤라클레스,Xi Herculis,3.84,136.81,17.5837,29.1449,G
-헤라클레스,Mu Herculis,3.55,27.11,17.4719,27.4232,G
-헤라클레스,Maasym,4.53,369.38,17.3137,26.0541,K
-헤라클레스,Sarin,3.14,75.14,17.1556,24.4849,A
-헤라클레스,Epsilon Herculis,3.91,155.02,17.0107,30.5338,A
-헤라클레스,Zeta Herculis,2.92,34.95,16.4206,31.3344,G
-헤라클레스,Kornephoros,2.94,139.15,16.311,21.2628,G
-헤라클레스,Gamma Herculis,3.81,192.65,16.2253,19.0602,A
-헤라클레스,Alpha Herculis,2.91,359.6,17.1539,14.2156,M
-전갈,Lambda Scorpii,1.52,571.21,17.3507,-37.0712,B
-전갈,Kappa Scorpii,2.31,483.2,17.4402,-39.023,B
-전갈,Iota1 Scorpii,3.09,1,17.4908,-40.0809,F
-전갈,Sargas,1.92,300.33,17.3855,-43.0044,F
-전갈,Eta Scorpii,3.41,73.48,17.1345,-43.1607,F
-전갈,Zeta2 Scorpii,3.75,132.32,16.5609,-42.2358,K
-전갈,Mu1 Scorpii,2.92,501.02,16.5323,-38.0508,B
-전갈,Epsilon Scorpii,2.45,63.72,16.5136,-34.2001,K
-전갈,Tau Scorpii,2.73,474.07,16.3716,-28.1543,B
-전갈,Antares,0.97,553.76,16.3046,-26.2852,M
-전갈,Pi Scorpii,2.81,585.57,16.0012,-26.104,B
-전갈,Delta Scorpii,2.25,491.2,16.0139,-22.4106,B
-전갈,Acrab,2.59,404.16,16.0644,-19.5158,B
-뱀주인,Ras Alhague,2.13,48.59,17.3558,12.3241,A
-뱀주인,Beta Ophiuchi,2.92,81.85,17.4434,4.3332,K
-뱀주인,Sabik,2.44,88.37,17.1139,-15.4507,A
-뱀주인,Zeta Ophiuchi,2.56,366.06,16.3823,-10.3643,O
-뱀주인,Epsilon Ophiuchi,3.38,106.45,16.193,-4.4448,G
-뱀주인,51 Ophiuchi,4.78,405.67,17.3246,-23.5847,A
-뱀,Epsilon Serpnentis,3.75,70.44,15.5155,4.2438,K
-뱀,Alpha Serpnentis,2.8,73.96,15.4522,6.2119,K
-뱀,Delta Serpnentis A,3.86,228.08,15.3552,10.275,F
-뱀,Beta Serpnentis,3.67,155.09,15.4713,15.2106,A
-뱀,Gamma Serpnentis,3.94,36.7,15.5729,15.3518,F
-뱀,Kappa Serpnentis,4.19,381.92,15.4944,18.042,M
-뱀,Mu Serpnentis,3.53,169.61,15.5047,-3.2954,B
-궁수,Rho1 Sagittarii,3.98,126.96,19.2258,-17.4817,A
-궁수,43 Sagittarii,5.03,481.77,19.1856,-18.5446,G
-궁수,Omicron Sagittarii,3.91,142.06,19.0601,-21.4231,G
-궁수,Xi2 Sagittarii,3.69,365.24,18.5904,-21.0437,G
-궁수,Sigma Sagittarii,2,227.76,18.5639,-26.1608,B
-궁수,Phi Sagittarii,3.13,239.29,18.4703,-25.5804,B
-궁수,Kaus Borealis,2.97,78.18,18.2921,-25.2433,K
-궁수,Mu Sagittarii,3.86,1,18.1506,-21.031,B
-궁수,Kaus Media,2.86,347.72,18.2225,-29.4907,K
-궁수,Alnasl,3.13,96.87,18.0714,-30.2526,K
-궁수,Kaus Australis,1.8,143.3,18.2539,-34.2227,B
-궁수,Eta Sagittarii,3.14,145.93,18.1908,-36.4519,M
-궁수,Ascella,2.61,88.2,19.0402,-29.5054,A
-궁수,Tau Sagittarii,3.47,121.61,19.082,-27.3816,K
-궁수,h1 Sagittarii,5.69,294.37,19.3723,-24.4012,A
-궁수,62 Sagittarii,4.44,448.63,20.0402,-27.3853,M
-궁수,Theta Sagittarii,4.28,518.54,20.0112,-35.126,B
-궁수,Iota Sagittarii,4.25,181.81,19.5648,-41.4839,K
-궁수,Rukbat,3.92,181.81,19.2526,-40.3429,B
-궁수,Beta2 Sagittarii,4.34,134.17,19.245,-44.4532,F
-안드로메다,Alpheratz,2.03,97.03,0.0934,29.1307,B
-안드로메다,Delta Andromedae,3.42,105.52,0.4033,30.5917,K
-안드로메다,Mirach,2.17,197.44,1.1101,35.4437,M
-안드로메다,Mu Andromedae,3.89,129.74,0.5801,38.3732,A
-안드로메다,Nu Andromedae,4.47,617.73,0.5105,41.1221,B
-안드로메다,Almach,2.23,392.97,2.0519,42.2627,K
-페르세우스,Eta Persei,3.89,879.13,2.5223,55.5928,K
-페르세우스,Gamma Persei,3.05,243.22,3.0628,53.3547,G
-페르세우스,Mirfak,1.89,506.46,3.2558,49.5634,F
-페르세우스,Algol,2.09,89.93,3.094,41.0239,B
-페르세우스,Rho Persei,3.28,307.7,3.0639,38.5546,M
-페르세우스,16 Persei,4.28,120.75,2.5202,38.2449,F
-페르세우스,Delta Persei,2.97,516.07,3.4434,47.5138,B
-페르세우스,Epsilon Persei,2.83,638.28,3.5924,40.0434,B
-페르세우스,Menkib,4,1244.88,4.0027,35.5124,O
-페르세우스,Zeta Persei,2.89,751.52,3.5535,31.5706,B
-페르세우스,Omicron Persei A,3.84,1120.83,3.4546,32.2139,B
-도마뱀,1 Lacertae,4.28,621.25,22.1657,37.5156,K
-도마뱀,6 Lacertae,4.47,1,22.231,42.5132,B
-도마뱀,5 Lacertae,4.41,1,22.3028,47.4938,K
-도마뱀,4 Lacertae,4.59,1,22.2525,49.3545,A
-도마뱀,Alpha Lacertae,3.78,102.6,22.3213,50.2413,A
-도마뱀,Beta Lacertae,4.56,169.96,22.2426,52.205,G
-삼각형,Beta Trianguli,3.06,126.86,2.1055,35.0548,A
-삼각형,Gamma Trianguli,4,112.31,2.1841,33.5714,A
-삼각형,Alpha Trianguli,3.52,63.33,1.5423,29.4129,F
-양,Gamma Arietis,3.84,164.06,1.5447,19.2424,A
-양,Sheratan,2.7,58.66,1.5554,20.5514,K
-양,Hamal,2.17,65.81,2.0828,23.3417,K
-양,41 Arietis,3.58,165.65,2.512,27.212,B
-물고기,Sigma Piscium,5.47,433.72,1.0404,31.5544,B
-물고기,Upsilon Piscium,4.75,307.99,1.2043,27.2308,A
-물고기,Phi Piscium,4.81,446.18,1.1459,24.4222,K
-물고기,Eta Piscium,3.78,349.59,1.3242,15.2752,G
-물고기,Omicron Piscium,4.41,279.49,1.4636,9.1623,G
-물고기,Alpha Piscium,3.81,150.58,2.0314,2.5227,K
-물고기,Xi Pisicium,4.75,179.11,1.5444,3.1802,G
-물고기,Nu Pisicium,4.56,363.21,1.4237,5.3612,K
-물고기,Mu Pisicium,4.97,303.97,1.3123,6.1543,K
-물고기,Epsilon Pisicium,4.41,181.81,1.0408,8.0049,G
-물고기,Delta Pisicium,4.53,311.22,0.4952,7.4235,K
-물고기,41 Pisicium,5.53,407.7,0.2146,8.1903,K
-물고기,Omega Pisicium,4.09,104.34,0.0029,6.5925,F
-물고기,Iota Pisicium,4.22,44.73,23.4107,5.4501,F
-물고기,Theta Pisicium,4.44,148.52,23.2907,6.3018,K
-물고기,Gamma Piscium,3.84,137.97,23.182,3.2426,G
-물고기,Kappa Pisicium,4.94,153.49,23.2805,1.225,A
-물고기,Lambda Pisicium,4.53,106.62,23.4312,1.5421,A
-조랑말,Alpha Equulei,4.03,190.29,21.1657,5.2034,G
-조랑말,Beta Equulei,5.16,330.79,21.24,6.5434,A
-조랑말,Delta Equulei,4.56,60.3,21.1534,10.0602,F
-조랑말,Gamma Equulei,4.75,118.39,21.1126,10.1329,A
-남쪽물고기,Fomalhaut,1.18,25.13,22.5854,-29.3014,A
-남쪽물고기,Epsilon Piscis Austrini,4.16,486.81,22.4154,-26.5537,B
-남쪽물고기,Eta Piscis Austrini,5.38,817.45,22.0208,-28.2048,B
-남쪽물고기,Theta Piscis Austrini,5.03,321.02,21.4903,-30.4743,A
-남쪽물고기,Tau Piscis Austrini,5.03,49.62,22.1128,-32.2621,F
-남쪽물고기,Beta Piscis Austrini,4.28,142.8,22.3247,-32.1355,A
-남쪽물고기,Delta Piscis Austrini,4.34,154.14,22.5712,-32.2514,G
-물병,b1 Aquarii,4.09,163.41,23.241,-19.584,K
-물병,Psi Aquarii,4.41,149.82,23.1705,-8.5751,K
-물병,Lambda Aquarii,3.8,385.08,22.5348,-7.2731,M
-물병,Eta Aquarii,4,167.87,22.3631,0,B
-물병,Zeta Aquarii,3.73,91.88,22.2959,0.0549,F
-물병,Gamma Aquarii,3.83,163.73,22.225,-1.162,A
-물병,Sadalmelik,3.09,523.53,22.0657,-0.1232,G
-물병,Theta Aquarii,4.31,187.45,22.1801,-7.4013,G
-물병,Sigma Aquarii,4.81,289.66,22.3151,-10.3343,A
-물병,Tau Aquarii,4.13,317.59,22.5048,-13.2824,M
-물병,Delta Aquarii,3.28,160.59,22.5551,-15.4293,A
-물병,c2 Aquarii,3.84,270.67,23.104,-21.0302,K
-물병,Iota Aquarii,4.25,175.17,22.0739,-13.4537,B
-물병,SadalSuud,3.03,537.33,21.3245,-5.2816,G
-물병,Epsilon Aquarii,3.78,207.74,20.4854,-9.2446,B
-염소,Deneb Algedi,2.94,38.7,21.4817,-16.013,K
-염소,Gamma Capricorni,3.77,157.04,21.412,-16.3338,K
-염소,Iota Capricorni,4.44,196.72,21.233,-16.4419,G
-염소,Zeta Capricorni,3.92,385.54,21.2757,-22.1856,G
-염소,Theta Capricorni,4.06,162.19,21.0713,-17.0836,A
-염소,Omega Capricorni,4.22,842.79,20.531,-26.5008,M
-염소,Psi Capricorni,4.22,47.87,20.4726,-25.1126,F
-염소,Dabih,3.2,326.81,20.2216,-14.4236,G
-염소,Alpha Capricorni,3.73,105.83,20.1918,-12.2829,G
-고래,lota Ceti,3.72,274.54,0.2036,-8.4153,K
-고래,Diphda,2.2,96.33,0.4445,-17.5146,G
-고래,Eta Ceti,3.61,123.92,1.0945,-10.0343,K
-고래,Theta Ceti,3.77,113.8,1.251,-8.0357,K
-고래,Chi Ceti,4.72,75.62,1.5043,-10.3426,F
-고래,Rho Ceti,4.88,456.17,2.2704,-12.1116,A
-고래,Epsilon Ceti,4.91,70.07,2.4041,-11.4631,F
-고래,Pi Ceti,4.19,392.97,2.4513,-13.4544,B
-고래,Sigma Ceti,4.81,87.07,2.3311,-15.0842,F
-고래,AB Ceti,5.91,251.28,2.2706,-15.142,A
-고래,Tau Ceti,3.63,11.91,1.4508,-15.4905,G
-고래,Mira,4.97,298.96,2.2031,-2.5226,M
-고래,Delta Ceti,4,649.73,2.404,0.2538,B
-고래,Gamma Ceti,3.5,79.61,2.443,3.1957,A
-고래,Menkar,2.61,249.17,3.0329,4.1047,M
-고래,Lambda Ceti,4.66,576.25,3.0057,8.5956,B
-고래,Mu Ceti,4.34,84.06,2.4611,10.124,A
-고래,Nu Ceti,5,340.1,2.3705,5.4136,G
-고래,Xi2 Ceti,4.25,193.11,2.2923,8.3346,B
-고래,Xi1 Ceti,4.5,383.27,2.1413,8.5716,G
-오리온,Ghi1 Orionis,4.5,28.26,5.5549,20.1649,G
-오리온,64 Orionis,5.09,718.41,6.0449,19.4124,B
-오리온,Xi Orionis,4.38,607.38,6.1315,14.1214,B
-오리온,Nu Orionis,4.34,516.07,6.0853,14.4558,B
-오리온,Mu Orionis,4.16,154.94,6.0339,9.3852,A
-오리온,Betelgeuse,0.5,497.95,5.5625,7.2443,M
-오리온,Lambda1 Orionis,3.33,1098.18,5.3624,9.5659,O
-오리온,Bellatrix,1.55,252.44,5.2622,6.2216,B
-오리온,Pi1 Orionis,4.66,116.32,4.561,10.1115,A
-오리온,Pi2 Orionis,4.34,224.47,4.5152,8.5624,A
-오리온,Pi3 Orionis,3.28,26.32,4.5106,7.0006,F
-오리온,Pi4 Orionis,3.61,1052.12,4.5226,5.3841,B
-오리온,Pi5 Orionis,3.64,1342.23,4.5527,2.2844,B
-오리온,Pi6 Orionis,4.63,945.39,4.5945,1.4459,K
-오리온,Mintaka,2.13,692.48,5.3311,-0.1652,B
-오리온,Epsilon Orionis,1.62,2000,5.3723,-1.1111,B
-오리온,Alnitak,1.68,736.26,5.4155,-1.5546,O
-오리온,Saiph,2,647.14,5.4851,-9.3936,B
-오리온,Rigel,0.19,862.86,5.1539,-8.1027,B
-큰개,Theta Canis Majoris,4.19,260.72,6.5516,-12.0354,K
-큰개,Gamma Canis Majoris,4.06,441.95,7.0448,-15.3952,B
-큰개,Iota Canis Majoris,4.34,1,6.571,-17.0452,B
-큰개,Sirius,-1.09,8.6,6.461,-16.4442,A
-큰개,Mirzam,1.89,492.69,6.2343,-17.5754,B
-큰개,Xi2 Canis Majoris,4.53,441.35,6.3602,-22.5848,A
-큰개,Nu2 Canis Majoris,4.09,64.42,6.3741,-19.1622,K
-큰개,Omicron2 Canis Majoris,3,1,7.0359,-23.5149,B
-큰개,Omicron1 Canis Majoris,4,1,6.5506,-24.1235,K
-큰개,Wezen,1.96,1606.72,7.092,-26.2534,F
-큰개,Omega Canis Majoris,3.98,911.06,7.1545,-26.4832,B
-큰개,Aludra,2.41,1,7.25,-29.2038,B
-큰개,Sigma Canis Majoris,3.58,1120.83,7.0238,-27.5751,K
-큰개,Adhara,1.41,405.17,6.5932,-28.5959,B
-큰개,Zeta Canis Majoris,2.94,362.4,6.2112,-30.0414,B
-작은개,Procyon,0.46,11.46,7.403,5.1003,F
-작은개,Gomeisa,2.84,161.71,7.2824,8.1439,B
-토끼,Theta Leporis,4.69,172.25,6.0712,-14.5607,A
-토끼,Eta Leporis,3.78,48.53,5.5728,-14.0942,F
-토끼,Zeta Leporis,3.56,70.47,5.48,-14.4842,A
-토끼,Arneb,2.64,1,5.3345,-17.4815,F
-토끼,Delta Leporis,3.92,113.72,5.5219,-20.523,K
-토끼,Gamma Leporis,3.69,29.12,5.4526,-22.262,F
-토끼,Beta Leporis,2.95,160.35,5.2914,-20.4422,G
-토끼,Epsilon Leporis,3.31,213.32,5.0626,-22.202,K
-토끼,Mu Leporis,3.25,185.95,5.1358,-16.1037,B
-토끼,Lambda Leporis,4.19,851.59,5.2039,-13.0907,B
-토끼,Nu Leporis,5.25,333.5,5.2104,-12.1727,B
-토끼,Kappa Leporis A,4.31,728.05,5.1418,-12.5446,A
-토끼,Iota Leporis,4.41,231.81,5.1323,-11.5026,B
-에리다누스,Achernar,0.42,139.44,1.3836,-57.0727,B
-에리다누스,Chi Eridani,3.84,58.22,1.5653,-51.2953,G
-에리다누스,Phi Eridani,3.52,153.7,2.1721,-51.2431,B
-에리다누스,Kappa Eridani,4.19,508.04,2.2751,-47.3611,B
-에리다누스,s Eridani,4.75,116.4,2.4042,-42.4742,A
-에리다누스,Iota Eridani,4.25,150.65,2.4136,-39.4532,K
-에리다누스,Theta1 Eridani,2.94,161.23,2.5909,-40.1251,A
-에리다누스,82 Eridani,4.38,19.71,3.2052,-42.5859,G
-에리다누스,f Eridani,4.25,165.48,3.4928,-37.33,F
-에리다누스,g Eridani,4.31,209.88,3.502,-36.0751,G
-에리다누스,Upsilon4 Eridani,3.52,177.94,4.1847,-33.443,B
-에리다누스,Upsilon3 Eridani,4.09,296.24,4.2455,-33.5746,K
-에리다누스,Upsilon2 Eridani,3.97,213.87,4.3628,-30.3052,G
-에리다누스,Tau6 Eridani,4.31,57.49,3.4751,-23.1055,F
-에리다누스,Tau5 Eridani,4.22,293.31,3.3449,21.3322,B
-에리다누스,Tau4 Eridani,3.72,304.54,3.2033,-21.4029,M
-에리다누스,Tau3 Eridani,4.13,88.63,3.0325,-23.3207,A
-에리다누스,Tau1 Eridani,4.56,46.38,2.4611,-18.2835,F
-에리다누스,Eta Eridani,4.03,136.53,2.5733,-8.4826,K
-에리다누스,Zeta Eridani,4.84,109.74,3.1658,-8.4405,K
-에리다누스,Epsilon Eridani,3.86,10.49,3.3401,-9.225,K
-에리다누스,Delta Eridani,3.67,29.49,3.4422,-9.4108,K
-에리다누스,Nu Eridani,3.86,675.29,4.3728,-3.1818,B
-에리다누스,Mu Eridani,3.97,421.86,4.464,-3.1243,B
-에리다누스,Omega Eridani,4.41,234.99,4.5402,-5.2449,A
-에리다누스,Beta Eridani,2.81,89.36,5.0859,-5.0321,A
-에리다누스,Lambda Eridani,4.19,811.34,5.1015,-8.4325,B
-에리다누스,53 Eridani,4,109.85,4.3915,-14.1531,K
-황소,Beta Tauri,1.61,133.89,5.2745,28.3735,B
-황소,Tau Tauri,4.22,398.24,4.4338,23.0003,B
-황소,Ain,3.69,146.66,4.2958,19.1353,G
-황소,Aldebaran,1,66.64,4.3715,16.332,K
-황소,Zeta Tauri,2.91,444.96,5.3901,21.0923,B
-황소,Theta2 Tauri,3.45,150.37,4.2959,15.5519,A
-황소,Gamma Tauri,3.8,161.55,4.2106,15.4059,G
-황소,Lambda Tauri,3.38,483.91,4.0158,12.3319,B
-황소,Omicron Tauri,3.77,290.95,3.2603,9.0635,G
-황소,Delta3 Tauri A,4.31,148.52,4.265,17.585,A
-황소,Delta Tauri,3.92,155.61,4.2416,17.3547,G
-황소,Alcyone,2.84,403.17,3.4852,24.1034,B
-쌍둥이,Pollux,1.29,33.79,7.4643,27.5812,K
-쌍둥이,Upsilon Geminorum,4.16,270.9,7.372,26.5039,M
-쌍둥이,Kappa Geminorum,3.72,141.38,7.455,24.2033,G
-쌍둥이,Delta Geminorum,3.59,60.47,7.213,21.5624,F
-쌍둥이,Lambda Geminorum,3.61,100.88,7.1925,16.2957,A
-쌍둥이,Xi Geminorum,3.44,58.7,6.4635,12.5217,F
-쌍둥이,Mekbuda,4.16,1376.19,7.0528,20.3212,G
-쌍둥이,Gamma Geminorum,1.92,109.3,6.3902,16.2247,A
-쌍둥이,Iota Geminorum,3.94,120.35,7.2709,27.4507,G
-쌍둥이,Tau Geminorum,4.53,321.02,7.1236,30.1224,K
-쌍둥이,Castor,1.58,50.87,7.3604,31.5012,A
-쌍둥이,Theta Geminorum,3.63,189.08,6.5418,33.5557,A
-쌍둥이,Epsilon Geminorum,3.19,844.97,6.4521,25.0629,G
-쌍둥이,Nu Geminorum,4.09,544.51,6.302,20.1151,B
-쌍둥이,Tejat,2.91,231.65,6.2421,22.3006,M
-쌍둥이,Eta Geminorum,3.28,384.63,6.1616,22.2959,M
-쌍둥이,1 Geminorum,4.31,155.09,6.0531,23.1542,G
-외뿔소,Alpha Monocerotis,4.09,147.78,7.4221,-9.3607,G
-외뿔소,Zeta Monocerotis,4.5,1058.97,8.0945,-3.0254,G
-외뿔소,Delta Monocerotis,4.13,384.17,7.1302,-0.3145,A
-외뿔소,Beta Monocerotis,3.78,676.67,6.2956,-7.0245,B
-외뿔소,Gamma Monocerotis,4.13,497.95,6.1559,-6.1649,K
-외뿔소,Epsilon Monocerotis,4.44,122.29,6.2459,4.3456,A
-마차부,Theta Aurigae,2.61,165.57,6.0118,37.1247,A
-마차부,Menkalinan,1.9,81.11,6.0113,44.5653,A
-마차부,Capella,0.24,42.8,5.1824,46.0112,G
-마차부,Zeta Aurigae,3.84,785.94,5.0406,41.063,K
-마차부,Iota Aurigae,2.83,493.44,4.583,33.1207,K
-게,Iota Cancri,4.19,331.13,8.4805,28.4031,G
-게,Chi Cancri,5.22,59.59,8.2127,27.0834,F
-게,Gamma Cancri,4.66,181.2,8.4436,21.231,A
-게,Delta Cancri,4.09,130.57,8.4559,18.0413,K
-게,Alpha Cancri,4.28,188.32,8.5944,11.4612,K
-게,Beta Cancri,3.66,303.41,8.1745,9.0658,K
+constellationName,starName,apparentMagnitude,distance,ra,dec,brightness,starLine
+사자,Denebola,2.16,35.88,11.5012,14.2643,A,Zosma
+사자,Zosma,2.58,58.43,11.1518,20.2355,A,Denebola
+사자,Algieba,2.16,130,10.2113,19.4333,K,Denebola
+사자,Adhafera,3.5,274.08,10.1756,23.1811,F,Denebola
+사자,Rasalas,4.03,124.11,9.543,25.5355,K,Denebola
+사자,Epsilon Leonis,3.11,246.72,9.478,23.4007,G,Denebola
+사자,Eta Leonis,3.5,1269.1,10.0833,16.3906,A,Denebola
+사자,Regulus,1.32,79.3,10.0934,11.5123,B,Denebola
+사자,Subra,3.63,130.31,9.421,9.4722,F,Denebola
+사자,Chertan,3.33,165.06,11.1525,15.1819,A,Denebola
+작은사자,46 Leonis Minoris,3.94,94.87,10.5434,34.0525,K,Denebola
+작은사자,Beta Leonis Minoris,4.34,153.92,10.2911,36.3519,G,Denebola
+작은사자,21 Leonis Minoris,4.53,92.11,10.0845,35.0754,A,Denebola
+작은사자,10 Leonis Minoris,4.69,185,9.3536,36.174,G,Denebola
+살쾡이,Alpha Lyncis,3.25,203.09,9.2226,34.174,K,Denebola
+살쾡이,38 Lyncis,3.83,124.82,9.2015,36.4215,A,Denebola
+살쾡이,HD77912,4.72,817.45,9.0758,38.2132,G,Denebola
+살쾡이,10Ursae Majoris,4.03,52.41,9.0206,41.4126,F,Denebola
+살쾡이,31Lyncis,4.34,382.37,8.2423,43.0644,K,Denebola
+살쾡이,21 Lyncis,4.59,273.62,7.2826,49.0948,A,Denebola
+살쾡이,15 Lyncis,4.5,178.33,6.5915,58.2322,G,Denebola
+살쾡이,2 Lyncis,4.44,156.58,6.2139,58.5958,A,Denebola
+목동,Zeta Bo?tes,3.8,175.73,14.4212,13.3754,A,Denebola
+목동,15 Bo?tes,5.44,264.96,14.1556,9.594,K,Denebola
+목동,Upsilon Bo?tes,4.16,263.46,13.5033,15.4108,K,Denebola
+목동,Muphrid,2.78,37.17,13.5544,18.1703,G,Denebola
+목동,Arcturus,0.11,36.72,14.164,19.0351,K,Denebola
+목동,Epsilon Bo?tes A,1.94,263.8,14.4557,26.5842,K,Denebola
+목동,Delta Bo?tes,3.63,121.79,15.1623,33.1348,G,Denebola
+목동,Alkalurops,4.38,113.13,15.2519,37.175,F,Denebola
+목동,Nekkar,3.64,225.25,15.0246,40.1802,G,Denebola
+목동,Seginus,3.09,86.79,14.3258,38.1229,A,Denebola
+목동,Rho Bo?tes,3.72,160.12,14.3247,30.1617,K,Denebola
+목동,Xuange,4.18,99.05,14.1623,46.0517,A,Denebola
+목동,Asellus Primus,4.46,47.39,14.2511,51.5102,F,Denebola
+사냥개,Cor Caroli,2.84,114.8,12.5704,38.1139,A,Denebola
+사냥개,Chara,4.34,27.53,12.3448,41.1356,G,Denebola
+처녀,109Virgins,3.73,134.5,14.4722,1.4754,A,Denebola
+처녀,Tau Virginis,4.25,224.94,14.0246,1.2609,A,Denebola
+처녀,Heze,3.41,74.08,13.3549,-0.4237,A,Denebola
+처녀,Mu Virginis,3.95,59.59,14.4414,-5.4519,F,Denebola
+처녀,Syrma,4.16,72.53,14.1711,-6.0625,F,Denebola
+처녀,Kappa Virginis,4.31,254.81,14.1405,-10.2238,K,Denebola
+처녀,Spica,0.89,249.74,13.2622,-11.1639,B,Denebola
+처녀,Delta Virginis,3.44,198.39,12.5643,3.1631,M,Denebola
+처녀,Vindemiatrix,2.98,109.6,13.0317,10.5015,G,Denebola
+처녀,Forima,2.81,38.11,12.4247,-1.3419,F,Denebola
+처녀,Zaniah,3.89,265.39,12.2103,-0.4729,A,Denebola
+처녀,Nu Virginis,4.13,293.84,11.47,6.2411,M,Denebola
+까마귀,Algorab,2.94,86.86,12.3101,-16.382,A,Denebola
+까마귀,Gienah,2.55,153.63,12.1657,-17.3954,B,Denebola
+까마귀,Kraz,2.8,145.67,12.3533,-23.3108,G,Denebola
+까마귀,Epsilon Corvi,3.17,317.9,12.1116,-22.4433,K,Denebola
+까마귀,Alchiba,4.09,48.72,12.0934,-24.5107,F,Denebola
+머리털,Alpha Comae Berenices,4.41,58.14,13.1104,17.2434,F,Denebola
+머리털,Beta Comae Berenices,4.34,29.78,13.1254,27.4545,F,Denebola
+머리털,Gamma Comae Berenices,4.5,167.26,12.2803,28.0828,K,Denebola
+천칭,Theta Librae,4.28,168.47,15.5505,-16.4739,G,Denebola
+천칭,Gamma Librae,4.06,163.16,15.3646,-14.5149,G,Denebola
+천칭,Zubeneschamali,2.56,185.11,15.1812,-8.2754,B,Denebola
+천칭,ZubenelgenubiII,2.78,75.8,15.5206,-16.0803,K,Denebola
+천칭,Sigma Librae,3.3,288.38,15.0522,-25.2208,M,Denebola
+천칭,Upsilon Librae,3.73,223.7,15.3822,-28.123,K,Denebola
+천칭,Tau Librae,3.59,366.88,15.4001,-29.5102,B,Denebola
+큰물뱀,Gamma Hydrae,3.14,133.84,13.2008,-23.1718,G,Denebola
+큰물뱀,Psi Hydrae,5.09,231.48,13.1015,-23.1511,K,Denebola
+큰물뱀,Beta Hydrae,4.25,309.74,11.5402,-34.0149,B,Denebola
+큰물뱀,Xi Hydrae,3.69,129.63,11.3406,-31.5844,G,Denebola
+큰물뱀,Nu Hydrae,3.27,143.75,10.5044,-16.1834,K,Denebola
+큰물뱀,Mu Hydrae,3.95,234.14,10.2711,-16.5656,K,Denebola
+큰물뱀,Lambda Hydrae,3.77,112.55,10.1141,-12.2749,K,Denebola
+큰물뱀,Upsilon1 Hydrae,4.25,263.88,9.5234,-14.57,G,Denebola
+큰물뱀,Alfard,2.13,180.3,9.2842,-8.4516,K,Denebola
+큰물뱀,Tau1 Hydrae,4.69,56.54,9.3018,-2.5159,F,Denebola
+큰물뱀,Tau2 Hydrae,4.56,517.71,9.3308,-1.1659,A,Denebola
+큰물뱀,ThetaHydrae,3.86,113.49,9.1532,2.131,B,Denebola
+큰물뱀,Zeta Hydrae,3.27,167.18,8.5635,5.5135,G,Denebola
+큰물뱀,Rho Hydrae,4.34,354.14,8.4938,5.4517,A,Denebola
+큰물뱀,Epsilon Hydrae,3.5,129.27,8.4758,6.201,G,Denebola
+큰물뱀,Delta Hydrae,4.13,160.35,8.3851,5.3731,A,Denebola
+큰물뱀,Sigma Hydrae,4.59,372.75,8.3956,3.1546,K,Denebola
+큰물뱀,Eta Hydrae,4.22,586.62,8.4424,3.1905,B,Denebola
+육분의,Beta Sextantis,5.03,404.66,10.3126,-0.4506,B,Denebola
+육분의,Alpha Sextantis,4.47,283.37,10.0905,-0.2851,A,Denebola
+육분의,Gamma Sextantis,5.06,277.58,9.5337,-8.1234,A,Denebola
+컵,Eta Crateris,5.16,251.47,11.5709,-17.1627,A,Denebola
+컵,Zeta Crateris,4.88,352.99,11.4554,-18.2825,G,Denebola
+컵,Gamma Crateris,4.13,82.32,11.26,-17.482,A,Denebola
+컵,Beta Crateris,4.47,340.1,11.1245,-22.5646,A,Denebola
+컵,Alkes,4.22,159.18,11.0052,-18.2459,K,Denebola
+컵,Delta Crateris,3.7,185.74,11.2027,-14.5354,G,Denebola
+컵,Epsilon Crateris,4.91,376.2,11.2544,-10.5852,K,Denebola
+컵,Theta Crateris,4.66,280.45,11.3749,-9.5531,B,Denebola
+거문고,13 Lyrae,3.92,298.14,18.5559,43.5842,M,Denebola
+거문고,Eta Lyrae,4.34,1387.92,19.143,39.1115,B,Denebola
+거문고,Theta Lyrae,4.5,832.04,19.1707,38.1036,K,Denebola
+거문고,Epsilon2 Lyrae,4.63,155.54,18.4506,39.3819,A,Denebola
+거문고,Epsilon1 Lyrae,6,159.82,18.4503,39.4148,F,Denebola
+거문고,Vega,0.09,25.04,18.374,38.4825,A,Denebola
+거문고,Kappa Lyrae,4.47,251.66,18.2037,36.0436,K,Denebola
+거문고,Mu Lyrae,5.13,438.97,18.2457,39.3118,A,Denebola
+거문고,Zeta1 Lyrae,4.38,156.13,18.4531,37.3752,A,Denebola
+거문고,Delta2 Lyrae,4.19,736.26,18.5516,36.5547,M,Denebola
+거문고,Delta1 Lyrae,5.53,991.36,18.5429,37.0009,B,Denebola
+거문고,Sulafat,3.22,620.07,18.5946,32.4322,B,Denebola
+거문고,Sheliak,3.55,962.13,18.5053,33.2328,B,Denebola
+독수리,Altair,0.82,16.73,19.5152,8.5547,A,Denebola
+독수리,Alshain,3.86,44.68,19.5624,6.2753,G,Denebola
+독수리,Tarazad,2.86,394.87,19.4719,10.4012,K,Denebola
+독수리,Delta Aquilae,3.44,50.64,19.2637,3.094,F,Denebola
+독수리,Eta Aquilae,4.03,1382.03,19.5336,1.0353,F,Denebola
+독수리,Theta Aquilae,3.22,286.35,20.1227,-0.4512,B,Denebola
+독수리,Zeta Aquilae,2.98,83.03,19.0625,13.5356,A,Denebola
+독수리,Epsilon Aquilae,4.16,154.94,19.0037,15.0603,K,Denebola
+독수리,Lambda Aquilae,3.39,123.69,19.0725,-4.5052,B,Denebola
+백조,Deneb,1.29,1411.95,20.4211,45.2154,A,Denebola
+백조,Sadir,2.34,1300,20.2301,40.1957,F,Denebola
+백조,Epsilon Cygni,2.64,72.71,20.4706,34.0331,K,Denebola
+백조,Zeta Cygni,3.36,143.11,21.1353,30.1923,G,Denebola
+백조,Mu Cygni,4.59,72.53,21.4509,28.5054,F,Denebola
+백조,DeltaCygni,2.86,164.98,19.4539,45.1121,A,Denebola
+백조,Iota Cygni,3.81,121.34,19.3014,51.4652,A,Denebola
+백조,Kappa Cygni,3.94,124.16,19.1735,53.2447,G,Denebola
+백조,Eta Cygni,4.03,134.94,19.5708,35.0848,K,Denebola
+백조,Albireo Cygni,3.2,434.3,19.3136,28.0035,K,Denebola
+화살,Eta Sagittae,5.25,160.35,20.0608,20.033,K,Denebola
+화살,Gamma Sagittae,3.6,258.44,19.5944,19.3321,M,Denebola
+화살,Delta Sagittae,3.83,594.1,19.4822,18.3532,M,Denebola
+화살,Beta Sagittae,4.53,439.57,19.4203,17.315,G,Denebola
+화살,sham,4.5,425.24,19.4105,18.0405,G,Denebola
+작은 여우,15 Vulpeculae,4.69,236.35,20.0201,27.4908,A,Denebola
+작은 여우,Anser,4.53,297.32,19.2937,24.4247,M,Denebola
+방패,Beta Scuti,4.38,916.18,18.4821,-4.4322,G,Denebola
+방패,Alpha Scuti,4,199.12,18.3625,-8.1339,K,Denebola
+방패,Gamma Scuti,4.69,319.45,18.3028,-14.3303,A,Denebola
+방패,HD175156,5.13,1399.85,18.5559,-15.3428,B,Denebola
+방패,R Scuti,5.5,4000,18.484,-5.4047,K,Denebola
+돌고래,Gamma2 Delphini,4.41,126.32,20.4741,16.1229,K,Denebola
+돌고래,Delta Delphini,4.5,223.24,20.443,15.0928,A,Denebola
+돌고래,Sualocin,3.75,253.82,20.404,15.5939,B,Denebola
+돌고래,Rotanev,3.72,100.88,20.3836,15.5033,F,Denebola
+돌고래,Epsilon Delphini,3.95,359.23,20.3417,11.2255,B,Denebola
+헤라클레스,Iota Herculis,3.73,454.89,17.4004,45.5944,B,Denebola
+헤라클레스,Theta herculis,4,753.26,17.57,37.1457,K,Denebola
+헤라클레스,Rho Herculis A,4.13,393.44,17.2426,37.0735,B,Denebola
+헤라클레스,69 Herculis,4.63,175.45,17.1825,37.1608,A,Denebola
+헤라클레스,Pi Herculis,3.3,376.63,17.1548,36.4705,K,Denebola
+헤라클레스,Chi Herculis,4.72,51.84,15.5325,42.2317,F,Denebola
+헤라클레스,Phi Herculis,4.22,203.98,16.0927,44.5232,B,Denebola
+헤라클레스,Tau Herculis,3.84,307.41,16.2023,46.1534,B,Denebola
+헤라클레스,Sigma Herculis,4.19,314.83,16.3448,42.2327,B,Denebola
+헤라클레스,Eta Herculis,3.64,108.65,16.4338,38.5247,G,Denebola
+헤라클레스,Omicron Herculis,3.83,337.99,18.0824,28.4602,B,Denebola
+헤라클레스,Xi Herculis,3.84,136.81,17.5837,29.1449,G,Denebola
+헤라클레스,Mu Herculis,3.55,27.11,17.4719,27.4232,G,Denebola
+헤라클레스,Maasym,4.53,369.38,17.3137,26.0541,K,Denebola
+헤라클레스,Sarin,3.14,75.14,17.1556,24.4849,A,Denebola
+헤라클레스,Epsilon Herculis,3.91,155.02,17.0107,30.5338,A,Denebola
+헤라클레스,Zeta Herculis,2.92,34.95,16.4206,31.3344,G,Denebola
+헤라클레스,Kornephoros,2.94,139.15,16.311,21.2628,G,Denebola
+헤라클레스,Gamma Herculis,3.81,192.65,16.2253,19.0602,A,Denebola
+헤라클레스,Alpha Herculis,2.91,359.6,17.1539,14.2156,M,Denebola
+전갈,Lambda Scorpii,1.52,571.21,17.3507,-37.0712,B,Denebola
+전갈,Kappa Scorpii,2.31,483.2,17.4402,-39.023,B,Denebola
+전갈,Iota1 Scorpii,3.09,1,17.4908,-40.0809,F,Denebola
+전갈,Sargas,1.92,300.33,17.3855,-43.0044,F,Denebola
+전갈,Eta Scorpii,3.41,73.48,17.1345,-43.1607,F,Denebola
+전갈,Zeta2 Scorpii,3.75,132.32,16.5609,-42.2358,K,Denebola
+전갈,Mu1 Scorpii,2.92,501.02,16.5323,-38.0508,B,Denebola
+전갈,Epsilon Scorpii,2.45,63.72,16.5136,-34.2001,K,Denebola
+전갈,Tau Scorpii,2.73,474.07,16.3716,-28.1543,B,Denebola
+전갈,Antares,0.97,553.76,16.3046,-26.2852,M,Denebola
+전갈,Pi Scorpii,2.81,585.57,16.0012,-26.104,B,Denebola
+전갈,Delta Scorpii,2.25,491.2,16.0139,-22.4106,B,Denebola
+전갈,Acrab,2.59,404.16,16.0644,-19.5158,B,Denebola
+뱀주인,Ras Alhague,2.13,48.59,17.3558,12.3241,A,Denebola
+뱀주인,Beta Ophiuchi,2.92,81.85,17.4434,4.3332,K,Denebola
+뱀주인,Sabik,2.44,88.37,17.1139,-15.4507,A,Denebola
+뱀주인,Zeta Ophiuchi,2.56,366.06,16.3823,-10.3643,O,Denebola
+뱀주인,Epsilon Ophiuchi,3.38,106.45,16.193,-4.4448,G,Denebola
+뱀주인,51 Ophiuchi,4.78,405.67,17.3246,-23.5847,A,Denebola
+뱀,Epsilon Serpnentis,3.75,70.44,15.5155,4.2438,K,Denebola
+뱀,Alpha Serpnentis,2.8,73.96,15.4522,6.2119,K,Denebola
+뱀,Delta Serpnentis A,3.86,228.08,15.3552,10.275,F,Denebola
+뱀,Beta Serpnentis,3.67,155.09,15.4713,15.2106,A,Denebola
+뱀,Gamma Serpnentis,3.94,36.7,15.5729,15.3518,F,Denebola
+뱀,Kappa Serpnentis,4.19,381.92,15.4944,18.042,M,Denebola
+뱀,Mu Serpnentis,3.53,169.61,15.5047,-3.2954,B,Denebola
+궁수,Rho1 Sagittarii,3.98,126.96,19.2258,-17.4817,A,Denebola
+궁수,43 Sagittarii,5.03,481.77,19.1856,-18.5446,G,Denebola
+궁수,Omicron Sagittarii,3.91,142.06,19.0601,-21.4231,G,Denebola
+궁수,Xi2 Sagittarii,3.69,365.24,18.5904,-21.0437,G,Denebola
+궁수,Sigma Sagittarii,2,227.76,18.5639,-26.1608,B,Denebola
+궁수,Phi Sagittarii,3.13,239.29,18.4703,-25.5804,B,Denebola
+궁수,Kaus Borealis,2.97,78.18,18.2921,-25.2433,K,Denebola
+궁수,Mu Sagittarii,3.86,1,18.1506,-21.031,B,Denebola
+궁수,Kaus Media,2.86,347.72,18.2225,-29.4907,K,Denebola
+궁수,Alnasl,3.13,96.87,18.0714,-30.2526,K,Denebola
+궁수,Kaus Australis,1.8,143.3,18.2539,-34.2227,B,Denebola
+궁수,Eta Sagittarii,3.14,145.93,18.1908,-36.4519,M,Denebola
+궁수,Ascella,2.61,88.2,19.0402,-29.5054,A,Denebola
+궁수,Tau Sagittarii,3.47,121.61,19.082,-27.3816,K,Denebola
+궁수,h1 Sagittarii,5.69,294.37,19.3723,-24.4012,A,Denebola
+궁수,62 Sagittarii,4.44,448.63,20.0402,-27.3853,M,Denebola
+궁수,Theta Sagittarii,4.28,518.54,20.0112,-35.126,B,Denebola
+궁수,Iota Sagittarii,4.25,181.81,19.5648,-41.4839,K,Denebola
+궁수,Rukbat,3.92,181.81,19.2526,-40.3429,B,Denebola
+궁수,Beta2 Sagittarii,4.34,134.17,19.245,-44.4532,F,Denebola
+안드로메다,Alpheratz,2.03,97.03,0.0934,29.1307,B,Denebola
+안드로메다,Delta Andromedae,3.42,105.52,0.4033,30.5917,K,Denebola
+안드로메다,Mirach,2.17,197.44,1.1101,35.4437,M,Denebola
+안드로메다,Mu Andromedae,3.89,129.74,0.5801,38.3732,A,Denebola
+안드로메다,Nu Andromedae,4.47,617.73,0.5105,41.1221,B,Denebola
+안드로메다,Almach,2.23,392.97,2.0519,42.2627,K,Denebola
+페르세우스,Eta Persei,3.89,879.13,2.5223,55.5928,K,Denebola
+페르세우스,Gamma Persei,3.05,243.22,3.0628,53.3547,G,Denebola
+페르세우스,Mirfak,1.89,506.46,3.2558,49.5634,F,Denebola
+페르세우스,Algol,2.09,89.93,3.094,41.0239,B,Denebola
+페르세우스,Rho Persei,3.28,307.7,3.0639,38.5546,M,Denebola
+페르세우스,16 Persei,4.28,120.75,2.5202,38.2449,F,Denebola
+페르세우스,Delta Persei,2.97,516.07,3.4434,47.5138,B,Denebola
+페르세우스,Epsilon Persei,2.83,638.28,3.5924,40.0434,B,Denebola
+페르세우스,Menkib,4,1244.88,4.0027,35.5124,O,Denebola
+페르세우스,Zeta Persei,2.89,751.52,3.5535,31.5706,B,Denebola
+페르세우스,Omicron Persei A,3.84,1120.83,3.4546,32.2139,B,Denebola
+도마뱀,1 Lacertae,4.28,621.25,22.1657,37.5156,K,Denebola
+도마뱀,6 Lacertae,4.47,1,22.231,42.5132,B,Denebola
+도마뱀,5 Lacertae,4.41,1,22.3028,47.4938,K,Denebola
+도마뱀,4 Lacertae,4.59,1,22.2525,49.3545,A,Denebola
+도마뱀,Alpha Lacertae,3.78,102.6,22.3213,50.2413,A,Denebola
+도마뱀,Beta Lacertae,4.56,169.96,22.2426,52.205,G,Denebola
+삼각형,Beta Trianguli,3.06,126.86,2.1055,35.0548,A,Denebola
+삼각형,Gamma Trianguli,4,112.31,2.1841,33.5714,A,Denebola
+삼각형,Alpha Trianguli,3.52,63.33,1.5423,29.4129,F,Denebola
+양,Gamma Arietis,3.84,164.06,1.5447,19.2424,A,Denebola
+양,Sheratan,2.7,58.66,1.5554,20.5514,K,Denebola
+양,Hamal,2.17,65.81,2.0828,23.3417,K,Denebola
+양,41 Arietis,3.58,165.65,2.512,27.212,B,Denebola
+물고기,Sigma Piscium,5.47,433.72,1.0404,31.5544,B,Denebola
+물고기,Upsilon Piscium,4.75,307.99,1.2043,27.2308,A,Denebola
+물고기,Phi Piscium,4.81,446.18,1.1459,24.4222,K,Denebola
+물고기,Eta Piscium,3.78,349.59,1.3242,15.2752,G,Denebola
+물고기,Omicron Piscium,4.41,279.49,1.4636,9.1623,G,Denebola
+물고기,Alpha Piscium,3.81,150.58,2.0314,2.5227,K,Denebola
+물고기,Xi Pisicium,4.75,179.11,1.5444,3.1802,G,Denebola
+물고기,Nu Pisicium,4.56,363.21,1.4237,5.3612,K,Denebola
+물고기,Mu Pisicium,4.97,303.97,1.3123,6.1543,K,Denebola
+물고기,Epsilon Pisicium,4.41,181.81,1.0408,8.0049,G,Denebola
+물고기,Delta Pisicium,4.53,311.22,0.4952,7.4235,K,Denebola
+물고기,41 Pisicium,5.53,407.7,0.2146,8.1903,K,Denebola
+물고기,Omega Pisicium,4.09,104.34,0.0029,6.5925,F,Denebola
+물고기,Iota Pisicium,4.22,44.73,23.4107,5.4501,F,Denebola
+물고기,Theta Pisicium,4.44,148.52,23.2907,6.3018,K,Denebola
+물고기,Gamma Piscium,3.84,137.97,23.182,3.2426,G,Denebola
+물고기,Kappa Pisicium,4.94,153.49,23.2805,1.225,A,Denebola
+물고기,Lambda Pisicium,4.53,106.62,23.4312,1.5421,A,Denebola
+조랑말,Alpha Equulei,4.03,190.29,21.1657,5.2034,G,Denebola
+조랑말,Beta Equulei,5.16,330.79,21.24,6.5434,A,Denebola
+조랑말,Delta Equulei,4.56,60.3,21.1534,10.0602,F,Denebola
+조랑말,Gamma Equulei,4.75,118.39,21.1126,10.1329,A,Denebola
+남쪽물고기,Fomalhaut,1.18,25.13,22.5854,-29.3014,A,Denebola
+남쪽물고기,Epsilon Piscis Austrini,4.16,486.81,22.4154,-26.5537,B,Denebola
+남쪽물고기,Eta Piscis Austrini,5.38,817.45,22.0208,-28.2048,B,Denebola
+남쪽물고기,Theta Piscis Austrini,5.03,321.02,21.4903,-30.4743,A,Denebola
+남쪽물고기,Tau Piscis Austrini,5.03,49.62,22.1128,-32.2621,F,Denebola
+남쪽물고기,Beta Piscis Austrini,4.28,142.8,22.3247,-32.1355,A,Denebola
+남쪽물고기,Delta Piscis Austrini,4.34,154.14,22.5712,-32.2514,G,Denebola
+물병,b1 Aquarii,4.09,163.41,23.241,-19.584,K,Denebola
+물병,Psi Aquarii,4.41,149.82,23.1705,-8.5751,K,Denebola
+물병,Lambda Aquarii,3.8,385.08,22.5348,-7.2731,M,Denebola
+물병,Eta Aquarii,4,167.87,22.3631,0,B,Denebola
+물병,Zeta Aquarii,3.73,91.88,22.2959,0.0549,F,Denebola
+물병,Gamma Aquarii,3.83,163.73,22.225,-1.162,A,Denebola
+물병,Sadalmelik,3.09,523.53,22.0657,-0.1232,G,Denebola
+물병,Theta Aquarii,4.31,187.45,22.1801,-7.4013,G,Denebola
+물병,Sigma Aquarii,4.81,289.66,22.3151,-10.3343,A,Denebola
+물병,Tau Aquarii,4.13,317.59,22.5048,-13.2824,M,Denebola
+물병,Delta Aquarii,3.28,160.59,22.5551,-15.4293,A,Denebola
+물병,c2 Aquarii,3.84,270.67,23.104,-21.0302,K,Denebola
+물병,Iota Aquarii,4.25,175.17,22.0739,-13.4537,B,Denebola
+물병,SadalSuud,3.03,537.33,21.3245,-5.2816,G,Denebola
+물병,Epsilon Aquarii,3.78,207.74,20.4854,-9.2446,B,Denebola
+염소,Deneb Algedi,2.94,38.7,21.4817,-16.013,K,Denebola
+염소,Gamma Capricorni,3.77,157.04,21.412,-16.3338,K,Denebola
+염소,Iota Capricorni,4.44,196.72,21.233,-16.4419,G,Denebola
+염소,Zeta Capricorni,3.92,385.54,21.2757,-22.1856,G,Denebola
+염소,Theta Capricorni,4.06,162.19,21.0713,-17.0836,A,Denebola
+염소,Omega Capricorni,4.22,842.79,20.531,-26.5008,M,Denebola
+염소,Psi Capricorni,4.22,47.87,20.4726,-25.1126,F,Denebola
+염소,Dabih,3.2,326.81,20.2216,-14.4236,G,Denebola
+염소,Alpha Capricorni,3.73,105.83,20.1918,-12.2829,G,Denebola
+고래,lota Ceti,3.72,274.54,0.2036,-8.4153,K,Denebola
+고래,Diphda,2.2,96.33,0.4445,-17.5146,G,Denebola
+고래,Eta Ceti,3.61,123.92,1.0945,-10.0343,K,Denebola
+고래,Theta Ceti,3.77,113.8,1.251,-8.0357,K,Denebola
+고래,Chi Ceti,4.72,75.62,1.5043,-10.3426,F,Denebola
+고래,Rho Ceti,4.88,456.17,2.2704,-12.1116,A,Denebola
+고래,Epsilon Ceti,4.91,70.07,2.4041,-11.4631,F,Denebola
+고래,Pi Ceti,4.19,392.97,2.4513,-13.4544,B,Denebola
+고래,Sigma Ceti,4.81,87.07,2.3311,-15.0842,F,Denebola
+고래,AB Ceti,5.91,251.28,2.2706,-15.142,A,Denebola
+고래,Tau Ceti,3.63,11.91,1.4508,-15.4905,G,Denebola
+고래,Mira,4.97,298.96,2.2031,-2.5226,M,Denebola
+고래,Delta Ceti,4,649.73,2.404,0.2538,B,Denebola
+고래,Gamma Ceti,3.5,79.61,2.443,3.1957,A,Denebola
+고래,Menkar,2.61,249.17,3.0329,4.1047,M,Denebola
+고래,Lambda Ceti,4.66,576.25,3.0057,8.5956,B,Denebola
+고래,Mu Ceti,4.34,84.06,2.4611,10.124,A,Denebola
+고래,Nu Ceti,5,340.1,2.3705,5.4136,G,Denebola
+고래,Xi2 Ceti,4.25,193.11,2.2923,8.3346,B,Denebola
+고래,Xi1 Ceti,4.5,383.27,2.1413,8.5716,G,Denebola
+오리온,Ghi1 Orionis,4.5,28.26,5.5549,20.1649,G,Denebola
+오리온,64 Orionis,5.09,718.41,6.0449,19.4124,B,Denebola
+오리온,Xi Orionis,4.38,607.38,6.1315,14.1214,B,Denebola
+오리온,Nu Orionis,4.34,516.07,6.0853,14.4558,B,Denebola
+오리온,Mu Orionis,4.16,154.94,6.0339,9.3852,A,Denebola
+오리온,Betelgeuse,0.5,497.95,5.5625,7.2443,M,Denebola
+오리온,Lambda1 Orionis,3.33,1098.18,5.3624,9.5659,O,Denebola
+오리온,Bellatrix,1.55,252.44,5.2622,6.2216,B,Denebola
+오리온,Pi1 Orionis,4.66,116.32,4.561,10.1115,A,Denebola
+오리온,Pi2 Orionis,4.34,224.47,4.5152,8.5624,A,Denebola
+오리온,Pi3 Orionis,3.28,26.32,4.5106,7.0006,F,Denebola
+오리온,Pi4 Orionis,3.61,1052.12,4.5226,5.3841,B,Denebola
+오리온,Pi5 Orionis,3.64,1342.23,4.5527,2.2844,B,Denebola
+오리온,Pi6 Orionis,4.63,945.39,4.5945,1.4459,K,Denebola
+오리온,Mintaka,2.13,692.48,5.3311,-0.1652,B,Denebola
+오리온,Epsilon Orionis,1.62,2000,5.3723,-1.1111,B,Denebola
+오리온,Alnitak,1.68,736.26,5.4155,-1.5546,O,Denebola
+오리온,Saiph,2,647.14,5.4851,-9.3936,B,Denebola
+오리온,Rigel,0.19,862.86,5.1539,-8.1027,B,Denebola
+큰개,Theta Canis Majoris,4.19,260.72,6.5516,-12.0354,K,Denebola
+큰개,Gamma Canis Majoris,4.06,441.95,7.0448,-15.3952,B,Denebola
+큰개,Iota Canis Majoris,4.34,1,6.571,-17.0452,B,Denebola
+큰개,Sirius,-1.09,8.6,6.461,-16.4442,A,Denebola
+큰개,Mirzam,1.89,492.69,6.2343,-17.5754,B,Denebola
+큰개,Xi2 Canis Majoris,4.53,441.35,6.3602,-22.5848,A,Denebola
+큰개,Nu2 Canis Majoris,4.09,64.42,6.3741,-19.1622,K,Denebola
+큰개,Omicron2 Canis Majoris,3,1,7.0359,-23.5149,B,Denebola
+큰개,Omicron1 Canis Majoris,4,1,6.5506,-24.1235,K,Denebola
+큰개,Wezen,1.96,1606.72,7.092,-26.2534,F,Denebola
+큰개,Omega Canis Majoris,3.98,911.06,7.1545,-26.4832,B,Denebola
+큰개,Aludra,2.41,1,7.25,-29.2038,B,Denebola
+큰개,Sigma Canis Majoris,3.58,1120.83,7.0238,-27.5751,K,Denebola
+큰개,Adhara,1.41,405.17,6.5932,-28.5959,B,Denebola
+큰개,Zeta Canis Majoris,2.94,362.4,6.2112,-30.0414,B,Denebola
+작은개,Procyon,0.46,11.46,7.403,5.1003,F,Denebola
+작은개,Gomeisa,2.84,161.71,7.2824,8.1439,B,Denebola
+토끼,Theta Leporis,4.69,172.25,6.0712,-14.5607,A,Denebola
+토끼,Eta Leporis,3.78,48.53,5.5728,-14.0942,F,Denebola
+토끼,Zeta Leporis,3.56,70.47,5.48,-14.4842,A,Denebola
+토끼,Arneb,2.64,1,5.3345,-17.4815,F,Denebola
+토끼,Delta Leporis,3.92,113.72,5.5219,-20.523,K,Denebola
+토끼,Gamma Leporis,3.69,29.12,5.4526,-22.262,F,Denebola
+토끼,Beta Leporis,2.95,160.35,5.2914,-20.4422,G,Denebola
+토끼,Epsilon Leporis,3.31,213.32,5.0626,-22.202,K,Denebola
+토끼,Mu Leporis,3.25,185.95,5.1358,-16.1037,B,Denebola
+토끼,Lambda Leporis,4.19,851.59,5.2039,-13.0907,B,Denebola
+토끼,Nu Leporis,5.25,333.5,5.2104,-12.1727,B,Denebola
+토끼,Kappa Leporis A,4.31,728.05,5.1418,-12.5446,A,Denebola
+토끼,Iota Leporis,4.41,231.81,5.1323,-11.5026,B,Denebola
+에리다누스,Achernar,0.42,139.44,1.3836,-57.0727,B,Denebola
+에리다누스,Chi Eridani,3.84,58.22,1.5653,-51.2953,G,Denebola
+에리다누스,Phi Eridani,3.52,153.7,2.1721,-51.2431,B,Denebola
+에리다누스,Kappa Eridani,4.19,508.04,2.2751,-47.3611,B,Denebola
+에리다누스,s Eridani,4.75,116.4,2.4042,-42.4742,A,Denebola
+에리다누스,Iota Eridani,4.25,150.65,2.4136,-39.4532,K,Denebola
+에리다누스,Theta1 Eridani,2.94,161.23,2.5909,-40.1251,A,Denebola
+에리다누스,82 Eridani,4.38,19.71,3.2052,-42.5859,G,Denebola
+에리다누스,f Eridani,4.25,165.48,3.4928,-37.33,F,Denebola
+에리다누스,g Eridani,4.31,209.88,3.502,-36.0751,G,Denebola
+에리다누스,Upsilon4 Eridani,3.52,177.94,4.1847,-33.443,B,Denebola
+에리다누스,Upsilon3 Eridani,4.09,296.24,4.2455,-33.5746,K,Denebola
+에리다누스,Upsilon2 Eridani,3.97,213.87,4.3628,-30.3052,G,Denebola
+에리다누스,Tau6 Eridani,4.31,57.49,3.4751,-23.1055,F,Denebola
+에리다누스,Tau5 Eridani,4.22,293.31,3.3449,21.3322,B,Denebola
+에리다누스,Tau4 Eridani,3.72,304.54,3.2033,-21.4029,M,Denebola
+에리다누스,Tau3 Eridani,4.13,88.63,3.0325,-23.3207,A,Denebola
+에리다누스,Tau1 Eridani,4.56,46.38,2.4611,-18.2835,F,Denebola
+에리다누스,Eta Eridani,4.03,136.53,2.5733,-8.4826,K,Denebola
+에리다누스,Zeta Eridani,4.84,109.74,3.1658,-8.4405,K,Denebola
+에리다누스,Epsilon Eridani,3.86,10.49,3.3401,-9.225,K,Denebola
+에리다누스,Delta Eridani,3.67,29.49,3.4422,-9.4108,K,Denebola
+에리다누스,Nu Eridani,3.86,675.29,4.3728,-3.1818,B,Denebola
+에리다누스,Mu Eridani,3.97,421.86,4.464,-3.1243,B,Denebola
+에리다누스,Omega Eridani,4.41,234.99,4.5402,-5.2449,A,Denebola
+에리다누스,Beta Eridani,2.81,89.36,5.0859,-5.0321,A,Denebola
+에리다누스,Lambda Eridani,4.19,811.34,5.1015,-8.4325,B,Denebola
+에리다누스,53 Eridani,4,109.85,4.3915,-14.1531,K,Denebola
+황소,Beta Tauri,1.61,133.89,5.2745,28.3735,B,Denebola
+황소,Tau Tauri,4.22,398.24,4.4338,23.0003,B,Denebola
+황소,Ain,3.69,146.66,4.2958,19.1353,G,Denebola
+황소,Aldebaran,1,66.64,4.3715,16.332,K,Denebola
+황소,Zeta Tauri,2.91,444.96,5.3901,21.0923,B,Denebola
+황소,Theta2 Tauri,3.45,150.37,4.2959,15.5519,A,Denebola
+황소,Gamma Tauri,3.8,161.55,4.2106,15.4059,G,Denebola
+황소,Lambda Tauri,3.38,483.91,4.0158,12.3319,B,Denebola
+황소,Omicron Tauri,3.77,290.95,3.2603,9.0635,G,Denebola
+황소,Delta3 Tauri A,4.31,148.52,4.265,17.585,A,Denebola
+황소,Delta Tauri,3.92,155.61,4.2416,17.3547,G,Denebola
+황소,Alcyone,2.84,403.17,3.4852,24.1034,B,Denebola
+쌍둥이,Pollux,1.29,33.79,7.4643,27.5812,K,Denebola
+쌍둥이,Upsilon Geminorum,4.16,270.9,7.372,26.5039,M,Denebola
+쌍둥이,Kappa Geminorum,3.72,141.38,7.455,24.2033,G,Denebola
+쌍둥이,Delta Geminorum,3.59,60.47,7.213,21.5624,F,Denebola
+쌍둥이,Lambda Geminorum,3.61,100.88,7.1925,16.2957,A,Denebola
+쌍둥이,Xi Geminorum,3.44,58.7,6.4635,12.5217,F,Denebola
+쌍둥이,Mekbuda,4.16,1376.19,7.0528,20.3212,G,Denebola
+쌍둥이,Gamma Geminorum,1.92,109.3,6.3902,16.2247,A,Denebola
+쌍둥이,Iota Geminorum,3.94,120.35,7.2709,27.4507,G,Denebola
+쌍둥이,Tau Geminorum,4.53,321.02,7.1236,30.1224,K,Denebola
+쌍둥이,Castor,1.58,50.87,7.3604,31.5012,A,Denebola
+쌍둥이,Theta Geminorum,3.63,189.08,6.5418,33.5557,A,Denebola
+쌍둥이,Epsilon Geminorum,3.19,844.97,6.4521,25.0629,G,Denebola
+쌍둥이,Nu Geminorum,4.09,544.51,6.302,20.1151,B,Denebola
+쌍둥이,Tejat,2.91,231.65,6.2421,22.3006,M,Denebola
+쌍둥이,Eta Geminorum,3.28,384.63,6.1616,22.2959,M,Denebola
+쌍둥이,1 Geminorum,4.31,155.09,6.0531,23.1542,G,Denebola
+외뿔소,Alpha Monocerotis,4.09,147.78,7.4221,-9.3607,G,Denebola
+외뿔소,Zeta Monocerotis,4.5,1058.97,8.0945,-3.0254,G,Denebola
+외뿔소,Delta Monocerotis,4.13,384.17,7.1302,-0.3145,A,Denebola
+외뿔소,Beta Monocerotis,3.78,676.67,6.2956,-7.0245,B,Denebola
+외뿔소,Gamma Monocerotis,4.13,497.95,6.1559,-6.1649,K,Denebola
+외뿔소,Epsilon Monocerotis,4.44,122.29,6.2459,4.3456,A,Denebola
+마차부,Theta Aurigae,2.61,165.57,6.0118,37.1247,A,Denebola
+마차부,Menkalinan,1.9,81.11,6.0113,44.5653,A,Denebola
+마차부,Capella,0.24,42.8,5.1824,46.0112,G,Denebola
+마차부,Zeta Aurigae,3.84,785.94,5.0406,41.063,K,Denebola
+마차부,Iota Aurigae,2.83,493.44,4.583,33.1207,K,Denebola
+게,Iota Cancri,4.19,331.13,8.4805,28.4031,G,Denebola
+게,Chi Cancri,5.22,59.59,8.2127,27.0834,F,Denebola
+게,Gamma Cancri,4.66,181.2,8.4436,21.231,A,Denebola
+게,Delta Cancri,4.09,130.57,8.4559,18.0413,K,Denebola
+게,Alpha Cancri,4.28,188.32,8.5944,11.4612,K,Denebola
+게,Beta Cancri,3.66,303.41,8.1745,9.0658,K,Denebola

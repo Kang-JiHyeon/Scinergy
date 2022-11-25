@@ -18,7 +18,7 @@ public class StarInfo
     public float ra;
     public float dec;
     public string brightness;
-    //public string starLine;
+    public string starLine;
 }
 
 [System.Serializable]
@@ -86,6 +86,18 @@ public class DataManager : MonoBehaviour
             }
             starIndex += zodiacInfo[i].starCount;
         }
+        for (int k = 0; k < starInfo.Count; k++)
+        {
+            string[] starLineList = starInfo[k].starLine.Split(":");
+            for (int m = 0; m < starLineList.Length; m++)
+            {
+                GameObject line = Instantiate(starLineFactory);
+                StarLine starLine = line.GetComponent<StarLine>();
+                starLine.star1 = GameObject.Find(starInfo[k].starName);
+                starLine.star2 = GameObject.Find(starLineList[m]);
+                line.transform.parent = starLine.star1.transform.parent.transform;
+            }
+        }
         //for(int i = 0; i< starTests.Count; i++)
         //{
         //    GameObject star = Instantiate(starFactory);
@@ -94,16 +106,7 @@ public class DataManager : MonoBehaviour
         //    star.GetComponent<Star>().InfoSet(starTests[i].starName, starTests[i].ra, starTests[i].dec, starFactory, brightness, starTests[i].apparentMagnitude, 1);
         //    star.transform.parent = GameManager.instance.CelestialSphere.transform;
         //}
-        //for(int i = 0; i<starTests.Count; i++)
-        //{
-        //    string[] starLineList = starTests[i].starLine.Split(":");
-        //    for(int j = 0; j<starLineList.Length; j++)
-        //    {
-        //        StarLine starLine = Instantiate(starLineFactory).GetComponent<StarLine>();
-        //        starLine.star1 = GameObject.Find(starTests[i].name);
-        //        starLine.star2 = GameObject.Find(starLineList[j]);
-        //    }
-        //}
+
     }   
 
     // Update is called once per frame
