@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using Photon.Pun;
+using System.IO;
 
 public class CreatedConstellationList : MonoBehaviourPun
 {
@@ -50,7 +51,6 @@ public class CreatedConstellationList : MonoBehaviourPun
                 averageZ += childStar.transform.position.z;
             }
             ConstellationPosition = new Vector3(averageX / childStarCount, averageY / childStarCount, averageZ / childStarCount);
-            print(childStarCount);
         }
         Player.GetComponent<PlayerRot>().StarSet(ConstellationPosition);
     }
@@ -129,4 +129,11 @@ public class CreatedConstellationList : MonoBehaviourPun
     {
         CreatedConstellationListUI.SetActive(false);
     }
+
+    public void OnSaveBtn()
+    {
+        ScreenCapture.CaptureScreenshot(SelectedConstellation.name + ".png");
+        
+    }
+
 }

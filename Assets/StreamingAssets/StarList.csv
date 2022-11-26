@@ -44,8 +44,8 @@ constellationName,starName,apparentMagnitude,distance,ra,dec,brightness,starLine
 Ã³³à,Kappa Virginis,4.31,254.81,14.1405,-10.2238,K,Spica
 Ã³³à,Spica,0.89,249.74,13.2622,-11.1639,B,Forima
 Ã³³à,Delta Virginis,3.44,198.39,12.5643,3.1631,M,Heze
-Ã³³à,Vindemiatrix,2.98,109.6,13.0317,10.5015,G,Delta Virginis:Delta Virginis
-Ã³³à,Forima,2.81,38.11,12.4247,-1.3419,F,Zaniah
+Ã³³à,Vindemiatrix,2.98,109.6,13.0317,10.5015,G,Delta Virginis
+Ã³³à,Forima,2.81,38.11,12.4247,-1.3419,F,Zaniah:Delta Virginis
 Ã³³à,Zaniah,3.89,265.39,12.2103,-0.4729,A,Nu Virginis
 Ã³³à,Nu Virginis,4.13,293.84,11.47,6.2411,M,Zaniah
 ±î¸¶±Í,Algorab,2.94,86.86,12.3101,-16.382,A,Gienah
@@ -112,7 +112,7 @@ constellationName,starName,apparentMagnitude,distance,ra,dec,brightness,starLine
 µ¶¼ö¸®,Epsilon Aquilae,4.16,154.94,19.0037,15.0603,K,Zeta Aquilae
 µ¶¼ö¸®,Lambda Aquilae,3.39,123.69,19.0725,-4.5052,B,Delta Aquilae
 ¹éÁ¶,Deneb,1.29,1411.95,20.4211,45.2154,A,Sadir
-¹éÁ¶,Sadir,2.34,1300,20.2301,40.1957,F,Deneb
+¹éÁ¶,Sadir,2.34,1300,20.2301,40.1957,F,Deneb:DeltaCygni
 ¹éÁ¶,Epsilon Cygni,2.64,72.71,20.4706,34.0331,K,Sadir
 ¹éÁ¶,Zeta Cygni,3.36,143.11,21.1353,30.1923,G,Epsilon Cygni
 ¹éÁ¶,Mu Cygni,4.59,72.53,21.4509,28.5054,F,Zeta Cygni

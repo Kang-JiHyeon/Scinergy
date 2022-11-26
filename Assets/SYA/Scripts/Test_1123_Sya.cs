@@ -10,7 +10,7 @@ public class Test_1123_Sya : MonoBehaviour
     void Start()
     {
         //플레이어를 생성한다.
-        PhotonNetwork.Instantiate(SYA_UserInfoManagerSaveLoad.SYA_UserInfoManager.Instance.Avatar, Vector3.zero, Quaternion.identity);
+        PhotonNetwork.Instantiate(SYA_UserInfoManagerSaveLoad.SYA_UserInfoManager.Instance.Avatar, new Vector3(0,10,0), Quaternion.identity);
         SceneManager.LoadScene("KYG_Scene");
     }
 }

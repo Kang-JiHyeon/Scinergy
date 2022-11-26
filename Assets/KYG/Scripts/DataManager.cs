@@ -21,18 +21,6 @@ public class StarInfo
     public string starLine;
 }
 
-[System.Serializable]
-public class StarTest
-{
-    public string constellationName;
-    public string starName;
-    public float apparentMagnitude;
-    public float distance;
-    public float ra;
-    public float dec;
-    public string brightness;
-    //public string starLine;
-}
 
 public class DataManager : MonoBehaviour
 {
@@ -42,8 +30,6 @@ public class DataManager : MonoBehaviour
 
     public List<StarInfo> starInfo;
 
-    public List<StarTest> starTests;
-
     public GameObject ConstellationFactory;
 
     public GameObject starFactory;
@@ -51,6 +37,8 @@ public class DataManager : MonoBehaviour
     public GameObject starLineFactory;
 
     public List<GameObject> brightnessList = new();
+
+    public GameObject basicConstellationList;
     private void Awake()
     {
         if(instance == null)
@@ -68,14 +56,13 @@ public class DataManager : MonoBehaviour
     {
         zodiacInfo = CSV.instance.Parsing<ZodiacInfo>("Zodiac");
         starInfo = CSV.instance.Parsing<StarInfo>("StarList");
-        //starTests = CSV.instance.Parsing<StarTest>("starTest");
         int starIndex = 0;
         for (int i = 0; i < zodiacInfo.Count; i++)
         {
             GameObject constellation = Instantiate(ConstellationFactory);
-            constellation.transform.parent = GameManager.instance.CelestialSphere.transform;
+            constellation.transform.parent = GameManager.instance.CelestialSphere.transform.Find("Constellation").transform;
             constellation.name = zodiacInfo[i].name;
-            GameManager.instance.createdConstellationList[name] = constellation;
+            GameManager.instance.basicConstellationList[constellation.name] = constellation;
             for (int j = starIndex; j < zodiacInfo[i].starCount + starIndex; j++)
             {
                 GameObject star = Instantiate(starFactory);
@@ -98,6 +85,7 @@ public class DataManager : MonoBehaviour
                 line.transform.parent = starLine.star1.transform.parent.transform;
             }
         }
+        GameManager.instance.CelestialSphere.transform.Find("Constellation").transform.gameObject.SetActive(false);
     }   
 
     // Update is called once per frame

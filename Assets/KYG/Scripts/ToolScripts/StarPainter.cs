@@ -16,6 +16,7 @@ public class StarPainter : MonoBehaviourPun
     public GameObject Constellation;
     public GameObject ConstellationList;
     public GameObject ConstellationListUI;
+    public GameObject basicConstellationListUI;
     public StarLine starLine;
     public GameObject player;
     bool isDrawing = false;
@@ -184,6 +185,14 @@ public class StarPainter : MonoBehaviourPun
         else
         {
             ConstellationListUI.SetActive(true);
+        }
+        if (basicConstellationListUI.activeSelf)
+        {
+            basicConstellationListUI.SetActive(false);
+        }
+        else
+        {
+            basicConstellationListUI.SetActive(true);
         }
     }
     public void OnCloseBtn()

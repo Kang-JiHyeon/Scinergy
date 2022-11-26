@@ -11,6 +11,10 @@ public class GameManager : MonoBehaviour
     //천구 반지름
     public float celestialSphereRadius;
 
+    public Dictionary<string, GameObject> basicConstellationList = new();
+
+    public Dictionary<string, GameObject> basicStarList = new();
+
     public Dictionary<string, GameObject> createdStarList = new ();
 
     public Dictionary<string, GameObject> createdConstellationList = new();
