@@ -9,6 +9,7 @@ public class SYA_AudioManager : MonoBehaviour
 {
     public static SYA_AudioManager instance;
 
+
     public AudioSource bgSource;
     public AudioSource clickSource;
     public AudioSource nextSource;
@@ -55,7 +56,7 @@ public class SYA_AudioManager : MonoBehaviour
             if (Input.GetMouseButtonDown(0))
             {
                 //실행된 첫 씬의 이름이 심포룸만들기씬이라면 함수 탈출
-                if (sceneName.Contains("Sympo") && !sceneName.Contains("Room")) return;
+                //if (sceneName.Contains("Sympo") && sceneName.Contains("Room")) return;
 
                 m_ped.position = Input.mousePosition;
                 List<RaycastResult> results = new List<RaycastResult>();

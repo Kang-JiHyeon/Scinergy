@@ -59,7 +59,7 @@ namespace SYA_UI
             }
 
             //오디오매니저에게 캔버스 설정
-            if (SceneManager.GetActiveScene().name.Contains("Sympo"))
+            /*if (SceneManager.GetActiveScene().name.Contains("Sympo"))
                 if (Input.GetMouseButtonDown(0))
                 {
                     m_ped.position = Input.mousePosition;
@@ -72,7 +72,7 @@ namespace SYA_UI
                             SYA_AudioManager.instance.clickSource.Play();
                         }
                     }
-                }
+                }*/
 
         }
 
