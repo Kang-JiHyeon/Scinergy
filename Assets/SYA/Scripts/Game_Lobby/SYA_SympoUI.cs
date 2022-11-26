@@ -73,12 +73,14 @@ namespace SYA_UI
                 {
                     if (ray.gameObject.transform.GetComponent<Button>())
                     {
-                        SYA_AudioManager.instance.clickSource.Play();
+                        clickSource.Play();
                     }
                 }
             }
 
         }
+
+        public AudioSource clickSource;
 
         // [승원] 11.23 버튼 클릭 시 버튼 preesed 상태 유지하기 위한 변수 선언
         bool isUwcOnOff = false;
