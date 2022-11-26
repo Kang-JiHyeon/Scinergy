@@ -34,6 +34,9 @@ namespace SYA_UI
             }
             m_gr = GetComponent<GraphicRaycaster>();
             m_ped = new PointerEventData(null);
+            BG.onValueChanged.AddListener(OnNewSave);
+            ef.onValueChanged.AddListener(OnNewSave);
+            mic.onValueChanged.AddListener(OnNewSave);
         }
 
         float recodingTimeNum;
@@ -280,6 +283,9 @@ namespace SYA_UI
                 btn_option.sprite = optionOff;
                 option.SetActive(false);
             }
+            eexBG= BG.value;
+            eexEF= ef.value;
+            eexMic = mic.value;
         }
 
         public GameObject micOption;
@@ -308,14 +314,14 @@ namespace SYA_UI
                 micOption.SetActive(false);
                 audio = false;
             }
-            exBG = BG.value;
-            exEF = ef.value;
-            exMic = mic.value;
         }
 
         public float exBG;
         public float exEF;
         public float exMic;
+        public float eexBG;
+        public float eexEF;
+        public float eexMic;
         //완료를 누르면 반영된다
         //취소를 누르면 창이 닫힌다(오디오 설정과 그전 밸류값으로)
         public void OnSaveOption()
@@ -327,20 +333,20 @@ namespace SYA_UI
         }
 
         //완료버튼 누른 결루
-        public void OnNewSave()
+        public void OnNewSave(float n)
         {
             exBG = BG.value;
             exEF = ef.value;
             exMic = mic.value;
-            OnSaveOption();
+            //OnSaveOption();
         }
 
         //취소
         public void Cancle()
         {
-            BG.value = exBG;
-            ef.value = exEF;
-            mic.value = exMic;
+            BG.value = eexBG;
+            ef.value = eexEF;
+            mic.value = eexMic;
             OnSaveOption();
         }
 

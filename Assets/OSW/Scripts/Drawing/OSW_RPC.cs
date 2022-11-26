@@ -10,6 +10,8 @@ public class OSW_RPC : MonoBehaviourPun
 {
     OSW_LineDrawer lineDrawer;
     OSW_GameManager gameManager;
+    OSW_BtnClickEvent btnClickEvent;
+    SYA_SympoUI sympoUI;
 
     void Update()
     {
@@ -21,6 +23,16 @@ public class OSW_RPC : MonoBehaviourPun
         if (gameManager == null)
         {
             gameManager = FindObjectOfType<OSW_GameManager>();
+        }
+
+        if(btnClickEvent == null)
+        {
+            btnClickEvent = FindObjectOfType<OSW_BtnClickEvent>();
+        }
+
+        if(sympoUI == null)
+        {
+            sympoUI = FindObjectOfType<SYA_SympoUI>();
         }
     }
 
@@ -39,13 +51,13 @@ public class OSW_RPC : MonoBehaviourPun
     }
 
     [PunRPC]
-    void RPCCtrlZ()
+    public void RPCCtrlZ()
     {
         lineDrawer.CtrlZ();
     }
 
     [PunRPC]
-    void RPCCtrlY()
+    public void RPCCtrlY()
     {
         lineDrawer.CtrlY();
     }
@@ -67,11 +79,23 @@ public class OSW_RPC : MonoBehaviourPun
 
 
     [PunRPC]
-    void RPCPlayerAuthority(string name, bool master)
+    public void RPCPlayerAuthority(string name, bool master)
     {
         if (master)//만약 마스터 클라이언트라면
             SYA_SymposiumManager.Instance. playerAuthority[name] = "Owner";
         else //아니라면
             SYA_SymposiumManager.Instance.playerAuthority[name] = "Audience";
+    }
+
+    [PunRPC]
+    public void RPCGiveAuthority(string name, string authority)
+    {
+        btnClickEvent.GiveAuthority(name, authority);
+    }
+
+    [PunRPC]
+    public void RPCClearUserList(Transform transform)
+    {
+        sympoUI.ClearUserList(transform);
     }
 }

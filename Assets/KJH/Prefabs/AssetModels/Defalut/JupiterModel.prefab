@@ -128,7 +128,7 @@ GameObject:
   - component: {fileID: 2050014008127311640}
   - component: {fileID: 8475165093040527658}
   m_Layer: 0
-  m_Name: Sprite_Focus (1)
+  m_Name: Sprite_Focus
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -5,7 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Celestial
-  - Post Processing
+  - TAZOFX
+  - SkyBoxCam
   layers:
   - Default
   - TransparentFX
@@ -27,7 +28,7 @@ TagManager:
   - Avatar_Front
   - Avatar_Back
   - 
-  - 
+  - Skybox
   - 
   - 
   - 

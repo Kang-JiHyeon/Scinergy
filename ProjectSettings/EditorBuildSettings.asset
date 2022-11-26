@@ -20,12 +20,18 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/SYA/Scenes/SymposiumScene.unity
     guid: 168bc06e9c7c2d4428b16cba67bcbcb5
+  - enabled: 0
+    path: Assets/OSW/Scenes/SymposiumScene.unity
+    guid: a7776355dcdbcee4a945f1eeb9e83846
   - enabled: 1
     path: Assets/KJH/Scenes/KJH_SolarSystemScene.unity
     guid: 1fe8e9ea401946e42af743a96a07231a
   - enabled: 1
     path: Assets/KJH/Scenes/KJH_OrbitScene.unity
     guid: 05d63b5a46b6a414992d64d6dc998f64
+  - enabled: 1
+    path: Assets/KJH/Scenes/KJH_EclipseScene.unity
+    guid: 9480a6c7d1366e5459c7d91dd3cad5c6
   - enabled: 1
     path: Assets/KYG/Scenes/KYG_Scene.unity
     guid: c134351f9f0681b489029bacabb0b6dc

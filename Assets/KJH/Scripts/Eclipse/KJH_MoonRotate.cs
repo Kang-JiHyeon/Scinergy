@@ -35,6 +35,8 @@ public class KJH_MoonRotate : MonoBehaviour
         }
 
         DrawOrbit();
+
+        transform.LookAt(earth);
     }
 
     void DrawOrbit()

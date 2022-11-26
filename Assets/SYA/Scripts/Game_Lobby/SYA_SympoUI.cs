@@ -14,6 +14,8 @@ namespace SYA_UI
 {
     public class SYA_SympoUI : MonoBehaviourPunCallbacks
     {
+        public static SYA_SympoUI Instance;
+
         GraphicRaycaster m_gr;
         PointerEventData m_ped;
 
@@ -37,12 +39,18 @@ namespace SYA_UI
         public Text roomOwner;
         public Text roomPassward;
 
+        // [승원] 11.23 버튼 pressed 상태 표현을 위한 코드
+        public Image btn;
+        public Sprite ChangeImg; // 바꿀 이미지
+        public Sprite OriginImg; // 원래 이미지
+
         // [지현]
         // 현재인원/최대인원
         public Text text_user;
 
         private void Awake()
         {
+            Instance = this;
             m_gr = GetComponent<GraphicRaycaster>();
             m_ped = new PointerEventData(null);
         }
@@ -72,11 +80,26 @@ namespace SYA_UI
 
         }
 
+        // [승원] 11.23 버튼 클릭 시 버튼 preesed 상태 유지하기 위한 변수 선언
+        bool isUwcOnOff = false;
         public void UwcOnOff()
         {
+            isUwcOnOff = !isUwcOnOff; // 추가
+
             window.SetActive(!window.activeSelf);
             windowList.SetActive(!windowList.activeSelf);
             //moveOnOff.SetActive(!moveOnOff.activeSelf);
+
+            // 추가
+            if (isUwcOnOff)
+            {
+                btn.sprite = ChangeImg;
+
+            }
+            else if (!isUwcOnOff)
+            {
+                btn.sprite = OriginImg;
+            }
         }
 
         public void UwcMoveOnOff()
@@ -112,6 +135,10 @@ namespace SYA_UI
             ClearUserList(AudienceTran);
             ClearUserList(PresenterTran);
 
+            //SYA_SymposiumManager.Instance.player[PhotonNetwork.NickName].RPC("RPCClearUserList", RpcTarget.Others, transform);
+            //SYA_SymposiumManager.Instance.player[PhotonNetwork.NickName].RPC("RPCClearUserList", RpcTarget.Others, transform);
+
+
             foreach (KeyValuePair<string, string> userAuthority in SYA_SymposiumManager.Instance.playerAuthority)
             {
                 if (userAuthority.Value == "Audience")//û���� ����
@@ -130,6 +157,7 @@ namespace SYA_UI
                     go.GetComponentInChildren<Text>().text = userAuthority.Key;
                 }
             }
+
         }
 
         public void OnSpaceChange()
@@ -183,8 +211,8 @@ namespace SYA_UI
             }
         }
 
-        bool goStar;
-        bool goSympo;//영아
+        public bool goStar;
+        public bool goSympo;//영아
 
 
         public void ConstellationChange()
@@ -353,10 +381,8 @@ namespace SYA_UI
             spaceButton.SetActive(!spaceButton.activeSelf);
         }
 
-
-
         // UserList Clear
-        void ClearUserList(Transform tr)
+        public void ClearUserList(Transform tr)
         {
             for (int i = 0; i < tr.childCount; i++)
             {
