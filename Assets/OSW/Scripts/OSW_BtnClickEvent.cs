@@ -4,24 +4,19 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class OSW_BtnClickEvent : MonoBehaviour//, IPointerClickHandler
+public class OSW_BtnClickEvent : MonoBehaviour
 {
     public GameObject ChangeAudience;
     public GameObject ChangePrensenter;
-
     public Canvas m_canvas;
     GraphicRaycaster m_gr;
     PointerEventData m_ped;
     EventSystem es;
 
-    SYA_SympoPresentstion sYA_SympoPresentstion;
+    List<RaycastResult> results;
+    string userName;
 
-    void Start()
-    {
-        sYA_SympoPresentstion = FindObjectOfType<SYA_SympoPresentstion>();
-    }
-
-    private void Update()
+    void Update()
     {
         //"Owner" 일 경우에만 버튼 우클릭 활성화!
         if (SYA_SymposiumManager.Instance.playerAuthority[PhotonNetwork.NickName] == "Owner")
@@ -39,41 +34,47 @@ public class OSW_BtnClickEvent : MonoBehaviour//, IPointerClickHandler
                 m_ped = new PointerEventData(es);
 
                 m_ped.position = Input.mousePosition;
-                List<RaycastResult> results = new List<RaycastResult>();
+                //List<RaycastResult> results = new List<RaycastResult>();
+                results = new List<RaycastResult>();
                 m_gr.Raycast(m_ped, results);
 
-                // 전환 버튼이 같이 생김
-                if (results[0].gameObject.transform.parent.parent.parent.parent.name == " PresenterBG")
+                if (results[0].gameObject.name.Contains("UserListItem"))
                 {
-                    
-                    Debug.Log("청중으로 전환");
-                    ChangeAudience.SetActive(!ChangeAudience.activeSelf);
-                    //ChangePrensenter = null;
-                    //ChangePrensenter.SetActive(false);
-                }
-                
-                if(results[0].gameObject.transform.parent.parent.parent.parent.name == "AudienceBG")
-                {
-                    Debug.Log("발표자로 전환");
-                    ChangePrensenter.SetActive(!ChangePrensenter.activeSelf);
-                    //ChangeAudience = null;
-                    //ChangeAudience.SetActive(false);
+                    userName = GetComponentInChildren<Text>().text;
+                    if (results[0].gameObject.GetComponentInChildren<Text>().text == userName)
+                    {
+                        if (SYA_SymposiumManager.Instance.playerAuthority[userName] == "Audience")
+                        {
+                            ChangePrensenter.SetActive(!ChangePrensenter.activeSelf);
+                        }
+                        else if (SYA_SymposiumManager.Instance.playerAuthority[userName] == "Presenter")
+                        {
+                            ChangeAudience.SetActive(!ChangeAudience.activeSelf);
+                        }
+                    }
                 }
             }
         }
     }
 
-    // 전환 버튼을 누르면 master가 바뀐다!
-    public void Presenter()
+    //청중 -> 발표자 / 발표자 -> 청중
+    public void GiveAuthority(string name, string authority)
     {
-        SYA_SymposiumManager.Instance.playerAuthority[name] = "Owner";
-        sYA_SympoPresentstion.pre.SetActive(true);
+        SYA_SymposiumManager.Instance.playerAuthority[name] = authority;
     }
 
-    public void Audience()
+    // 버튼 OnClicked 함수, 여기서는 GiveAuthority 함수를 호출해주는 용도로 사용!
+    public void BtnAuthority(Button button)
     {
-        SYA_SymposiumManager.Instance.playerAuthority[name] = "Audience";
-        sYA_SympoPresentstion.pre.SetActive(false);
+        if (button.name == "ChangePrensenter")
+        {
+            //GiveAuthority(userName, "Presenter");
+            SYA_SymposiumManager.Instance.player[PhotonNetwork.NickName].RPC("RPCGiveAuthority", RpcTarget.All, userName, "Presenter");
+        }
+        else if (button.name == "ChangeAudience")
+        {
+            //GiveAuthority(userName, "Audience");
+            SYA_SymposiumManager.Instance.player[PhotonNetwork.NickName].RPC("RPCGiveAuthority", RpcTarget.All, userName, "Audience");
+        }
     }
-
 }

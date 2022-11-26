@@ -132,6 +132,10 @@ namespace SYA_UI
             ClearUserList(AudienceTran);
             ClearUserList(PresenterTran);
 
+            //SYA_SymposiumManager.Instance.player[PhotonNetwork.NickName].RPC("RPCClearUserList", RpcTarget.Others, transform);
+            //SYA_SymposiumManager.Instance.player[PhotonNetwork.NickName].RPC("RPCClearUserList", RpcTarget.Others, transform);
+
+
             foreach (KeyValuePair<string, string> userAuthority in SYA_SymposiumManager.Instance.playerAuthority)
             {
                 if (userAuthority.Value == "Audience")//û���� ����
@@ -150,6 +154,7 @@ namespace SYA_UI
                     go.GetComponentInChildren<Text>().text = userAuthority.Key;
                 }
             }
+
         }
 
         public void OnSpaceChange()
@@ -346,10 +351,8 @@ namespace SYA_UI
             spaceButton.SetActive(!spaceButton.activeSelf);
         }
 
-
-
         // UserList Clear
-        void ClearUserList(Transform tr)
+        public void ClearUserList(Transform tr)
         {
             for (int i = 0; i < tr.childCount; i++)
             {

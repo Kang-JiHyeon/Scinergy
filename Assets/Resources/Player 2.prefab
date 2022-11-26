@@ -10270,6 +10270,7 @@ MonoBehaviour:
   cc: {fileID: 0}
   nickName: {fileID: 2660803169950827906}
   anim: {fileID: 7679119818033273268}
+  currentScene: 
   fullScreenMode: 0
 --- !u!114 &2836529994268691292
 MonoBehaviour:
@@ -10397,6 +10398,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f387dddbeff30194d903d2c1f77b463e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isTrigger: 0
 --- !u!114 &2778251782718013339
 MonoBehaviour:
   m_ObjectHideFlags: 0

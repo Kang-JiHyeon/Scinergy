@@ -22,7 +22,7 @@ EditorBuildSettings:
     guid: 168bc06e9c7c2d4428b16cba67bcbcb5
   - enabled: 1
     path: Assets/OSW/Scenes/SymposiumScene.unity
-    guid: 5b0196c621fc6154891a6ca19f16c29d
+    guid: a7776355dcdbcee4a945f1eeb9e83846
   - enabled: 1
     path: Assets/KJH/Scenes/KJH_SolarSystemScene.unity
     guid: 1fe8e9ea401946e42af743a96a07231a
