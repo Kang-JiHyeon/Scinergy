@@ -1,4 +1,1 @@
-[uWC::Log][2022-11-26 10:27:26] Start
-[uWC::Err][2022-11-26 21:14:06] IconTexture::Capture() => GetIconInfo() failed with error code: 1402
-[uWC::Err][2022-11-26 21:38:42] IconTexture::Capture() => GetIconInfo() failed with error code: 1402
-[uWC::Err][2022-11-26 21:46:58] GetStoreAppProcessId() => EnumChildWindows() failed with error code: 0
+[uWC::Log][2022-11-27 00:27:14] Start
