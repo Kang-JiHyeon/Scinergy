@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.08217172, g: 0.09690359, b: 0.15214872, a: 1}
+  m_IndirectSpecularColor: {r: 0.0038378797, g: 0.0036295622, b: 0.0027149692, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -21030,6 +21030,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pre: {fileID: 715211490}
+  window: {fileID: 0}
+  windowList: {fileID: 0}
 --- !u!65 &1913559491
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -21401,6 +21403,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 259bcd46eec97fc4c9f32aad50fb03ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TV: {fileID: 0}
+  guid: {fileID: 0}
   btn_chat: {fileID: 1715504317}
   chatOn: {fileID: 21300000, guid: 8002ff2670a7a9a46845403527067960, type: 3}
   chatOff: {fileID: 21300000, guid: 7432a4b850e079341b6cfc3b2ad8c287, type: 3}
@@ -21435,6 +21439,9 @@ MonoBehaviour:
   exBG: 0.5
   exEF: 0.5
   exMic: 0.5
+  eexBG: 0
+  eexEF: 0
+  eexMic: 0
 --- !u!114 &1921615721
 MonoBehaviour:
   m_ObjectHideFlags: 0
