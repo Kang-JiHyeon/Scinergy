@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Constellation.cs.meta
 guid: 2ad47e659787a4d4ca06a2cc5856fa9c
+========
+guid: 6c3a9dc0c96663c43b89916d34c8b8ea
+>>>>>>>> main:Assets/KJH/Assets/Travis Game Assets/Hit Impact Effects/Demo Scene/Scripts/HitImpactEffectsPreview.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
