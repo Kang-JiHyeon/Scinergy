@@ -23,9 +23,10 @@ public class KJH_DontDestroyObject : MonoBehaviour
     void Update()
     {
         // 로비씬이나 일월식 씬이면 파괴한다.
-        if (SceneManager.GetActiveScene().name.Contains("SYA") || SceneManager.GetActiveScene().name.Contains("Eclipse"))
+        if (SceneManager.GetActiveScene().name.Contains("Sympo") || SceneManager.GetActiveScene().name.Contains("Eclipse"))
         {
             Destroy(gameObject);
         }
+        
     }
 }

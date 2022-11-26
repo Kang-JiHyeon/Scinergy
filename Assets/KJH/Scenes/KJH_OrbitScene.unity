@@ -4099,6 +4099,7 @@ GameObject:
   - component: {fileID: 1526615130}
   - component: {fileID: 1526615129}
   - component: {fileID: 1526615131}
+  - component: {fileID: 1526615132}
   m_Layer: 0
   m_Name: SpaceBG
   m_TagString: Untagged
@@ -4227,6 +4228,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5161f4b0de561fd4bbaf56f8217d34e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1526615132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1526615128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b567c1cf0b06df9428e84175287d4106, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1572905684

@@ -2631,6 +2631,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1215712633}
   - component: {fileID: 1215712632}
+  - component: {fileID: 1215712634}
   m_Layer: 0
   m_Name: BG_Eclipse
   m_TagString: Untagged
@@ -2749,6 +2750,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1215712634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1215712631}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b567c1cf0b06df9428e84175287d4106, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1245065255
 GameObject:
   m_ObjectHideFlags: 0
@@ -4967,7 +4980,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_TargetDisplay: 0
 --- !u!224 &1938652443
 RectTransform:
