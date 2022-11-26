@@ -6,15 +6,16 @@ using UnityEngine.Timeline;
 
 public class SYA_Timeline : MonoBehaviour
 {
+    public static SYA_Timeline Instance;
     public AudioSource blackBgSource;
 
     public TimelineAsset timelineAsset;
     public PlayableDirector playableDirector;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-
+        Instance = this;
     }
     //마우스 클릭시 흐르는 시간
     float currentTime = 0;
@@ -23,12 +24,12 @@ public class SYA_Timeline : MonoBehaviour
     //클릭 횟수
     int glassButtonOn = 0;
     //시네머신 플레이
-    bool animationPlay;
+    public bool animationPlay;
 
     // Update is called once per frame
     void Update()
     {
-        blackBgSource .volume= SYA_UI.SYA_UIManager.Instance.exEF;
+        blackBgSource.volume = SYA_UI.SYA_UIManager.Instance.exEF;
         // TV 더블 클릭시 모드 실행
         if (Input.GetMouseButtonDown(0))
         {

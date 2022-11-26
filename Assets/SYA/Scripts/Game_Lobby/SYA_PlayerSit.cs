@@ -71,7 +71,11 @@ public class SYA_PlayerSit : MonoBehaviourPun
                     break;
                 case State.Down:
                     updownText.text = upStr;
-                    transform.LookAt(targetGameobject.GetComponent<SYA_SympoSit>().TV);
+                    if (targetGameobject.transform.parent.name != "Sit2")
+                        transform.LookAt(targetGameobject.GetComponent<SYA_SympoSit>().TV);
+                    else
+                        transform.eulerAngles = targetGameobject.transform.eulerAngles;
+
                     if (Input.GetKeyDown(KeyCode.X))
                     {
                         print("out");

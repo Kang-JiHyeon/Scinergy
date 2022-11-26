@@ -42,9 +42,9 @@ public class SYA_AudioManager : MonoBehaviour
         
         if (bgSource != null)
         {
-            if (!SceneManager.GetActiveScene().name.Contains("Sympo")|| sceneName.Contains("Room"))
+            if (!SceneManager.GetActiveScene().name.Contains("Sympo")|| sceneName.Contains("Room") || SYA_Timeline.Instance.animationPlay)
                 bgSource.Stop();
-            else if(!bgSource.isPlaying)
+            else if(!bgSource.isPlaying&&!SYA_Timeline.Instance.animationPlay)
                 bgSource.Play();
             bgSource.volume = SYA_UI.SYA_UIManager.Instance.exBG;
         }
