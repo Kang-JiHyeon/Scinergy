@@ -8,7 +8,7 @@ public class SYA_FullScreen : MonoBehaviour
 {
     public static SYA_FullScreen instance;
 
-    public Action<Camera,bool> FullScreen;
+    public Action<bool> FullScreen;
 
     public Camera camera_;
     private void Awake()
@@ -18,8 +18,8 @@ public class SYA_FullScreen : MonoBehaviour
         camera_ = GetComponent<Camera>();
         camera_.enabled = false;
     }
-    void FullScreenCam(Camera camera, bool fullMode)
+    void FullScreenCam(bool fullMode)
     {
-        camera.enabled=fullMode;
+        camera_.enabled=fullMode;
     }
 }
