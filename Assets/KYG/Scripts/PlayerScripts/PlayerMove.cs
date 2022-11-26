@@ -188,7 +188,7 @@ public class PlayerMove : MonoBehaviourPun
                 //펄스는 트루 / 트루는 펄스
                 fullScreenMode = !fullScreenMode;
                 //TV의 카메라를 끄고 키는 액션 함수 실행
-                SYA_FullScreen.instance.FullScreen(Tv.GetComponentInChildren<Camera>(),fullScreenMode);
+                SYA_FullScreen.instance.FullScreen(fullScreenMode);
 
                 //카메라 회전 막기
                 if (!playerSit.isSit)
@@ -216,8 +216,8 @@ public class PlayerMove : MonoBehaviourPun
     ////시네머신 플레이
     //bool animationPlay;
 
-    GameObject Tv;
-    Camera _cam;
+    public GameObject Tv;
+    public Camera _cam;
 
     public void GetJump()
     {

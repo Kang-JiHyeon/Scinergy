@@ -7,7 +7,8 @@ using Photon.Pun;
 public class SYA_SympoPresentstion : MonoBehaviour
 {
     public GameObject pre;
-    public GameObject Tv;
+    public GameObject window;
+    public GameObject windowList;
 
     private void Update()
     {
@@ -43,6 +44,8 @@ public class SYA_SympoPresentstion : MonoBehaviour
                 if (!other.GetComponent<PhotonView>().IsMine) return;
                 //공간 이동 버튼 띄우기
                 pre.SetActive(false);
+                windowList.SetActive(false);
+                window.SetActive(false);
             }
         }
     }

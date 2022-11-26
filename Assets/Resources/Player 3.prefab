@@ -10481,6 +10481,8 @@ MonoBehaviour:
   anim: {fileID: 1863406531344142753}
   currentScene: 
   fullScreenMode: 0
+  Tv: {fileID: 0}
+  _cam: {fileID: 0}
 --- !u!114 &2836529994268691292
 MonoBehaviour:
   m_ObjectHideFlags: 0
