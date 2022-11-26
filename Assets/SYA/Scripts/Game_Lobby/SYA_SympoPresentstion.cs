@@ -7,6 +7,8 @@ using Photon.Pun;
 public class SYA_SympoPresentstion : MonoBehaviour
 {
     public GameObject pre;
+    public GameObject window;
+    public GameObject windowList;
 
     private void Update()
     {
@@ -19,14 +21,12 @@ public class SYA_SympoPresentstion : MonoBehaviour
     {
         if (!SceneManager.GetActiveScene().name.Contains("Symposi")) return;
 
-        print(PhotonNetwork.NickName);
         //if (SYA_SymposiumManager.Instance.playerAuthority[PhotonNetwork.NickName].Contains("Presenter")
        if(SYA_SymposiumManager.Instance.playerAuthority[PhotonNetwork.NickName] == "Presenter" || SYA_SymposiumManager.Instance.playerAuthority[PhotonNetwork.NickName].Contains("Owner"))
         {
             if (other.gameObject.name.Contains("Player"))
             {
                 if (!other.GetComponent<PhotonView>().IsMine) return;
-                print("in");
                 //공간 이동 버튼 띄우기
                 pre.SetActive(true);
             }
@@ -42,9 +42,10 @@ public class SYA_SympoPresentstion : MonoBehaviour
             if (other.gameObject.name.Contains("Player"))
             {
                 if (!other.GetComponent<PhotonView>().IsMine) return;
-                print("out");
                 //공간 이동 버튼 띄우기
                 pre.SetActive(false);
+                windowList.SetActive(false);
+                window.SetActive(false);
             }
         }
     }

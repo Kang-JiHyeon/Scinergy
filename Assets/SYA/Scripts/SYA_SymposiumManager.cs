@@ -24,7 +24,12 @@ public class SYA_SymposiumManager : MonoBehaviourPun
     //유저의 플레이어 몸체
     //public Dictionary<string, GameObject> playerObj = new Dictionary<string, GameObject>();
     //방이름 방장 입장코드
-    public string roomName, roomOwner, roomCode;
+    [HideInInspector]
+    public string roomName, roomOwner, roomPublic, roomCode;
+    [HideInInspector]
+    public string[] roomUserList;
+    [HideInInspector]
+    public byte[] roomThumbnail;
 
     private void Awake()
     {
@@ -48,7 +53,9 @@ public class SYA_SymposiumManager : MonoBehaviourPun
     {
         roomName = PhotonNetwork.CurrentRoom.Name;
         roomOwner = PhotonNetwork.CurrentRoom.CustomProperties["owner"].ToString();//Presenter
+        roomPublic = PhotonNetwork.CurrentRoom.CustomProperties["public"].ToString();
         roomCode = PhotonNetwork.CurrentRoom.CustomProperties["password"].ToString();
+        roomThumbnail = (byte[])PhotonNetwork.CurrentRoom.CustomProperties["Thumbnail"];
     }
 
     public PhotonView GetMyPlayer()

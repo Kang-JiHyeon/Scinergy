@@ -32,22 +32,31 @@ public class SYA_AudioManager : MonoBehaviour
             m_gr = m_canvas.GetComponent<GraphicRaycaster>();
             m_ped = new PointerEventData(null);
         }
-        sceneName = SceneManager.GetActiveScene().name;
     }
 
     // Update is called once per frame
     void Update()
     {
+        sceneName = SceneManager.GetActiveScene().name;
+        
         if (bgSource != null)
+        {
+            if (!SceneManager.GetActiveScene().name.Contains("Sympo")|| sceneName.Contains("Room"))
+                bgSource.Stop();
+            else if(!bgSource.isPlaying)
+                bgSource.Play();
             bgSource.volume = SYA_UI.SYA_UIManager.Instance.exBG;
+        }
         if (clickSource != null)
         {
-            if (!(sceneName.Contains("Avarta")|| sceneName.Contains("Room")))
+            if (!(sceneName.Contains("Avarta") || sceneName.Contains("Room")))
                 clickSource.volume = SYA_UI.SYA_UIManager.Instance.exEF;
 
             if (Input.GetMouseButtonDown(0))
             {
-                if (sceneName.Contains("Sympo")&&!sceneName.Contains("Room")) return;
+                //실행된 첫 씬의 이름이 심포룸만들기씬이라면 함수 탈출
+                if (sceneName.Contains("Sympo") && !sceneName.Contains("Room")) return;
+
                 m_ped.position = Input.mousePosition;
                 List<RaycastResult> results = new List<RaycastResult>();
                 m_gr.Raycast(m_ped, results);

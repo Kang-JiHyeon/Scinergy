@@ -8,7 +8,6 @@ using Photon.Pun;
 public class SYA_PlayerCompo : MonoBehaviourPun
 {
     public static SYA_PlayerCompo Instance;
-
     public Action ChangeScene;
 
     PlayerMove PlayerMove;
@@ -17,9 +16,12 @@ public class SYA_PlayerCompo : MonoBehaviourPun
     GameObject playerBody;
     GameObject playerName;
 
-    /*private void Awake()
+    private void Awake()
     {
-        *//*if (Instance == null)
+        Instance = this;
+        PlayerDestroy += SYA_Voice.Instance.DestroyOnGo;
+    }
+    /*if (Instance == null)
         {
             //인스턴스에 나를 넣고
             Instance = this;
@@ -66,10 +68,10 @@ public class SYA_PlayerCompo : MonoBehaviourPun
             //채팅을 치는 중이거나 전체화면일 때는 이동 및 카메라 회전이 불가능하다
             PlayerMove.enabled = !isTrigger;
             PlayerMove.currentScene = currentScene;
-            PlayerRot.enabled = !isTrigger; ;
+            PlayerRot.enabled = !isTrigger && !playerSit.isSit;
             //포톤뷰 이즈마인이고
             //씬이 로비거나(심포지엄) 별자리일 때
-            PlayerRot.camPos.gameObject.SetActive(!playerSit.isSit&&photonView.IsMine);
+            PlayerRot.camPos.gameObject.SetActive(photonView.IsMine);
             playerBody.SetActive(true);
             playerName.SetActive(true);
             PlayerMove.cc.enabled = !playerSit.isSit;
@@ -93,30 +95,45 @@ public class SYA_PlayerCompo : MonoBehaviourPun
     //컴포넌트 변경
     void ChangeComponent(string sceneName)
     {
-        if (!photonView.IsMine) return;
         if (sceneName.Contains("KJH"))
         {
             print(sceneName);
-            PlayerRot.camPos.gameObject.SetActive(false);
+            if (PlayerRot != null)
+            {
+                PlayerRot.camPos.gameObject.SetActive(false);
+                PlayerRot.enabled = false;
+            }
             playerBody.SetActive(false);
             playerName.SetActive(false);
             PlayerMove.enabled = false;
             CharacterController.enabled = false;
-            PlayerRot.enabled = false;
         }
         else if (sceneName.Contains("Sympo") || sceneName.Contains("KYG"))
         {
             //채팅을 치는 중이거나 전체화면일 때는 이동 및 카메라 회전이 불가능하다
-            PlayerMove.enabled = true;
-            PlayerMove.currentScene = sceneName;
-            PlayerRot.enabled = true; ;
-            //포톤뷰 이즈마인이고
-            //씬이 로비거나(심포지엄) 별자리일 때
-            PlayerRot.camPos.gameObject.SetActive(true);
-            playerBody.SetActive(true);
-            playerName.SetActive(true);
-            //의자에 앉은 상태가 트루라면 CC를 꺼준다
-            CharacterController.enabled = true;
+            if (PlayerMove != null)
+            {
+                PlayerMove.enabled = true;
+                PlayerMove.currentScene = sceneName;
+                //의자에 앉은 상태가 트루라면 CC를 꺼준다
+                CharacterController.enabled = true;
+            }
+            if (PlayerRot != null)
+            {
+                PlayerRot.enabled = true;
+                //포톤뷰 이즈마인이고
+                //씬이 로비거나(심포지엄) 별자리일 때
+                PlayerRot.camPos.gameObject.SetActive(true);
+            }
+            if (playerBody != null)
+                playerBody.SetActive(true);
+            if (playerName != null)
+                playerName.SetActive(true);
         }
+    }
+    public Action PlayerDestroy;
+    private void OnDestroy()
+    {
+        PlayerDestroy();
     }
 }

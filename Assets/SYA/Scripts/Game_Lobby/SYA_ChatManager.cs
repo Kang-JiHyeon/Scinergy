@@ -53,7 +53,7 @@ public class SYA_ChatManager : MonoBehaviourPun, IChatClientListener
         cannel["Allchannel"] = "전체";
         cannel["Lobbychannel"] = "로비";
         cannel["Constchannel"] = "별자리";
-        cannel["Solarchannel"] = "행성";
+        cannel["Solarchannel"] = "우주";
         Application.runInBackground = true;
 
         //채널 서버 연결
