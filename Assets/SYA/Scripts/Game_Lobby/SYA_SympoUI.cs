@@ -14,6 +14,8 @@ namespace SYA_UI
 {
     public class SYA_SympoUI : MonoBehaviourPunCallbacks
     {
+        public static SYA_SympoUI Instance;
+
         GraphicRaycaster m_gr;
         PointerEventData m_ped;
 
@@ -48,6 +50,7 @@ namespace SYA_UI
 
         private void Awake()
         {
+            Instance = this;
             m_gr = GetComponent<GraphicRaycaster>();
             m_ped = new PointerEventData(null);
         }
@@ -208,8 +211,8 @@ namespace SYA_UI
             }
         }
 
-        bool goStar;
-        bool goSympo;//영아
+        public bool goStar;
+        public bool goSympo;//영아
 
 
         public void ConstellationChange()
