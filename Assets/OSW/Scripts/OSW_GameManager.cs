@@ -44,17 +44,4 @@ public class OSW_GameManager : MonoBehaviourPun
             mine.RPC("RPCAllMute", RpcTarget.All);
         }
     }
-
-    // 일단 생각나는대로 적어봐
-
-    // 방장이 청중을 발표자로 변경 버튼을 누르면
-    // 화면공유, 판서기능이 활성화되게 하고 싶다.
-    // 활성화 시켜줘야 할 버튼 이름 : DrawOnOff, UwcOnOff, Button_Recod
-    // 즉 방장이 아니면 모든 기능들이 setActive == false !!
-
-    // 권한을 줄꺼야!
-    public void GiveAuthority()
-    {
-
-    }
 }
