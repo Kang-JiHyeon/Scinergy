@@ -128,14 +128,15 @@ public class KJH_SelectPlanet : MonoBehaviour
                     focusScript = focusTarget.GetComponent<KJH_Focus>();
                     if (focusScript)
                     {
-                        focusScript.ChangeFocusScale(0.3f);
+                        float distance = Vector3.Distance(focusTarget.position, Camera.main.transform.position);
+                        focusScript.ChangeFocusScale(0.1f * distance / 10f);
                     }
                 }
             }
             // 2번 클릭
             else
             {
-                if(camaraTarget != hit.transform)
+                if(camaraTarget != hit.transform && camaraTarget != null)
                 {
                     // 모델 변경 -> 내부구조 열려있으면 닫고 다음 행성으로 이동
                     Transform parent = camaraTarget.parent;
@@ -213,7 +214,8 @@ public class KJH_SelectPlanet : MonoBehaviour
 
             if (focusScript)
             {
-                focusScript.ChangeFocusScale(0.3f);
+                float distance = Vector3.Distance(focusTarget.position, Camera.main.transform.position);
+                focusScript.ChangeFocusScale(0.1f * distance / 10f);
             }
 
             if (mouseTarget != null)

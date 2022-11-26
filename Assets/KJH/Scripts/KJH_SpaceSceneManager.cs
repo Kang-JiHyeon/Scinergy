@@ -13,7 +13,7 @@ public class KJH_SpaceSceneManager : MonoBehaviour
     public List<GameObject> go_options;
     string loadSceneName = "";
     [SerializeField]
-    public int loadSceneIndex = -1;
+    public int buttonIndex = 3;
 
     [Header("Button")]
     public List<Image> image_mainBtns;
@@ -61,7 +61,7 @@ public class KJH_SpaceSceneManager : MonoBehaviour
     public void OnClick_SolarSystemScene()
     {
         loadSceneName = "KJH_SolarSystemScene";
-        loadSceneIndex = 0;
+        buttonIndex = 0;
         //go_options[0].SetActive(!go_options[0].activeSelf);
         //go_options[1].SetActive(false);
         ChangeButtonSprite();
@@ -71,7 +71,7 @@ public class KJH_SpaceSceneManager : MonoBehaviour
     public void OnClick_CustomScene()
     {
         loadSceneName = "KJH_OrbitScene";
-        loadSceneIndex = 1;
+        buttonIndex = 1;
         //go_options[0].SetActive(false);
         //go_options[1].SetActive(!go_options[1].activeSelf);
 
@@ -82,7 +82,7 @@ public class KJH_SpaceSceneManager : MonoBehaviour
     public void OnClick_EclipseScene()
     {
         loadSceneName = "KJH_EclipseScene";
-        loadSceneIndex = 2;
+        buttonIndex = 2;
         //go_options[2].SetActive(!go_options[2].activeSelf);
 
         ChangeButtonSprite();
@@ -90,7 +90,7 @@ public class KJH_SpaceSceneManager : MonoBehaviour
 
     public void OnClick_Guide()
     {
-        loadSceneIndex = 3;
+        buttonIndex = 3;
         ChangeButtonSprite();
 
     }
@@ -112,8 +112,8 @@ public class KJH_SpaceSceneManager : MonoBehaviour
 
     public void OnClick_Close()
     {
-        go_options[loadSceneIndex].SetActive(false);
-        image_mainBtns[loadSceneIndex].sprite = sprite_nomals[loadSceneIndex];
+        go_options[buttonIndex].SetActive(false);
+        image_mainBtns[buttonIndex].sprite = sprite_nomals[buttonIndex];
     }
 
     public void Load_SolarSystemScene()
@@ -154,15 +154,15 @@ public class KJH_SpaceSceneManager : MonoBehaviour
         // 옵션의 활성화 상태 변경
         for(int i=0; i<go_options.Count; i++)
         {
-            if(i == loadSceneIndex) go_options[loadSceneIndex].SetActive(!go_options[loadSceneIndex].activeSelf);
+            if(i == buttonIndex) go_options[buttonIndex].SetActive(!go_options[buttonIndex].activeSelf);
             else go_options[i].SetActive(false);
         }
 
         // loadSceneIndex 이외의 버튼의 sprite는 normal로 설정
         for(int i=0; i<image_mainBtns.Count; i++)
         {
-            if (i == loadSceneIndex && go_options[loadSceneIndex].activeSelf)
-                image_mainBtns[loadSceneIndex].sprite = sprite_clicks[loadSceneIndex];
+            if (i == buttonIndex && go_options[buttonIndex].activeSelf)
+                image_mainBtns[buttonIndex].sprite = sprite_clicks[buttonIndex];
             else 
                 image_mainBtns[i].sprite = sprite_nomals[i]; 
         }
