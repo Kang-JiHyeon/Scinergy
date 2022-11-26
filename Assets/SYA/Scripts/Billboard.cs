@@ -13,7 +13,7 @@ public class Billboard : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //나의 앞방향을 카메라 앞방향으로 셋팅하자
-        transform.forward = Camera.main.transform.forward;
+        if (Camera.main.enabled == true)
+            transform.forward = Camera.main.transform.forward;
     }
 }

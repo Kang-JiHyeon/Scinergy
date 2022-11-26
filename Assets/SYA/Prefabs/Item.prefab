@@ -200,7 +200,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 89c47eb90262bb5409741fcd7ac1b4ab, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1665,9 +1665,11 @@ MonoBehaviour:
   ownerName: {fileID: 8284508872006178257}
   playerCount: {fileID: 8284508872184159607}
   unpubl: {fileID: 8284508872513427505}
+  thumbnail: {fileID: 6709238808253094313}
   password: {fileID: 4864131022476677170}
   one: {fileID: 154224366725143459}
   roomPassword: 
+  sp: {fileID: 0}
   btn_Join: {fileID: 8284508872878486682}
   joinOn: {fileID: 21300000, guid: 8125ded878ab60c478e364efb8489d9c, type: 3}
   joinOff: {fileID: 21300000, guid: 191192bb72518a94bb72e4f493841481, type: 3}

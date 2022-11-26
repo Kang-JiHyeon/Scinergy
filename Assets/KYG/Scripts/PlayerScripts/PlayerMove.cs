@@ -2,9 +2,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Playables;
+using UnityEngine.Timeline;
 using UnityEngine.UI;
 using Photon.Pun;
 using TMPro;
+using UnityEngine.SceneManagement;
+
 public class PlayerMove : MonoBehaviourPun
 {
     public float speed = 10;
@@ -16,7 +20,10 @@ public class PlayerMove : MonoBehaviourPun
     public TextMeshProUGUI nickName;
     public Animator anim;
 
-    public Action<bool> FullScreen;
+    SYA_PlayerSit playerSit;
+    PlayerRot playerRot;
+
+    public string currentScene;
 
     Vector3 dir;
     ////도착위치
@@ -44,40 +51,58 @@ public class PlayerMove : MonoBehaviourPun
 
     private void Awake()
     {
-        SYA_SymposiumManager.Instance.PlayerNameAuthority(
-    photonView.Owner.NickName,
-    photonView,
-    GetComponentInChildren<AudioSource>(),
-    gameObject);
-
-        bool master;
-        if (!SYA_SymposiumManager.Instance.playerAuthority.ContainsKey(PhotonNetwork.NickName))
-        {
-            master = PhotonNetwork.MasterClient.UserId == SYA_SymposiumManager.Instance.player[PhotonNetwork.NickName].Owner.UserId;
-        }
-        else
-        {
-            master = SYA_SymposiumManager.Instance.playerAuthority[PhotonNetwork.NickName] == "Owner";
-        }
-        SYA_SymposiumManager.Instance.PlayerAuthority(PhotonNetwork.NickName, master);
-        //anim = GetComponentInChildren<Animator>();
+        nickName.text = photonView.Owner.NickName;
         GetComponentInChildren<AudioSource>().enabled = false;
+        playerSit = GetComponent<SYA_PlayerSit>();
+        playerRot = GetComponent<PlayerRot>();
+
+        if (photonView.IsMine)
+        {
+            SYA_SymposiumManager.Instance.PlayerNameAuthority(PhotonNetwork.NickName,
+            photonView,
+            GetComponentInChildren<AudioSource>());
+            photonView.RPC("RPCPlayerNameAuthority", RpcTarget.All, PhotonNetwork.NickName);
+            bool master;
+            if (!SYA_SymposiumManager.Instance.playerAuthority.ContainsKey(PhotonNetwork.NickName))
+            {
+                master = PhotonNetwork.MasterClient.UserId == SYA_SymposiumManager.Instance.player[PhotonNetwork.NickName].Owner.UserId;
+            }
+            else
+            {
+                master = SYA_SymposiumManager.Instance.playerAuthority[PhotonNetwork.NickName] == "Owner";
+            }
+            SYA_SymposiumManager.Instance.PlayerAuthority(PhotonNetwork.NickName, master);
+        }
+        //anim = GetComponentInChildren<Animator>();
+    }
+
+    [PunRPC]
+    public void RPCPlayerNameAuthority(string name)
+    {
+        print("불리니>?");
+        SYA_SymposiumManager.Instance.playerName.Add(name);
     }
 
     // Start is called before the first frame update
     void Start()
     {
         cc = GetComponent<CharacterController>();
-        nickName.text = photonView.Owner.NickName;
     }
 
     // Update is called once per frame
     void Update()
     {
         if (!photonView.IsMine) return;
-        //전체화면모드가 되면 이동막기
-        if (!fullScreenMode)
+        /*if(SceneManager.GetActiveScene().name.Contains("Sympo"))
         {
+
+        }*/
+        //전체화면모드가 되면 이동막기
+        if (!(fullScreenMode || playerSit.isSit))
+        {
+            if (SYA_ChatManager.Instance != null)
+                if (SYA_ChatManager.Instance.inputFocused) return;
+
             float h = SYA_InputManager.GetAxis("Horizontal");
             float v = SYA_InputManager.GetAxis("Vertical");
             photonView.RPC("RPCanimMove", RpcTarget.All, v, h);
@@ -104,23 +129,95 @@ public class PlayerMove : MonoBehaviourPun
             yVelocity += gravity * Time.deltaTime;
             dir.y = yVelocity;
             cc.Move(dir * speed * Time.deltaTime);
+
+            //탭을 눌렀고, 인풋필드 포커싱이 아닐때
+            //조작법 가이드 띄우기
+            if (Input.GetKeyDown(KeyCode.Tab) && !SYA_ChatManager.Instance.inputFocused)
+                SYA_UI.SYA_UIManager.Instance.OnGuid();
         }
+
 
         //TV 더블 클릭시 모드 실행
-        if (Input.GetKeyDown(KeyCode.M))
+        if (Input.GetMouseButtonDown(0))
         {
+            if (!currentScene.Contains("Sympo")) return;
+            //클릭한 곳에서 ray를 쏠 때,
+            if (fullScreenMode)
+            {
+                _cam = Tv.GetComponentInChildren<SYA_FullScreen>().camera_;
+            }
+            else
+            {
+                _cam = GetComponentInChildren<Camera>();
+            }
+            Ray ray = _cam.ScreenPointToRay(Input.mousePosition);
+            //해당 오브젝트의 부모 이름이 TV라면
+            RaycastHit raycastHit = new RaycastHit();
+            Physics.Raycast(ray, out raycastHit);
+            if (raycastHit.collider.gameObject.name == "TV")
+            {
+                Tv = raycastHit.collider.gameObject;
+                //횟수를 ++해준다
+                buttonOn++;
+            }/*
+            else if(raycastHit.collider.transform.name == "Glass_01")
+            {
+                if(!animationPlay)
+                {
+                    glassButtonOn++;
+                }
+
+            }*/
+        }
+        if (buttonOn >= 1)//|| glassButtonOn >= 1)
+        {
+            //클릭 후 시간이 흐른다
+            currentTime += Time.deltaTime;
+            //제한 시간이 되면 버튼을 누른 횟수와 시간이 0이 된다
+            if (currentTime >= clickTime)
+            {
+                currentTime = 0;
+                buttonOn = 0;
+                //glassButtonOn = 0;
+            }
             //GetComponentInChildren<Camera>().enabled = false;
+            if (buttonOn >= 2)
+            {
+                currentTime = 0;
+                buttonOn = 0;
+                //펄스는 트루 / 트루는 펄스
+                fullScreenMode = !fullScreenMode;
+                //TV의 카메라를 끄고 키는 액션 함수 실행
+                SYA_FullScreen.instance.FullScreen(Tv.GetComponentInChildren<Camera>(),fullScreenMode);
 
-            //펄스는 트루 / 트루는 펄스
-            fullScreenMode = !fullScreenMode;
-            //TV의 카메라를 끄고 키는 액션 함수 실행
-            FullScreen(fullScreenMode);
-
-            //카메라 회전 막기
-            GetComponent<PlayerRot>().enabled = !fullScreenMode;
+                //카메라 회전 막기
+                if (!playerSit.isSit)
+                    playerRot.enabled = !fullScreenMode;
+            }
+            //else if (glassButtonOn>=2)
+            //{
+            //    currentTime = 0;
+            //    glassButtonOn = 0;
+            //    animationPlay = true;
+            //}
         }
     }
+
+
     public bool fullScreenMode;
+    //마우스 클릭시 흐르는 시간
+    float currentTime = 0;
+    //더블 클릭 제한 시간
+    float clickTime = 0.5f;
+    //클릭 횟수
+    int buttonOn = 0;
+    ////클릭 횟수
+    //int glassButtonOn = 0;
+    ////시네머신 플레이
+    //bool animationPlay;
+
+    GameObject Tv;
+    Camera _cam;
 
     public void GetJump()
     {
@@ -152,4 +249,6 @@ public class PlayerMove : MonoBehaviourPun
     {
         anim.SetBool("Sit", sit_);
     }
+
+    
 }

@@ -16,6 +16,8 @@ public class Star : MonoBehaviourPun
     public GameObject starType;
     //º° ¹à±â
     public GameObject brightness;
+    //°Ñº¸±â µî±Þ
+    public float apparentMagnitude;
 
     public GameObject starInfo;
 
@@ -26,7 +28,7 @@ public class Star : MonoBehaviourPun
     public float removeTime = 3f;
     float currentTime = 0f;
     Vector3 fallDir;
-    float randX, randY;
+    public float randX, randY;
     #endregion
     public enum State
     {
@@ -38,8 +40,10 @@ public class Star : MonoBehaviourPun
     // Start is called before the first frame update
     void Start()
     {
-        randX = Random.Range(-90f, 90f);
-        randY = Random.Range(-20f, -30f);
+        if (generatedType == 0) 
+        { 
+            InfoSet(starName, ra, dec, starType, brightness, apparentMagnitude, 1);
+        }
     }
 
     // Update is called once per frame
@@ -78,8 +82,8 @@ public class Star : MonoBehaviourPun
             fallDir.y = randY;
             transform.position += fallDir.normalized * fallSpeed * Time.deltaTime;
     }
-    int starNumber = 1;
-    internal void InfoSet(string starNameInfo, float raInfo, float decInfo, GameObject starTypeInfo, GameObject brightnessInfo, int generateTypeNumber)
+    //int starNumber = 1;
+    internal void InfoSet(string starNameInfo, float raInfo, float decInfo, GameObject starTypeInfo, GameObject brightnessInfo,float apparentMag, int generateTypeNumber)
     {
         name = starNameInfo;
         starName = starNameInfo;
@@ -96,8 +100,9 @@ public class Star : MonoBehaviourPun
         starType = starTypeInfo;
         brightness = brightnessInfo;
         generatedType = generateTypeNumber;
+        apparentMagnitude = apparentMag;
         TransformSet();
-        BrightnessSet();
+        BrightnessSet(apparentMagnitude);
     }
 
 
@@ -121,11 +126,12 @@ public class Star : MonoBehaviourPun
             transform.position = new Vector3(x, y, z);
         }
     }
-    public virtual void BrightnessSet()
+    public virtual void BrightnessSet(float apparentMag)
     {
         //GameObject starBrightness = Instantiate(brightness);
         GameObject starBrightness = Instantiate(brightness);
         starBrightness.transform.parent = gameObject.transform;
         starBrightness.transform.position = transform.position;
+        starBrightness.transform.localScale = (8-apparentMag) * Vector3.one;
     }
 }

@@ -3,7 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-public class CreatedStarList : MonoBehaviour
+using Photon.Pun;
+public class CreatedStarList : MonoBehaviourPun
 {
     public Transform CreatedStarListContent;
     public GameObject CreatedStarItemFactory;
@@ -36,25 +37,26 @@ public class CreatedStarList : MonoBehaviour
     {
         Player.GetComponent<PlayerRot>().StarSet(SelectedStar.transform.position);
     }
+    
     public void OnStarDeleteBtn()
     {
-        GameManager.instance.createdStarList.Remove(SelectedStar.GetComponent<Star>().starName);
-        SelectedStar.GetComponent<Star>().StarState = Star.State.shootingStar;
+        Star deletingStar = GameManager.instance.createdStarList[SelectedStar.GetComponent<Star>().starName].GetComponent<Star>();
+        deletingStar.randX = UnityEngine.Random.Range(-90f, 90f);
+        deletingStar.randY = UnityEngine.Random.Range(-20f, -30f);
+        photonView.RPC("RPCStarDelete", RpcTarget.All, SelectedStar.GetComponent<Star>().starName,deletingStar.randX, deletingStar.randY);           
         Destroy(SelectedStarItem);
         SelectedStarItem = null;
-        //foreach (KeyValuePair<string, GameObject> constellation in GameManager.instance.createdConstellationList)
-        //{
-        //    for(int i = 0; i< constellation.Value.transform.childCount; i++)
-        //    {
-        //        Star childStar = constellation.Value.transform.GetChild(i).GetComponent<Star>();
-        //        if(childStar == SelectedStar)
-        //        {
-        //            Destroy(constellation.Value);
-        //        }
-        //    }
-        //}
     }
     
+    [PunRPC]
+    void RPCStarDelete(string SelectedStarName, float randX, float randY)
+    {
+        Star RPCStar = GameManager.instance.createdStarList[SelectedStarName].GetComponent<Star>();
+        RPCStar.randX = randX;
+        RPCStar.randY = randY;
+        RPCStar.StarState = Star.State.shootingStar;
+        GameManager.instance.createdStarList.Remove(SelectedStarName);
+    }
     public void OnDeleteAllStar()
     {
         foreach (KeyValuePair<string, GameObject> star in GameManager.instance.createdStarList)

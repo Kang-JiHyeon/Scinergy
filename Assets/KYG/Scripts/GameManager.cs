@@ -26,8 +26,6 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         //Cursor.visible = false;
-        //플레이어를 생성한다.
-        PhotonNetwork.Instantiate(SYA_UserInfoManagerSaveLoad.SYA_UserInfoManager.Instance.Avatar, Vector3.zero, Quaternion.identity);
         CelestialSphere.GetComponent<SphereCollider>().radius = celestialSphereRadius;
     }
 

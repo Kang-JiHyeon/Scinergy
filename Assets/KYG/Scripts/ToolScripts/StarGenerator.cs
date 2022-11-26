@@ -13,6 +13,7 @@ public class StarGenerator : MonoBehaviourPun
     public TMP_Dropdown generateTypeDropdown;
     public TMP_InputField decInput;
     public TMP_InputField raInput;
+    public TMP_InputField apparentMagnitudeInput;
     public TMP_InputField starAmount;
     public TMP_Dropdown typeDropdown;
     public TMP_Dropdown brightnessDropdown;
@@ -32,6 +33,8 @@ public class StarGenerator : MonoBehaviourPun
     public GameObject starType;
     //º° ¹à±â
     public GameObject brightness;
+    //°Ñº¸±â µî±Þ
+    public float apparentMagnitude;
 
     public GameObject player;
 
@@ -66,6 +69,23 @@ public class StarGenerator : MonoBehaviourPun
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            starNameInput.text = "TestStar";
+            generateTypeDropdown.value = 2;
+            typeDropdown.value = 1;
+            apparentMagnitudeInput.text = "3";
+            brightnessDropdown.value = 7;
+            if (GameManager.instance.createdStarList.ContainsKey(starName))
+            {
+                starName += (" (" + starNumber + ")");
+                starNumber++;
+            }
+            else
+            {
+                starNumber = 1;
+            }
+        }
         if (starNameInput.GetComponent<TMP_InputField>().isFocused)
         {
             player.GetComponent<PlayerMove>().enabled = false;
@@ -77,6 +97,7 @@ public class StarGenerator : MonoBehaviourPun
         if(starNameInput.text !="") starName = starNameInput.text;
         if (decInput.text != "") dec = float.Parse(decInput.text);
         if (raInput.text != "") ra = float.Parse(raInput.text);
+        if (apparentMagnitudeInput.text != "") apparentMagnitude = float.Parse(apparentMagnitudeInput.text);
 
         if (drawStar)
         {
@@ -118,6 +139,7 @@ public class StarGenerator : MonoBehaviourPun
                         shoot,
                         ra,
                         dec,
+                        apparentMagnitude,
                         brightnessDropdown.value - 1,
                         generateTypeNumber);
                     
@@ -126,7 +148,7 @@ public class StarGenerator : MonoBehaviourPun
         }
     }
     [PunRPC]
-    void RPCDrawStar(int starType,string starName, Vector3 starDrawInfo, Vector3 shoot, float ra, float dec, int brightness, int generateTypeNumber)
+    void RPCDrawStar(int starType,string starName, Vector3 starDrawInfo, Vector3 shoot, float ra, float dec,float apparentMagnitude, int brightness, int generateTypeNumber)
     {
         CreatedStarList createdStarList = starList.GetComponent<CreatedStarList>();
         GameObject star = Instantiate(starTypeList[starType]);
@@ -150,7 +172,7 @@ public class StarGenerator : MonoBehaviourPun
         dec *= 180 / Mathf.PI;
         ra *= 180 / Mathf.PI;
         ra /= 15f;
-        star.GetComponent<Star>().InfoSet(starName, ra, dec, starTypeList[starType], starBrightnessList[brightness], generateTypeNumber);
+        star.GetComponent<Star>().InfoSet(starName, ra, dec, starTypeList[starType], starBrightnessList[brightness], apparentMagnitude, generateTypeNumber);
         //player.GetComponent<PlayerRot>().StarSet(star.transform.position);
         createdStarList.Init(starName, star);
     }
@@ -192,6 +214,7 @@ public class StarGenerator : MonoBehaviourPun
             case 1:
                 decInput.transform.gameObject.SetActive(true);
                 raInput.transform.gameObject.SetActive(true);
+                apparentMagnitudeInput.transform.gameObject.SetActive(true);
                 starAmount.transform.gameObject.SetActive(false);
                 starNameInput.interactable = true;
                 typeDropdown.interactable = true;
@@ -209,6 +232,7 @@ public class StarGenerator : MonoBehaviourPun
             case 2:
                 decInput.transform.gameObject.SetActive(false);
                 raInput.transform.gameObject.SetActive(false);
+                apparentMagnitudeInput.transform.gameObject.SetActive(true);
                 starAmount.transform.gameObject.SetActive(false);
                 starNameInput.interactable = true;
                 typeDropdown.interactable = true;
@@ -227,6 +251,7 @@ public class StarGenerator : MonoBehaviourPun
                 decInput.transform.gameObject.SetActive(false);
                 raInput.transform.gameObject.SetActive(false);
                 starAmount.transform.gameObject.SetActive(true);
+                apparentMagnitudeInput.transform.gameObject.SetActive(false);
                 starNameInput.interactable = false;
                 typeDropdown.interactable = false;
                 brightnessDropdown.interactable = false;
@@ -259,12 +284,14 @@ public class StarGenerator : MonoBehaviourPun
                 starName = "Star" + i;
                 ra = Random.Range(0f, 25f);
                 dec = Random.Range(-90f, 91f);
+                apparentMagnitude = Random.Range(0f, 8f);
                 int brightnessType = Random.Range(1, starBrightnessList.Count);
                 photonView.RPC("RPCRandomGenerate", RpcTarget.All,
                     0,
                     starName,
                     ra,
                     dec,
+                    apparentMagnitude,
                     brightnessType-1,
                     generateTypeNumber
                     );
@@ -287,6 +314,7 @@ public class StarGenerator : MonoBehaviourPun
                             starName,
                             ra,
                             dec,
+                            apparentMagnitude,
                             brightnessDropdown.value-1,
                             generateTypeNumber
                             );
@@ -296,26 +324,27 @@ public class StarGenerator : MonoBehaviourPun
         starName = null;
         raInput.text = null;
         decInput.text = null;
+        apparentMagnitudeInput.text = null; 
     }
     public GameObject star;
     [PunRPC]
-    void RPCNormalGenerate(int starType, string starName, float ra, float dec, int brightness, int generateTypeNumber)
+    void RPCNormalGenerate(int starType, string starName, float ra, float dec, float apparentMagnitude, int brightness,  int generateTypeNumber)
     {
         CreatedStarList createdStarList = starList.GetComponent<CreatedStarList>();
         star = Instantiate(starTypeList[starType]);
         GameManager.instance.createdStarList[starName] = star;
-        star.GetComponent<Star>().InfoSet(starName, ra, dec, starTypeList[starType], starBrightnessList[brightness], generateTypeNumber);
+        star.GetComponent<Star>().InfoSet(starName, ra, dec, starTypeList[starType], starBrightnessList[brightness], apparentMagnitude, generateTypeNumber);
         createdStarList.Init(starName, star);
     }
     [PunRPC]
-    void RPCRandomGenerate(int starType, string starName, float ra, float dec, int brightnessType, int generateTypeNumber)
+    void RPCRandomGenerate(int starType, string starName, float ra, float dec, float apparentMagnitude, int brightnessType, int generateTypeNumber)
     {
             CreatedStarList createdStarList = starList.GetComponent<CreatedStarList>();
             //GameObject star = Instantiate(starTypeList[0]);
             GameObject star = Instantiate(starTypeList[starType]);            
             GameManager.instance.createdStarList[starName] = star;          
             brightness = starBrightnessList[brightnessType];
-            star.GetComponent<Star>().InfoSet(starName, ra, dec, starTypeList[starType], brightness, generateTypeNumber);
+            star.GetComponent<Star>().InfoSet(starName, ra, dec, starTypeList[starType], brightness, apparentMagnitude, generateTypeNumber);
             createdStarList.Init(starName, star);       
     }
 
