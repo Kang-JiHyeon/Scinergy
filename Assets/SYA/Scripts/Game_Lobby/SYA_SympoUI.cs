@@ -61,8 +61,8 @@ namespace SYA_UI
             roomOwner.text = SYA_SymposiumManager.Instance.roomOwner;
             roomPassward.text = SYA_SymposiumManager.Instance.roomCode;
 
-            // ����
-            text_user.text = string.Format("{0:D2}", PhotonNetwork.PlayerList.Length) + "/20";
+            
+            //text_user.text = string.Format("{0:D2}", PhotonNetwork.PlayerList.Length) + "/20";
 
             if (Input.GetMouseButtonDown(0))
             {
@@ -399,26 +399,31 @@ namespace SYA_UI
         // 플레이어 들어왔을 때 실행되는 이벤트 함수
         public override void OnPlayerEnteredRoom(Player newPlayer)
         {
+            // 인원수 표시
             text_user.text = string.Format("{0:D2}", PhotonNetwork.PlayerList.Length) + "/20";
+
+            // 유저 리스트 초기화
+            OnUserList();
         }
 
         // 플레이어 나갈 때 실행되는 이벤트 함수
         public override void OnPlayerLeftRoom(Player otherPlayer)
         {
+            // 인원수 표시
             text_user.text = string.Format("{0:D2}", PhotonNetwork.PlayerList.Length) + "/20";
 
             SYA_SymposiumManager.Instance.playerAuthority.Remove(otherPlayer.NickName);
-            //SYA_SymposiumManager.Instance.playerName.Remove(SYA_SymposiumManager.Instance.playerName.Find(x => x == otherPlayer.NickName));
 
-            // ������ ������ �����Ͷ���
             if (otherPlayer.IsMasterClient)
             {
-                // ���� ���ųʸ����� �����ϰ� ��
                 SYA_SymposiumManager.Instance.playerAuthority.Remove(otherPlayer.NickName);
             }
+
+            // 유저 리스트 초기화
+            OnUserList();
         }
 
-        // �����Ͱ� ������ �� ȣ���Ǵ� �̺�Ʈ
+        // 현재 MasterClient가 떠날 때 새 MasterClient로 전환한 후 호출
         public override void OnMasterClientSwitched(Player otherPlayer)
         {
             SYA_SymposiumManager.Instance.playerAuthority[otherPlayer.NickName] = "Presenter";

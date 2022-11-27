@@ -542,7 +542,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7681337756912363818, guid: eb1203b46cca6fd429bdb6b965a6b4bc, type: 3}
       propertyPath: m_Parameters.widthMultiplier
-      value: 0.14594102
+      value: 0.09974748
       objectReference: {fileID: 0}
     - target: {fileID: 7759438998123104768, guid: eb1203b46cca6fd429bdb6b965a6b4bc, type: 3}
       propertyPath: m_LocalScale.x
@@ -3662,7 +3662,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4039644789810260057, guid: 8c0f56acdff4d6347aabdda47e3a1112, type: 3}
       propertyPath: m_Parameters.widthMultiplier
-      value: 0.14594102
+      value: 0.09974748
       objectReference: {fileID: 0}
     - target: {fileID: 4968845812412607277, guid: 8c0f56acdff4d6347aabdda47e3a1112, type: 3}
       propertyPath: m_IsActive
@@ -3787,7 +3787,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3705576475397829241, guid: c2c29f6c1aa81ca4f84d4a5652721e0a, type: 3}
       propertyPath: m_Parameters.widthMultiplier
-      value: 0.14594102
+      value: 0.09974748
       objectReference: {fileID: 0}
     - target: {fileID: 3973076846913276743, guid: c2c29f6c1aa81ca4f84d4a5652721e0a, type: 3}
       propertyPath: m_Enabled
@@ -4855,7 +4855,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5176632496444755583, guid: d4c13b30e92b4c64bad5dcb2fe6e128a, type: 3}
       propertyPath: m_Parameters.widthMultiplier
-      value: 0.14594102
+      value: 0.09974748
       objectReference: {fileID: 0}
     - target: {fileID: 7072683156223020751, guid: d4c13b30e92b4c64bad5dcb2fe6e128a, type: 3}
       propertyPath: m_LocalScale.x
@@ -5525,7 +5525,7 @@ LineRenderer:
   m_Positions: []
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 0.10359292
+    widthMultiplier: 0.09974748
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -6346,7 +6346,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1849966284792110273, guid: 82acdaa731fda7e4f9d80b2481e5ae49, type: 3}
       propertyPath: m_Parameters.widthMultiplier
-      value: 0.14594102
+      value: 0.09974748
       objectReference: {fileID: 0}
     - target: {fileID: 3973076846913276743, guid: 82acdaa731fda7e4f9d80b2481e5ae49, type: 3}
       propertyPath: m_Enabled
@@ -7829,7 +7829,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 632672735227989989, guid: fe6de9326ac4f02448b32919d8fb21da, type: 3}
       propertyPath: m_Parameters.widthMultiplier
-      value: 0.14594102
+      value: 0.09974748
       objectReference: {fileID: 0}
     - target: {fileID: 1536194037609456737, guid: fe6de9326ac4f02448b32919d8fb21da, type: 3}
       propertyPath: m_IsActive
@@ -13410,7 +13410,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5477286045421636745, guid: 172c35de27de1794285f871563be5064, type: 3}
       propertyPath: m_Parameters.widthMultiplier
-      value: 0.14594102
+      value: 0.09974748
       objectReference: {fileID: 0}
     - target: {fileID: 6499721288571703863, guid: 172c35de27de1794285f871563be5064, type: 3}
       propertyPath: m_IsActive
@@ -15646,7 +15646,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3802579043188305638, guid: 9d96a1aba7c251040a6f75913f6937db, type: 3}
       propertyPath: m_Parameters.widthMultiplier
-      value: 0.14594102
+      value: 0.09974748
       objectReference: {fileID: 0}
     - target: {fileID: 3973076846913276743, guid: 9d96a1aba7c251040a6f75913f6937db, type: 3}
       propertyPath: m_Enabled

@@ -41,7 +41,7 @@ public class KJH_MoonColor : MonoBehaviour
         // 월식
         if (KJH_EclipseState.instance.state == KJH_EclipseState.EclipseState.Lunar)
         {
-            RenderSettings.skybox.SetFloat("_Exposure", 1f);
+            RenderSettings.skybox.SetFloat("_Exposure", 3.5f);
             if (shadowLine.isRootShadow)
             {
                 // 달이 지구 본그림자에 완전히 들어가는 현상
