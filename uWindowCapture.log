@@ -1,16 +1,1 @@
-[uWC::Log][2022-11-27 14:27:18] Start
-[uWC::Err][2022-11-27 14:27:37] WindowTexture::RecreateSharedTextureIfNeeded => Offsets are invalid.
-[uWC::Err][2022-11-27 14:27:37] WindowTexture::RecreateSharedTextureIfNeeded => Offsets are invalid.
-[uWC::Err][2022-11-27 14:27:37] WindowTexture::RecreateSharedTextureIfNeeded => Offsets are invalid.
-[uWC::Err][2022-11-27 14:27:37] WindowTexture::RecreateSharedTextureIfNeeded => Offsets are invalid.
-[uWC::Err][2022-11-27 14:27:37] WindowTexture::RecreateSharedTextureIfNeeded => Offsets are invalid.
-[uWC::Err][2022-11-27 14:27:37] WindowTexture::RecreateSharedTextureIfNeeded => Offsets are invalid.
-[uWC::Err][2022-11-27 14:27:37] WindowTexture::RecreateSharedTextureIfNeeded => Offsets are invalid.
-[uWC::Err][2022-11-27 14:27:37] WindowTexture::RecreateSharedTextureIfNeeded => Offsets are invalid.
-[uWC::Err][2022-11-27 14:27:37] WindowTexture::RecreateSharedTextureIfNeeded => Offsets are invalid.
-[uWC::Err][2022-11-27 14:27:37] WindowTexture::RecreateSharedTextureIfNeeded => Offsets are invalid.
-[uWC::Err][2022-11-27 14:27:37] WindowTexture::RecreateSharedTextureIfNeeded => Offsets are invalid.
-[uWC::Err][2022-11-27 14:27:37] WindowTexture::RecreateSharedTextureIfNeeded => Offsets are invalid.
-[uWC::Err][2022-11-27 14:27:37] WindowTexture::RecreateSharedTextureIfNeeded => Offsets are invalid.
-[uWC::Err][2022-11-27 14:27:37] WindowTexture::RecreateSharedTextureIfNeeded => Offsets are invalid.
-[uWC::Err][2022-11-27 14:27:39] WindowTexture::RecreateSharedTextureIfNeeded => Offsets are invalid.
+[uWC::Log][2022-11-27 15:55:48] Start
