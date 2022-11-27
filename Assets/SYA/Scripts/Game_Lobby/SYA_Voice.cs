@@ -15,4 +15,14 @@ public class SYA_Voice : MonoBehaviourPun
     {
         Instance = this;
     }
+    private void Start()
+    {
+        SYA_PlayerCompo.Instance.PlayerDestroy += OndestroyGo;
+        
+    }
+
+    public void OndestroyGo()
+    {
+        Destroy(gameObject);
+    }
 }

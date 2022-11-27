@@ -106,7 +106,6 @@ public class SYA_PlayerCompo : MonoBehaviourPun
             if (PlayerMove != null)
             {
                 PlayerMove.enabled = true;
-                PlayerMove.currentScene = sceneName;
                 //의자에 앉은 상태가 트루라면 CC를 꺼준다
                 CharacterController.enabled = true;
             }
@@ -121,8 +120,9 @@ public class SYA_PlayerCompo : MonoBehaviourPun
                 playerBody.SetActive(true);
             if (playerName != null)
                 playerName.SetActive(true);*/
+                PlayerMove.currentScene = sceneName;
             if (photonView.IsMine)
-                photonView.RPC("RPCBackToSympo", RpcTarget.All, sceneName);
+                photonView.RPC("RPCBackToSympo", RpcTarget.All);
         }
     }
     public Action PlayerDestroy;
@@ -150,17 +150,16 @@ public class SYA_PlayerCompo : MonoBehaviourPun
     }
 
     [PunRPC]
-    public void RPCBackToSympo(string sceneName)
+    public void RPCBackToSympo()
     {
-        BackToSympo(sceneName);
+        BackToSympo();
     }
 
-    public void BackToSympo(string sceneName)
+    public void BackToSympo()
     {
         GetComponent<PlayerRot>().enabled = true;
         GetComponent<PlayerMove>().cc.enabled = true;
         GetComponent<PlayerMove>().enabled = true;
-        GetComponent<PlayerMove>().currentScene = sceneName;
         transform.GetChild(0).gameObject.SetActive(true);
         transform.GetChild(1).gameObject.SetActive(true);
         isKjh = false;
