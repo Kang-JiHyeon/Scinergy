@@ -113,15 +113,21 @@ public class SYA_ChatManager : MonoBehaviourPun, IChatClientListener
         if (SYA_UIManager.Instance.chat.activeSelf)
         {
             if (messagess.Count != 0)
-                foreach (string mess in messagess)
-                {
-                    MakeChat(mess);
-                    messagess.Remove(mess);
-                }
+                LoadChat(messagess);
         }
         if (inputField.isFocused && Input.GetKeyDown(KeyCode.Tab))
         {
             OnClickTab();
+        }
+    }
+
+    //채팅내용 로드되는 곳
+    public void LoadChat(List<string> messagess)
+    {
+        foreach (string mess in messagess)
+        {
+            MakeChat(mess);
+            messagess.Remove(mess);
         }
     }
 
@@ -239,9 +245,17 @@ public class SYA_ChatManager : MonoBehaviourPun, IChatClientListener
         trContent.localScale = y;*/
         //3 가져온 컴포넌트에 s셋팅
 
-        //받은 메세지 모두 저장해두기
-
-        messagess.Add($"<color=#{ColorUtility.ToHtmlStringRGB(ColorChat(channelName))}> {messages[0].ToString()}</color>");
+        //만약 채팅창이 안 켜져 있다면
+        if (!SYA_UIManager.Instance.chat.activeSelf)
+        {
+            //받은 메세지 모두 저장해두기
+            messagess.Add($"<color=#{ColorUtility.ToHtmlStringRGB(ColorChat(channelName))}> {messages[0].ToString()}</color>");
+        }
+        //켜져잇다면 바로 송출
+        else
+        {
+            MakeChat($"<color=#{ColorUtility.ToHtmlStringRGB(ColorChat(channelName))}> {messages[0].ToString()}</color>");
+        }
 
 
         //}

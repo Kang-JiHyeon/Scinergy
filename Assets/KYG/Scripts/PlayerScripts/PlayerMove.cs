@@ -10,7 +10,7 @@ using Photon.Pun;
 using TMPro;
 using UnityEngine.SceneManagement;
 
-public class PlayerMove : MonoBehaviourPun,IPointerClickHandler
+public class PlayerMove : MonoBehaviourPun, IPointerClickHandler
 {
     public float speed = 10;
     public float jumpPower = 3;
@@ -73,14 +73,18 @@ public class PlayerMove : MonoBehaviourPun,IPointerClickHandler
                 master = SYA_SymposiumManager.Instance.playerAuthority[PhotonNetwork.NickName] == "Owner";
             }
             SYA_SymposiumManager.Instance.PlayerAuthority(PhotonNetwork.NickName, master);
+
+            // 유저 리스트 초기화
+            if (SYA_UI.SYA_SympoUI.Instance != null)
+                SYA_UI.SYA_SympoUI.Instance.OnUserList();
         }
+
         //anim = GetComponentInChildren<Animator>();
     }
 
     [PunRPC]
     public void RPCPlayerNameAuthority(string name)
     {
-        print("불리니>?");
         SYA_SymposiumManager.Instance.playerName.Add(name);
     }
 
@@ -90,10 +94,25 @@ public class PlayerMove : MonoBehaviourPun,IPointerClickHandler
         cc = GetComponent<CharacterController>();
     }
 
+    [PunRPC]
+    public void RPCPlayerAuthority(string name, bool master, string num)
+    {
+        //print("RPC 불리나요오오");
+        if (master)//만약 마스터 클라이언트라면
+            SYA_SymposiumManager.Instance.playerAuthority[name] = "Owner";
+        else //아니라면
+            SYA_SymposiumManager.Instance.playerAuthority[name] = "Audience";
+    }
+
     // Update is called once per frame
     void Update()
     {
         if (!photonView.IsMine) return;
+        /*if (start && SceneManager.GetActiveScene().name.Contains("Sympo"))
+        {
+            SYA_SymposiumManager.Instance.PlayerAuthority(PhotonNetwork.NickName, master.ToString());
+            start = false;
+        }*/
         /*if(SceneManager.GetActiveScene().name.Contains("Sympo"))
         {
 
@@ -141,6 +160,7 @@ public class PlayerMove : MonoBehaviourPun,IPointerClickHandler
         //TV 더블 클릭시 모드 실행
         if (Input.GetMouseButtonDown(0))
         {
+            if (OSW_LineDrawer.Instance.isDrawing) return;
             if (!currentScene.Contains("Sympo")) return;
             //클릭한 곳에서 ray를 쏠 때,
             if (fullScreenMode)
@@ -166,7 +186,7 @@ public class PlayerMove : MonoBehaviourPun,IPointerClickHandler
                 //횟수를 ++해준다
                 buttonOn++;
             }
-            
+
             /*
             else if(raycastHit.collider.transform.name == "Glass_01")
             {

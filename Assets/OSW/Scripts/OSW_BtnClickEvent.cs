@@ -61,6 +61,7 @@ public class OSW_BtnClickEvent : MonoBehaviour
     public void GiveAuthority(string name, string authority)
     {
         SYA_SymposiumManager.Instance.playerAuthority[name] = authority;
+        SYA_UI.SYA_SympoUI.Instance.OnUserList();
     }
 
     // 버튼 OnClicked 함수, 여기서는 GiveAuthority 함수를 호출해주는 용도로 사용!
@@ -69,12 +70,12 @@ public class OSW_BtnClickEvent : MonoBehaviour
         if (button.name == "ChangePrensenter")
         {
             //GiveAuthority(userName, "Presenter");
-            SYA_SymposiumManager.Instance.player[PhotonNetwork.NickName].RPC("RPCGiveAuthority", RpcTarget.All, userName, "Presenter");
+            SYA_SymposiumManager.Instance.player[PhotonNetwork.NickName].RPC("RPCGiveAuthority", RpcTarget.All, userName, "Presenter",2);
         }
         else if (button.name == "ChangeAudience")
         {
             //GiveAuthority(userName, "Audience");
-            SYA_SymposiumManager.Instance.player[PhotonNetwork.NickName].RPC("RPCGiveAuthority", RpcTarget.All, userName, "Audience");
+            SYA_SymposiumManager.Instance.player[PhotonNetwork.NickName].RPC("RPCGiveAuthority", RpcTarget.All, userName, "Audience",2);
         }
     }
 }
