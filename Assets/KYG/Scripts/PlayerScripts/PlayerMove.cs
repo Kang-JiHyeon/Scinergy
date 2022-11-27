@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.Playables;
 using UnityEngine.Timeline;
 using UnityEngine.UI;
@@ -9,7 +10,7 @@ using Photon.Pun;
 using TMPro;
 using UnityEngine.SceneManagement;
 
-public class PlayerMove : MonoBehaviourPun
+public class PlayerMove : MonoBehaviourPun,IPointerClickHandler
 {
     public float speed = 10;
     public float jumpPower = 3;
@@ -154,12 +155,19 @@ public class PlayerMove : MonoBehaviourPun
             //해당 오브젝트의 부모 이름이 TV라면
             RaycastHit raycastHit = new RaycastHit();
             Physics.Raycast(ray, out raycastHit);
-            if (raycastHit.collider.gameObject.name == "TV")
+            if (uiClick)
+            {
+                print(uiClick);
+                uiClick = false;
+            }
+            else if (raycastHit.collider.gameObject.name == "TV")
             {
                 Tv = raycastHit.collider.gameObject;
                 //횟수를 ++해준다
                 buttonOn++;
-            }/*
+            }
+            
+            /*
             else if(raycastHit.collider.transform.name == "Glass_01")
             {
                 if(!animationPlay)
@@ -250,5 +258,11 @@ public class PlayerMove : MonoBehaviourPun
         anim.SetBool("Sit", sit_);
     }
 
-    
+    //UI를 클릭했다면, UI를 클릭했다고 알린다
+    bool uiClick;
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        uiClick = true;
+        print(000);
+    }
 }
