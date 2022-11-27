@@ -74,7 +74,10 @@ public class PlayerMove : MonoBehaviourPun,IPointerClickHandler
             }
             SYA_SymposiumManager.Instance.PlayerAuthority(PhotonNetwork.NickName, master);
 
+            // 유저 리스트 초기화
+            SYA_UI.SYA_SympoUI.Instance.OnUserList();
         }
+
         //anim = GetComponentInChildren<Animator>();
     }
 

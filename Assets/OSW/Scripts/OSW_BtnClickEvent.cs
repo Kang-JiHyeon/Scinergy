@@ -61,6 +61,7 @@ public class OSW_BtnClickEvent : MonoBehaviour
     public void GiveAuthority(string name, string authority)
     {
         SYA_SymposiumManager.Instance.playerAuthority[name] = authority;
+        SYA_UI.SYA_SympoUI.Instance.OnUserList();
     }
 
     // 버튼 OnClicked 함수, 여기서는 GiveAuthority 함수를 호출해주는 용도로 사용!

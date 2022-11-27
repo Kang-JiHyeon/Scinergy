@@ -53,6 +53,8 @@ namespace SYA_UI
             Instance = this;
             m_gr = GetComponent<GraphicRaycaster>();
             m_ped = new PointerEventData(null);
+
+            text_user.text = string.Format("{0:D2}", PhotonNetwork.PlayerList.Length) + "/20";
         }
 
         private void Update()
@@ -61,7 +63,7 @@ namespace SYA_UI
             roomOwner.text = SYA_SymposiumManager.Instance.roomOwner;
             roomPassward.text = SYA_SymposiumManager.Instance.roomCode;
 
-            
+
             //text_user.text = string.Format("{0:D2}", PhotonNetwork.PlayerList.Length) + "/20";
 
             if (Input.GetMouseButtonDown(0))
@@ -117,25 +119,42 @@ namespace SYA_UI
         public Sprite userOn;
         public Sprite userOff;
 
-        public void OnUserList()
+        public void OnClick_UserList()
         {
-
             if (!userData.activeSelf)
             {
                 userData.SetActive(true);
                 btn_user.sprite = userOn;
+                // 유저리스트 초기화
+                OnUserList();
             }
             else
             {
                 userData.SetActive(false);
                 btn_user.sprite = userOff;
             }
+        }
 
+        public void OnUserList()
+        {
+            //[원본]
+            //if (!userData.activeSelf)
+            //{
+            //    userData.SetActive(true);
+            //    btn_user.sprite = userOn;
+            //}
+            //else
+            //{
+            //    userData.SetActive(false);
+            //    btn_user.sprite = userOff;
+            //}
+            if (SYA_SymposiumManager.Instance.player[PhotonNetwork.NickName].IsMine == false) return;
 
             // ����
             // ������ �÷��̾� ����Ʈ�� clear
             ClearUserList(AudienceTran);
             ClearUserList(PresenterTran);
+            //text_user.text = string.Format("{0:D2}", PhotonNetwork.PlayerList.Length) + "/20";
 
             //SYA_SymposiumManager.Instance.player[PhotonNetwork.NickName].RPC("RPCClearUserList", RpcTarget.Others, transform);
             //SYA_SymposiumManager.Instance.player[PhotonNetwork.NickName].RPC("RPCClearUserList", RpcTarget.Others, transform);
@@ -392,18 +411,11 @@ namespace SYA_UI
             }
         }
 
-        // �÷��̾� ������ player ���� ���� ����Ʈ �� ���ųʸ� ������Ʈ
-        // ������ ������.... �ٸ� ������ ���� ���ݾ�? �׻����� ��ǥ�� ���� ������ �־��� ��
-        // �� ���쿡�� ���� ���ųʸ��� �ʱ�ȭ�ؾ��ϴ°�?
-
         // 플레이어 들어왔을 때 실행되는 이벤트 함수
         public override void OnPlayerEnteredRoom(Player newPlayer)
         {
             // 인원수 표시
             text_user.text = string.Format("{0:D2}", PhotonNetwork.PlayerList.Length) + "/20";
-
-            // 유저 리스트 초기화
-            OnUserList();
         }
 
         // 플레이어 나갈 때 실행되는 이벤트 함수
@@ -423,10 +435,10 @@ namespace SYA_UI
             OnUserList();
         }
 
-        // 현재 MasterClient가 떠날 때 새 MasterClient로 전환한 후 호출
-        public override void OnMasterClientSwitched(Player otherPlayer)
-        {
-            SYA_SymposiumManager.Instance.playerAuthority[otherPlayer.NickName] = "Presenter";
-        }
+        //// 현재 MasterClient가 떠날 때 새 MasterClient로 전환한 후 호출
+        //public override void OnMasterClientSwitched(Player otherPlayer)
+        //{
+        //    SYA_SymposiumManager.Instance.playerAuthority[otherPlayer.NickName] = "Presenter";
+        //}
     }
 }

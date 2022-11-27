@@ -2960,7 +2960,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1402025489}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.9794235
+  m_Size: 0.8903186
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -4001,7 +4001,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1862116141}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.98810035
+  m_Size: 0.93656975
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -5863,7 +5863,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.00013400044}
+  m_AnchoredPosition: {x: 0, y: 0.0000007011577}
   m_SizeDelta: {x: 0, y: 20}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &395739504
@@ -8151,7 +8151,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.0001412674}
+  m_AnchoredPosition: {x: 0, y: 0.000008330552}
   m_SizeDelta: {x: 0, y: 20}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &536997919
@@ -14718,7 +14718,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1272215731}
         m_TargetAssemblyTypeName: SYA_UI.SYA_SympoUI, Assembly-CSharp
-        m_MethodName: OnUserList
+        m_MethodName: OnClick_UserList
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -15291,8 +15291,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1272215731}
-        m_TargetAssemblyTypeName: SYA_SympoUI, Assembly-CSharp
-        m_MethodName: OnUserList
+        m_TargetAssemblyTypeName: SYA_UI.SYA_SympoUI, Assembly-CSharp
+        m_MethodName: OnClick_UserList
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -17625,7 +17625,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 0.9794235}
+  m_AnchorMax: {x: 1, y: 0.8903186}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -22753,7 +22753,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 0.98810035}
+  m_AnchorMax: {x: 1, y: 0.93656975}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
