@@ -73,6 +73,7 @@ public class SYA_PlayerCompo : MonoBehaviourPun
             PlayerRot.camPos.gameObject.SetActive(photonView.IsMine);
             playerBody.SetActive(true);
             playerName.SetActive(true);
+            if(PlayerMove.cc!=null)
             PlayerMove.cc.enabled = !playerSit.isSit;
         }
 
