@@ -69,12 +69,12 @@ public class OSW_BtnClickEvent : MonoBehaviour
         if (button.name == "ChangePrensenter")
         {
             //GiveAuthority(userName, "Presenter");
-            SYA_SymposiumManager.Instance.player[PhotonNetwork.NickName].RPC("RPCGiveAuthority", RpcTarget.All, userName, "Presenter");
+            SYA_SymposiumManager.Instance.player[PhotonNetwork.NickName].RPC("RPCGiveAuthority", RpcTarget.All, userName, "Presenter",2);
         }
         else if (button.name == "ChangeAudience")
         {
             //GiveAuthority(userName, "Audience");
-            SYA_SymposiumManager.Instance.player[PhotonNetwork.NickName].RPC("RPCGiveAuthority", RpcTarget.All, userName, "Audience");
+            SYA_SymposiumManager.Instance.player[PhotonNetwork.NickName].RPC("RPCGiveAuthority", RpcTarget.All, userName, "Audience",2);
         }
     }
 }

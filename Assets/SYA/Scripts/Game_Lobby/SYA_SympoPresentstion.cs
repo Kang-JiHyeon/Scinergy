@@ -17,18 +17,23 @@ public class SYA_SympoPresentstion : MonoBehaviour
 
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (!SceneManager.GetActiveScene().name.Contains("Symposi")) return;
-
-        //if (SYA_SymposiumManager.Instance.playerAuthority[PhotonNetwork.NickName].Contains("Presenter")
-       if(SYA_SymposiumManager.Instance.playerAuthority[PhotonNetwork.NickName] == "Presenter" || SYA_SymposiumManager.Instance.playerAuthority[PhotonNetwork.NickName].Contains("Owner"))
+        if (other.gameObject.name.Contains("Player"))
         {
-            if (other.gameObject.name.Contains("Player"))
-            {
                 if (!other.GetComponent<PhotonView>().IsMine) return;
+            //if (SYA_SymposiumManager.Instance.playerAuthority[PhotonNetwork.NickName].Contains("Presenter")
+            if (SYA_SymposiumManager.Instance.playerAuthority[PhotonNetwork.NickName] == "Presenter" || SYA_SymposiumManager.Instance.playerAuthority[PhotonNetwork.NickName].Contains("Owner"))
+            {
                 //공간 이동 버튼 띄우기
                 pre.SetActive(true);
+            }
+            else
+            {
+                pre.SetActive(false);
+                windowList.SetActive(false);
+                window.SetActive(false);
             }
         }
     }
