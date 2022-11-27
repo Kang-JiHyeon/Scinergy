@@ -95,6 +95,7 @@ public class SYA_PlayerCompo : MonoBehaviourPun
     //컴포넌트 변경
     void ChangeComponent(string sceneName)
     {
+        if (sceneName == "KJH_OrbitScene" || sceneName == "KJH_EclipseScene") return;
         if (sceneName.Contains("KJH"))
         {
             print(sceneName);
