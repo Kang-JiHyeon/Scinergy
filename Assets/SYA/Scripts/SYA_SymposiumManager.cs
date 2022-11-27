@@ -78,7 +78,7 @@ public class SYA_SymposiumManager : MonoBehaviourPun
         //playerObj[name] = gameObject;
     }
 
-    public void PlayerAuthority(string name, bool master)
+    public void PlayerAuthority(string name, string master)
     {
         //if (master)//만약 마스터 클라이언트라면
         //    playerAuthority[name] = "Owner";

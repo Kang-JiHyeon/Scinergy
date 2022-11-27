@@ -10804,6 +10804,7 @@ GameObject:
   - component: {fileID: 1405079585071790330}
   - component: {fileID: -2092116993285119106}
   - component: {fileID: -1207102476014312707}
+  - component: {fileID: -4427124986230964811}
   m_Layer: 0
   m_Name: Player 4
   m_TagString: Untagged
@@ -10957,13 +10958,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 126494ae2a10a34499272ed97a6c9f5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  logLevel: 2
+  logLevel: 3
   ignoreGlobalLogLevel: 0
   recorderInUse: {fileID: 0}
   speakerInUse: {fileID: 4728113907933496401}
   AutoCreateRecorderIfNotFound: 0
   UsePrimaryRecorder: 1
-  SetupDebugSpeaker: 0
+  SetupDebugSpeaker: 1
 --- !u!114 &5491574867658027024
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11041,6 +11042,19 @@ MonoBehaviour:
   isSit: 0
   targetGameobject: {fileID: 0}
   ontriger: 0
+--- !u!114 &-4427124986230964811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2836529994268691361}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81b006938ec4098458eaa9e105cd9477, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  voiceView: {fileID: 1477248364120336868}
 --- !u!1 &2836529994272077557
 GameObject:
   m_ObjectHideFlags: 0
@@ -20401,7 +20415,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -20443,7 +20457,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 0.5
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -21443,7 +21457,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8050592590369331233}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0.1}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children: []

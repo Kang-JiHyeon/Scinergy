@@ -72,7 +72,7 @@ public class PlayerMove : MonoBehaviourPun,IPointerClickHandler
             {
                 master = SYA_SymposiumManager.Instance.playerAuthority[PhotonNetwork.NickName] == "Owner";
             }
-            SYA_SymposiumManager.Instance.PlayerAuthority(PhotonNetwork.NickName, master);
+            SYA_SymposiumManager.Instance.PlayerAuthority(PhotonNetwork.NickName, master.ToString());
         }
         //anim = GetComponentInChildren<Animator>();
     }
