@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class OSW_LineDrawer : MonoBehaviourPun
 {
+    public static OSW_LineDrawer Instance;
+
     // 라인 색
     public Color color = Color.black;
 
@@ -30,12 +32,15 @@ public class OSW_LineDrawer : MonoBehaviourPun
     // 플레이어를 받아
     PhotonView pv = null;
 
-    void Start()
+    void Awake()
     {
+        Instance = this;
     }
 
     void Update()
     {
+        if (SYA_SymposiumManager.Instance.playerAuthority[PhotonNetwork.NickName] == "Audience") return;
+
         if (pv == null)
         {
             pv = SYA_SymposiumManager.Instance.player[PhotonNetwork.NickName];
@@ -66,6 +71,7 @@ public class OSW_LineDrawer : MonoBehaviourPun
 
     public void Drawing(PhotonView pv)
     {
+        if (SYA_SymposiumManager.Instance.playerAuthority[PhotonNetwork.NickName] == "Audience") return;
         // 마우스 왼쪽 버튼을 누르는 순간
         if (Input.GetMouseButtonDown(0))
         {

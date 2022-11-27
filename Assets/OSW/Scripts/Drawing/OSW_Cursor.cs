@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class OSW_Cursor : MonoBehaviour
 {
@@ -22,10 +23,14 @@ public class OSW_Cursor : MonoBehaviour
         {
             lineDrawer = GetComponent<OSW_LineDrawer>();
         }
+        if (SYA_SymposiumManager.Instance.playerAuthority[PhotonNetwork.NickName] == "Audience")
+            CursorNull();
     }
 
     public void CursorChange()
     {
+        if (SYA_SymposiumManager.Instance.playerAuthority[PhotonNetwork.NickName] == "Audience") return;
+
         if (lineDrawer.isDrawing)
         {
             cursorTexture = cursorArray[0];

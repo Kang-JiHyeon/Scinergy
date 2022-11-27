@@ -10,6 +10,7 @@ public class SYA_PlayerCompo : MonoBehaviourPun
     public static SYA_PlayerCompo Instance;
     public Action ChangeScene;
 
+    SYA_PlayerSit playerSit;
     PlayerMove PlayerMove;
     CharacterController CharacterController;
     PlayerRot PlayerRot;
@@ -19,7 +20,7 @@ public class SYA_PlayerCompo : MonoBehaviourPun
     private void Awake()
     {
         Instance = this;
-        PlayerDestroy += SYA_Voice.Instance.DestroyOnGo;
+        
     }
     /*if (Instance == null)
         {
@@ -35,15 +36,13 @@ public class SYA_PlayerCompo : MonoBehaviourPun
             Destroy(gameObject);
         }*//*
     }*/
-    SYA_PlayerSit playerSit;
+
+
     private void Start()
     {
         PlayerMove = GetComponent<PlayerMove>();
-        //PlayerMove.enabled = false;
         CharacterController = GetComponent<CharacterController>();
-        //CharacterController.enabled = false;
         PlayerRot = GetComponent<PlayerRot>();
-        //PlayerRot.enabled=false;
         //캐릭터 모델링
         playerBody = transform.GetChild(0).gameObject;
         //캐릭터 닉네임
@@ -63,7 +62,7 @@ public class SYA_PlayerCompo : MonoBehaviourPun
             CharacterController.enabled = false;
             PlayerRot.enabled = false;
         }
-        else if (currentScene.Contains("Sympo") || currentScene.Contains("KYG"))
+        else if (!isKjh && (currentScene.Contains("Sympo") || currentScene.Contains("KYG")))
         {
             //채팅을 치는 중이거나 전체화면일 때는 이동 및 카메라 회전이 불가능하다
             PlayerMove.enabled = !isTrigger;
@@ -98,20 +97,12 @@ public class SYA_PlayerCompo : MonoBehaviourPun
         if (sceneName == "KJH_OrbitScene" || sceneName == "KJH_EclipseScene") return;
         if (sceneName.Contains("KJH"))
         {
-            print(sceneName);
-            if (PlayerRot != null)
-            {
-                PlayerRot.camPos.gameObject.SetActive(false);
-                PlayerRot.enabled = false;
-            }
-            playerBody.SetActive(false);
-            playerName.SetActive(false);
-            PlayerMove.enabled = false;
-            CharacterController.enabled = false;
+            if(photonView.IsMine)
+                photonView.RPC("RPCGoToUni", RpcTarget.All);
         }
         else if (sceneName.Contains("Sympo") || sceneName.Contains("KYG"))
         {
-            //채팅을 치는 중이거나 전체화면일 때는 이동 및 카메라 회전이 불가능하다
+            /*//채팅을 치는 중이거나 전체화면일 때는 이동 및 카메라 회전이 불가능하다
             if (PlayerMove != null)
             {
                 PlayerMove.enabled = true;
@@ -129,12 +120,50 @@ public class SYA_PlayerCompo : MonoBehaviourPun
             if (playerBody != null)
                 playerBody.SetActive(true);
             if (playerName != null)
-                playerName.SetActive(true);
+                playerName.SetActive(true);*/
+            if (photonView.IsMine)
+                photonView.RPC("RPCBackToSympo", RpcTarget.All, sceneName);
         }
     }
     public Action PlayerDestroy;
     private void OnDestroy()
     {
         PlayerDestroy();
+    }
+
+    [PunRPC]
+    public void RPCGoToUni()
+    {
+        GoToUni();
+        //playerName.SetActive(false);
+    }
+
+    bool isKjh;
+    public void GoToUni()
+    {
+        GetComponent<PlayerRot>().enabled = false;
+        GetComponent<PlayerMove>().cc.enabled = false;
+        GetComponent<PlayerMove>().enabled = false;
+        transform.GetChild(0).gameObject.SetActive(false);
+        transform.GetChild(1).gameObject.SetActive(false);
+        isKjh = true;
+    }
+
+    [PunRPC]
+    public void RPCBackToSympo(string sceneName)
+    {
+        BackToSympo(sceneName);
+    }
+
+    public void BackToSympo(string sceneName)
+    {
+        GetComponent<PlayerRot>().enabled = true;
+        GetComponent<PlayerMove>().cc.enabled = true;
+        GetComponent<PlayerMove>().enabled = true;
+        GetComponent<PlayerMove>().currentScene = sceneName;
+        transform.GetChild(0).gameObject.SetActive(true);
+        transform.GetChild(1).gameObject.SetActive(true);
+        isKjh = false;
+        print("RPC함수는 잘 호출됨");
     }
 }
