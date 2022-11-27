@@ -18,13 +18,11 @@ public class SYA_VoiceView : MonoBehaviour
         voiceView.RecorderInUse = SYA_Voice.Instance.recorder;
     }
 
-    /*private void Update()
+    private void Update()
     {
-        *//*if (start&&SceneManager.GetActiveScene().name.Contains("Sympo"))
+        if (voiceView.RecorderInUse==null)
         {
-            voiceView.enabled = true;
             voiceView.RecorderInUse = SYA_Voice.Instance.recorder;
-            start = false;
-        }*//*
-    }*/
+        }
+    }
 }

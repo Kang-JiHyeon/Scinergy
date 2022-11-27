@@ -22,8 +22,7 @@ public class SYA_PlayerCreatSympo : MonoBehaviourPun
     {
         if (!PhotonNetwork.IsMasterClient)
         {
-            if (SYA_SympoUI.Instance != null)
-                if (!SYA_SympoUI.Instance.goSympo)
+                if (SYA_SympoUI.Instance!=null?!SYA_SympoUI.Instance.goSympo:true)
                 {
                     var a = PhotonNetwork.CurrentRoom.CustomProperties;
                     string[] exul = (string[])a["UserList"];
