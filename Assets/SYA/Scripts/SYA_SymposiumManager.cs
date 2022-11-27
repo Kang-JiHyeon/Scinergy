@@ -78,13 +78,14 @@ public class SYA_SymposiumManager : MonoBehaviourPun
         //playerObj[name] = gameObject;
     }
 
-    public void PlayerAuthority(string name, string master)
+    public void PlayerAuthority(string name, bool master)
     {
         //if (master)//만약 마스터 클라이언트라면
         //    playerAuthority[name] = "Owner";
         //else //아니라면
         //    playerAuthority[name] = "Audience";
-        player[PhotonNetwork.NickName].RPC("RPCPlayerAuthority", RpcTarget.All, name, master);
+        //print("RPC 불려진 후임");
+        player[name].RPC("RPCPlayerAuthority", RpcTarget.AllBuffered, name, master,"너 진짜 싫다 정말");
 
     }
 

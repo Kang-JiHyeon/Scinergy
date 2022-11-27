@@ -53,7 +53,7 @@ public class SYA_PlayerCreatSympo : MonoBehaviourPun
         }
         GameObject go = PhotonNetwork.Instantiate(SYA_UserInfoManager.Instance.Avatar, new Vector3(0, 5.5f, 1), Quaternion.identity);
         PhotonNetwork.AutomaticallySyncScene = false;
-        //SceneManager.LoadScene("SymposiumScene");
+        SceneManager.LoadScene("SymposiumScene");
         print("캐릭터 생성" + go.name);
     }
 

@@ -78,17 +78,10 @@ public class OSW_RPC : MonoBehaviourPun
     }
 
 
-    [PunRPC]
-    public void RPCPlayerAuthority(string name, string master)
-    {
-        if (master=="true")//만약 마스터 클라이언트라면
-            SYA_SymposiumManager.Instance. playerAuthority[name] = "Owner";
-        else //아니라면
-            SYA_SymposiumManager.Instance.playerAuthority[name] = "Audience";
-    }
+    
 
     [PunRPC]
-    public void RPCGiveAuthority(string name, string authority)
+    public void RPCGiveAuthority(string name, string authority, int num)
     {
         btnClickEvent.GiveAuthority(name, authority);
     }
