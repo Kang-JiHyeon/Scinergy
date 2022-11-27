@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.120699115, g: 0.18641645, b: 0.3353127, a: 1}
+  m_IndirectSpecularColor: {r: 0.11155857, g: 0.17229941, b: 0.30991614, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3250,7 +3250,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: b9bb6fd7011d997419a31c159dfcaf25, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1ed2a410fd8dc9b4bb5e3bdf4e06cf50, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3399,7 +3399,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1449022947
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5020,7 +5020,7 @@ MonoBehaviour:
   isSolar: 0
   isTime: 0
   go_options: []
-  loadSceneIndex: -1
+  buttonIndex: 3
   image_mainBtns: []
   sprite_nomals:
   - {fileID: 21300000, guid: 155b218593a9be8448d0a9512ca4d664, type: 3}

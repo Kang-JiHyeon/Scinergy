@@ -1402,7 +1402,7 @@ MonoBehaviour:
   isSolar: 0
   isTime: 0
   go_options: []
-  loadSceneIndex: -1
+  buttonIndex: 3
   image_mainBtns: []
   sprite_nomals:
   - {fileID: 21300000, guid: 155b218593a9be8448d0a9512ca4d664, type: 3}
@@ -3056,7 +3056,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: b9bb6fd7011d997419a31c159dfcaf25, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1ed2a410fd8dc9b4bb5e3bdf4e06cf50, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3304,7 +3304,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1449022947
 RectTransform:
   m_ObjectHideFlags: 0

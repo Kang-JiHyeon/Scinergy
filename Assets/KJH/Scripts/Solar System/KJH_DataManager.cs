@@ -60,7 +60,6 @@ public class KJH_DataManager : MonoBehaviour
         ClearContent(trGrid);
         ClearContent(trContent_structure);
 
-
         print(data);
 
         int index = data.cbNames.FindIndex(x => x == selectPlanet.focusTarget.name);

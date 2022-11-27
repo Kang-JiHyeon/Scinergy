@@ -122,7 +122,7 @@ public class KJH_EclipseState : MonoBehaviour
     public void OnClick_EclipseType()
     {
         // main 버튼의 sprite 변경
-        KJH_SpaceSceneManager.instance.loadSceneIndex = 2;
+        KJH_SpaceSceneManager.instance.buttonIndex = 2;
         KJH_SpaceSceneManager.instance.ChangeButtonSprite();
 
         // 일식월식 버튼 활성화 상태 

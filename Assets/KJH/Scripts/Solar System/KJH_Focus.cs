@@ -8,6 +8,7 @@ using UnityEngine;
 // focus가 카메라를 항상 바라보게 하고 싶다. (v)
 public class KJH_Focus : MonoBehaviour
 {
+    Transform parent;
     Transform focus;
     public float speed = 4f;
     public bool isFocus = false;
@@ -38,19 +39,20 @@ public class KJH_Focus : MonoBehaviour
             {
                 StopCoroutine(IeChangeFocusScale(targetScale));
                 StartCoroutine(IeChangeFocusScale(targetScale));
-                //originTargetScale = targetScale;
             }
         }
     }
+
     IEnumerator IeChangeFocusScale(float targetScale)
     {
-        //isCoroutine = true;
         Vector3 scale = Vector3.one * targetScale;
+
         while (Mathf.Abs(focus.localScale.x - targetScale) > 0.005f)
         {
             focus.localScale = Vector3.Lerp(focus.localScale, scale, speed * Time.deltaTime);
             yield return null;
         }
+
         focus.localScale = scale;
         originTargetScale = targetScale;
     }

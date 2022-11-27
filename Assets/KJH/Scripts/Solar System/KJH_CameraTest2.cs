@@ -40,6 +40,7 @@ public class KJH_CameraTest2 : MonoBehaviour
     void Start()
     {
         //cam = Camera.main.transform;
+        preMouse = new Vector2(pivot.position.x, pivot.position.y);
 
     }
 
@@ -78,7 +79,6 @@ public class KJH_CameraTest2 : MonoBehaviour
         {
             if (isViewNucleus == false && isMoveToNucleus == false)
             {
-
                 CameraZoom();
 
                 // 마우스 왼쪽 버튼을 누르고 있을 때
@@ -198,6 +198,7 @@ public class KJH_CameraTest2 : MonoBehaviour
 
     public bool isViewNucleus = false;
     public bool isMoveToNucleus = false;
+
     // 내부구조 카메라
     void ViewNucleus()
     {
