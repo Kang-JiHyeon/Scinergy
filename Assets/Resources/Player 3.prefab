@@ -16267,6 +16267,7 @@ MonoBehaviour:
   basicConstellationListUI: {fileID: 199103858343468909}
   starLine: {fileID: 0}
   player: {fileID: 2836529994268691361}
+  constellationNameUI: {fileID: 0}
   constellationName: 
 --- !u!114 &5661937445934724664
 MonoBehaviour:

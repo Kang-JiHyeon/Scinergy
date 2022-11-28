@@ -35,6 +35,15 @@ public class OSW_LineDrawer : MonoBehaviourPun
 
     Camera cam;
 
+    public static OSW_LineDrawer Instance;
+
+    private void Awake()
+    {
+        if(Instance == null)
+        {
+            Instance = this;
+        }
+    }
     void Start()
     {
     }
@@ -79,6 +88,7 @@ public class OSW_LineDrawer : MonoBehaviourPun
     
     public void Drawing(PhotonView pv)
     {
+
         // 마우스 왼쪽 버튼을 누르는 순간
         if (Input.GetMouseButtonDown(0))
         {
@@ -176,6 +186,15 @@ public class OSW_LineDrawer : MonoBehaviourPun
         // 마무스 왼쪽 버튼을 뗀 상태
         if (Input.GetMouseButtonUp(0))
         {
+            if (playerMove.fullScreenMode)
+            {
+                cam = GameObject.Find("TV").transform.GetChild(0).GetComponent<Camera>();
+            }
+            else
+            {
+                cam = Camera.main;
+            }
+
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
             RaycastHit hitInfo;
             //if (Physics.Raycast(fullRay, out hitInfo))
