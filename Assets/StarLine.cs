@@ -13,8 +13,8 @@ public class StarLine : MonoBehaviour
     void Start()
     {
         starLine = GetComponent<LineRenderer>();
-        starLine.startWidth = 1f;
-        starLine.endWidth = 1f;
+        starLine.startWidth = 0.5f;
+        starLine.endWidth = 0.5f;
     }
 
     // Update is called once per frame

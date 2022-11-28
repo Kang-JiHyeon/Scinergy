@@ -21,13 +21,13 @@ public class ConstellationZone : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {        
         constellation.SetActive(true);
-        terrain.enabled = false;
-        gradient.SetActive(false);
+        //terrain.enabled = false;
+        //gradient.SetActive(false);
     }
     private void OnTriggerExit(Collider other)
     {
         constellation.SetActive(false);
-        terrain.enabled = true;
-        gradient.SetActive(true);
+        //terrain.enabled = true;
+        //gradient.SetActive(true);
     }
 }

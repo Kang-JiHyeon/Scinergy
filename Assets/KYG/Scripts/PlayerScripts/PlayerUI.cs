@@ -78,6 +78,7 @@ public class PlayerUI : MonoBehaviour
         if (telescope.activeSelf)
         {
             telescope.GetComponent<Telescope>().TelescopeOff();
+            Cursor.visible = true;
         }
         else
         {
@@ -129,5 +130,9 @@ public class PlayerUI : MonoBehaviour
         {
             manual.SetActive(true);
         }
+    }
+    public void OnManualClose()
+    {
+        manual.SetActive(false);
     }
 }

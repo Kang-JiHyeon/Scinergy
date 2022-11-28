@@ -21,24 +21,25 @@ public class ToolBtn : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         {
             GetComponent<Image>().sprite = btnImage[0];
         }
-        //else
-        //{
-        //    GetComponent<Image>().sprite = btnImage[1];
-        //}
+        else
+        {
+            GetComponent<Image>().sprite = btnImage[1];
+        }
 
     }
     public void OnActive()
     {
         clickSound.Play();
+ 
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        GetComponent<Image>().sprite = btnImage[0];
+        //GetComponent<Image>().sprite = btnImage[0];
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        GetComponent<Image>().sprite = btnImage[1];
+        //GetComponent<Image>().sprite = btnImage[1];
     }
 }

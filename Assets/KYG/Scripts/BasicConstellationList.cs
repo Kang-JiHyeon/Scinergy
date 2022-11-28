@@ -10,7 +10,7 @@ public class BasicConstellationList : MonoBehaviour
     public TextMeshProUGUI SelectedConstellationName;
     public GameObject SelectedConstellationItem;
     public GameObject Player;
-    public GameObject CreatedConstellationListUI;
+    public GameObject BasicConstellationListUI;
     // Start is called before the first frame update
     void Start()
     {
@@ -53,5 +53,9 @@ public class BasicConstellationList : MonoBehaviour
             print(childStarCount);
         }
         Player.GetComponent<PlayerRot>().StarSet(ConstellationPosition);
+    }
+    public void OnCloseBtn()
+    {
+        BasicConstellationListUI.SetActive(false);
     }
 }
