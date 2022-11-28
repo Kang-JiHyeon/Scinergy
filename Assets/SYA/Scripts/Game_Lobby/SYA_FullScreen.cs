@@ -22,6 +22,6 @@ public class SYA_FullScreen : MonoBehaviour
     {
         if (camera_ == null)
             camera_ = GetComponent<Camera>();
-        camera_.enabled=fullMode;
+        camera_.enabled = fullMode;
     }
 }

@@ -27,8 +27,13 @@ public class OSW_LineDrawer : MonoBehaviourPun
 
     int sortingOrder;
 
+    // 1127 PlayerMove 스크립트 받기
+    PlayerMove playerMove;
+
     // 플레이어를 받아
     PhotonView pv = null;
+
+    Camera cam;
 
     void Start()
     {
@@ -36,6 +41,12 @@ public class OSW_LineDrawer : MonoBehaviourPun
 
     void Update()
     {
+       // 1127 playerMove 받기
+        if(playerMove == null)
+        {
+            playerMove = FindObjectOfType<PlayerMove>();
+        }
+
         if (pv == null)
         {
             pv = SYA_SymposiumManager.Instance.player[PhotonNetwork.NickName];
@@ -64,13 +75,25 @@ public class OSW_LineDrawer : MonoBehaviourPun
         }
     }
 
+    
+    
     public void Drawing(PhotonView pv)
     {
         // 마우스 왼쪽 버튼을 누르는 순간
         if (Input.GetMouseButtonDown(0))
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if (playerMove.fullScreenMode)
+            {
+                cam = GameObject.Find("TV").transform.GetChild(0).GetComponent<Camera>();
+            }
+            else
+            {
+                cam = Camera.main;
+            }
+
+            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
             RaycastHit hitInfo;
+            //if (Physics.Raycast(fullRay, out hitInfo))
             if (Physics.Raycast(ray, out hitInfo))
             {
                 print(hitInfo.collider.name);
@@ -101,10 +124,6 @@ public class OSW_LineDrawer : MonoBehaviourPun
 
                     drawLine.startWidth = linewidth;
                     drawLine.endWidth = linewidth;
-
-                    // 리스트에 추가
-                    //lineList.Add(newLine);
-
                 }
             }
         }
@@ -115,8 +134,9 @@ public class OSW_LineDrawer : MonoBehaviourPun
             timer -= Time.deltaTime;
             if (timer <= 0)
             {
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                Ray ray = cam.ScreenPointToRay(Input.mousePosition);
                 RaycastHit hitInfo;
+                //if (Physics.Raycast(fullRay, out hitInfo))
                 if (Physics.Raycast(ray, out hitInfo))
                 {
                     if (hitInfo.collider.name == "TV" || hitInfo.collider.name == "uWC Window Object(Clone)")
@@ -156,8 +176,9 @@ public class OSW_LineDrawer : MonoBehaviourPun
         // 마무스 왼쪽 버튼을 뗀 상태
         if (Input.GetMouseButtonUp(0))
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
             RaycastHit hitInfo;
+            //if (Physics.Raycast(fullRay, out hitInfo))
             if (Physics.Raycast(ray, out hitInfo))
             {
                 if (hitInfo.collider.name == "TV" || hitInfo.collider.name == "uWC Window Object(Clone)")
@@ -178,13 +199,6 @@ public class OSW_LineDrawer : MonoBehaviourPun
             }
         }
     }
-
-    // RPC 테스트
-    //public void RpcDraw()
-    //{
-    //    Debug.LogWarning("TestFunc!");
-    //}
-
 
     public void NetDraw(float _linewidth, float r, float g, float b, int _sortingOrder)
     {
@@ -215,7 +229,7 @@ public class OSW_LineDrawer : MonoBehaviourPun
     Vector3 GetMousePosition()
     {
         // 스크린의 마우스 위치로부터 Ray를 만들어냄
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Ray ray = cam.ScreenPointToRay(Input.mousePosition);
         RaycastHit hitInfo;
         if (Physics.Raycast(ray, out hitInfo))
         {

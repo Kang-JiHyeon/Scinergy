@@ -14708,11 +14708,14 @@ MonoBehaviour:
   ChangeImg: {fileID: 21300000, guid: e1b894b920ae4db47b5a0e1d5baa156f, type: 3}
   OriginImg: {fileID: 21300000, guid: 45b85e884ef4e6144badb914d1e8ebc8, type: 3}
   text_user: {fileID: 424100391}
+  clickSource: {fileID: 0}
   AudienceTran: {fileID: 395739503}
   PresenterTran: {fileID: 536997918}
   btn_user: {fileID: 1123327109}
   userOn: {fileID: 21300000, guid: d28caacaf05a76c40807eb1d46c4dde0, type: 3}
   userOff: {fileID: 21300000, guid: 5bdeb6b6a9285ac469825c839b561183, type: 3}
+  goStar: 0
+  goSympo: 0
 --- !u!114 &1272215732
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14823,6 +14826,7 @@ MonoBehaviour:
   isEraser: 0
   linewidth: 0.2
   lineList: []
+  cam: {fileID: 693400915}
 --- !u!114 &1272215738
 MonoBehaviour:
   m_ObjectHideFlags: 0

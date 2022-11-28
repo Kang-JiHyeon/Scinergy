@@ -34,7 +34,6 @@ public class OSW_BtnClickEvent : MonoBehaviour
                 m_ped = new PointerEventData(es);
 
                 m_ped.position = Input.mousePosition;
-                //List<RaycastResult> results = new List<RaycastResult>();
                 results = new List<RaycastResult>();
                 m_gr.Raycast(m_ped, results);
 
@@ -68,12 +67,10 @@ public class OSW_BtnClickEvent : MonoBehaviour
     {
         if (button.name == "ChangePrensenter")
         {
-            //GiveAuthority(userName, "Presenter");
             SYA_SymposiumManager.Instance.player[PhotonNetwork.NickName].RPC("RPCGiveAuthority", RpcTarget.All, userName, "Presenter");
         }
         else if (button.name == "ChangeAudience")
         {
-            //GiveAuthority(userName, "Audience");
             SYA_SymposiumManager.Instance.player[PhotonNetwork.NickName].RPC("RPCGiveAuthority", RpcTarget.All, userName, "Audience");
         }
     }
