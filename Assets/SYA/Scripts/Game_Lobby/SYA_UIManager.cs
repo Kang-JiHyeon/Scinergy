@@ -178,7 +178,9 @@ namespace SYA_UI
 
         public void lobbyBackScene()
         {
+            SYA_Loading.Instance.OnLoading("SymposiumScene");
             GetComponentInChildren<SYA_SympoUI>().SymposiumChsnge();
+
         }
 
         bool isRecording;

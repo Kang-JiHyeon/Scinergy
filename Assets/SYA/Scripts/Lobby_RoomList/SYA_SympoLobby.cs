@@ -182,6 +182,7 @@ public class SYA_SympoLobby : MonoBehaviourPunCallbacks
     {
         // 방 생성 요청 (해당 옵션을 이용해서)
         PhotonNetwork.CreateRoom(inputRoomName.text, roomOptions);
+        SYA_Loading.Instance.OnLoading("SymposiumScene");
     }
 
     //방이 생성되면 호출 되는 함수
