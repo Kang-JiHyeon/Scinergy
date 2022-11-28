@@ -322,7 +322,7 @@ constellationName,starName,apparentMagnitude,distance,ra,dec,brightness,starLine
 오리온,Pi6 Orionis,4.63,945.39,4.5945,1.4459,K,Pi5 Orionis
 오리온,Mintaka,2.13,692.48,5.3311,-0.1652,B,Bellatrix
 오리온,Epsilon Orionis,1.62,2000,5.3723,-1.1111,B,Mintaka
-오리온,Alnitak,1.68,736.26,5.4155,-1.5546,O,Epsilon Orionis
+오리온,Alnitak,1.68,736.26,5.4155,-1.5546,O,Betelgeuse:Epsilon Orionis
 오리온,Saiph,2,647.14,5.4851,-9.3936,B,Alnitak
 오리온,Rigel,0.19,862.86,5.1539,-8.1027,B,Saiph:Mintaka
 큰개,Theta Canis Majoris,4.19,260.72,6.5516,-12.0354,K,Gamma Canis Majoris

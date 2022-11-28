@@ -87,6 +87,7 @@ MonoBehaviour:
   - RPCClearUserList
   - RPCGoToUni
   - RPCBackToSympo
+  - RPCOnMic
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

@@ -126,13 +126,16 @@ namespace SYA_UI
                 btn_mic.sprite = micOffS;
                 micing = false;
             }
-            SYA_SymposiumManager.Instance.playerVoice[PhotonNetwork.NickName].enabled = micing;
+
+            SYA_SymposiumManager.Instance.player[PhotonNetwork.NickName].RPC("RPCOnMic", RpcTarget.All, micing, PhotonNetwork.NickName);
             // 마이크 키기
             // 본인의 닉네임의 오디오 소스를 끄고 켠다
             //SYA_SymposiumManager.Instance.playerVoice[PhotonNetwork.NickName].enabled = micOn.activeSelf;
             //SYA_SymposiumManager.Instance.player[PhotonNetwork.NickName].RPC("RpcMicOnOff", RpcTarget.All, PhotonNetwork.NickName, micOn.activeSelf);
             //photonView.RPC("RpcMicOnOff", RpcTarget.All, PhotonNetwork.NickName, micOn.activeSelf);
         }
+
+        
 
         /*        [PunRPC]
                 public void RpcMicOnOff(string name, bool micOn)

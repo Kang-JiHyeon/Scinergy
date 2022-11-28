@@ -8,6 +8,7 @@ using Photon.Voice.PUN;
 
 public class SYA_VoiceView : MonoBehaviour
 {
+    public AudioSource audioSource;
     public PhotonVoiceView voiceView;
     bool start;
     private void Start()
@@ -25,4 +26,11 @@ public class SYA_VoiceView : MonoBehaviour
             voiceView.RecorderInUse = SYA_Voice.Instance.recorder;
         }
     }
+
+    [PunRPC]
+    public void RPCOnMic(bool micing, string name)
+    {
+        audioSource.enabled = micing;
+    }
+
 }
