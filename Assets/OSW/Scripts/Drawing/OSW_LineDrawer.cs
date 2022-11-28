@@ -2,6 +2,7 @@ using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class OSW_LineDrawer : MonoBehaviourPun
 {
@@ -27,14 +28,14 @@ public class OSW_LineDrawer : MonoBehaviourPun
 
     int sortingOrder;
 
-    // 1127 PlayerMove 스크립트 받기
+    // PlayerMove 스크립트 받기
     PlayerMove playerMove;
 
-    // 플레이어를 받아
     PhotonView pv = null;
 
     Camera cam;
 
+    // Singleton
     public static OSW_LineDrawer Instance;
 
     private void Awake()
@@ -50,8 +51,7 @@ public class OSW_LineDrawer : MonoBehaviourPun
 
     void Update()
     {
-       // 1127 playerMove 받기
-        if(playerMove == null)
+        if (playerMove == null)
         {
             playerMove = FindObjectOfType<PlayerMove>();
         }
@@ -90,7 +90,7 @@ public class OSW_LineDrawer : MonoBehaviourPun
     {
 
         // 마우스 왼쪽 버튼을 누르는 순간
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
         {
             if (playerMove.fullScreenMode)
             {
@@ -103,7 +103,6 @@ public class OSW_LineDrawer : MonoBehaviourPun
 
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
             RaycastHit hitInfo;
-            //if (Physics.Raycast(fullRay, out hitInfo))
             if (Physics.Raycast(ray, out hitInfo))
             {
                 print(hitInfo.collider.name);
@@ -139,14 +138,13 @@ public class OSW_LineDrawer : MonoBehaviourPun
         }
 
         // 마우스 왼쪽 버튼을 누른 상태
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject())
         {
             timer -= Time.deltaTime;
             if (timer <= 0)
             {
                 Ray ray = cam.ScreenPointToRay(Input.mousePosition);
                 RaycastHit hitInfo;
-                //if (Physics.Raycast(fullRay, out hitInfo))
                 if (Physics.Raycast(ray, out hitInfo))
                 {
                     if (hitInfo.collider.name == "TV" || hitInfo.collider.name == "uWC Window Object(Clone)")
@@ -184,7 +182,7 @@ public class OSW_LineDrawer : MonoBehaviourPun
         }
 
         // 마무스 왼쪽 버튼을 뗀 상태
-        if (Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButtonUp(0) && !EventSystem.current.IsPointerOverGameObject())
         {
             if (playerMove.fullScreenMode)
             {
@@ -197,7 +195,6 @@ public class OSW_LineDrawer : MonoBehaviourPun
 
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
             RaycastHit hitInfo;
-            //if (Physics.Raycast(fullRay, out hitInfo))
             if (Physics.Raycast(ray, out hitInfo))
             {
                 if (hitInfo.collider.name == "TV" || hitInfo.collider.name == "uWC Window Object(Clone)")
