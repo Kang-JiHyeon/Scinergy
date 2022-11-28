@@ -87,28 +87,40 @@ public class KJH_UIManager : MonoBehaviour
         for (int i = 0; i < transform.childCount; i++)
         {
             // <UI_name, UI_gameObject>
-            dict_UI.Add(transform.GetChild(i).name, transform.GetChild(i).gameObject);
+            Transform tr1 = transform.GetChild(i);
+
+            if (tr1.name.Contains("UI"))
+            {
+                dict_UI.Add(tr1.name, tr1.gameObject);
+            }
         }
 
-        MoveDefalutUI(1f);
+        Transform tr2 = dict_UI["UI_Option"].transform.GetChild(0);
+
+        for (int i=0; i< tr2.childCount; i++)
+        {
+            if (tr2.GetChild(i).name.Contains("UI"))
+            {
+                dict_UI.Add(tr2.GetChild(i).name, tr2.GetChild(i).gameObject);
+            }
+        }
+
 
         for(int i = 0; i<trContent_CBList.childCount; i++)
         {
             buttons.Add(trContent_CBList.GetChild(i).GetComponent<Button>());
-            //buttons[i].onClick.AddListener(OnClick_ButtonCBList);
         }
 
         // 메인 버튼들
-        Transform trMainUI = dict_UI["UI_Main"].transform;
-        for (int i=0; i < trMainUI.childCount; i++)
-        {
-            Button btn = trMainUI.GetChild(i).GetComponent<Button>();
-            if (btn)
-            {
-                button_defaluts.Add(btn);
-            }
-        }
-
+        //Transform trMainUI = dict_UI["UI_Main"].transform;
+        //for (int i=0; i < trMainUI.childCount; i++)
+        //{
+        //    Button btn = trMainUI.GetChild(i).GetComponent<Button>();
+        //    if (btn)
+        //    {
+        //        button_defaluts.Add(btn);
+        //    }
+        //}
     }
 
     private void FixedUpdate()
@@ -235,22 +247,23 @@ public class KJH_UIManager : MonoBehaviour
     // 정보 메뉴 UI
     public void OpenInfoMenu()
     {
+        
         if (!isActiveInfo)
         {
+            //OnClick_SolarSystem();
             Transform tr = dict_UI["UI_Info"].transform;
 
             tr.GetChild(0).gameObject.SetActive(true);
             tr.GetChild(1).gameObject.SetActive(false);
             tr.GetChild(2).gameObject.SetActive(false);
 
+            tr.parent.gameObject.SetActive(true);
             tr.gameObject.SetActive(true);
 
             
-        }
-        
-        if (isActiveControl)
-        {
-            //MoveControllTimeUI(-1f);
+            //button_defaluts[0].image.sprite = buttonSprite_clicks[0];
+            ChangeSprite(tr.gameObject, 3);
+        ChangeSprite(tr.parent.gameObject, 0);
         }
 
         StopObservation();
@@ -341,8 +354,8 @@ public class KJH_UIManager : MonoBehaviour
         dict_UI["UI_Info"].SetActive(true);
         dict_UI["UI_Info"].transform.GetChild(0).gameObject.SetActive(true);
 
-        dict_UI["UI_CelestialList"].SetActive(false);
-        ChangeSprite(dict_UI["UI_CelestialList"], 3);
+        //dict_UI["UI_CelestialList"].SetActive(false);
+        //ChangeSprite(dict_UI["UI_CelestialList"], 3);
         data.ChangeInfo();
         //dict_UI["UI_CelestialList"].SetActive(false);
     }
@@ -362,14 +375,16 @@ public class KJH_UIManager : MonoBehaviour
 
         if (go.name == "UI_InfoMenu")
         {
+            if (dict_UI["UI_CelestialList"].activeSelf) return;
             ChangeSprite(go, 0);
+            ChangeSprite(go, 3);
         }
 
 
         if(go.name == "UI_ControlTime")
         {
-            SS_UI.SetActive(false);
-            ChangeSprite(go, 0);
+            //SS_UI.SetActive(false);
+            //ChangeSprite(go, 0);
             ChangeSprite(go, 4);
         }
 
@@ -388,6 +403,7 @@ public class KJH_UIManager : MonoBehaviour
     // 내부구조
     public void OnClick_Structure()
     {
+        selectPlanet.camaraTarget = selectPlanet.focusTarget;
         dict_UI["UI_Info"].transform.GetChild(2).gameObject.SetActive(true);
 
         cam.isViewNucleus = true;
@@ -402,7 +418,7 @@ public class KJH_UIManager : MonoBehaviour
         
         go.SetActive(!go.activeSelf);
 
-        SS_UI.SetActive(false);
+        //SS_UI.SetActive(false);
         ChangeSprite(go, 3);
 
     }
@@ -433,20 +449,6 @@ public class KJH_UIManager : MonoBehaviour
     public void OnClick_SolarSystem()
     {
         SS_UI.SetActive(!SS_UI.activeSelf);
-
-        SpriteState spriteState = new SpriteState();
-        spriteState = button_defaluts[0].spriteState;
-
-        if (SS_UI.activeSelf)
-        {
-            spriteState.selectedSprite = buttonSprite_clicks[0];
-        }
-        else
-        {
-            spriteState.selectedSprite = null;
-        }
-        button_defaluts[0].spriteState = spriteState;
-
 
         ChangeSprite(SS_UI, 0);
 

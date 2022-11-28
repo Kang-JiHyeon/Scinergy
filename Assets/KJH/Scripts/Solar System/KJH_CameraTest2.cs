@@ -67,6 +67,13 @@ public class KJH_CameraTest2 : MonoBehaviour
             //pivot.position = target.position;
         }
 
+        //if (selectPlanet.focusTarget != null)
+        //{
+        //    target = selectPlanet.focusTarget;
+        //    minDistance = target.localScale.x + 3f;
+        //    //pivot.position = target.position;
+        //}
+
         // 마우스 버튼 입력에 따른 카메라 회전 제어 변수
         if (Input.GetMouseButtonDown(0))
             isRot = true;

@@ -114,7 +114,12 @@ public class KJH_SelectPlanet : MonoBehaviour
                 // 기존의 타겟 포커싱 비활성화
                 if(focusTarget != hit.transform && focusTarget != null)
                 {
-                    focusTarget.GetComponent<KJH_Focus>().ChangeFocusScale(0f);
+                    //focusTarget.GetComponent<KJH_Focus>().ChangeFocusScale(0f);
+                    if (focusScript)
+                    {
+                        focusScript.targetScale = 0f;
+                        focusScript.isFocus = true;
+                    }
                 }
 
                 // 포커스 타겟 설정
@@ -129,7 +134,15 @@ public class KJH_SelectPlanet : MonoBehaviour
                     if (focusScript)
                     {
                         float distance = Vector3.Distance(focusTarget.position, Camera.main.transform.position);
-                        focusScript.ChangeFocusScale(0.1f * distance / 10f);
+                        //focusScript.ChangeFocusScale(0.1f * distance / 10f);
+                        //if (focusTarget.GetComponent<KJH_Focus>().isFocus == false)
+
+
+                        //focusScript.ChangeFocusScale(0.1f * 3);
+
+                        focusScript.targetScale = 0.3f;
+                        focusScript.isFocus = true;
+
                     }
                 }
             }
@@ -147,6 +160,7 @@ public class KJH_SelectPlanet : MonoBehaviour
                     }
                     // 중심 target 설정
                     camaraTarget = hit.transform;
+                    focusTarget = camaraTarget;
                     // 카메라 움직임
                     cam.isMovingToCB = true;
                     
@@ -159,6 +173,13 @@ public class KJH_SelectPlanet : MonoBehaviour
                         KJH_UIManager.instance.OpenInfoMenu();
                     }
                 }
+                // 기존의 타겟 포커싱 비활성화
+                if (focusTarget != hit.transform && focusTarget != null)
+                {
+                    //focusTarget.GetComponent<KJH_Focus>().ChangeFocusScale(0f);
+                    focusScript.targetScale = 0f;
+                    focusScript.isFocus = true;
+                }
             }
 
         }
@@ -169,13 +190,20 @@ public class KJH_SelectPlanet : MonoBehaviour
             {
                 if (focusScript)
                 {
-                    focusScript.ChangeFocusScale(0f);
+                    //if (focusTarget.GetComponent<KJH_Focus>().isFocus == false)
+                    //focusScript.ChangeFocusScale(0f);
+                    focusScript.targetScale = 0f;
+                    focusScript.isFocus = true;
+
                     focusTarget = null;
                     focusScript = null;
                 }
             }
             else
+            {
+                focusTarget = null;
                 camaraTarget = null;
+            }
         }
     }
 
@@ -195,12 +223,17 @@ public class KJH_SelectPlanet : MonoBehaviour
 
             // hit 한 대상의 outline.cs 를 가져와서 활성화한다.
             if (outlineScript != null)
-                outlineScript.enabled = true;
+                //outlineScript.enabled = true;
 
-            // 마우스가 행성 위에 있을 때, 포커스 를 작게한다.
-            if ((mouseTarget == camaraTarget) && focusScript)
+            // 마우스가 행성 위에 있을 때, 포커스를 작게한다.
+            if (focusScript)
             {
-                focusScript.ChangeFocusScale(0);
+                //if (focusScript.isFocus == false)
+                //focusScript.ChangeFocusScale(0);
+
+                focusScript.targetScale = 0f;
+                focusScript.isFocus = true;
+
                 isChangeFocus = false;
             }
         }
@@ -209,13 +242,17 @@ public class KJH_SelectPlanet : MonoBehaviour
         {
             if (outlineScript != null)
             {
-                outlineScript.enabled = false;
+                //outlineScript.enabled = false;
             }
 
             if (focusScript)
             {
                 float distance = Vector3.Distance(focusTarget.position, Camera.main.transform.position);
-                focusScript.ChangeFocusScale(0.1f * distance / 10f);
+                //focusScript.ChangeFocusScale(0.1f * distance / 10f);
+                //if (focusScript.isFocus == false)
+                //focusScript.ChangeFocusScale(0.1f * 3f);
+                focusScript.targetScale = 0.3f;
+                focusScript.isFocus = true;
             }
 
             if (mouseTarget != null)
