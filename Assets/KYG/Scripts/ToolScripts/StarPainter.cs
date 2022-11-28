@@ -19,6 +19,7 @@ public class StarPainter : MonoBehaviourPun
     public GameObject basicConstellationListUI;
     public StarLine starLine;
     public GameObject player;
+    public TextMeshProUGUI constellationNameUI;
     bool isDrawing = false;
     public string constellationName;
     GameObject star1;
@@ -161,6 +162,7 @@ public class StarPainter : MonoBehaviourPun
         constellationName = name;
         Constellation.name = name;
         GameManager.instance.createdConstellationList[name] = Constellation;
+        constellationNameUI.text = name;
     }
     public void OnDrawEndBtn()
     {
