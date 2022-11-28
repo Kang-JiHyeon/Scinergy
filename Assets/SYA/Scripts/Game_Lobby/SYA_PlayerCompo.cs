@@ -121,9 +121,8 @@ public class SYA_PlayerCompo : MonoBehaviourPun
                 playerBody.SetActive(true);
             if (playerName != null)
                 playerName.SetActive(true);*/
-                PlayerMove.currentScene = sceneName;
             if (photonView.IsMine)
-                photonView.RPC("RPCBackToSympo", RpcTarget.All);
+                photonView.RPC("RPCBackToSympo", RpcTarget.All, sceneName);
         }
     }
     public Action PlayerDestroy;
@@ -151,16 +150,17 @@ public class SYA_PlayerCompo : MonoBehaviourPun
     }
 
     [PunRPC]
-    public void RPCBackToSympo()
+    public void RPCBackToSympo(string sceneName)
     {
-        BackToSympo();
+        BackToSympo(sceneName);
     }
 
-    public void BackToSympo()
+    public void BackToSympo(string sceneName)
     {
         GetComponent<PlayerRot>().enabled = true;
-        GetComponent<PlayerMove>().cc.enabled = true;
         GetComponent<PlayerMove>().enabled = true;
+        GetComponent<PlayerMove>().cc.enabled = true;
+        GetComponent<PlayerMove>().currentScene = sceneName;
         transform.GetChild(0).gameObject.SetActive(true);
         transform.GetChild(1).gameObject.SetActive(true);
         isKjh = false;

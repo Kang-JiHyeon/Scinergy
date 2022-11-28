@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using Photon.Pun;
 using Photon.Realtime;
 using SYA_UserInfoManagerSaveLoad;
+using UnityEngine.SceneManagement;
 
 public class SYA_ConnectionManager : MonoBehaviourPunCallbacks
 {
@@ -25,6 +26,8 @@ public class SYA_ConnectionManager : MonoBehaviourPunCallbacks
         PhotonNetwork.AutomaticallySyncScene = true; 
         //서버 접속 요청
         PhotonNetwork.ConnectUsingSettings();
+        /*SYA_Loading.LoadScene("SYA_SymposiumRoomList", SceneManager.GetActiveScene().name);
+        SYA_Loading.Instance.OnCoroutin();*/
     }
 
 
