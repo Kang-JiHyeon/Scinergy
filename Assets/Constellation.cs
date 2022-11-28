@@ -33,7 +33,7 @@ public class Constellation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ConstellationName.transform.position = constellationPosition;
+        //ConstellationName.transform.localPosition = constellationPosition;
         if (isSelected)
         {
             for (int i = 0; i < gameObject.transform.childCount; i++)
