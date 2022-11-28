@@ -4121,8 +4121,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2836529993318380562}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 5}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalPosition: {x: 0, y: 1.2, z: 1}
+  m_LocalScale: {x: 0.05, y: 0.05, z: 0.05}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2836529994449489778}
@@ -12362,8 +12362,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 718e788bf946fe940b4249c6b3a51650, type: 3}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 7b56cfa4128ea0642875198f818e6733, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.4}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -16115,6 +16115,7 @@ MonoBehaviour:
   basicConstellationListUI: {fileID: 590610636800771178}
   starLine: {fileID: 0}
   player: {fileID: 2836529994268691361}
+  constellationNameUI: {fileID: 0}
   constellationName: 
 --- !u!114 &8904091237975403061
 MonoBehaviour:
