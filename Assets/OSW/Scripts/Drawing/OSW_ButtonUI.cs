@@ -87,9 +87,9 @@ public class OSW_ButtonUI : MonoBehaviourPun
     // 선 두께 변경
     public void WitdhBtn(Button button)
     {
-        if(button.name == "1") osw_lineDrawer.linewidth = 0.1f;
-        else if(button.name == "2") osw_lineDrawer.linewidth = 0.2f;
-        else if(button.name == "3") osw_lineDrawer.linewidth = 0.3f;
+        if(button.name == "1") osw_lineDrawer.linewidth = 0.01f;
+        else if(button.name == "2") osw_lineDrawer.linewidth = 0.05f;
+        else if(button.name == "3") osw_lineDrawer.linewidth = 0.1f;
     }
     
 
