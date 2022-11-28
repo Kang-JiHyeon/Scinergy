@@ -12,48 +12,31 @@ public class KJH_Focus : MonoBehaviour
     Transform focus;
     public float speed = 4f;
     public bool isFocus = false;
+    public float originTargetScale = 0f;
+    public float targetScale = 0f;
+
     // Start is called before the first frame update
     void Start()
     {
         focus = transform.GetChild(0);
         focus.localScale = Vector3.zero;
+        originTargetScale = focus.localScale.x;
     }
 
     // Update is called once per frame
     void Update()
     {
         focus.forward = Camera.main.transform.forward;
-    }
 
-    // 매개변수로 온 값을 전역변수에 저장해두고
-    // 전역변수값과 다시 들어온 매개변수의 값과 비교
-    // 같으면 return
-    // 다르면 stop and coroutine
-
-    float originTargetScale = 0f;
-    public void ChangeFocusScale(float targetScale)
-    {
-        if (transform.gameObject.activeSelf)
+        if (isFocus)
         {
-            if(Mathf.Equals(targetScale, originTargetScale) == false)
+            focus.localScale = Vector3.Lerp(focus.localScale, Vector3.one * targetScale, speed * Time.deltaTime);
+
+            if(Vector3.Distance(focus.localScale, Vector3.one * targetScale) < 0.01f)
             {
-                StopCoroutine(IeChangeFocusScale(targetScale));
-                StartCoroutine(IeChangeFocusScale(targetScale));
+                focus.localScale = Vector3.one * targetScale;
+                isFocus = false;
             }
         }
-    }
-
-    IEnumerator IeChangeFocusScale(float targetScale)
-    {
-        Vector3 scale = Vector3.one * targetScale;
-
-        while (Mathf.Abs(focus.localScale.x - targetScale) > 0.005f)
-        {
-            focus.localScale = Vector3.Lerp(focus.localScale, scale, speed * Time.deltaTime);
-            yield return null;
-        }
-
-        focus.localScale = scale;
-        originTargetScale = targetScale;
     }
 }
