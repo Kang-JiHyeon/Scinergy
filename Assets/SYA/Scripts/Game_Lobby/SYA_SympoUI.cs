@@ -253,6 +253,7 @@ namespace SYA_UI
                 currentRoomName = PhotonNetwork.CurrentRoom.Name;
                 SYA_SymposiumManager.Instance.roomUserList= (string[])PhotonNetwork.CurrentRoom.CustomProperties["UserList"];
                 PhotonNetwork.LeaveRoom();
+                SYA_Loading.Instance.OnLoading("KYG_Scene");
                 if (PhotonNetwork.MasterClient.UserId != SYA_SymposiumManager.Instance.player[PhotonNetwork.NickName].Owner.UserId)
                 {
                     SYA_ChatManager.Instance.chatClient.Unsubscribe(new string[] { SYA_ChatManager.Instance.Lobbychannel, SYA_ChatManager.Instance.Solarchannel });

@@ -1,26 +1,37 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SYA_Loading : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public static SYA_Loading Instance;
+    public bool setActive;
+    string nextScene="";
+    public GameObject loading;
+
+    private void Awake()
     {
-        
+        Instance = this;
+        //loading.SetActive(false);
     }
-    float speed = 5;
-    float length = 200;
-    float runningTime;
-    // Update is called once per frame
-    void Update()
+
+    private void Start()
     {
-        runningTime += Time.deltaTime;
-        //벡터값으로 위치 저장
-        Vector3 rot = GetComponent<RectTransform>().eulerAngles;
-        //로테이션 Z값 SIN
-        rot.z += -Time.deltaTime * length;
-        //다시 로테이션으로 전환
-        GetComponent<RectTransform>().eulerAngles = rot;
+        DontDestroyOnLoad(gameObject);
+    }
+
+    private void Update()
+    {
+        if (SceneManager.GetActiveScene().name == nextScene)
+        {
+            loading.SetActive(false);
+        }
+    }
+
+    public void OnLoading(string nextScene_)
+    {
+        loading.SetActive(true);
+        nextScene = nextScene_;
     }
 }
