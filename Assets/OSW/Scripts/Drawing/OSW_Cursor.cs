@@ -11,12 +11,6 @@ public class OSW_Cursor : MonoBehaviour
 
     // 커서인지 아닌지 확인
     bool isCursor = false;
-
-    void Start()
-    {
-        
-    }
-
     void Update()
     {
         if (lineDrawer == null)
@@ -52,6 +46,4 @@ public class OSW_Cursor : MonoBehaviour
         lineDrawer.isDrawing = false;
         Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
     }
-
-    
 }
