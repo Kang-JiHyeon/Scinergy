@@ -158,7 +158,7 @@ public class PlayerMove : MonoBehaviourPun, IPointerClickHandler
 
 
         //TV 더블 클릭시 모드 실행
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
         {
             if (OSW_LineDrawer.Instance.isDrawing) return;
             if (!currentScene.Contains("Sympo")) return;
