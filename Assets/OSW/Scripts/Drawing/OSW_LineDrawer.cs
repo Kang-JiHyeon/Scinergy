@@ -21,6 +21,8 @@ public class OSW_LineDrawer : MonoBehaviourPun
 
     // 지우개
     public bool isEraser; 
+
+    // 라인 두께
     public float linewidth = 0.01f;
 
     // 생성된 라인을 리스트에 담을 변수
@@ -33,6 +35,7 @@ public class OSW_LineDrawer : MonoBehaviourPun
     PhotonView pv = null;
     Camera cam;
 
+    #region Graphic Raycaster
     public Canvas m_canvas;
     GraphicRaycaster m_gr;
     PointerEventData m_ped;
@@ -44,6 +47,7 @@ public class OSW_LineDrawer : MonoBehaviourPun
     PointerEventData m_pedSympo;
     EventSystem esSympo;
     List<RaycastResult> resultsSympo;
+    #endregion
 
     // Singleton
     public static OSW_LineDrawer Instance;
@@ -116,21 +120,8 @@ public class OSW_LineDrawer : MonoBehaviourPun
         resultsSympo = new List<RaycastResult>();
         m_grSympo.Raycast(m_pedSympo, resultsSympo);
 
-
-
         if (results.Count > 0 || resultsSympo.Count > 0)
         {
-            //// results 검출용 for문
-            //for (int i = 0; i < results.Count; i++)
-            //{
-            //    print(results[i].gameObject.name);
-            //}
-
-            //// resultsSympo 검출용 for문
-            //for (int j = 0; j < resultsSympo.Count; j++)
-            //{
-            //    print(resultsSympo[j].gameObject.name);
-            //}
             return;
         }
         else
@@ -193,33 +184,33 @@ public class OSW_LineDrawer : MonoBehaviourPun
                     {
                         if (hitInfo.collider.name == "TV" || hitInfo.collider.name == "uWC Window Object(Clone)")
                         {
-                            // 만약 생성될 때, 리스트에 active가 false인 것들은 삭제
-                            for (int i = 0; i < lineList.Count; i++)
-                            {
-                                if (lineList[i] == null) continue;
-                                if (lineList[i].activeSelf == false)
+                                // 만약 생성될 때, 리스트에 active가 false인 것들은 삭제
+                                for (int i = 0; i < lineList.Count; i++)
                                 {
+                                    if (lineList[i] == null) continue;
+                                    if (lineList[i].activeSelf == false)
+                                    {
 
-                                    Destroy(lineList[i].gameObject);
-                                    lineList.RemoveAt(i); // RemoveAt을 해줘야 되돌리고 다시 선을 그었을때 뻑이 안남.
-                                    i--;
+                                        Destroy(lineList[i].gameObject);
+                                        lineList.RemoveAt(i); // RemoveAt을 해줘야 되돌리고 다시 선을 그었을때 뻑이 안남.
+                                        i--;
+                                    }
                                 }
-                            }
 
-                            linePoints.Add(GetMousePosition());
+                                linePoints.Add(GetMousePosition());
 
-                            if (drawLine == null) return;
+                                if (drawLine == null) return;
 
-                            drawLine.positionCount = linePoints.Count;
-                            drawLine.SetPositions(linePoints.ToArray());
+                                drawLine.positionCount = linePoints.Count;
+                                drawLine.SetPositions(linePoints.ToArray());
 
-                            // 나중에 생긴 선은 위에 올라오게끔
-                            sortingOrder++;
-                            drawLine.GetComponent<LineRenderer>().sortingOrder = sortingOrder;
+                                // 나중에 생긴 선은 위에 올라오게끔
+                                sortingOrder++;
+                                drawLine.GetComponent<LineRenderer>().sortingOrder = sortingOrder;
 
-                            // 화면 공유된 오브젝트에 글씨를 쓰고 오브젝트를 움직이면 글씨가 그 오브젝트 자식으로 들어가서 같이 움직이게
-                            drawLine.transform.parent = hitInfo.transform;
-                            timer = timeDelay;
+                                // 화면 공유된 오브젝트에 글씨를 쓰고 오브젝트를 움직이면 글씨가 그 오브젝트 자식으로 들어가서 같이 움직이게
+                                drawLine.transform.parent = hitInfo.transform;
+                                timer = timeDelay;
                         }
                     }
                 }
