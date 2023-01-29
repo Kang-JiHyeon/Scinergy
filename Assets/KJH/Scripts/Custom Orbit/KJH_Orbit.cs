@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class KJH_Orbit : MonoBehaviour
 {
-
-
     float G = 100f;
     GameObject[] celestials;
 
@@ -15,20 +13,9 @@ public class KJH_Orbit : MonoBehaviour
     {
         // 천체 배열
         celestials = GameObject.FindGameObjectsWithTag("Celestial");
-
-        //InitialVelocity();
-
-        ////celestials[1].GetComponent<Rigidbody>().velocity = Vector3.zero;
-        //celestials[1].transform.position = Vector3.zero;
-
     }
 
-    // Update is called once per frame
-    void FixedUpdate()
-    {
-
-    }
-
+    // 중력 작용
     public void Gravity()
     {
         foreach (GameObject a in celestials)
@@ -47,6 +34,7 @@ public class KJH_Orbit : MonoBehaviour
         }
     }
 
+    // 속도 초기화
     public void InitialVelocity()
     {
         foreach (GameObject a in celestials)
