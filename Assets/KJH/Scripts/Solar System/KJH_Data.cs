@@ -21,7 +21,6 @@ public class KJH_Data : MonoBehaviour
     // 내부구조
     public List<List<string>> strucInfos;
 
-
     void Awake()
     {
         cbNames = new List<string>();
@@ -31,7 +30,6 @@ public class KJH_Data : MonoBehaviour
 
         List<Dictionary<string, object>> infoData = KJH_CSVReader.Read("SolarSystem/InfoData 1");
         List<Dictionary<string, object>> structureData = KJH_CSVReader.Read("SolarSystem/StructureData 1");
-
 
         // infoData Read
         for (int i = 0; i < infoData.Count; i++)
@@ -81,20 +79,7 @@ public class KJH_Data : MonoBehaviour
                 string s = _strucList[j] + "," + _values[j + 4];
                 _strucInfos.Add(s);
             }
-
             strucInfos.Add(_strucInfos);
         }
-    }
-
-    // Use this for initialization
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 }

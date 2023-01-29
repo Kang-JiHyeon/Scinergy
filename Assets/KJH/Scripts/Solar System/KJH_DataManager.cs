@@ -10,10 +10,8 @@ public class KJH_DataManager : MonoBehaviour
 {
     // 선택한 천체 관련 스크립트
     public KJH_SelectPlanet selectPlanet;
-
     // 읽어온 정보 데이터
     KJH_Data data;
-
 
     [Header("Info")]
     // 천체이름
@@ -24,7 +22,6 @@ public class KJH_DataManager : MonoBehaviour
     public RectTransform trContent_info;
     // Info ScrollView의 RectTransform
     public RectTransform trScrollView_info;
-
 
     [Header("Detail Info")]
     public RectTransform trGrid;
@@ -40,7 +37,6 @@ public class KJH_DataManager : MonoBehaviour
     public GameObject textFactory;
     // 상세정보 내용
     public GameObject detailInfoFactory;
-
     // 이전 Content의 높이 H
     float prevTrContentHeight;
 

@@ -46,7 +46,6 @@ public class KJH_CSVReader
             }
             list.Add(entry);
         }
-
         return list;
     }
 }

@@ -67,13 +67,6 @@ public class KJH_CameraTest2 : MonoBehaviour
             //pivot.position = target.position;
         }
 
-        //if (selectPlanet.focusTarget != null)
-        //{
-        //    target = selectPlanet.focusTarget;
-        //    minDistance = target.localScale.x + 3f;
-        //    //pivot.position = target.position;
-        //}
-
         // 마우스 버튼 입력에 따른 카메라 회전 제어 변수
         if (Input.GetMouseButtonDown(0))
             isRot = true;
@@ -124,7 +117,6 @@ public class KJH_CameraTest2 : MonoBehaviour
         {
             ViewNucleus();
         }
-
     }
 
 
@@ -212,8 +204,6 @@ public class KJH_CameraTest2 : MonoBehaviour
         Vector3 targetDir = target.forward;
 
         targetDir += new Vector3(1f, -2f, 1f);
-        //targetDir.y -= 1;
-        //targetDir.z += 1;
 
         // 각도 이동
         pivot.forward = Vector3.Slerp(pivot.forward, targetDir, Time.deltaTime * 5f);
@@ -238,6 +228,5 @@ public class KJH_CameraTest2 : MonoBehaviour
 
             distance = minDistance;
         }
-
     }
 }
