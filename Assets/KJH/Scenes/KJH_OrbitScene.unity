@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.00014969219, g: 0.00014981293, b: 0.00024529058, a: 1}
+  m_IndirectSpecularColor: {r: 0.00014955102, g: 0.00014966927, b: 0.00024511997, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3015,11 +3015,12 @@ MonoBehaviour:
   celestials: {fileID: 1309588628}
   tr_sun: {fileID: 1859760162}
   tr_earth: {fileID: 245996521}
-  pivot: {fileID: 1579167372}
+  camPivot: {fileID: 1579167372}
   input_sun: {fileID: 1572905686}
   input_earth: {fileID: 1937408841}
   orbit: {fileID: 1329986217}
   isOrbitMove: 0
+  trailTime: 100
   camara: {fileID: 1579167374}
   btn_custom: {fileID: 1485035581}
   btn_sprites:

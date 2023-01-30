@@ -19,7 +19,7 @@ public class KJH_CustomOption : MonoBehaviour
     public Transform celestials;
     public Transform tr_sun;
     public Transform tr_earth;
-    public Transform pivot;
+    public Transform camPivot;
     Transform target;
 
     Rigidbody rb_sun;
@@ -39,7 +39,7 @@ public class KJH_CustomOption : MonoBehaviour
     public bool isOrbitMove = false;
 
     List<TrailRenderer> trails = new List<TrailRenderer>();
-
+    public float trailTime = 100f;
     //public Scrollbar scroll;
     //public Text text_distance;
 
@@ -49,7 +49,7 @@ public class KJH_CustomOption : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        target = pivot;
+        target = camPivot;
 
         btn_custom.image.sprite = btn_sprites[1];
 
@@ -69,7 +69,7 @@ public class KJH_CustomOption : MonoBehaviour
             if (trail != null)
             {
                 trails.Add(trail);
-                trail.time = 0f;
+                trail.time = trailTime;
             }
         }
     }
@@ -77,22 +77,13 @@ public class KJH_CustomOption : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        sunLight.transform.LookAt(tr_earth.position);
-
-        //text_distance.text = Vector3.Distance(tr_sun.position, tr_earth.position).ToString();
-
         if (isOrbitMove)
         {
             orbit.Gravity();
-
-            pivot.position = target.position;
-            //pivot.position = pivotPos;
-            //camara.pivot.position = pivotPos;
-
-            //// 두 행성 중심을 기준으로 카메라 회전
-            //camara.pivot.position = (tr_sun.position + tr_earth.position) / 2;
+            camPivot.position = target.position;
         }
 
+        sunLight.transform.LookAt(tr_earth.position);
         input_sun.enabled = !isOrbitMove;
         input_earth.enabled = !isOrbitMove;
     }
@@ -101,7 +92,6 @@ public class KJH_CustomOption : MonoBehaviour
     {
         if (text == "") return;
         sunMassValue = float.Parse(text);
-
     }
 
     void ChangeEarthMass(string text)
@@ -115,40 +105,29 @@ public class KJH_CustomOption : MonoBehaviour
         // 두 천체의 질량이 모두 입력됬을 때 실행
         if (input_sun.text.Length <= 0 || input_earth.text.Length <= 0) return;
 
-        
-
-        // rigidbody 추가
-        rb_sun = tr_sun.gameObject.AddComponent<Rigidbody>();
-        rb_earth = tr_earth.gameObject.AddComponent<Rigidbody>();
-
-        //if(rb_sun)
-        rb_sun.useGravity = false;
-        rb_earth.useGravity = false;
-
-
         // 질량 큰 행성 기준으로 카메라 회전
-        if (sunMassValue > earthMassValue)
-        {
-            target = tr_sun;
-            //pivotPos = tr_sun.position;
-        }
-        else
-        {
-            target = tr_earth;
-            //pivotPos = tr_earth.position;
-        }
-
-        // 질량 변경
-        rb_sun.mass = sunMassValue;
-        rb_earth.mass = earthMassValue;
+        target = sunMassValue > earthMassValue ? tr_sun : tr_earth;
 
         // 초기 위치 저장
         originSunPos = tr_sun.position;
         originEarthPos = tr_earth.position;
 
-        // 궤도 그리기 활성화
-        ChangeTrailTime(100f);
+        // rigidbody 추가
+        rb_sun = tr_sun.gameObject.AddComponent<Rigidbody>();
+        rb_earth = tr_earth.gameObject.AddComponent<Rigidbody>();
 
+        // 중력 영향 해제
+        rb_sun.useGravity = false;
+        rb_earth.useGravity = false;
+
+        // 질량 변경
+        rb_sun.mass = sunMassValue;
+        rb_earth.mass = earthMassValue;
+
+        // 궤도 그리기 활성화
+        ChangeTrailTime(trailTime);
+
+        // 초기 속도
         orbit.InitialVelocity();
 
         isOrbitMove = true;
@@ -171,12 +150,11 @@ public class KJH_CustomOption : MonoBehaviour
         // 위치 초기화
         tr_sun.position = originSunPos;
         tr_earth.position = originEarthPos;
-        pivot.position = tr_sun.position;
+        camPivot.position = tr_sun.position;
 
         // inputfield 값 초기화
         input_sun.text = "";
         input_earth.text = "";
-
 
         // 궤도 그리기 비활성화
         ChangeTrailTime(0f);
