@@ -34,7 +34,7 @@ public class KJH_Orbit : MonoBehaviour
         }
     }
 
-    // 속도 초기화
+    // 속도
     public void InitialVelocity()
     {
         foreach (GameObject a in celestials)
@@ -52,6 +52,4 @@ public class KJH_Orbit : MonoBehaviour
             }
         }
     }
-
-
 }
