@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.120699115, g: 0.18641645, b: 0.3353127, a: 1}
+  m_IndirectSpecularColor: {r: 0.120671965, g: 0.1864434, b: 0.33544946, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -415,7 +415,7 @@ GameObject:
   - component: {fileID: 199206094}
   - component: {fileID: 199206095}
   m_Layer: 0
-  m_Name: Camera_Inside
+  m_Name: Camera_Eclipse
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -460,7 +460,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 524191
+    m_Bits: 1572767
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: d9a3a3b27f5bd1441808e961f0ca226a, type: 2}
   m_TargetDisplay: 0
@@ -481,7 +481,7 @@ Transform:
   m_GameObject: {fileID: 199206090}
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0.00000023841858, z: 0.00000023841858}
-  m_LocalScale: {x: 1, y: 0.99999994, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1073284830}
@@ -2568,7 +2568,7 @@ GameObject:
   - component: {fileID: 1073284832}
   - component: {fileID: 1073284831}
   m_Layer: 20
-  m_Name: SkyBoxCam
+  m_Name: Camera_Skybox
   m_TagString: SkyBoxCam
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5579,7 +5579,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 1073284833}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
