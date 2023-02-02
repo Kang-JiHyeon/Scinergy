@@ -34,9 +34,7 @@ public class KJH_DataItem : MonoBehaviour
     {
         if (preferdHeight != infoText.preferredHeight)
         {
-            // chatText.text의 크기에 맞기 ContentSize를 변경
             rt.sizeDelta = new Vector2(rt.sizeDelta.x, infoText.preferredHeight);
-
             preferdHeight = infoText.preferredHeight;
         }
     }

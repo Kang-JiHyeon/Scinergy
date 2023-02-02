@@ -21,8 +21,12 @@ public class KJH_Data : MonoBehaviour
     // 내부구조
     public List<List<string>> strucInfos;
 
+    public static KJH_Data instance;
     void Awake()
     {
+        if(instance == null)
+            instance = this;
+
         cbNames = new List<string>();
         infos = new List<List<string>>();
         detailInfos = new List<List<string>>();
@@ -70,7 +74,6 @@ public class KJH_Data : MonoBehaviour
             string[] _strucList = ((string)structureData[i]["내부구조목록"]).Split(":");
 
             List<object> _values = new List<object>(structureData[i].Values);
-
             List<string> _strucInfos = new List<string>();
 
             // 내부구조 내용

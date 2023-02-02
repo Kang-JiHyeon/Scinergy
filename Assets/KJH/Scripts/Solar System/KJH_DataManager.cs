@@ -10,8 +10,6 @@ public class KJH_DataManager : MonoBehaviour
 {
     // 선택한 천체 관련 스크립트
     public KJH_SelectPlanet selectPlanet;
-    // 읽어온 정보 데이터
-    KJH_Data data;
 
     [Header("Info")]
     // 천체이름
@@ -44,51 +42,44 @@ public class KJH_DataManager : MonoBehaviour
     public RectTransform trContent_CBList;
 
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        data = GetComponent<KJH_Data>();
-    }
-
     public void ChangeInfo()
     {
         ClearContent(trContent_info, 2);
         ClearContent(trGrid);
         ClearContent(trContent_structure);
 
-        int index = data.cbNames.FindIndex(x => x == selectPlanet.focusTarget.name);
+        int index = KJH_Data.instance.cbNames.FindIndex(x => x == selectPlanet.focusTarget.name);
 
-        if (data.infos.Count > index && index >= 0)
+        if (KJH_Data.instance.infos.Count > index && index >= 0)
         {
             for(int i=0; i<CB_Names.Count; i++)
+                CB_Names[i].text = KJH_Data.instance.infos[index][0];
+
+            CB_Type.text = KJH_Data.instance.infos[index][1];
+
+            // 정보상세보기 Grid Layout Group에 추가
+            for (int i = 0; i < KJH_Data.instance.detailInfos[index].Count; i++)
             {
-                CB_Names[i].text = data.infos[index][0];
+                string[] s = KJH_Data.instance.detailInfos[index][i].Split(",");
+                AddInfo(s[0], detailInfoFactory, trGrid);
+                AddInfo(s[1], detailInfoFactory, trGrid);
             }
 
-            CB_Type.text = data.infos[index][1];
-
-            // wjdGrid Layout Group에 추가
-            for (int i = 0; i < data.detailInfos[index].Count; i++)
+            // Info Scroll View의 Content에 추가
+            AddInfo(KJH_Data.instance.infos[index][2].Split(",")[1], textFactory, trContent_info);
+            for (int i = 3; i < KJH_Data.instance.infos[index].Count; i++)
             {
-                AddInfo(data.detailInfos[index][i].Split(",")[0], detailInfoFactory, trGrid);
-                AddInfo(data.detailInfos[index][i].Split(",")[1], detailInfoFactory, trGrid);
+                string[] s = KJH_Data.instance.infos[index][i].Split(",");
+                AddInfo(s[0], titleFactory, trContent_info);
+                AddInfo(s[1], textFactory, trContent_info);
             }
 
-            // Info Scroll View의 Content 추가
-            for (int i = 2; i < data.infos[index].Count; i++)
+            // Structure Scroll View의 Content에 추가
+            for (int i = 0; i < KJH_Data.instance.strucInfos[index].Count; i++)
             {
-                if(i > 2)
-                {
-                    AddInfo(data.infos[index][i].Split(",")[0], titleFactory, trContent_info);
-                } 
-                AddInfo(data.infos[index][i].Split(",")[1], textFactory, trContent_info);
-            }
-
-            // Structure Scroll View의 Content 추가
-            for (int i = 0; i < data.strucInfos[index].Count; i++)
-            {
-                AddInfo(data.strucInfos[index][i].Split(",")[0], titleFactory, trContent_structure);
-                AddInfo(data.strucInfos[index][i].Split(",")[1], textFactory, trContent_structure);
+                string[] s = KJH_Data.instance.strucInfos[index][i].Split(",");
+                AddInfo(s[0], titleFactory, trContent_structure);
+                AddInfo(s[1], textFactory, trContent_structure);
             }
         }
     }
@@ -109,13 +100,13 @@ public class KJH_DataManager : MonoBehaviour
     /// <param name="tr"> 오브젝트가 추가될 부모 content </param>
     void AddInfo(string infoText, GameObject addObject, RectTransform tr)
     {
-        // 0. 바뀌기 전의 Content H값을 넣자.
+        // 1.. 바뀌기 전의 Content H값을 저장
         prevTrContentHeight = trContent_info.sizeDelta.y;
-        // 1. ChatItem을 만든다. (부모를  Scrollview의 content)
+        // 2. text item 객체 생성
         GameObject item = Instantiate(addObject, tr);
-        // 2. 만든 ChatItem에서 ChatItem 컴포넌트를 가져온다.
+        // 3. 만든 item에서 DataItem 컴포넌트를 가져온다
         KJH_DataItem data = item.GetComponent<KJH_DataItem>();
-        // 3. 가져온 컴포넌트를 s에 설정
+        // 4. 가져온 컴포넌트를 data에 설정
         data.SetText(infoText);
 
         StartCoroutine(AutoScrollBotton());
@@ -125,7 +116,7 @@ public class KJH_DataManager : MonoBehaviour
     {
         yield return null;
 
-        // trScrollView의 H가 Contnet의 H보다 커지면(스크롤 가능한 상태)
+        // trScrollView의 H가 Content의 H보다 커지면(스크롤 가능한 상태)
         if (trContent_info.sizeDelta.y > trScrollView_info.sizeDelta.y)
         {
             // 4. 만약, Content가 바닥에 닿아있었다면
