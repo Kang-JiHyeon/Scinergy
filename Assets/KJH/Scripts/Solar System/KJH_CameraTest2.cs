@@ -133,21 +133,10 @@ public class KJH_CameraTest2 : MonoBehaviour
 
     void CameraZoom()
     {
-        Vector3 dir = pivot.position - cam.position;
-        dir.Normalize();
-        float step = GetAxisRawScrollUniversal() * zoomSpeed;
+        float step = Input.GetAxisRaw("Mouse ScrollWheel") * zoomSpeed;
         distance = Mathf.Clamp(distance - step, minDistance, maxDistance);
 
-        Vector3 zoomDir;
-        if (isViewUI)
-        {
-            zoomDir = dir;
-        }
-        else
-        {
-            zoomDir = cam.rotation * Vector3.forward;
-        }
-
+        Vector3 zoomDir = cam.rotation * Vector3.forward;
         Vector3 goalPos = pivot.position - (zoomDir * distance);
 
         cam.position = Vector3.Lerp(cam.position, goalPos, Time.deltaTime * 3);
@@ -156,14 +145,8 @@ public class KJH_CameraTest2 : MonoBehaviour
         {
             cam.position = goalPos;
         }
-    }
 
-    float GetAxisRawScrollUniversal()
-    {
-        float scroll = Input.GetAxisRaw("Mouse ScrollWheel");
-        if (scroll < 0) return -1;
-        if (scroll > 0) return 1;
-        return 0;
+        Debug.DrawLine(cam.position, pivot.position, Color.red);
     }
 
     // 카메라 이동
